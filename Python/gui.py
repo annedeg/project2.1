@@ -20,8 +20,13 @@ tabControl.add(tab3, text='Config')  # Add the tab
 tabControl.add(tab4, text='Help')  # Add the tab
 tabControl.pack(expand=1, fill="both")  # Pack to make visible
 
-w = tk.Label(tab1, text="Hello")
-w.pack()
-w = tk.Label(tab2, text="Bye")
-w.pack()
+notebook = ttk.Notebook(tab1)                   #this block of code make a second notebook
+notebook.pack()                                 #for the selection of different sensors.
+f1 = ttk.Frame(notebook)
+notebook.add(f1, text='Sensor 1')
+f2 = ttk.Frame(notebook)
+notebook.add(f2, text='Sensor 2')
+notebook.select(f1)
+notebook.enable_traversal()
+
 win.mainloop()                          # Start GUI
