@@ -5,51 +5,52 @@
 #include <stdlib.h>
 #include <avr/sfr_defs.h>
 
+#include "display.c"
 #include "led.c"
 #include "communication.c"
 #include "AVR_TTC_scheduler.c"
-/*
+#include "distance.c"
+
+
+
+
+/* 
  * Algemene software.c
  *
- * Created: 10/15/2019 4:38:32 PM
+ * Created: 10/15/2019 4:38:32 PMs
  * Author : adgra
  */ 
 
 
 void init_ports() {
-	DDRD = 0x1C;
+	DDRB = 0xFF;
+	DDRD = 0x5C;
+
 }
 
 
 void init_all() {
 	init_ports();
 	uart_init();
+	reset_display();
+	turn_led_on(1);
+	init_timer();
 }
 
-void send_status() {
-	transmit(rol_luik_status);
-}
-
-void check_status() {
-	uint8_t data = receive();
-	if(data & 0x1 || data & 0x2 || data & 0x3) {
-		rol_luik_status = data;
-		
-	}
-}
 
 int main(void)
 {
 	SCH_Init_T1();
-	SCH_Start();
-	SCH_Add_Task(init_all, 0, 0);
-	SCH_Add_Task(check_lights, 10, 1);
-/*	SCH_Add_Task(send_status, 100, 1);*/
-	SCH_Add_Task(check_status, 100, 1);
+ 	SCH_Start();
+ 	SCH_Add_Task(init_all, 0, 0);
+/*	SCH_Add_Task(check_lights, 10, 1);*/
+/*	SCH_Add_Task(send_status, 10, 1);*/
+/*	SCH_Add_Task(check_status, 10, 1);*/
+	SCH_Add_Task(get_distance, 10, 1);
+/*	SCH_Add_Task(receive_all, 10, 1);*/
     /* Replace with your application code */
-    while (1) 
-    {
+    while (1) {
 		SCH_Dispatch_Tasks();
-
     }
+	return 0;
 }
