@@ -1,4 +1,4 @@
-
+from tkinter import *
 import sys
 
 try:
@@ -146,6 +146,24 @@ class Toplevel1:
         self.Canvas1.configure(relief="ridge")
         self.Canvas1.configure(selectbackground="#c4c4c4")
         self.Canvas1.configure(selectforeground="black")
+        self.Canvas1.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
+        self.Canvas1.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
+        self.Canvas1.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
+        self.Canvas1.create_text(18, 275,
+                                text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
+        # flippen dus hij ziet hier maar ietsje lelijk erbij
+
+        # x-axis
+        for i in range(23):
+            x = 50 + (i * 50)
+            self.Canvas1.create_line(x, 550, x, 50, width=1, dash=(2, 5))
+            self.Canvas1.create_text(x, 550, text='%d' % (10 * i), anchor=N)
+
+        # y-axis
+        for i in range(11):
+            y = 550 - (i * 50)
+            self.Canvas1.create_line(50, y, 1150, y, width=1, dash=(2, 5))
+            self.Canvas1.create_text(40, y, text='%d' % (10 * i), anchor=E)
 
         self.Button1 = tk.Button(self.TNotebook1_t0)
         self.Button1.place(relx=0.01, rely=0.778, height=54, width=277)
@@ -621,6 +639,35 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
 
         self.menubar = tk.Menu(top, font="TkMenuFont", bg=_bgcolor, fg=_fgcolor)
         top.configure(menu=self.menubar)
+        self.s = 1
+        self.x2 = 50
+        self.y2 = 0
+        self.running = True
+
+
+    def value_to_y(self, val):
+        return 550 - 5 * val
+
+    def step(self, newY):
+        if self.running:
+            if self.s == 23:
+                # new frame
+                self.s = 1
+                self.x2 = 50
+                self.Canvas1.delete('temp')  # only delete items tagged as temp
+            x1 = self.x2
+            y1 = self.y2
+            self.x2 = 50 + self.s * 50
+            self.y2 = self.value_to_y(newY)
+            self.Canvas1.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
+            self.s = self.s + 1
+            self.Canvas1.after(300, self.step)
+
+    def pause(self):
+        if self.running:
+            self.running = False
+        else:
+            self.running = True
 
 
 if __name__ == '__main__':
