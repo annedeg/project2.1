@@ -1,17 +1,16 @@
 import serial
+import serial.tools.list_ports
+import struct
 import time
-ser = serial.Serial()
-ser.baudrate = 19200
-ser.port = 'COM3'
-ser.stopbits = 1
-ser.parity = 'N'
-ser.timeout = None
-ser.bytesize = 8
-ser.open()
+comPorts = list(serial.tools.list_ports.comports())
+comPort = ''
 
-time.sleep(3)
+for i in comPorts:
+    l = str(i).split()
+    if l[2] == 'Arduino':
+        comPort = l[0]
 
-while 1==1:
-    ina = input()
-    print(ina.encode())
-    ser.write(ina.encode())
+ser = serial.Serial(comPort, 19200)
+print(ser)
+while True:
+    print(ser.read_all())
