@@ -13,10 +13,10 @@ class Graph:
     def value_to_y(self, val):
         return 550 - 5 * val
 
-    def initialize(self):
+    def initialize(self, width, height, colour):
 
-        canvas = Canvas(self.root, width=1200, height=600,
-                        bg='white')  # kleur kan nog veranderen, hangt van de rest van het design af
+        canvas = Canvas(self.root, width=width, height=height,  # standaard was 1200, 600
+                        bg=colour)  # colour moet een string zijn met de naam van de kleur, zoals 'white'
         canvas.pack(expand=YES, fill=BOTH)
 
         Button(self.root, text='Pause', anchor=E, justify=LEFT, command=self.pause).pack(side=LEFT)  # als het nodig is
