@@ -2020,7 +2020,6 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         else:
             self.running = True
 
-
 if __name__ == '__main__':
     vp_start_gui()
 
