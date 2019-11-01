@@ -43,14 +43,14 @@ int main(void)
 	SCH_Init_T1();
  	SCH_Start();
  	SCH_Add_Task(init_all, 0, 0);
-/*	SCH_Add_Task(check_lights, 10, 1);*/
+	SCH_Add_Task(check_lights, 0, 1);
 /*	SCH_Add_Task(send_status, 10, 1);*/
 /*	SCH_Add_Task(check_status, 10, 1);*/
-	SCH_Add_Task(get_distance, 10, 1);
-/*	SCH_Add_Task(receive_all, 10, 1);*/
+	SCH_Add_Task(calculate_distance, 0, 10);
+	SCH_Add_Task(send_all, 0, 100);
     /* Replace with your application code */
     while (1) {
-		SCH_Dispatch_Tasks();
+	    SCH_Dispatch_Tasks();
     }
 	return 0;
 }

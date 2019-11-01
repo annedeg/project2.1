@@ -28,6 +28,9 @@ void turn_led_off(int led) {
 	PORTD = PORTD ^ (1 << led);
 }
 
+int get_light_status () {
+	return rol_luik_status;
+}
 
 void check_lights(void) {
 	PORTD = 0x00;

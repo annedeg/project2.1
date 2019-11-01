@@ -1,6 +1,26 @@
 #define UBBRVAL 51
 #include <stdint.h>
 #include <math.h>
+uint8_t asdf;
+
+
+int counter = 0;
+int light_bit = 2;
+int ult_bit = 8;
+int temp_bit = 10;
+int light_bit2 = 7;
+int cont_bit = 5;
+
+uint8_t temp =(uint8_t) 0;
+uint8_t light2=(uint8_t) 0;
+uint8_t dist = 0;
+uint8_t light = 0;
+
+
+int totaal = 0;
+uint8_t binary[32];
+uint8_t byte[4][8];
+uint8_t getal[4];
 void uart_init()
 {
 	// set the baud rate
@@ -16,13 +36,8 @@ void uart_init()
 /* Transmit data */
 void transmit(uint8_t data)
 {
-	// wait for an empty transmit buffer
-	// UDRE is set when the transmit buffer is empty
-	_delay_ms(10);
-	if(UCSR0A << UDRE0) {
-	// send the data
-		UDR0 = data;
-	}
+	loop_until_bit_is_set(UCSR0A, UDRE0);
+	UDR0=data;
 }
 /* receive data */
 uint8_t receive() {
@@ -59,60 +74,89 @@ void check_status() {
 }
 
 void send_all() {
-	int light_bit = 2;
-	int ult_bit = 8;
-	int temp_bit = 10;
-	int light_bit2 = 7;
-	int cont_bit = 5;
-	
-	uint8_t temp =(uint8_t) 30;
-	uint8_t light2=(uint8_t) 50;
-	uint8_t distance =(uint8_t) 212;
-	uint8_t light =(uint8_t) 3;
-	
-	uint8_t binary[32];
-	int counter = 0;
-	for(int i = 0; i<=light_bit;i++) {
+	dist = (uint8_t) get_current_distance();
+	light = (uint8_t) get_light_status();
+/*
+ * test.c
+ *
+ * Created: 10/29/2019 12:18:45 PM
+ * Author : adgra
+ */ 
+
+
+	for(int i = 0; i<light_bit;i++) {
 		if(light%2==1) {
 			binary[counter] = 1;
-			light = (light-1)/2
-		} else {
-			binary[counter] = 0;
-			light = (light)/2
-		}
-		counter++;
-	}
-	for(int i = 0; i<=distance;i++) {
-		if(distance%2==1) {
-			binary[counter] = 1;
-			distance = (distance-1)/2
+			totaal+=1;
+			light = (light-1)/2;
 			} else {
 			binary[counter] = 0;
-			distance = (distance)/2
+			light = (light)/2;
 		}
-		counter++;
+		counter+=1;
 	}
-	for(int i = 0; i<=temp_bit;i++) {
+	for(int i = 0; i<ult_bit;i++) {
+		if(dist%2==1) {
+			binary[counter] = 1;
+			totaal+=1;
+			dist = (dist-1)/2;
+			} else {
+			binary[counter] = 0;
+			dist = (dist)/2;
+		}
+		counter+=1;
+	}
+	for(int i = 0; i<temp_bit;i++) {
 		if(temp%2==1) {
 			binary[counter] = 1;
-			temp = (temp-1)/2
+			totaal+=1;
+			temp = (temp-1)/2;
 			} else {
 			binary[counter] = 0;
-			temp = (temp)/2
+			temp = (temp)/2;
 		}
-		counter++;
+		counter+=1;
 	}
-	for(int i = 0; i<=light_bit2;i++) {
+	for(int i = 0; i<light_bit2;i++) {
 		if(light2%2==1) {
 			binary[counter] = 1;
-			light2 = (light2-1)/2
+			totaal+=1;
+			light2 = (light2-1)/2;
 			} else {
 			binary[counter] = 0;
-			light2 = (light2)/2
+			light2 = (light2)/2;
 		}
-		counter++;
+		counter+=1;
 	}
-	
+	uint8_t totaal2 = (uint8_t) totaal;
+	for(int i = 0; i<cont_bit;i++) {
+		if(totaal2%2==1) {
+			binary[counter] = 1;
+			totaal2 = (totaal2-1)/2;
+			} else {
+			binary[counter] = 0;
+			totaal2 = (totaal2)/2;
+		}
+		counter+=1;
+	}
+
+
+	volatile int ding[4];
+	int aantal = 0;
+	for(int i=0; i<4; i++) {
+		ding[i]=0;
+		for(int a=0; a<8;a++) {
+			if(binary[aantal] == 1) {
+				ding[i]+= (int)(pow(2, (7-a))+0.5);
+			}
+			aantal++;
+		}
+	}
+	transmit(0xff);
+	transmit(ding[0]);
+	transmit(ding[1]);
+	transmit(ding[2]);
+	transmit(ding[3]);
 
 }
 
@@ -142,10 +186,8 @@ void receive_all() {
 			al++;
 		}
 		byte[a] = extra;
-		
+		 
 	}
 	
-	for(int a=0; a<4; a++){
-		transmit(byte[a]);
-	}
+
 }
