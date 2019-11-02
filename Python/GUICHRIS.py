@@ -1,6 +1,7 @@
 from tkinter import *
 import sys
-
+import serial
+import time
 try:
     import Tkinter as tk
 except ImportError:
@@ -14,9 +15,14 @@ except ImportError:
     import tkinter.ttk as ttk
 
     py3 = True
-
+import serial.tools.list_ports
 import unknown_support
-
+aantal = 0
+aantal_huidig = 0
+getallen = []
+comPorts = list(serial.tools.list_ports.comports())
+activeComPorts = []
+arduinos = []
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -27,6 +33,8 @@ def vp_start_gui():
     unknown_support.init(root, top)
     root.mainloop()
 
+def loop():
+    print("asdf")
 
 w = None
 
@@ -137,7 +145,7 @@ class Toplevel1:
         for i in range(11):
             y = 550 - (i * 50)
             self.Canvas1.create_line(50, y, 1150, y, width=1, dash=(2, 5))
-            self.Canvas1.create_text(40, y, text='%d' % (10 * i), anchor=E)
+            self.Canvas1.create_text(40, y, text='%d' % (10 * i*2), anchor=E)
 
         self.Button1 = tk.Button(self.TNotebook1_t0)
         self.Button1.place(relx=0.01, rely=0.778, height=54, width=277)
@@ -1995,9 +2003,62 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         self.x2 = 50
         self.y2 = 0
         self.running = True
+        self.setup_arduinos()
+        time.sleep(5)
+        self.loop()
+
+    def setup_arduinos(self):
+        global comPorts, activeComPorts
+        for i in comPorts:
+            l = str(i).split()
+            activeComPorts.append(l[0])
+
+        for comPort in activeComPorts:
+            ser = serial.Serial(comPort, 19200)
+            time.sleep(3)
+            test = bytearray(b'\xf3')
+            ser.write(test)
+            if ser.read() == bytearray(b'\xf3'):
+                arduinos.append(ser)
+
+
+    def loop(self):
+        global aantal, getallen, aantal_huidig, arduinos
+        for ser in arduinos:
+            if ser.in_waiting > 0:
+                if ser.read().hex() == 'ff':
+                    scale = 16
+                    num_of_bits = 8
+                    binary_value = ""
+                    for i in range(4):
+                        binary_value = binary_value + str(bin(int(ser.read().hex(), scale))[2:].zfill(num_of_bits))
+                    binary_value = str(binary_value)
+                    light = binary_value[0:2]
+                    light = light[::-1]
+                    temp = binary_value[10:20]
+                    temp = temp[::-1]
+                    distance = binary_value[2:10]
+                    distance = distance[::-1]
+                    light2 = binary_value[20:27]
+                    light2 = light2[::-1]
+                    bit_controle = binary_value[27:]
+                    bit_controle = bit_controle[::-1]
+                    temp = int(temp, 2)
+                    light2 = int(light2, 2)
+                    distance = int(distance, 2)
+                    light = int(light, 2)
+                    bit_controle = int(bit_controle, 2)
+                    print("Temperatuur: " + str(temp), "Lichtsensor: " + str(light2), "Distance: " + str(distance),
+                          "What light: " + str(light), "Controle: " + str(bit_controle))
+                    getallen.append(int(distance))
+                    aantal+=1
+                if aantal > aantal_huidig:
+                    aantal_huidig = aantal
+                    self.step(getallen[aantal_huidig-1])
+        root.after(10, self.loop)
 
     def value_to_y(self, val):
-        return 550 - 5 * val
+        return 550 - 2.5 * val
 
     def step(self, newY):
         if self.running:
@@ -2012,7 +2073,6 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
             self.y2 = self.value_to_y(newY)
             self.Canvas1.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
             self.s = self.s + 1
-            self.Canvas1.after(300, self.step)
 
     def pause(self):
         if self.running:
@@ -2021,8 +2081,8 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
             self.running = True
 
 
+
+
+
 if __name__ == '__main__':
     vp_start_gui()
-
-
-

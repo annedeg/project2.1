@@ -64,12 +64,12 @@ def set_Tk_var():
 
 
 def CloseScherm():
-    print('unknown_support.CloseScherm')
+    close_scherm_arduino()
     sys.stdout.flush()
 
 
 def OpenScherm():
-    print('unknown_support.OpenScherm')
+    open_scherm_arduino()
     sys.stdout.flush()
 
 
@@ -423,3 +423,10 @@ if __name__ == '__main__':
     unknown.vp_start_gui()
 
 
+# def open_scherm_arduino():
+#
+#
+# def close_scherm_arduino():
+#
+#
+# verstuur_iets():
