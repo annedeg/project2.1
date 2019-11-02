@@ -178,7 +178,7 @@ class Toplevel1:
         self.TNotebook2_t0.configure(background="#d9d9d9")
         self.TNotebook2_t0.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t0.configure(highlightcolor="black")
-        bar1 = Figure(figsize=(5, 2), dpi=100)
+        bar1 = Figure(figsize=(5, 2), dpi=75)
         ax1 = bar1.add_subplot(111)
 
         data = (20, 35, 30, 35, 27)
@@ -199,7 +199,7 @@ class Toplevel1:
         self.TNotebook2_t1.configure(background="#d9d9d9")
         self.TNotebook2_t1.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t1.configure(highlightcolor="black")
-        bar2 = Figure(figsize=(5, 2), dpi=100)
+        bar2 = Figure(figsize=(5, 2), dpi=75)
         ax2 = bar2.add_subplot(111)
 
         data = (20, 35, 30, 35, 27)
@@ -220,7 +220,7 @@ class Toplevel1:
         self.TNotebook2_t2.configure(background="#d9d9d9")
         self.TNotebook2_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t2.configure(highlightcolor="black")
-        bar3 = Figure(figsize=(5, 2), dpi=100)
+        bar3 = Figure(figsize=(5, 2), dpi=75)
         ax3 = bar3.add_subplot(111)
 
         data = (20, 35, 30, 35, 27)
