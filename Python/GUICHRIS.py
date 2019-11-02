@@ -309,6 +309,24 @@ class Toplevel1:
         self.Canvas10.configure(relief="ridge")
         self.Canvas10.configure(selectbackground="#c4c4c4")
         self.Canvas10.configure(selectforeground="black")
+        self.Canvas10.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
+        self.Canvas10.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
+        self.Canvas10.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
+        self.Canvas10.create_text(18, 275,
+                                 text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
+        # flippen dus hij ziet hier maar ietsje lelijk erbij
+
+        # x-axis
+        for i in range(23):
+            x = 50 + (i * 50)
+            self.Canvas10.create_line(x, 550, x, 50, width=1, dash=(2, 5))
+            self.Canvas10.create_text(x, 550, text='%d' % (10 * i), anchor=N)
+
+        # y-axis
+        for i in range(11):
+            y = 550 - (i * 50)
+            self.Canvas10.create_line(50, y, 1150, y, width=1, dash=(2, 5))
+            self.Canvas10.create_text(40, y, text='%d' % (10 * i * 2), anchor=E)
 
         self.Canvas11 = tk.Canvas(self.TNotebook5_t2)
         self.Canvas11.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
@@ -318,6 +336,24 @@ class Toplevel1:
         self.Canvas11.configure(relief="ridge")
         self.Canvas11.configure(selectbackground="#c4c4c4")
         self.Canvas11.configure(selectforeground="black")
+        self.Canvas11.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
+        self.Canvas11.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
+        self.Canvas11.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
+        self.Canvas11.create_text(18, 275,
+                                 text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
+        # flippen dus hij ziet hier maar ietsje lelijk erbij
+
+        # x-axis
+        for i in range(23):
+            x = 50 + (i * 50)
+            self.Canvas11.create_line(x, 550, x, 50, width=1, dash=(2, 5))
+            self.Canvas11.create_text(x, 550, text='%d' % (10 * i), anchor=N)
+
+        # y-axis
+        for i in range(11):
+            y = 550 - (i * 50)
+            self.Canvas11.create_line(50, y, 1150, y, width=1, dash=(2, 5))
+            self.Canvas11.create_text(40, y, text='%d' % (10 * i * 2), anchor=E)
 
         self.TNotebook3 = ttk.Notebook(self.TNotebook1_t1)
         self.TNotebook3.place(relx=0.0, rely=0.014, relheight=0.995
@@ -2197,7 +2233,7 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
     def value_to_y(self, val):
         return 550 - 2.5 * val
 
-    def step(self, newY):
+    def step(self, newY, EditCanvas1, EditCanvas2, EditCanvas3):
         if self.running:
             if self.s == 23:
                 # new frame
@@ -2208,7 +2244,12 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
             y1 = self.y2
             self.x2 = 50 + self.s * 50
             self.y2 = self.value_to_y(newY)
-            self.Canvas1.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
+            if EditCanvas1 == 1:
+                self.Canvas1.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
+            if EditCanvas2 == 1:
+                self.Canvas10.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
+            if EditCanvas3 == 1:
+                self.Canvas11.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
             self.s = self.s + 1
 
     def pause(self):
