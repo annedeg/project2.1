@@ -1,4 +1,5 @@
 import sys
+import GUICHRIS
 
 try:
     import Tkinter as tk
@@ -14,6 +15,7 @@ except ImportError:
 
     py3 = True
 
+top = GUICHRIS.Toplevel1
 
 def set_Tk_var():
     global che71
@@ -262,6 +264,7 @@ def Set11Temperatuur():
 
 
 def Set1Afstand():
+    print(top.Set1Temperatuur())
     print('unknown_support.Set1Afstand')
     sys.stdout.flush()
 
@@ -271,7 +274,8 @@ def Set1Licht():
     sys.stdout.flush()
 
 
-def Set1Temperatuur():
+def Set1Temperatuur(temperatuur):
+    print(temperatuur)
     print('unknown_support.Set1Temperatuur')
     sys.stdout.flush()
 
@@ -434,5 +438,6 @@ if __name__ == '__main__':
     import unknown
 
     unknown.vp_start_gui()
+
 
 

@@ -2,6 +2,7 @@ import sys
 from tkinter import *
 import serial
 import time
+from functools import partial
 
 
 try:
@@ -26,6 +27,7 @@ getallen = []
 comPorts = list(serial.tools.list_ports.comports())
 activeComPorts = []
 arduinos = []
+#poopy = 'Poppy'
 
 
 def vp_start_gui():
@@ -36,9 +38,6 @@ def vp_start_gui():
     top = Toplevel1(root)
     unknown_support.init(root, top)
     root.mainloop()
-
-def loop():
-    print("asdf")
 
 w = None
 
@@ -59,6 +58,8 @@ def destroy_Toplevel1():
     w.destroy()
     w = None
 
+def get_temperatuur_1():
+    return poopy
 
 class Toplevel1:
     def __init__(self, top=None):
@@ -641,7 +642,7 @@ class Toplevel1:
         self.Button2.configure(activebackground="#ececec")
         self.Button2.configure(activeforeground="#000000")
         self.Button2.configure(background="#d9d9d9")
-        self.Button2.configure(command=unknown_support.Set1Temperatuur)
+        self.Button2.configure(command=self.Set1Temperatuur)
         self.Button2.configure(disabledforeground="#a3a3a3")
         self.Button2.configure(foreground="#000000")
         self.Button2.configure(highlightbackground="#d9d9d9")
@@ -758,7 +759,7 @@ class Toplevel1:
         self.Button11.configure(activebackground="#ececec")
         self.Button11.configure(activeforeground="#000000")
         self.Button11.configure(background="#d9d9d9")
-        self.Button11.configure(command=unknown_support.Set2Temperatuur)
+        self.Button11.configure(command=self.Set2Temperatuur)
         self.Button11.configure(disabledforeground="#a3a3a3")
         self.Button11.configure(foreground="#000000")
         self.Button11.configure(highlightbackground="#d9d9d9")
@@ -771,7 +772,7 @@ class Toplevel1:
         self.Button12.configure(activebackground="#ececec")
         self.Button12.configure(activeforeground="#000000")
         self.Button12.configure(background="#d9d9d9")
-        self.Button12.configure(command=unknown_support.Set3Temperatuur)
+        self.Button12.configure(command=self.Set3Temperatuur)
         self.Button12.configure(disabledforeground="#a3a3a3")
         self.Button12.configure(foreground="#000000")
         self.Button12.configure(highlightbackground="#d9d9d9")
@@ -784,7 +785,7 @@ class Toplevel1:
         self.Button13.configure(activebackground="#ececec")
         self.Button13.configure(activeforeground="#000000")
         self.Button13.configure(background="#d9d9d9")
-        self.Button13.configure(command=unknown_support.Set4Temperatuur)
+        self.Button13.configure(command=self.Set4Temperatuur)
         self.Button13.configure(disabledforeground="#a3a3a3")
         self.Button13.configure(foreground="#000000")
         self.Button13.configure(highlightbackground="#d9d9d9")
@@ -797,7 +798,7 @@ class Toplevel1:
         self.Button14.configure(activebackground="#ececec")
         self.Button14.configure(activeforeground="#000000")
         self.Button14.configure(background="#d9d9d9")
-        self.Button14.configure(command=unknown_support.Set5Temperatuur)
+        self.Button14.configure(command=self.Set5Temperatuur)
         self.Button14.configure(disabledforeground="#a3a3a3")
         self.Button14.configure(foreground="#000000")
         self.Button14.configure(highlightbackground="#d9d9d9")
@@ -810,7 +811,7 @@ class Toplevel1:
         self.Button15.configure(activebackground="#ececec")
         self.Button15.configure(activeforeground="#000000")
         self.Button15.configure(background="#d9d9d9")
-        self.Button15.configure(command=unknown_support.Set6Temperatuur)
+        self.Button15.configure(command=self.Set6Temperatuur)
         self.Button15.configure(disabledforeground="#a3a3a3")
         self.Button15.configure(foreground="#000000")
         self.Button15.configure(highlightbackground="#d9d9d9")
@@ -823,7 +824,7 @@ class Toplevel1:
         self.Button16.configure(activebackground="#ececec")
         self.Button16.configure(activeforeground="#000000")
         self.Button16.configure(background="#d9d9d9")
-        self.Button16.configure(command=unknown_support.Set7Temperatuur)
+        self.Button16.configure(command=self.Set7Temperatuur)
         self.Button16.configure(disabledforeground="#a3a3a3")
         self.Button16.configure(foreground="#000000")
         self.Button16.configure(highlightbackground="#d9d9d9")
@@ -836,7 +837,7 @@ class Toplevel1:
         self.Button17.configure(activebackground="#ececec")
         self.Button17.configure(activeforeground="#000000")
         self.Button17.configure(background="#d9d9d9")
-        self.Button17.configure(command=unknown_support.Set8Temperatuur)
+        self.Button17.configure(command=self.Set8Temperatuur)
         self.Button17.configure(disabledforeground="#a3a3a3")
         self.Button17.configure(foreground="#000000")
         self.Button17.configure(highlightbackground="#d9d9d9")
@@ -2190,6 +2191,7 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
                 if aantal > aantal_huidig:
                     aantal_huidig = aantal
                     self.step(getallen[aantal_huidig-1])
+        poopy = self.Entry1.get()
         root.after(10, self.loop)
 
     def value_to_y(self, val):
@@ -2214,6 +2216,30 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
             self.running = False
         else:
             self.running = True
+
+    def Set1Temperatuur(self):
+        print(self.Entry1.get())
+
+    def Set2Temperatuur(self):
+        print(self.Entry2.get())
+
+    def Set3Temperatuur(self):
+        print(self.Entry3.get())
+
+    def Set4Temperatuur(self):
+        print(self.Entry4.get())
+
+    def Set5Temperatuur(self):
+        print(self.Entry5.get())
+
+    def Set6Temperatuur(self):
+        print(self.Entry6.get())
+
+    def Set7Temperatuur(self):
+        print(self.Entry7.get())
+
+    def Set8Temperatuur(self):
+        print(self.Entry8.get())
 
 if __name__ == '__main__':
     vp_start_gui()
