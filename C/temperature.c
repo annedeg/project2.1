@@ -11,21 +11,25 @@ void setupVolt() {
     //https://hekilledmywire.wordpress.com/2011/03/16/using-the-adc-tutorial-part-5/
 }
 
-double checkVolt() {
+double getTemperature() {
     double result;
-    int volt = ADCW;
-    double mv = volt / 0.2;
-    result = ((mv - 500)/10);
-    return result;
+    int end_result;
+    int volt = ADCW;                //get amount of volts
+    double mv = volt / 0.2;         //convert it into microvolts
+    result = ((mv - 500)/10);       //change volts to temperature in degrees celsius
+    result = result * 10;
+    end_result = (int)result;
+    return end_result;              //return temperature
 }
 
 int main(void)
 {
     init_ports();
     reset_display();
+    int temperature;
     setupVolt();
     while(1) {
-        show_distance(checkVolt());
+        temperature = getTemperature();
     }
-    return 0;
+    return temperature;
 }
