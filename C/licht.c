@@ -23,9 +23,9 @@ int main (void)
 	void loop()
 	{
 		lightvalue = get_adc_value(); //put value in variable
-		if(lightvalue > 0x7f)				//this if/else statement is for testing
+		if(lightvalue > 0x7f)				//this if statement will limit it to 7 bits
 		{
-			lightvalue = 0x7f;					//if it is darker, the light connected to PB0 will light up.
+			lightvalue = 0x7f;					//if the value is more than 7 bits can handle it will make in maximum of 7 bits
 		}
 	}
 	init_adc();								//these statements let the program run.
