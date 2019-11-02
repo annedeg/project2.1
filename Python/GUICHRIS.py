@@ -7,6 +7,7 @@ from matplotlib.backends.backend_tkagg import (
 # Implement the default Matplotlib key bindings.
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
 
 import numpy as np
 
@@ -308,20 +309,19 @@ class Toplevel1:
         toolbar.update()
         canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-        self.Canvas11 = tk.Canvas(self.TNotebook5_t2)
-        self.Canvas11.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
-        self.Canvas11.configure(background="#d9d9d9")
-        self.Canvas11.configure(borderwidth="2")
-        self.Canvas11.configure(insertbackground="black")
-        self.Canvas11.configure(relief="ridge")
-        self.Canvas11.configure(selectbackground="#c4c4c4")
-        self.Canvas11.configure(selectforeground="black")
-        self.Canvas11.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
-        self.Canvas11.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
-        self.Canvas11.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
-        self.Canvas11.create_text(18, 275,
-                                 text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
-        # flippen dus hij ziet hier maar ietsje lelijk erbij
+        fig3 = Figure(figsize=(5, 4), dpi=100)
+        t = np.arange(0, 3, .01)
+        canvas3 = fig3.add_subplot(1, 1, 1).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas3x = []
+        canvas3y = []
+
+        canvas3a = FigureCanvasTkAgg(fig2, master=self.TNotebook5_t2)  # A tk.DrawingArea.
+        canvas3a.draw()
+        canvas3a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+        toolbar = NavigationToolbar2Tk(canvas3a, self.TNotebook5_t2)
+        toolbar.update()
+        canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.TNotebook3 = ttk.Notebook(self.TNotebook1_t1)
         self.TNotebook3.place(relx=0.0, rely=0.014, relheight=0.995
@@ -356,82 +356,65 @@ class Toplevel1:
         self.TNotebook3_t3.configure(highlightbackground="#d9d9d9")
         self.TNotebook3_t3.configure(highlightcolor="black")
 
-        self.Canvas2 = tk.Canvas(self.TNotebook3_t0)
-        self.Canvas2.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.488)
-        self.Canvas2.configure(background="#d9d9d9")
-        self.Canvas2.configure(borderwidth="2")
-        self.Canvas2.configure(insertbackground="black")
-        self.Canvas2.configure(relief="ridge")
-        self.Canvas2.configure(selectbackground="#c4c4c4")
-        self.Canvas2.configure(selectforeground="black")
+        fig4 = Figure(figsize=(5, 8), dpi=100)
+        t = np.arange(0, 3, .01)
+        canvas4 = fig4.add_subplot(1, 2, 1).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas5 = fig4.add_subplot(1, 2, 2).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas4x = []
+        canvas4y = []
 
-        self.Canvas5 = tk.Canvas(self.TNotebook3_t0)
-        self.Canvas5.place(relx=0.485, rely=0.014, relheight=0.99
-                           , relwidth=0.517)
-        self.Canvas5.configure(background="#d9d9d9")
-        self.Canvas5.configure(borderwidth="2")
-        self.Canvas5.configure(insertbackground="black")
-        self.Canvas5.configure(relief="ridge")
-        self.Canvas5.configure(selectbackground="#c4c4c4")
-        self.Canvas5.configure(selectforeground="black")
+        canvas4a = FigureCanvasTkAgg(fig4, master=self.TNotebook3_t0)  # A tk.DrawingArea.
+        canvas4a.draw()
+        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-        self.Canvas3 = tk.Canvas(self.TNotebook3_t1)
-        self.Canvas3.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.479)
-        self.Canvas3.configure(background="#d9d9d9")
-        self.Canvas3.configure(borderwidth="2")
-        self.Canvas3.configure(insertbackground="black")
-        self.Canvas3.configure(relief="ridge")
-        self.Canvas3.configure(selectbackground="#c4c4c4")
-        self.Canvas3.configure(selectforeground="black")
+        toolbar = NavigationToolbar2Tk(canvas4a, self.TNotebook3_t0)
+        toolbar.update()
+        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-        self.Canvas6 = tk.Canvas(self.TNotebook3_t1)
-        self.Canvas6.place(relx=0.476, rely=0.014, relheight=0.99
-                           , relwidth=0.527)
-        self.Canvas6.configure(background="#d9d9d9")
-        self.Canvas6.configure(borderwidth="2")
-        self.Canvas6.configure(insertbackground="black")
-        self.Canvas6.configure(relief="ridge")
-        self.Canvas6.configure(selectbackground="#c4c4c4")
-        self.Canvas6.configure(selectforeground="black")
+        fig5 = Figure(figsize=(5, 8), dpi=100)
+        t = np.arange(0, 3, .01)
+        canvas6 = fig5.add_subplot(1, 2, 1).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas7 = fig5.add_subplot(1, 2, 2).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas5x = []
+        canvas5y = []
 
-        self.Canvas4 = tk.Canvas(self.TNotebook3_t2)
-        self.Canvas4.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.479)
-        self.Canvas4.configure(background="#d9d9d9")
-        self.Canvas4.configure(borderwidth="2")
-        self.Canvas4.configure(insertbackground="black")
-        self.Canvas4.configure(relief="ridge")
-        self.Canvas4.configure(selectbackground="#c4c4c4")
-        self.Canvas4.configure(selectforeground="black")
+        canvas5a = FigureCanvasTkAgg(fig5, master=self.TNotebook3_t1)  # A tk.DrawingArea.
+        canvas5a.draw()
+        canvas5a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-        self.Canvas7 = tk.Canvas(self.TNotebook3_t2)
-        self.Canvas7.place(relx=0.476, rely=0.014, relheight=0.99
-                           , relwidth=0.527)
-        self.Canvas7.configure(background="#d9d9d9")
-        self.Canvas7.configure(borderwidth="2")
-        self.Canvas7.configure(insertbackground="black")
-        self.Canvas7.configure(relief="ridge")
-        self.Canvas7.configure(selectbackground="#c4c4c4")
-        self.Canvas7.configure(selectforeground="black")
+        toolbar = NavigationToolbar2Tk(canvas5a, self.TNotebook3_t1)
+        toolbar.update()
+        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-        self.Canvas8 = tk.Canvas(self.TNotebook3_t3)
-        self.Canvas8.place(relx=-0.01, rely=0.014, relheight=0.99
-                           , relwidth=0.498)
-        self.Canvas8.configure(background="#d9d9d9")
-        self.Canvas8.configure(borderwidth="2")
-        self.Canvas8.configure(insertbackground="black")
-        self.Canvas8.configure(relief="ridge")
-        self.Canvas8.configure(selectbackground="#c4c4c4")
-        self.Canvas8.configure(selectforeground="black")
+        fig6 = Figure(figsize=(5, 8), dpi=100)
+        t = np.arange(0, 3, .01)
+        canvas8 = fig6.add_subplot(1, 2, 1).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas9 = fig6.add_subplot(1, 2, 2).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas6x = []
+        canvas6y = []
 
-        self.Canvas9 = tk.Canvas(self.TNotebook3_t3)
-        self.Canvas9.place(relx=0.485, rely=0.014, relheight=0.99
-                           , relwidth=0.517)
-        self.Canvas9.configure(background="#d9d9d9")
-        self.Canvas9.configure(borderwidth="2")
-        self.Canvas9.configure(insertbackground="black")
-        self.Canvas9.configure(relief="ridge")
-        self.Canvas9.configure(selectbackground="#c4c4c4")
-        self.Canvas9.configure(selectforeground="black")
+        canvas6a = FigureCanvasTkAgg(fig6, master=self.TNotebook3_t2)  # A tk.DrawingArea.
+        canvas6a.draw()
+        canvas6a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+        toolbar = NavigationToolbar2Tk(canvas6a, self.TNotebook3_t2)
+        toolbar.update()
+        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+        fig7 = Figure(figsize=(5, 8), dpi=100)
+        t = np.arange(0, 3, .01)
+        canvas10 = fig7.add_subplot(1, 2, 1).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas11 = fig7.add_subplot(1, 2, 2).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas7x = []
+        canvas7y = []
+
+        canvas7a = FigureCanvasTkAgg(fig7, master=self.TNotebook3_t3)  # A tk.DrawingArea.
+        canvas7a.draw()
+        canvas7a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+        toolbar = NavigationToolbar2Tk(canvas7a, self.TNotebook3_t3)
+        toolbar.update()
+        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.TNotebook4 = ttk.Notebook(self.TNotebook1_t2)
         self.TNotebook4.place(relx=0.0, rely=0.014, relheight=0.981
