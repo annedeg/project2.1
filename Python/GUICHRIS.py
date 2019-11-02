@@ -178,6 +178,20 @@ class Toplevel1:
         self.TNotebook2_t0.configure(background="#d9d9d9")
         self.TNotebook2_t0.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t0.configure(highlightcolor="black")
+        bar1 = Figure(figsize=(5, 2), dpi=100)
+        ax1 = bar1.add_subplot(111)
+
+        data = (20, 35, 30, 35, 27)
+
+        ind = np.arange(5)  # the x locations for the groups
+        width = .5
+
+        rects1 = ax1.bar(ind, data, width)
+
+        canvasbar1 = FigureCanvasTkAgg(bar1, master=self.TNotebook2_t0)
+        canvasbar1.draw()
+        canvasbar1.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
         self.TNotebook2_t1 = tk.Frame(self.TNotebook2)
         self.TNotebook2.add(self.TNotebook2_t1, padding=3)
         self.TNotebook2.tab(1, text="Lichtsensor", compound="left", underline="-1"
@@ -185,6 +199,20 @@ class Toplevel1:
         self.TNotebook2_t1.configure(background="#d9d9d9")
         self.TNotebook2_t1.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t1.configure(highlightcolor="black")
+        bar2 = Figure(figsize=(5, 2), dpi=100)
+        ax2 = bar2.add_subplot(111)
+
+        data = (20, 35, 30, 35, 27)
+
+        ind = np.arange(5)  # the x locations for the groups
+        width = .5
+
+        rects2 = ax2.bar(ind, data, width)
+
+        canvasbar2 = FigureCanvasTkAgg(bar2, master=self.TNotebook2_t1)
+        canvasbar2.draw()
+        canvasbar2.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
         self.TNotebook2_t2 = tk.Frame(self.TNotebook2)
         self.TNotebook2.add(self.TNotebook2_t2, padding=3)
         self.TNotebook2.tab(2, text="Temperatuur", compound="none", underline="-1"
@@ -192,6 +220,20 @@ class Toplevel1:
         self.TNotebook2_t2.configure(background="#d9d9d9")
         self.TNotebook2_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t2.configure(highlightcolor="black")
+        bar3 = Figure(figsize=(5, 2), dpi=100)
+        ax3 = bar3.add_subplot(111)
+
+        data = (20, 35, 30, 35, 27)
+
+        ind = np.arange(5)  # the x locations for the groups
+        width = .5
+
+        rects3 = ax3.bar(ind, data, width)
+
+        canvasbar3 = FigureCanvasTkAgg(bar3, master=self.TNotebook2_t2)
+        canvasbar3.draw()
+        canvasbar3.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
 
         self.Listbox2 = tk.Listbox(self.TNotebook1_t0)
         self.Listbox2.place(relx=0.01, rely=0.26, relheight=0.236
