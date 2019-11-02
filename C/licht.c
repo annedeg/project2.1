@@ -1,6 +1,8 @@
 #include <asf.h>
 #include <avr/io.h>
 
+volatile uint8_t lightvalue;
+
 int main (void)
 {
 	void init_adc()
@@ -20,14 +22,10 @@ int main (void)
 	}
 	void loop()
 	{
-		uint8_t lightvalue = get_adc_value(); //put value in variable
-		if(lightvalue <= 0x32)				//this if/else statement is for testing
+		lightvalue = get_adc_value(); //put value in variable
+		if(lightvalue > 0x7f)				//this if/else statement is for testing
 		{
-			PORTB = 0x01;					//if it is darker, the light connected to PB0 will light up.
-		}
-		else
-		{
-			PORTB = 0x02;					//if it is lighter, the light connected to PB1 will light up.
+			lightvalue = 0x7f;					//if it is darker, the light connected to PB0 will light up.
 		}
 	}
 	init_adc();								//these statements let the program run.
