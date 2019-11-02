@@ -14,6 +14,7 @@ except ImportError:
 
     py3 = True
 
+
 def set_Tk_var():
     global che71
     che71 = tk.IntVar()
@@ -392,6 +393,26 @@ def Set9Licht():
 
 def Set9Temperatuur():
     print('unknown_support.Set9Temperatuur')
+    sys.stdout.flush()
+
+
+def SwitchToArduino1():
+    print('unknown_support.SwitchToArduino1')
+    sys.stdout.flush()
+
+
+def SwitchToArduino2():
+    print('unknown_support.SwitchToArduino2')
+    sys.stdout.flush()
+
+
+def SwitchToArduino3():
+    print('unknown_support.SwitchToArduino3')
+    sys.stdout.flush()
+
+
+def SwitchToArduino4():
+    print('unknown_support.SwitchToArduino4')
     sys.stdout.flush()
 
 

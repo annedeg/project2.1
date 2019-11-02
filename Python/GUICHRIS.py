@@ -1,7 +1,9 @@
-from tkinter import *
 import sys
+from tkinter import *
 import serial
 import time
+
+
 try:
     import Tkinter as tk
 except ImportError:
@@ -15,6 +17,7 @@ except ImportError:
     import tkinter.ttk as ttk
 
     py3 = True
+
 import serial.tools.list_ports
 import unknown_support
 aantal = 0
@@ -23,6 +26,7 @@ getallen = []
 comPorts = list(serial.tools.list_ports.comports())
 activeComPorts = []
 arduinos = []
+
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -88,7 +92,7 @@ class Toplevel1:
         self.style.map('TNotebook.Tab', background=
         [('selected', _compcolor), ('active', _ana2color)])
         self.TNotebook1 = ttk.Notebook(top)
-        self.TNotebook1.place(relx=0.0, rely=0.0, relheight=0.989
+        self.TNotebook1.place(relx=0.0, rely=0.0, relheight=1.003
                               , relwidth=1.002)
         self.TNotebook1.configure(takefocus="")
         self.TNotebook1_t0 = tk.Frame(self.TNotebook1)
@@ -117,38 +121,8 @@ class Toplevel1:
         self.TNotebook1_t3.configure(highlightbackground="#d9d9d9")
         self.TNotebook1_t3.configure(highlightcolor="black")
 
-        self.Canvas1 = tk.Canvas(self.TNotebook1_t0)
-        self.Canvas1.place(relx=0.291, rely=0.264, relheight=0.699
-                           , relwidth=0.68)
-        self.Canvas1.configure(background="#d9d9d9")
-        self.Canvas1.configure(borderwidth="2")
-        self.Canvas1.configure(highlightbackground="#d9d9d9")
-        self.Canvas1.configure(highlightcolor="black")
-        self.Canvas1.configure(insertbackground="black")
-        self.Canvas1.configure(relief="ridge")
-        self.Canvas1.configure(selectbackground="#c4c4c4")
-        self.Canvas1.configure(selectforeground="black")
-        self.Canvas1.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
-        self.Canvas1.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
-        self.Canvas1.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
-        self.Canvas1.create_text(18, 275,
-                                 text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
-        # flippen dus hij ziet hier maar ietsje lelijk erbij
-
-        # x-axis
-        for i in range(23):
-            x = 50 + (i * 50)
-            self.Canvas1.create_line(x, 550, x, 50, width=1, dash=(2, 5))
-            self.Canvas1.create_text(x, 550, text='%d' % (10 * i), anchor=N)
-
-        # y-axis
-        for i in range(11):
-            y = 550 - (i * 50)
-            self.Canvas1.create_line(50, y, 1150, y, width=1, dash=(2, 5))
-            self.Canvas1.create_text(40, y, text='%d' % (10 * i*2), anchor=E)
-
         self.Button1 = tk.Button(self.TNotebook1_t0)
-        self.Button1.place(relx=0.01, rely=0.778, height=54, width=277)
+        self.Button1.place(relx=0.01, rely=0.767, height=54, width=277)
         self.Button1.configure(activebackground="#ececec")
         self.Button1.configure(activeforeground="#000000")
         self.Button1.configure(background="#d9d9d9")
@@ -161,7 +135,7 @@ class Toplevel1:
         self.Button1.configure(text='''OPEN SCHERM''')
 
         self.Button23 = tk.Button(self.TNotebook1_t0)
-        self.Button23.place(relx=0.01, rely=0.875, height=54, width=277)
+        self.Button23.place(relx=0.01, rely=0.863, height=54, width=277)
         self.Button23.configure(activebackground="#ececec")
         self.Button23.configure(activeforeground="#000000")
         self.Button23.configure(background="#d9d9d9")
@@ -174,7 +148,7 @@ class Toplevel1:
         self.Button23.configure(text='''CLOSE SCHERM''')
 
         self.Listbox1 = tk.Listbox(self.TNotebook1_t0)
-        self.Listbox1.place(relx=0.01, rely=0.014, relheight=0.239
+        self.Listbox1.place(relx=0.01, rely=0.014, relheight=0.236
                             , relwidth=0.272)
         self.Listbox1.configure(background="white")
         self.Listbox1.configure(disabledforeground="#a3a3a3")
@@ -186,7 +160,7 @@ class Toplevel1:
         self.Listbox1.configure(selectforeground="black")
 
         self.TNotebook2 = ttk.Notebook(self.TNotebook1_t0)
-        self.TNotebook2.place(relx=0.291, rely=0.014, relheight=0.244
+        self.TNotebook2.place(relx=0.291, rely=0.014, relheight=0.241
                               , relwidth=0.68)
         self.TNotebook2.configure(takefocus="")
         self.TNotebook2_t0 = tk.Frame(self.TNotebook2)
@@ -212,7 +186,7 @@ class Toplevel1:
         self.TNotebook2_t2.configure(highlightcolor="black")
 
         self.Listbox2 = tk.Listbox(self.TNotebook1_t0)
-        self.Listbox2.place(relx=0.01, rely=0.264, relheight=0.239
+        self.Listbox2.place(relx=0.01, rely=0.26, relheight=0.236
                             , relwidth=0.272)
         self.Listbox2.configure(background="white")
         self.Listbox2.configure(disabledforeground="#a3a3a3")
@@ -223,77 +197,239 @@ class Toplevel1:
         self.Listbox2.configure(selectbackground="#c4c4c4")
         self.Listbox2.configure(selectforeground="black")
 
-        self.Listbox3 = tk.Listbox(self.TNotebook1_t0)
-        self.Listbox3.place(relx=0.01, rely=0.514, relheight=0.239
-                            , relwidth=0.272)
-        self.Listbox3.configure(background="white")
-        self.Listbox3.configure(disabledforeground="#a3a3a3")
-        self.Listbox3.configure(font="TkFixedFont")
-        self.Listbox3.configure(foreground="#000000")
-        self.Listbox3.configure(highlightbackground="#d9d9d9")
-        self.Listbox3.configure(highlightcolor="black")
-        self.Listbox3.configure(selectbackground="#c4c4c4")
-        self.Listbox3.configure(selectforeground="black")
+        self.Button68 = tk.Button(self.TNotebook1_t0)
+        self.Button68.place(relx=0.01, rely=0.521, height=74, width=137)
+        self.Button68.configure(activebackground="#ececec")
+        self.Button68.configure(activeforeground="#000000")
+        self.Button68.configure(background="#d9d9d9")
+        self.Button68.configure(command=unknown_support.SwitchToArduino1)
+        self.Button68.configure(disabledforeground="#a3a3a3")
+        self.Button68.configure(foreground="#000000")
+        self.Button68.configure(highlightbackground="#d9d9d9")
+        self.Button68.configure(highlightcolor="black")
+        self.Button68.configure(pady="0")
+        self.Button68.configure(text='''Arduino 1''')
+
+        self.Button69 = tk.Button(self.TNotebook1_t0)
+        self.Button69.place(relx=0.155, rely=0.521, height=74, width=127)
+        self.Button69.configure(activebackground="#ececec")
+        self.Button69.configure(activeforeground="#000000")
+        self.Button69.configure(background="#d9d9d9")
+        self.Button69.configure(command=unknown_support.SwitchToArduino2)
+        self.Button69.configure(disabledforeground="#a3a3a3")
+        self.Button69.configure(foreground="#000000")
+        self.Button69.configure(highlightbackground="#d9d9d9")
+        self.Button69.configure(highlightcolor="black")
+        self.Button69.configure(pady="0")
+        self.Button69.configure(text='''Arduino 2''')
+
+        self.Button70 = tk.Button(self.TNotebook1_t0)
+        self.Button70.place(relx=0.01, rely=0.644, height=74, width=137)
+        self.Button70.configure(activebackground="#ececec")
+        self.Button70.configure(activeforeground="#000000")
+        self.Button70.configure(background="#d9d9d9")
+        self.Button70.configure(command=unknown_support.SwitchToArduino3)
+        self.Button70.configure(disabledforeground="#a3a3a3")
+        self.Button70.configure(foreground="#000000")
+        self.Button70.configure(highlightbackground="#d9d9d9")
+        self.Button70.configure(highlightcolor="black")
+        self.Button70.configure(pady="0")
+        self.Button70.configure(text='''Arduino 3''')
+
+        self.Button71 = tk.Button(self.TNotebook1_t0)
+        self.Button71.place(relx=0.155, rely=0.644, height=74, width=127)
+        self.Button71.configure(activebackground="#ececec")
+        self.Button71.configure(activeforeground="#000000")
+        self.Button71.configure(background="#d9d9d9")
+        self.Button71.configure(command=unknown_support.SwitchToArduino4)
+        self.Button71.configure(disabledforeground="#a3a3a3")
+        self.Button71.configure(foreground="#000000")
+        self.Button71.configure(highlightbackground="#d9d9d9")
+        self.Button71.configure(highlightcolor="black")
+        self.Button71.configure(pady="0")
+        self.Button71.configure(text='''Arduino 4''')
+
+        self.TNotebook5 = ttk.Notebook(self.TNotebook1_t0)
+        self.TNotebook5.place(relx=0.291, rely=0.26, relheight=0.721
+                              , relwidth=0.693)
+        self.TNotebook5.configure(takefocus="")
+        self.TNotebook5_t0 = tk.Frame(self.TNotebook5)
+        self.TNotebook5.add(self.TNotebook5_t0, padding=3)
+        self.TNotebook5.tab(0, text="Afstand", compound="left", underline="-1", )
+        self.TNotebook5_t0.configure(background="#d9d9d9")
+        self.TNotebook5_t0.configure(highlightbackground="#d9d9d9")
+        self.TNotebook5_t0.configure(highlightcolor="black")
+        self.TNotebook5_t1 = tk.Frame(self.TNotebook5)
+        self.TNotebook5.add(self.TNotebook5_t1, padding=3)
+        self.TNotebook5.tab(1, text="Licht", compound="left", underline="-1", )
+        self.TNotebook5_t1.configure(background="#d9d9d9")
+        self.TNotebook5_t1.configure(highlightbackground="#d9d9d9")
+        self.TNotebook5_t1.configure(highlightcolor="black")
+        self.TNotebook5_t2 = tk.Frame(self.TNotebook5)
+        self.TNotebook5.add(self.TNotebook5_t2, padding=3)
+        self.TNotebook5.tab(2, text="Temperatuur", compound="none", underline="-1"
+                            , )
+        self.TNotebook5_t2.configure(background="#d9d9d9")
+        self.TNotebook5_t2.configure(highlightbackground="#d9d9d9")
+        self.TNotebook5_t2.configure(highlightcolor="black")
+
+        self.Canvas1 = tk.Canvas(self.TNotebook5_t0)
+        self.Canvas1.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
+        self.Canvas1.configure(background="#d9d9d9")
+        self.Canvas1.configure(borderwidth="2")
+        self.Canvas1.configure(insertbackground="black")
+        self.Canvas1.configure(relief="ridge")
+        self.Canvas1.configure(selectbackground="#c4c4c4")
+        self.Canvas1.configure(selectforeground="black")
+        self.Canvas1.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
+        self.Canvas1.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
+        self.Canvas1.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
+        self.Canvas1.create_text(18, 275,
+                                 text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
+        # flippen dus hij ziet hier maar ietsje lelijk erbij
+
+        # x-axis
+        for i in range(23):
+            x = 50 + (i * 50)
+            self.Canvas1.create_line(x, 550, x, 50, width=1, dash=(2, 5))
+            self.Canvas1.create_text(x, 550, text='%d' % (10 * i), anchor=N)
+
+        # y-axis
+        for i in range(11):
+            y = 550 - (i * 50)
+            self.Canvas1.create_line(50, y, 1150, y, width=1, dash=(2, 5))
+            self.Canvas1.create_text(40, y, text='%d' % (10 * i * 2), anchor=E)
+
+        self.Canvas10 = tk.Canvas(self.TNotebook5_t1)
+        self.Canvas10.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
+        self.Canvas10.configure(background="#d9d9d9")
+        self.Canvas10.configure(borderwidth="2")
+        self.Canvas10.configure(insertbackground="black")
+        self.Canvas10.configure(relief="ridge")
+        self.Canvas10.configure(selectbackground="#c4c4c4")
+        self.Canvas10.configure(selectforeground="black")
+
+        self.Canvas11 = tk.Canvas(self.TNotebook5_t2)
+        self.Canvas11.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
+        self.Canvas11.configure(background="#d9d9d9")
+        self.Canvas11.configure(borderwidth="2")
+        self.Canvas11.configure(insertbackground="black")
+        self.Canvas11.configure(relief="ridge")
+        self.Canvas11.configure(selectbackground="#c4c4c4")
+        self.Canvas11.configure(selectforeground="black")
 
         self.TNotebook3 = ttk.Notebook(self.TNotebook1_t1)
-        self.TNotebook3.place(relx=0.01, rely=0.014, relheight=0.967
-                              , relwidth=0.975)
+        self.TNotebook3.place(relx=0.0, rely=0.014, relheight=0.995
+                              , relwidth=1.004)
         self.TNotebook3.configure(takefocus="")
         self.TNotebook3_t0 = tk.Frame(self.TNotebook3)
         self.TNotebook3.add(self.TNotebook3_t0, padding=3)
-        self.TNotebook3.tab(0, text="Licht", compound="left", underline="-1", )
+        self.TNotebook3.tab(0, text="Arduino 1", compound="left", underline="-1"
+                            , )
         self.TNotebook3_t0.configure(background="#d9d9d9")
         self.TNotebook3_t0.configure(highlightbackground="#d9d9d9")
         self.TNotebook3_t0.configure(highlightcolor="black")
         self.TNotebook3_t1 = tk.Frame(self.TNotebook3)
         self.TNotebook3.add(self.TNotebook3_t1, padding=3)
-        self.TNotebook3.tab(1, text="Temperatuur", compound="left", underline="-1"
+        self.TNotebook3.tab(1, text="Arduino 2", compound="left", underline="-1"
                             , )
         self.TNotebook3_t1.configure(background="#d9d9d9")
         self.TNotebook3_t1.configure(highlightbackground="#d9d9d9")
         self.TNotebook3_t1.configure(highlightcolor="black")
         self.TNotebook3_t2 = tk.Frame(self.TNotebook3)
         self.TNotebook3.add(self.TNotebook3_t2, padding=3)
-        self.TNotebook3.tab(2, text="Afstand", compound="none", underline="-1", )
+        self.TNotebook3.tab(2, text="Arduino 3", compound="none", underline="-1"
+                            , )
         self.TNotebook3_t2.configure(background="#d9d9d9")
         self.TNotebook3_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook3_t2.configure(highlightcolor="black")
+        self.TNotebook3_t3 = tk.Frame(self.TNotebook3)
+        self.TNotebook3.add(self.TNotebook3_t3, padding=3)
+        self.TNotebook3.tab(3, text="Arduino 4", compound="none", underline="-1"
+                            , )
+        self.TNotebook3_t3.configure(background="#d9d9d9")
+        self.TNotebook3_t3.configure(highlightbackground="#d9d9d9")
+        self.TNotebook3_t3.configure(highlightcolor="black")
 
         self.Canvas2 = tk.Canvas(self.TNotebook3_t0)
-        self.Canvas2.place(relx=0.0, rely=0.0, relheight=1.004, relwidth=1.003)
+        self.Canvas2.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.488)
         self.Canvas2.configure(background="#d9d9d9")
         self.Canvas2.configure(borderwidth="2")
-        self.Canvas2.configure(highlightbackground="#d9d9d9")
-        self.Canvas2.configure(highlightcolor="black")
         self.Canvas2.configure(insertbackground="black")
         self.Canvas2.configure(relief="ridge")
         self.Canvas2.configure(selectbackground="#c4c4c4")
         self.Canvas2.configure(selectforeground="black")
 
+        self.Canvas5 = tk.Canvas(self.TNotebook3_t0)
+        self.Canvas5.place(relx=0.485, rely=0.014, relheight=0.99
+                           , relwidth=0.517)
+        self.Canvas5.configure(background="#d9d9d9")
+        self.Canvas5.configure(borderwidth="2")
+        self.Canvas5.configure(insertbackground="black")
+        self.Canvas5.configure(relief="ridge")
+        self.Canvas5.configure(selectbackground="#c4c4c4")
+        self.Canvas5.configure(selectforeground="black")
+
         self.Canvas3 = tk.Canvas(self.TNotebook3_t1)
-        self.Canvas3.place(relx=0.0, rely=0.0, relheight=1.004, relwidth=1.013)
+        self.Canvas3.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.479)
         self.Canvas3.configure(background="#d9d9d9")
         self.Canvas3.configure(borderwidth="2")
-        self.Canvas3.configure(highlightbackground="#d9d9d9")
-        self.Canvas3.configure(highlightcolor="black")
         self.Canvas3.configure(insertbackground="black")
         self.Canvas3.configure(relief="ridge")
         self.Canvas3.configure(selectbackground="#c4c4c4")
         self.Canvas3.configure(selectforeground="black")
 
+        self.Canvas6 = tk.Canvas(self.TNotebook3_t1)
+        self.Canvas6.place(relx=0.476, rely=0.014, relheight=0.99
+                           , relwidth=0.527)
+        self.Canvas6.configure(background="#d9d9d9")
+        self.Canvas6.configure(borderwidth="2")
+        self.Canvas6.configure(insertbackground="black")
+        self.Canvas6.configure(relief="ridge")
+        self.Canvas6.configure(selectbackground="#c4c4c4")
+        self.Canvas6.configure(selectforeground="black")
+
         self.Canvas4 = tk.Canvas(self.TNotebook3_t2)
-        self.Canvas4.place(relx=0.0, rely=0.0, relheight=1.004, relwidth=1.003)
+        self.Canvas4.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.479)
         self.Canvas4.configure(background="#d9d9d9")
         self.Canvas4.configure(borderwidth="2")
-        self.Canvas4.configure(highlightbackground="#d9d9d9")
-        self.Canvas4.configure(highlightcolor="black")
         self.Canvas4.configure(insertbackground="black")
         self.Canvas4.configure(relief="ridge")
         self.Canvas4.configure(selectbackground="#c4c4c4")
         self.Canvas4.configure(selectforeground="black")
 
+        self.Canvas7 = tk.Canvas(self.TNotebook3_t2)
+        self.Canvas7.place(relx=0.476, rely=0.014, relheight=0.99
+                           , relwidth=0.527)
+        self.Canvas7.configure(background="#d9d9d9")
+        self.Canvas7.configure(borderwidth="2")
+        self.Canvas7.configure(insertbackground="black")
+        self.Canvas7.configure(relief="ridge")
+        self.Canvas7.configure(selectbackground="#c4c4c4")
+        self.Canvas7.configure(selectforeground="black")
+
+        self.Canvas8 = tk.Canvas(self.TNotebook3_t3)
+        self.Canvas8.place(relx=-0.01, rely=0.014, relheight=0.99
+                           , relwidth=0.498)
+        self.Canvas8.configure(background="#d9d9d9")
+        self.Canvas8.configure(borderwidth="2")
+        self.Canvas8.configure(insertbackground="black")
+        self.Canvas8.configure(relief="ridge")
+        self.Canvas8.configure(selectbackground="#c4c4c4")
+        self.Canvas8.configure(selectforeground="black")
+
+        self.Canvas9 = tk.Canvas(self.TNotebook3_t3)
+        self.Canvas9.place(relx=0.485, rely=0.014, relheight=0.99
+                           , relwidth=0.517)
+        self.Canvas9.configure(background="#d9d9d9")
+        self.Canvas9.configure(borderwidth="2")
+        self.Canvas9.configure(insertbackground="black")
+        self.Canvas9.configure(relief="ridge")
+        self.Canvas9.configure(selectbackground="#c4c4c4")
+        self.Canvas9.configure(selectforeground="black")
+
         self.TNotebook4 = ttk.Notebook(self.TNotebook1_t2)
-        self.TNotebook4.place(relx=0.0, rely=0.014, relheight=0.994
+        self.TNotebook4.place(relx=0.0, rely=0.014, relheight=0.981
                               , relwidth=0.994)
         self.TNotebook4.configure(takefocus="")
         self.TNotebook4_t0 = tk.Frame(self.TNotebook4)
@@ -1945,7 +2081,6 @@ class Toplevel1:
         self.Button63.configure(activeforeground="#000000")
         self.Button63.configure(background="#d9d9d9")
         self.Button63.configure(command=unknown_support.Reset9Afstand)
-        self.Button63.configure(cursor="fleur")
         self.Button63.configure(disabledforeground="#a3a3a3")
         self.Button63.configure(foreground="#000000")
         self.Button63.configure(highlightbackground="#d9d9d9")
@@ -2080,9 +2215,8 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         else:
             self.running = True
 
-
-
-
-
 if __name__ == '__main__':
     vp_start_gui()
+
+
+
