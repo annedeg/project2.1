@@ -2,7 +2,13 @@ import sys
 from tkinter import *
 import serial
 import time
-from functools import partial
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg, NavigationToolbar2Tk)
+# Implement the default Matplotlib key bindings.
+from matplotlib.backend_bases import key_press_handler
+from matplotlib.figure import Figure
+
+import numpy as np
 
 
 try:
@@ -274,59 +280,33 @@ class Toplevel1:
         self.TNotebook5_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook5_t2.configure(highlightcolor="black")
 
-        self.Canvas1 = tk.Canvas(self.TNotebook5_t0)
-        self.Canvas1.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
-        self.Canvas1.configure(background="#d9d9d9")
-        self.Canvas1.configure(borderwidth="2")
-        self.Canvas1.configure(insertbackground="black")
-        self.Canvas1.configure(relief="ridge")
-        self.Canvas1.configure(selectbackground="#c4c4c4")
-        self.Canvas1.configure(selectforeground="black")
-        self.Canvas1.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
-        self.Canvas1.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
-        self.Canvas1.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
-        self.Canvas1.create_text(18, 275,
-                                 text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
-        # flippen dus hij ziet hier maar ietsje lelijk erbij
+        fig1 = Figure(figsize=(5, 4), dpi=100)
+        t = np.arange(0, 3, .01)
+        canvas1 = fig1.add_subplot(1, 1, 1).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas1x = []
+        canvas1y = []
 
-        # x-axis
-        for i in range(23):
-            x = 50 + (i * 50)
-            self.Canvas1.create_line(x, 550, x, 50, width=1, dash=(2, 5))
-            self.Canvas1.create_text(x, 550, text='%d' % (10 * i), anchor=N)
+        canvas1a = FigureCanvasTkAgg(fig1, master=self.TNotebook5_t0)  # A tk.DrawingArea.
+        canvas1a.draw()
+        canvas1a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-        # y-axis
-        for i in range(11):
-            y = 550 - (i * 50)
-            self.Canvas1.create_line(50, y, 1150, y, width=1, dash=(2, 5))
-            self.Canvas1.create_text(40, y, text='%d' % (10 * i * 2), anchor=E)
+        toolbar = NavigationToolbar2Tk(canvas1a, self.TNotebook5_t0)
+        toolbar.update()
+        canvas1a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-        self.Canvas10 = tk.Canvas(self.TNotebook5_t1)
-        self.Canvas10.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
-        self.Canvas10.configure(background="#d9d9d9")
-        self.Canvas10.configure(borderwidth="2")
-        self.Canvas10.configure(insertbackground="black")
-        self.Canvas10.configure(relief="ridge")
-        self.Canvas10.configure(selectbackground="#c4c4c4")
-        self.Canvas10.configure(selectforeground="black")
-        self.Canvas10.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
-        self.Canvas10.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
-        self.Canvas10.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
-        self.Canvas10.create_text(18, 275,
-                                 text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
-        # flippen dus hij ziet hier maar ietsje lelijk erbij
+        fig2 = Figure(figsize=(5, 4), dpi=100)
+        t = np.arange(0, 3, .01)
+        canvas2 = fig2.add_subplot(1,1,1).plot(t, 2 * np.sin(2 * np.pi * t))
+        canvas2x = []
+        canvas2y = []
 
-        # x-axis
-        for i in range(23):
-            x = 50 + (i * 50)
-            self.Canvas10.create_line(x, 550, x, 50, width=1, dash=(2, 5))
-            self.Canvas10.create_text(x, 550, text='%d' % (10 * i), anchor=N)
+        canvas2a = FigureCanvasTkAgg(fig2, master=self.TNotebook5_t1)  # A tk.DrawingArea.
+        canvas2a.draw()
+        canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-        # y-axis
-        for i in range(11):
-            y = 550 - (i * 50)
-            self.Canvas10.create_line(50, y, 1150, y, width=1, dash=(2, 5))
-            self.Canvas10.create_text(40, y, text='%d' % (10 * i * 2), anchor=E)
+        toolbar = NavigationToolbar2Tk(canvas2a, self.TNotebook5_t1)
+        toolbar.update()
+        canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.Canvas11 = tk.Canvas(self.TNotebook5_t2)
         self.Canvas11.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
@@ -342,18 +322,6 @@ class Toplevel1:
         self.Canvas11.create_text(18, 275,
                                  text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
         # flippen dus hij ziet hier maar ietsje lelijk erbij
-
-        # x-axis
-        for i in range(23):
-            x = 50 + (i * 50)
-            self.Canvas11.create_line(x, 550, x, 50, width=1, dash=(2, 5))
-            self.Canvas11.create_text(x, 550, text='%d' % (10 * i), anchor=N)
-
-        # y-axis
-        for i in range(11):
-            y = 550 - (i * 50)
-            self.Canvas11.create_line(50, y, 1150, y, width=1, dash=(2, 5))
-            self.Canvas11.create_text(40, y, text='%d' % (10 * i * 2), anchor=E)
 
         self.TNotebook3 = ttk.Notebook(self.TNotebook1_t1)
         self.TNotebook3.place(relx=0.0, rely=0.014, relheight=0.995
@@ -1209,7 +1177,7 @@ class Toplevel1:
         self.Button24.configure(activebackground="#ececec")
         self.Button24.configure(activeforeground="#000000")
         self.Button24.configure(background="#d9d9d9")
-        self.Button24.configure(command=unknown_support.Set1Licht)
+        self.Button24.configure(command=self.Set1Licht)
         self.Button24.configure(disabledforeground="#a3a3a3")
         self.Button24.configure(foreground="#000000")
         self.Button24.configure(highlightbackground="#d9d9d9")
@@ -1222,7 +1190,7 @@ class Toplevel1:
         self.Button25.configure(activebackground="#ececec")
         self.Button25.configure(activeforeground="#000000")
         self.Button25.configure(background="#d9d9d9")
-        self.Button25.configure(command=unknown_support.Set2Licht)
+        self.Button25.configure(command=self.Set2Licht)
         self.Button25.configure(disabledforeground="#a3a3a3")
         self.Button25.configure(foreground="#000000")
         self.Button25.configure(highlightbackground="#d9d9d9")
@@ -1235,7 +1203,7 @@ class Toplevel1:
         self.Button26.configure(activebackground="#ececec")
         self.Button26.configure(activeforeground="#000000")
         self.Button26.configure(background="#d9d9d9")
-        self.Button26.configure(command=unknown_support.Set3Licht)
+        self.Button26.configure(command=self.Set3Licht)
         self.Button26.configure(disabledforeground="#a3a3a3")
         self.Button26.configure(foreground="#000000")
         self.Button26.configure(highlightbackground="#d9d9d9")
@@ -1248,7 +1216,7 @@ class Toplevel1:
         self.Button27.configure(activebackground="#ececec")
         self.Button27.configure(activeforeground="#000000")
         self.Button27.configure(background="#d9d9d9")
-        self.Button27.configure(command=unknown_support.Set4Licht)
+        self.Button27.configure(command=self.Set4Licht)
         self.Button27.configure(disabledforeground="#a3a3a3")
         self.Button27.configure(foreground="#000000")
         self.Button27.configure(highlightbackground="#d9d9d9")
@@ -1261,7 +1229,7 @@ class Toplevel1:
         self.Button28.configure(activebackground="#ececec")
         self.Button28.configure(activeforeground="#000000")
         self.Button28.configure(background="#d9d9d9")
-        self.Button28.configure(command=unknown_support.Set5Licht)
+        self.Button28.configure(command=self.Set5Licht)
         self.Button28.configure(disabledforeground="#a3a3a3")
         self.Button28.configure(foreground="#000000")
         self.Button28.configure(highlightbackground="#d9d9d9")
@@ -1274,7 +1242,7 @@ class Toplevel1:
         self.Button29.configure(activebackground="#ececec")
         self.Button29.configure(activeforeground="#000000")
         self.Button29.configure(background="#d9d9d9")
-        self.Button29.configure(command=unknown_support.Set6Licht)
+        self.Button29.configure(command=self.Set6Licht)
         self.Button29.configure(disabledforeground="#a3a3a3")
         self.Button29.configure(foreground="#000000")
         self.Button29.configure(highlightbackground="#d9d9d9")
@@ -1287,7 +1255,7 @@ class Toplevel1:
         self.Button30.configure(activebackground="#ececec")
         self.Button30.configure(activeforeground="#000000")
         self.Button30.configure(background="#d9d9d9")
-        self.Button30.configure(command=unknown_support.Set7Licht)
+        self.Button30.configure(command=self.Set7Licht)
         self.Button30.configure(disabledforeground="#a3a3a3")
         self.Button30.configure(foreground="#000000")
         self.Button30.configure(highlightbackground="#d9d9d9")
@@ -1475,7 +1443,7 @@ class Toplevel1:
         self.Button38.configure(activebackground="#ececec")
         self.Button38.configure(activeforeground="#000000")
         self.Button38.configure(background="#d9d9d9")
-        self.Button38.configure(command=unknown_support.Set8Licht)
+        self.Button38.configure(command=self.Set8Licht)
         self.Button38.configure(disabledforeground="#a3a3a3")
         self.Button38.configure(foreground="#000000")
         self.Button38.configure(highlightbackground="#d9d9d9")
@@ -1786,7 +1754,7 @@ class Toplevel1:
         self.Button44.configure(activebackground="#ececec")
         self.Button44.configure(activeforeground="#000000")
         self.Button44.configure(background="#d9d9d9")
-        self.Button44.configure(command=unknown_support.Set1Afstand)
+        self.Button44.configure(command=self.Set1Afstand)
         self.Button44.configure(disabledforeground="#a3a3a3")
         self.Button44.configure(foreground="#000000")
         self.Button44.configure(highlightbackground="#d9d9d9")
@@ -1799,7 +1767,7 @@ class Toplevel1:
         self.Button45.configure(activebackground="#ececec")
         self.Button45.configure(activeforeground="#000000")
         self.Button45.configure(background="#d9d9d9")
-        self.Button45.configure(command=unknown_support.Set2Afstand)
+        self.Button45.configure(command=self.Set2Afstand)
         self.Button45.configure(disabledforeground="#a3a3a3")
         self.Button45.configure(foreground="#000000")
         self.Button45.configure(highlightbackground="#d9d9d9")
@@ -1812,7 +1780,7 @@ class Toplevel1:
         self.Button46.configure(activebackground="#ececec")
         self.Button46.configure(activeforeground="#000000")
         self.Button46.configure(background="#d9d9d9")
-        self.Button46.configure(command=unknown_support.Set3Afstand)
+        self.Button46.configure(command=self.Set3Afstand)
         self.Button46.configure(disabledforeground="#a3a3a3")
         self.Button46.configure(foreground="#000000")
         self.Button46.configure(highlightbackground="#d9d9d9")
@@ -1825,7 +1793,7 @@ class Toplevel1:
         self.Button47.configure(activebackground="#ececec")
         self.Button47.configure(activeforeground="#000000")
         self.Button47.configure(background="#d9d9d9")
-        self.Button47.configure(command=unknown_support.Set4Afstand)
+        self.Button47.configure(command=self.Set4Afstand)
         self.Button47.configure(disabledforeground="#a3a3a3")
         self.Button47.configure(foreground="#000000")
         self.Button47.configure(highlightbackground="#d9d9d9")
@@ -1838,7 +1806,7 @@ class Toplevel1:
         self.Button48.configure(activebackground="#ececec")
         self.Button48.configure(activeforeground="#000000")
         self.Button48.configure(background="#d9d9d9")
-        self.Button48.configure(command=unknown_support.Set5Afstand)
+        self.Button48.configure(command=self.Set5Afstand)
         self.Button48.configure(disabledforeground="#a3a3a3")
         self.Button48.configure(foreground="#000000")
         self.Button48.configure(highlightbackground="#d9d9d9")
@@ -1851,7 +1819,7 @@ class Toplevel1:
         self.Button49.configure(activebackground="#ececec")
         self.Button49.configure(activeforeground="#000000")
         self.Button49.configure(background="#d9d9d9")
-        self.Button49.configure(command=unknown_support.Set6Afstand)
+        self.Button49.configure(command=self.Set6Afstand)
         self.Button49.configure(disabledforeground="#a3a3a3")
         self.Button49.configure(foreground="#000000")
         self.Button49.configure(highlightbackground="#d9d9d9")
@@ -1864,7 +1832,7 @@ class Toplevel1:
         self.Button50.configure(activebackground="#ececec")
         self.Button50.configure(activeforeground="#000000")
         self.Button50.configure(background="#d9d9d9")
-        self.Button50.configure(command=unknown_support.Set7Afstand)
+        self.Button50.configure(command=self.Set7Afstand)
         self.Button50.configure(disabledforeground="#a3a3a3")
         self.Button50.configure(foreground="#000000")
         self.Button50.configure(highlightbackground="#d9d9d9")
@@ -1877,7 +1845,7 @@ class Toplevel1:
         self.Button51.configure(activebackground="#ececec")
         self.Button51.configure(activeforeground="#000000")
         self.Button51.configure(background="#d9d9d9")
-        self.Button51.configure(command=unknown_support.Set8Afstand)
+        self.Button51.configure(command=self.Set8Afstand)
         self.Button51.configure(disabledforeground="#a3a3a3")
         self.Button51.configure(foreground="#000000")
         self.Button51.configure(highlightbackground="#d9d9d9")
@@ -2281,6 +2249,55 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
 
     def Set8Temperatuur(self):
         print(self.Entry8.get())
+
+    def Set1Licht(self):
+        print(self.Entry9.get())
+
+    def Set2Licht(self):
+        print(self.Entry10.get())
+
+    def Set3Licht(self):
+        print(self.Entry11.get())
+
+    def Set4Licht(self):
+        print(self.Entry12.get())
+
+    def Set5Licht(self):
+        print(self.Entry13.get())
+
+    def Set6Licht(self):
+        print(self.Entry14.get())
+
+    def Set7Licht(self):
+        print(self.Entry15.get())
+
+    def Set8Licht(self):
+        print(self.Entry24.get())
+
+    def Set1Afstand(self):
+        print(self.Entry16.get())
+
+    def Set2Afstand(self):
+        print(self.Entry17.get())
+
+    def Set3Afstand(self):
+        print(self.Entry18.get())
+
+    def Set4Afstand(self):
+        print(self.Entry19.get())
+
+    def Set5Afstand(self):
+        print(self.Entry20.get())
+
+    def Set6Afstand(self):
+        print(self.Entry21.get())
+
+    def Set7Afstand(self):
+        print(self.Entry22.get())
+
+    def Set8Afstand(self):
+        print(self.Entry23.get())
+
 
 if __name__ == '__main__':
     vp_start_gui()
