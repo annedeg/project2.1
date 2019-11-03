@@ -181,12 +181,12 @@ class Toplevel1:
         bar1 = Figure(figsize=(5, 2), dpi=75)
         ax1 = bar1.add_subplot(111)
 
-        data = (20, 35, 30, 35, 27)
+        self.data1 = (20, 45, 30, 35)
 
-        ind = np.arange(5)  # the x locations for the groups
+        ind = np.arange(4)  # the x locations for the groups
         width = .5
 
-        rects1 = ax1.bar(ind, data, width)
+        rects1 = ax1.bar(ind, self.data1, width)
 
         canvasbar1 = FigureCanvasTkAgg(bar1, master=self.TNotebook2_t0)
         canvasbar1.draw()
@@ -202,12 +202,12 @@ class Toplevel1:
         bar2 = Figure(figsize=(5, 2), dpi=75)
         ax2 = bar2.add_subplot(111)
 
-        data = (20, 35, 30, 35, 27)
+        self.data2 = (20, 35, 30, 35)
 
-        ind = np.arange(5)  # the x locations for the groups
+        ind = np.arange(4)  # the x locations for the groups
         width = .5
 
-        rects2 = ax2.bar(ind, data, width)
+        rects2 = ax2.bar(ind, self.data2, width)
 
         canvasbar2 = FigureCanvasTkAgg(bar2, master=self.TNotebook2_t1)
         canvasbar2.draw()
@@ -223,12 +223,12 @@ class Toplevel1:
         bar3 = Figure(figsize=(5, 2), dpi=75)
         ax3 = bar3.add_subplot(111)
 
-        data = (20, 35, 30, 35, 27)
+        self.data3 = (20, 35, 30, 35)
 
-        ind = np.arange(5)  # the x locations for the groups
+        ind = np.arange(4)  # the x locations for the groups
         width = .5
 
-        rects3 = ax3.bar(ind, data, width)
+        rects3 = ax3.bar(ind, self.data3, width)
 
         canvasbar3 = FigureCanvasTkAgg(bar3, master=self.TNotebook2_t2)
         canvasbar3.draw()
@@ -2220,7 +2220,6 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
                 if aantal > aantal_huidig:
                     aantal_huidig = aantal
                     self.step(getallen[aantal_huidig-1])
-        poopy = self.Entry1.get()
         root.after(10, self.loop)
 
     def value_to_y(self, val):
@@ -2323,6 +2322,22 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
     def Set8Afstand(self):
         print(self.Entry23.get())
 
+    def SetBar1Data(self, AD1, AD2, AD3, AD4):
+        self.data1 = (AD1, AD2, AD3, AD4)
+
+    def SetBar2Data(self, AD1, AD2, AD3, AD4):
+        self.data2 = (AD1, AD2, AD3, AD4)
+
+    def SetBar3Data(self, AD1, AD2, AD3, AD4):
+        self.data3 = (AD1, AD2, AD3, AD4)
+
+    def FillListbox1(self, string):
+        self.Listbox1.delete(0, END)
+        self.Listbox1.insert(1, string)
+
+    def FillListbox2(self, string):
+        self.Listbox2.delete(0, END)
+        self.Listbox2.insert(1, string)
 
 if __name__ == '__main__':
     vp_start_gui()
