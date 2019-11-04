@@ -1,26 +1,7 @@
 #define UBBRVAL 51
 #include <stdint.h>
 #include <math.h>
-uint8_t asdf;
-
-
-int counter = 0;
-int light_bit = 2;
-int ult_bit = 8;
-int temp_bit = 10;
-int light_bit2 = 7;
-int cont_bit = 5;
-
-uint8_t temp =(uint8_t) 0;
-uint8_t light2=(uint8_t) 0;
-uint8_t dist = 0;
-uint8_t light = 0;
-
-
-int totaal = 0;
-uint8_t binary[32];
-uint8_t byte[4][8];
-uint8_t getal[4];
+volatile extern uint8_t current_distance;
 void uart_init()
 {
 	// set the baud rate
@@ -45,6 +26,14 @@ uint8_t receive() {
 	return UDR0;
 }
 
+void receive_if_send() {
+	if(UCSR0A & (1 << 7)) {
+		uint8_t data = receive();
+		data = (int) data;
+		check_lights(data);
+		show_distance(data);
+	}
+} 
 
 void receive_and_transmit() {
 	volatile uint8_t data = 0;
@@ -74,8 +63,26 @@ void check_status() {
 }
 
 void send_all() {
-	dist = (uint8_t) get_current_distance();
-	light = (uint8_t) get_light_status();
+
+	int counter = 0;
+	int light_bit = 2;
+	int ult_bit = 8;
+	int temp_bit = 10;
+	int light_bit2 = 7;
+	int cont_bit = 5;
+
+	uint8_t temp =(uint8_t) getTemperature();
+	uint8_t light2=(uint8_t) get_adc_value();
+	uint8_t dist = (uint8_t) get_distance();
+	uint8_t light = (uint8_t) get_light_status();
+	
+
+	int totaal = 0;
+	uint8_t binary[32];
+	uint8_t byte[4][8];
+	uint8_t getal[4];
+	
+
 /*
  * test.c
  *
