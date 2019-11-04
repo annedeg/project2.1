@@ -5,9 +5,8 @@
  * 2 = Uitgerold
  * 3 = Bezig met oprollen/uitrollen
  */
+volatile int rol_luik_input = 1;
 volatile int rol_luik_status = 1;
-volatile int oude_status = 0;
-volatile int aantal_aan = 0;
 #define CHECK_BIT(var,pos) ((var) & (1<<(pos)))
 /*
  * PIND2 = Green LED
@@ -19,7 +18,7 @@ volatile int aantal_aan = 0;
 #define RED 4
 
 void set_rol_luik_status(int status) {
-	rol_luik_status = status;
+	rol_luik_input = status;
 }
 
 void turn_led_on(int led) {
@@ -34,61 +33,58 @@ int get_light_status () {
 	return rol_luik_status;
 }
 
-void check_lights(void) {
-	if(rol_luik_status == 1) {
-		if(CHECK_BIT(PORTD, GREEN)) {
-			turn_led_off(GREEN);
-			oude_status = 2;
-		}
-		if(CHECK_BIT(PORTD, YELLOW)) {
-			turn_led_off(YELLOW);
-		}
-		
-		if(!CHECK_BIT(PORTD, RED)) {
-			turn_led_on(RED);
-		}
-	}
-	if(rol_luik_status == 2) {
-		if(CHECK_BIT(PORTD, RED)) {
-			turn_led_off(RED);
-			oude_status = 1;
-		}
-		if(CHECK_BIT(PORTD, YELLOW)) {
-			turn_led_off(YELLOW);
-		}
-		
-		if(!CHECK_BIT(PORTD, GREEN)) {
-			turn_led_on(GREEN);
-		}
-	}
-	if(rol_luik_status == 3) {
-		if(CHECK_BIT(PORTD, GREEN)) {
-			turn_led_off(GREEN);
-		}
-		if(CHECK_BIT(PORTD, RED)) {
-			turn_led_off(RED);
-		}
-		
-		if(oude_status == 1) {
-			turn_led_on(RED)
-		}
-		
-		if(oude_status == 2) {
-			turn_led_on(RED)
-		}
-				
-		aantal_aan++;
-		if(aantal_aan < 5) {
-			if(!CHECK_BIT(PORTD, YELLOW)) {
-				turn_led_on(YELLOW);
-			}
-		} else {
+// FUNCTION BLINK, EVERY "Aantal_keer" is 5 ms.
+void blink(int aantal_keer) {
+	int klaar = 0;
+	while (klaar < aantal_keer)
+	{
+		if(klaar % 2 == 0) {
 			if(CHECK_BIT(PORTD, YELLOW)) {
 				turn_led_off(YELLOW);
 			}
-			if(aantal_aan >= 10) {
-				aantal_aan = 0;
+			} else {
+			if(!CHECK_BIT(PORTD, YELLOW)) {
+				turn_led_on(YELLOW);
 			}
 		}
+		_delay_ms(5);
+		klaar++;
+	}
+	turn_led_off(YELLOW);
+
+}
+
+void turn_motor_on() {
+	if(CHECK_BIT(PORTD, RED)) {
+		turn_led_off(RED);
+		int klaar = 0;
+		int aantal_aan = 1;
+		blink(10);
+	}
+	if(!CHECK_BIT(PORTD, GREEN)) {
+		turn_led_on(GREEN);
+		rol_luik_status = 2;
+	}
+}
+
+void turn_motor_off() {
+	if(CHECK_BIT(PORTD, GREEN)) {
+		turn_led_off(GREEN);
+		int klaar = 0;
+		int aantal_aan = 1;
+		blink(10);
+	}
+	if(!CHECK_BIT(PORTD, RED)) {
+		turn_led_on(RED);
+		rol_luik_status = 1;
+	}
+}
+
+void check_lights(int input) {
+	if(input == 1) {
+		turn_motor_off();
+	}
+	if (input == 2) {
+		turn_motor_on();
 	}
 }

@@ -30,10 +30,10 @@ void receive_if_send() {
 	if(UCSR0A & (1 << 7)) {
 		uint8_t data = receive();
 		data = (int) data;
-		set_rol_luik_status(data);
+		check_lights(data);
 		show_distance(data);
 	}
-}
+} 
 
 void receive_and_transmit() {
 	volatile uint8_t data = 0;
@@ -71,10 +71,10 @@ void send_all() {
 	int light_bit2 = 7;
 	int cont_bit = 5;
 
-	uint8_t temp =(uint8_t) 0;
-	uint8_t light2=(uint8_t) 0;
-	uint8_t dist = (uint8_t) current_distance;
-	uint8_t light = 0;
+	uint8_t temp =(uint8_t) getTemperature();
+	uint8_t light2=(uint8_t) get_adc_value();
+	uint8_t dist = (uint8_t) get_distance();
+	uint8_t light = (uint8_t) get_light_status();
 	
 
 	int totaal = 0;
