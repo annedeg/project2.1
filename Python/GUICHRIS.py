@@ -2,6 +2,8 @@ import sys
 from tkinter import *
 import serial
 import time
+
+from matplotlib import animation
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
 # Implement the default Matplotlib key bindings.
@@ -9,7 +11,7 @@ from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import datetime as dt
-
+from random import randint
 import numpy as np
 
 
@@ -180,18 +182,14 @@ class Toplevel1:
         self.TNotebook2_t0.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t0.configure(highlightcolor="black")
         bar1 = Figure(figsize=(5, 2), dpi=75)
-        ax1 = bar1.add_subplot(111)
+        self.ax1 = bar1.add_subplot(111)
 
         self.data1 = (20, 45, 30, 35)
 
-        ind = np.arange(4)  # the x locations for the groups
-        width = .5
+        self.ind = np.arange(4)  # the x locations for the groups
 
-        rects1 = ax1.bar(ind, self.data1, width)
-
-        canvasbar1 = FigureCanvasTkAgg(bar1, master=self.TNotebook2_t0)
-        canvasbar1.draw()
-        canvasbar1.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvasbar1 = FigureCanvasTkAgg(bar1, master=self.TNotebook2_t0)
+        self.canvasbar1.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.TNotebook2_t1 = tk.Frame(self.TNotebook2)
         self.TNotebook2.add(self.TNotebook2_t1, padding=3)
@@ -201,18 +199,12 @@ class Toplevel1:
         self.TNotebook2_t1.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t1.configure(highlightcolor="black")
         bar2 = Figure(figsize=(5, 2), dpi=75)
-        ax2 = bar2.add_subplot(111)
+        self.ax2 = bar2.add_subplot(111)
 
         self.data2 = (20, 35, 30, 35)
 
-        ind = np.arange(4)  # the x locations for the groups
-        width = .5
-
-        rects2 = ax2.bar(ind, self.data2, width)
-
-        canvasbar2 = FigureCanvasTkAgg(bar2, master=self.TNotebook2_t1)
-        canvasbar2.draw()
-        canvasbar2.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvasbar2 = FigureCanvasTkAgg(bar2, master=self.TNotebook2_t1)
+        self.canvasbar2.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.TNotebook2_t2 = tk.Frame(self.TNotebook2)
         self.TNotebook2.add(self.TNotebook2_t2, padding=3)
@@ -222,18 +214,12 @@ class Toplevel1:
         self.TNotebook2_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t2.configure(highlightcolor="black")
         bar3 = Figure(figsize=(5, 2), dpi=75)
-        ax3 = bar3.add_subplot(111)
+        self.ax3 = bar3.add_subplot(111)
 
         self.data3 = (20, 35, 30, 35)
 
-        ind = np.arange(4)  # the x locations for the groups
-        width = .5
-
-        rects3 = ax3.bar(ind, self.data3, width)
-
-        canvasbar3 = FigureCanvasTkAgg(bar3, master=self.TNotebook2_t2)
-        canvasbar3.draw()
-        canvasbar3.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvasbar3 = FigureCanvasTkAgg(bar3, master=self.TNotebook2_t2)
+        self.canvasbar3.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
 
         self.Listbox2 = tk.Listbox(self.TNotebook1_t0)
@@ -324,47 +310,45 @@ class Toplevel1:
         self.TNotebook5_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook5_t2.configure(highlightcolor="black")
 
-        fig1 = Figure(figsize=(5, 4), dpi=100)
+        self.fig1 = Figure(figsize=(5, 4), dpi=100)
         self.t = np.arange(0, 3, .01)
-        self.canvas1 = fig1.add_subplot(1, 1, 1)
-        canvas1x = []
-        canvas1y = []
+        self.canvas1 = self.fig1.add_subplot(1, 1, 1)
+        self.canvasx = []
+        self.canvas1y = []
+        self.newx = 0
 
-        canvas1a = FigureCanvasTkAgg(fig1, master=self.TNotebook5_t0)  # A tk.DrawingArea.
-        canvas1a.draw()
-        canvas1a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas1a = FigureCanvasTkAgg(self.fig1, master=self.TNotebook5_t0)  # A tk.DrawingArea.
 
-        toolbar = NavigationToolbar2Tk(canvas1a, self.TNotebook5_t0)
-        toolbar.update()
-        canvas1a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+        self.toolbar = NavigationToolbar2Tk(self.canvas1a, self.TNotebook5_t0)
+        self.toolbar.update()
+        self.canvas1a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         fig2 = Figure(figsize=(5, 4), dpi=100)
         t = np.arange(0, 3, .01)
-        canvas2 = fig2.add_subplot(1,1,1).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas2x = []
-        canvas2y = []
+        self.canvas2 = fig2.add_subplot(1,1,1)
+        self.canvas2y = []
+        self.canvas2x = []
+        self.new2x = 0
 
-        canvas2a = FigureCanvasTkAgg(fig2, master=self.TNotebook5_t1)  # A tk.DrawingArea.
-        canvas2a.draw()
-        canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas2a = FigureCanvasTkAgg(fig2, master=self.TNotebook5_t1)  # A tk.DrawingArea.
 
-        toolbar = NavigationToolbar2Tk(canvas2a, self.TNotebook5_t1)
+        toolbar = NavigationToolbar2Tk(self.canvas2a, self.TNotebook5_t1)
         toolbar.update()
-        canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         fig3 = Figure(figsize=(5, 4), dpi=100)
         t = np.arange(0, 3, .01)
-        canvas3 = fig3.add_subplot(1, 1, 1).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas3x = []
-        canvas3y = []
+        self.canvas3 = fig3.add_subplot(1, 1, 1)
+        self.canvas3y = []
+        self.canvas3x = []
+        self.new3x = 0
 
-        canvas3a = FigureCanvasTkAgg(fig2, master=self.TNotebook5_t2)  # A tk.DrawingArea.
-        canvas3a.draw()
-        canvas3a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas3a = FigureCanvasTkAgg(fig3, master=self.TNotebook5_t2)  # A tk.DrawingArea.
 
-        toolbar = NavigationToolbar2Tk(canvas3a, self.TNotebook5_t2)
+        toolbar = NavigationToolbar2Tk(self.canvas3a, self.TNotebook5_t2)
         toolbar.update()
-        canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas3a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.TNotebook3 = ttk.Notebook(self.TNotebook1_t1)
         self.TNotebook3.place(relx=0.0, rely=0.014, relheight=0.995
@@ -401,63 +385,71 @@ class Toplevel1:
 
         fig4 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        canvas4 = fig4.add_subplot(1, 2, 1).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas5 = fig4.add_subplot(1, 2, 2).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas4x = []
-        canvas4y = []
+        self.canvas4 = fig4.add_subplot(1, 2, 1)
+        self.canvas5 = fig4.add_subplot(1, 2, 2)
+        self.canvas4y = []
+        self.canvas5y = []
+        self.canvas4x = []
+        self.canvas5x = []
+        self.new4x = 0
+        self.new5x = 0
 
-        canvas4a = FigureCanvasTkAgg(fig4, master=self.TNotebook3_t0)  # A tk.DrawingArea.
-        canvas4a.draw()
-        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas4a = FigureCanvasTkAgg(fig4, master=self.TNotebook3_t0)  # A tk.DrawingArea.
 
-        toolbar = NavigationToolbar2Tk(canvas4a, self.TNotebook3_t0)
+        toolbar = NavigationToolbar2Tk(self.canvas4a, self.TNotebook3_t0)
         toolbar.update()
-        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         fig5 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        canvas6 = fig5.add_subplot(1, 2, 1).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas7 = fig5.add_subplot(1, 2, 2).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas5x = []
-        canvas5y = []
+        self.canvas6 = fig5.add_subplot(1, 2, 1)
+        self.canvas7 = fig5.add_subplot(1, 2, 2)
+        self.canvas6y = []
+        self.canvas7y = []
+        self.canvas6x = []
+        self.canvas7x = []
+        self.new6x = 0
+        self.new7x = 0
 
-        canvas5a = FigureCanvasTkAgg(fig5, master=self.TNotebook3_t1)  # A tk.DrawingArea.
-        canvas5a.draw()
-        canvas5a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas5a = FigureCanvasTkAgg(fig5, master=self.TNotebook3_t1)  # A tk.DrawingArea.
 
-        toolbar = NavigationToolbar2Tk(canvas5a, self.TNotebook3_t1)
+        toolbar = NavigationToolbar2Tk(self.canvas5a, self.TNotebook3_t1)
         toolbar.update()
-        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas5a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         fig6 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        canvas8 = fig6.add_subplot(1, 2, 1).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas9 = fig6.add_subplot(1, 2, 2).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas6x = []
-        canvas6y = []
+        self.canvas8 = fig6.add_subplot(1, 2, 1)
+        self.canvas9 = fig6.add_subplot(1, 2, 2)
+        self.canvas8y = []
+        self.canvas9y = []
+        self.canvas8x = []
+        self.canvas9x = []
+        self.new8x = 0
+        self.new9x = 0
 
-        canvas6a = FigureCanvasTkAgg(fig6, master=self.TNotebook3_t2)  # A tk.DrawingArea.
-        canvas6a.draw()
-        canvas6a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas6a = FigureCanvasTkAgg(fig6, master=self.TNotebook3_t2)  # A tk.DrawingArea.
 
-        toolbar = NavigationToolbar2Tk(canvas6a, self.TNotebook3_t2)
+        toolbar = NavigationToolbar2Tk(self.canvas6a, self.TNotebook3_t2)
         toolbar.update()
-        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas6a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         fig7 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        canvas10 = fig7.add_subplot(1, 2, 1).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas11 = fig7.add_subplot(1, 2, 2).plot(t, 2 * np.sin(2 * np.pi * t))
-        canvas7x = []
-        canvas7y = []
+        self.canvas10 = fig7.add_subplot(1, 2, 1)
+        self.canvas11 = fig7.add_subplot(1, 2, 2)
+        self.canvas10y = []
+        self.canvas11y = []
+        self.canvas10x = []
+        self.canvas11x = []
+        self.new10x = 0
+        self.new11x = 0
 
-        canvas7a = FigureCanvasTkAgg(fig7, master=self.TNotebook3_t3)  # A tk.DrawingArea.
-        canvas7a.draw()
-        canvas7a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas7a = FigureCanvasTkAgg(fig7, master=self.TNotebook3_t3)  # A tk.DrawingArea.
 
-        toolbar = NavigationToolbar2Tk(canvas7a, self.TNotebook3_t3)
+        toolbar = NavigationToolbar2Tk(self.canvas7a, self.TNotebook3_t3)
         toolbar.update()
-        canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas7a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.TNotebook4 = ttk.Notebook(self.TNotebook1_t2)
         self.TNotebook4.place(relx=0.0, rely=0.014, relheight=0.981
@@ -2171,6 +2163,7 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         self.running = True
         self.setup_arduinos()
         time.sleep(5)
+        self.counter = 0
         self.loop()
 
     def setup_arduinos(self):
@@ -2190,6 +2183,19 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
 
     def loop(self):
         global aantal, getallen, aantal_huidig, arduinos
+        if self.counter == 50:
+            self.animatecanvas1(randint(0,5))
+            self.animatecanvas2(randint(0, 5))
+            self.animatecanvas3(randint(0, 5))
+            self.animatecanvas4(randint(0, 5))
+            self.animatecanvas5(randint(0, 5))
+            self.animatecanvas6(randint(0, 5))
+            self.animatecanvas7(randint(0, 5))
+            self.animatecanvas8(randint(0, 5))
+            self.animatecanvas9(randint(0, 5))
+            self.animatecanvas10(randint(0, 5))
+            self.animatecanvas11(randint(0, 5))
+            self.counter = 0
         for ser in arduinos:
             if ser.in_waiting > 0:
                 if ser.read().hex() == 'ff':
@@ -2220,53 +2226,129 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
                     aantal+=1
                 if aantal > aantal_huidig:
                     aantal_huidig = aantal
-                self.canvas1.plot(1, 0.5)
+        self.counter += 1
         root.after(10, self.loop)
 
-    def animate(i, xs, ys):
+    def animatecanvas1(self, y):
+        self.canvasx.append(self.newx)
+        if len(self.canvasx) > 20:
+            del self.canvasx[0]
+            del self.canvas1y[0]
+            self.canvas1.clear()
+        self.canvas1y.append(y)
+        self.newx += 1
+        self.canvas1.plot(self.canvasx, self.canvas1y , color= "blue")
+        self.canvas1a.draw()
 
-        temp_c = 1
+    def animatecanvas2(self, y):
+        self.canvas2x.append(self.new2x)
+        if len(self.canvas2x) > 20:
+            del self.canvas2x[0]
+            del self.canvas2y[0]
+            self.canvas2.clear()
+        self.canvas2y.append(y)
+        self.new2x += 1
+        self.canvas2.plot(self.canvas2x, self.canvas2y , color= "blue")
+        self.canvas2a.draw()
 
-        # Add x and y to lists
-        xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
-        ys.append(temp_c)
+    def animatecanvas3(self, y):
+        self.canvas3x.append(self.new3x)
+        if len(self.canvas3x) > 20:
+            del self.canvas3x[0]
+            del self.canvas3y[0]
+            self.canvas3.clear()
+        self.canvas3y.append(y)
+        self.new3x += 1
+        self.canvas3.plot(self.canvas3x, self.canvas3y , color= "blue")
+        self.canvas3a.draw()
 
-        # Limit x and y lists to 20 items
-        xs = xs[-20:]
-        ys = ys[-20:]
+    def animatecanvas4(self, y):
+        self.canvas4x.append(self.new4x)
+        if len(self.canvas4x) > 20:
+            del self.canvas4x[0]
+            del self.canvas4y[0]
+            self.canvas4.clear()
+        self.canvas4y.append(y)
+        self.new4x += 1
+        self.canvas4.plot(self.canvas4x, self.canvas4y , color= "blue")
+        self.canvas4a.draw()
 
-        # Draw x and y lists
-        self.canvas1.clear()
-        self.canvas1.plot(xs, ys)
+    def animatecanvas5(self, y):
+        self.canvas5x.append(self.new5x)
+        if len(self.canvas5x) > 20:
+            del self.canvas5x[0]
+            del self.canvas5y[0]
+            self.canvas5.clear()
+        self.canvas5y.append(y)
+        self.new5x += 1
+        self.canvas5.plot(self.canvas5x, self.canvas5y , color= "blue")
+        self.canvas4a.draw()
 
+    def animatecanvas6(self, y):
+        self.canvas6x.append(self.new6x)
+        if len(self.canvas6x) > 20:
+            del self.canvas6x[0]
+            del self.canvas6y[0]
+            self.canvas6.clear()
+        self.canvas6y.append(y)
+        self.new6x += 1
+        self.canvas6.plot(self.canvas6x, self.canvas6y , color= "blue")
+        self.canvas5a.draw()
 
-    def value_to_y(self, val):
-        return 550 - 2.5 * val
+    def animatecanvas7(self, y):
+        self.canvas7x.append(self.new7x)
+        if len(self.canvas7x) > 20:
+            del self.canvas7x[0]
+            del self.canvas7y[0]
+            self.canvas7.clear()
+        self.canvas7y.append(y)
+        self.new7x += 1
+        self.canvas7.plot(self.canvas7x, self.canvas7y , color= "blue")
+        self.canvas5a.draw()
 
-    def step(self, newY, EditCanvas1, EditCanvas2, EditCanvas3):
-        if self.running:
-            if self.s == 23:
-                # new frame
-                self.s = 1
-                self.x2 = 50
-                self.Canvas1.delete('temp')  # only delete items tagged as temp
-            x1 = self.x2
-            y1 = self.y2
-            self.x2 = 50 + self.s * 50
-            self.y2 = self.value_to_y(newY)
-            if EditCanvas1 == 1:
-                self.Canvas1.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
-            if EditCanvas2 == 1:
-                self.Canvas10.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
-            if EditCanvas3 == 1:
-                self.Canvas11.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
-            self.s = self.s + 1
+    def animatecanvas8(self, y):
+        self.canvas8x.append(self.new8x)
+        if len(self.canvas8x) > 20:
+            del self.canvas8x[0]
+            del self.canvas8y[0]
+            self.canvas8.clear()
+        self.canvas8y.append(y)
+        self.new8x += 1
+        self.canvas8.plot(self.canvas8x, self.canvas8y , color= "blue")
+        self.canvas6a.draw()
 
-    def pause(self):
-        if self.running:
-            self.running = False
-        else:
-            self.running = True
+    def animatecanvas9(self, y):
+        self.canvas9x.append(self.new9x)
+        if len(self.canvas9x) > 20:
+            del self.canvas9x[0]
+            del self.canvas9y[0]
+            self.canvas9.clear()
+        self.canvas9y.append(y)
+        self.new9x += 1
+        self.canvas9.plot(self.canvas9x, self.canvas9y , color= "blue")
+        self.canvas6a.draw()
+
+    def animatecanvas10(self, y):
+        self.canvas10x.append(self.new10x)
+        if len(self.canvas10x) > 20:
+            del self.canvas10x[0]
+            del self.canvas10y[0]
+            self.canvas10.clear()
+        self.canvas10y.append(y)
+        self.new10x += 1
+        self.canvas10.plot(self.canvas10x, self.canvas10y , color= "blue")
+        self.canvas7a.draw()
+
+    def animatecanvas11(self, y):
+        self.canvas11x.append(self.new11x)
+        if len(self.canvas11x) > 20:
+            del self.canvas11x[0]
+            del self.canvas11y[0]
+            self.canvas11.clear()
+        self.canvas11y.append(y)
+        self.new11x += 1
+        self.canvas11.plot(self.canvas11x, self.canvas11y , color= "blue")
+        self.canvas7a.draw()
 
     def Set1Temperatuur(self):
         print(self.Entry1.get())
@@ -2342,12 +2424,21 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
 
     def SetBar1Data(self, AD1, AD2, AD3, AD4):
         self.data1 = (AD1, AD2, AD3, AD4)
+        self.ax1.clear()
+        self.ax1.bar(self.ind, self.data1, .5)
+        self.canvasbar1.draw()
 
     def SetBar2Data(self, AD1, AD2, AD3, AD4):
         self.data2 = (AD1, AD2, AD3, AD4)
+        self.ax2.clear()
+        self.ax2.bar(self.ind, self.data1, .5)
+        self.canvasbar2.draw()
 
     def SetBar3Data(self, AD1, AD2, AD3, AD4):
         self.data3 = (AD1, AD2, AD3, AD4)
+        self.ax3.clear()
+        self.ax3.bar(self.ind, self.data1, .5)
+        self.canvasbar3.draw()
 
     def FillListbox1(self, string):
         self.Listbox1.delete(0, END)
