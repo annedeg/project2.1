@@ -2162,7 +2162,6 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         self.y2 = 0
         self.running = True
         self.setup_arduinos()
-        time.sleep(5)
         self.counter = 0
         self.loop()
 
@@ -2183,19 +2182,7 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
 
     def loop(self):
         global aantal, getallen, aantal_huidig, arduinos
-        if self.counter == 50:
-            self.animatecanvas1(randint(0,5))
-            self.animatecanvas2(randint(0, 5))
-            self.animatecanvas3(randint(0, 5))
-            self.animatecanvas4(randint(0, 5))
-            self.animatecanvas5(randint(0, 5))
-            self.animatecanvas6(randint(0, 5))
-            self.animatecanvas7(randint(0, 5))
-            self.animatecanvas8(randint(0, 5))
-            self.animatecanvas9(randint(0, 5))
-            self.animatecanvas10(randint(0, 5))
-            self.animatecanvas11(randint(0, 5))
-            self.counter = 0
+
         for ser in arduinos:
             if ser.in_waiting > 0:
                 if ser.read().hex() == 'ff':
@@ -2220,6 +2207,23 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
                     distance = int(distance, 2)
                     light = int(light, 2)
                     bit_controle = int(bit_controle, 2)
+                    if self.counter > 50:
+                        self.animatecanvas1(distance)
+                        self.animatecanvas2(light2)
+                        self.animatecanvas3(temp)
+                        self.animatecanvas4(randint(0, 5))
+                        self.animatecanvas5(randint(0, 5))
+                        self.animatecanvas6(randint(0, 5))
+                        self.animatecanvas7(randint(0, 5))
+                        self.animatecanvas8(randint(0, 5))
+                        self.animatecanvas9(randint(0, 5))
+                        self.animatecanvas10(randint(0, 5))
+                        self.animatecanvas11(randint(0, 5))
+
+                        self.counter = 0
+                    print(self.counter)
+                    self.counter+=1
+
                     print("Temperatuur: " + str(temp), "Lichtsensor: " + str(light2), "Distance: " + str(distance),
                           "What light: " + str(light), "Controle: " + str(bit_controle))
                     getallen.append(int(distance))
