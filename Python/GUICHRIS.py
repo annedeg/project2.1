@@ -3,17 +3,6 @@ from tkinter import *
 import serial
 import time
 
-from matplotlib import animation
-from matplotlib.backends.backend_tkagg import (
-    FigureCanvasTkAgg, NavigationToolbar2Tk)
-# Implement the default Matplotlib key bindings.
-from matplotlib.backend_bases import key_press_handler
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
-import datetime as dt
-from random import randint
-import numpy as np
-
 
 try:
     import Tkinter as tk
@@ -36,8 +25,7 @@ aantal_huidig = 0
 getallen = []
 comPorts = list(serial.tools.list_ports.comports())
 activeComPorts = []
-arduinos = []
-#poopy = 'Poppy'
+arduinos = {}
 
 
 def vp_start_gui():
@@ -48,6 +36,9 @@ def vp_start_gui():
     top = Toplevel1(root)
     unknown_support.init(root, top)
     root.mainloop()
+
+def loop():
+    print("asdf")
 
 w = None
 
@@ -68,8 +59,6 @@ def destroy_Toplevel1():
     w.destroy()
     w = None
 
-def get_temperatuur_1():
-    return poopy
 
 class Toplevel1:
     def __init__(self, top=None):
@@ -181,16 +170,6 @@ class Toplevel1:
         self.TNotebook2_t0.configure(background="#d9d9d9")
         self.TNotebook2_t0.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t0.configure(highlightcolor="black")
-        bar1 = Figure(figsize=(5, 2), dpi=75)
-        self.ax1 = bar1.add_subplot(111)
-
-        self.data1 = (20, 45, 30, 35)
-
-        self.ind = np.arange(4)  # the x locations for the groups
-
-        self.canvasbar1 = FigureCanvasTkAgg(bar1, master=self.TNotebook2_t0)
-        self.canvasbar1.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
-
         self.TNotebook2_t1 = tk.Frame(self.TNotebook2)
         self.TNotebook2.add(self.TNotebook2_t1, padding=3)
         self.TNotebook2.tab(1, text="Lichtsensor", compound="left", underline="-1"
@@ -198,14 +177,6 @@ class Toplevel1:
         self.TNotebook2_t1.configure(background="#d9d9d9")
         self.TNotebook2_t1.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t1.configure(highlightcolor="black")
-        bar2 = Figure(figsize=(5, 2), dpi=75)
-        self.ax2 = bar2.add_subplot(111)
-
-        self.data2 = (20, 35, 30, 35)
-
-        self.canvasbar2 = FigureCanvasTkAgg(bar2, master=self.TNotebook2_t1)
-        self.canvasbar2.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
-
         self.TNotebook2_t2 = tk.Frame(self.TNotebook2)
         self.TNotebook2.add(self.TNotebook2_t2, padding=3)
         self.TNotebook2.tab(2, text="Temperatuur", compound="none", underline="-1"
@@ -213,14 +184,6 @@ class Toplevel1:
         self.TNotebook2_t2.configure(background="#d9d9d9")
         self.TNotebook2_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook2_t2.configure(highlightcolor="black")
-        bar3 = Figure(figsize=(5, 2), dpi=75)
-        self.ax3 = bar3.add_subplot(111)
-
-        self.data3 = (20, 35, 30, 35)
-
-        self.canvasbar3 = FigureCanvasTkAgg(bar3, master=self.TNotebook2_t2)
-        self.canvasbar3.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
-
 
         self.Listbox2 = tk.Listbox(self.TNotebook1_t0)
         self.Listbox2.place(relx=0.01, rely=0.26, relheight=0.236
@@ -310,45 +273,50 @@ class Toplevel1:
         self.TNotebook5_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook5_t2.configure(highlightcolor="black")
 
-        self.fig1 = Figure(figsize=(5, 4), dpi=100)
-        self.t = np.arange(0, 3, .01)
-        self.canvas1 = self.fig1.add_subplot(1, 1, 1)
-        self.canvasx = []
-        self.canvas1y = []
-        self.newx = 0
+        self.Canvas1 = tk.Canvas(self.TNotebook5_t0)
+        self.Canvas1.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
+        self.Canvas1.configure(background="#d9d9d9")
+        self.Canvas1.configure(borderwidth="2")
+        self.Canvas1.configure(insertbackground="black")
+        self.Canvas1.configure(relief="ridge")
+        self.Canvas1.configure(selectbackground="#c4c4c4")
+        self.Canvas1.configure(selectforeground="black")
+        self.Canvas1.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
+        self.Canvas1.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
+        self.Canvas1.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
+        self.Canvas1.create_text(18, 275,
+                                 text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
+        # flippen dus hij ziet hier maar ietsje lelijk erbij
 
-        self.canvas1a = FigureCanvasTkAgg(self.fig1, master=self.TNotebook5_t0)  # A tk.DrawingArea.
+        # x-axis
+        for i in range(23):
+            x = 50 + (i * 50)
+            self.Canvas1.create_line(x, 550, x, 50, width=1, dash=(2, 5))
+            self.Canvas1.create_text(x, 550, text='%d' % (10 * i), anchor=N)
 
+        # y-axis
+        for i in range(11):
+            y = 550 - (i * 50)
+            self.Canvas1.create_line(50, y, 1150, y, width=1, dash=(2, 5))
+            self.Canvas1.create_text(40, y, text='%d' % (10 * i * 2), anchor=E)
 
-        self.toolbar = NavigationToolbar2Tk(self.canvas1a, self.TNotebook5_t0)
-        self.toolbar.update()
-        self.canvas1a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.Canvas10 = tk.Canvas(self.TNotebook5_t1)
+        self.Canvas10.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
+        self.Canvas10.configure(background="#d9d9d9")
+        self.Canvas10.configure(borderwidth="2")
+        self.Canvas10.configure(insertbackground="black")
+        self.Canvas10.configure(relief="ridge")
+        self.Canvas10.configure(selectbackground="#c4c4c4")
+        self.Canvas10.configure(selectforeground="black")
 
-        fig2 = Figure(figsize=(5, 4), dpi=100)
-        t = np.arange(0, 3, .01)
-        self.canvas2 = fig2.add_subplot(1,1,1)
-        self.canvas2y = []
-        self.canvas2x = []
-        self.new2x = 0
-
-        self.canvas2a = FigureCanvasTkAgg(fig2, master=self.TNotebook5_t1)  # A tk.DrawingArea.
-
-        toolbar = NavigationToolbar2Tk(self.canvas2a, self.TNotebook5_t1)
-        toolbar.update()
-        self.canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
-
-        fig3 = Figure(figsize=(5, 4), dpi=100)
-        t = np.arange(0, 3, .01)
-        self.canvas3 = fig3.add_subplot(1, 1, 1)
-        self.canvas3y = []
-        self.canvas3x = []
-        self.new3x = 0
-
-        self.canvas3a = FigureCanvasTkAgg(fig3, master=self.TNotebook5_t2)  # A tk.DrawingArea.
-
-        toolbar = NavigationToolbar2Tk(self.canvas3a, self.TNotebook5_t2)
-        toolbar.update()
-        self.canvas3a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.Canvas11 = tk.Canvas(self.TNotebook5_t2)
+        self.Canvas11.place(relx=0.0, rely=0.0, relheight=1.006, relwidth=1.004)
+        self.Canvas11.configure(background="#d9d9d9")
+        self.Canvas11.configure(borderwidth="2")
+        self.Canvas11.configure(insertbackground="black")
+        self.Canvas11.configure(relief="ridge")
+        self.Canvas11.configure(selectbackground="#c4c4c4")
+        self.Canvas11.configure(selectforeground="black")
 
         self.TNotebook3 = ttk.Notebook(self.TNotebook1_t1)
         self.TNotebook3.place(relx=0.0, rely=0.014, relheight=0.995
@@ -383,73 +351,82 @@ class Toplevel1:
         self.TNotebook3_t3.configure(highlightbackground="#d9d9d9")
         self.TNotebook3_t3.configure(highlightcolor="black")
 
-        fig4 = Figure(figsize=(5, 8), dpi=100)
-        t = np.arange(0, 3, .01)
-        self.canvas4 = fig4.add_subplot(1, 2, 1)
-        self.canvas5 = fig4.add_subplot(1, 2, 2)
-        self.canvas4y = []
-        self.canvas5y = []
-        self.canvas4x = []
-        self.canvas5x = []
-        self.new4x = 0
-        self.new5x = 0
+        self.Canvas2 = tk.Canvas(self.TNotebook3_t0)
+        self.Canvas2.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.488)
+        self.Canvas2.configure(background="#d9d9d9")
+        self.Canvas2.configure(borderwidth="2")
+        self.Canvas2.configure(insertbackground="black")
+        self.Canvas2.configure(relief="ridge")
+        self.Canvas2.configure(selectbackground="#c4c4c4")
+        self.Canvas2.configure(selectforeground="black")
 
-        self.canvas4a = FigureCanvasTkAgg(fig4, master=self.TNotebook3_t0)  # A tk.DrawingArea.
+        self.Canvas5 = tk.Canvas(self.TNotebook3_t0)
+        self.Canvas5.place(relx=0.485, rely=0.014, relheight=0.99
+                           , relwidth=0.517)
+        self.Canvas5.configure(background="#d9d9d9")
+        self.Canvas5.configure(borderwidth="2")
+        self.Canvas5.configure(insertbackground="black")
+        self.Canvas5.configure(relief="ridge")
+        self.Canvas5.configure(selectbackground="#c4c4c4")
+        self.Canvas5.configure(selectforeground="black")
 
-        toolbar = NavigationToolbar2Tk(self.canvas4a, self.TNotebook3_t0)
-        toolbar.update()
-        self.canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.Canvas3 = tk.Canvas(self.TNotebook3_t1)
+        self.Canvas3.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.479)
+        self.Canvas3.configure(background="#d9d9d9")
+        self.Canvas3.configure(borderwidth="2")
+        self.Canvas3.configure(insertbackground="black")
+        self.Canvas3.configure(relief="ridge")
+        self.Canvas3.configure(selectbackground="#c4c4c4")
+        self.Canvas3.configure(selectforeground="black")
 
-        fig5 = Figure(figsize=(5, 8), dpi=100)
-        t = np.arange(0, 3, .01)
-        self.canvas6 = fig5.add_subplot(1, 2, 1)
-        self.canvas7 = fig5.add_subplot(1, 2, 2)
-        self.canvas6y = []
-        self.canvas7y = []
-        self.canvas6x = []
-        self.canvas7x = []
-        self.new6x = 0
-        self.new7x = 0
+        self.Canvas6 = tk.Canvas(self.TNotebook3_t1)
+        self.Canvas6.place(relx=0.476, rely=0.014, relheight=0.99
+                           , relwidth=0.527)
+        self.Canvas6.configure(background="#d9d9d9")
+        self.Canvas6.configure(borderwidth="2")
+        self.Canvas6.configure(insertbackground="black")
+        self.Canvas6.configure(relief="ridge")
+        self.Canvas6.configure(selectbackground="#c4c4c4")
+        self.Canvas6.configure(selectforeground="black")
 
-        self.canvas5a = FigureCanvasTkAgg(fig5, master=self.TNotebook3_t1)  # A tk.DrawingArea.
+        self.Canvas4 = tk.Canvas(self.TNotebook3_t2)
+        self.Canvas4.place(relx=0.0, rely=0.014, relheight=0.99, relwidth=0.479)
+        self.Canvas4.configure(background="#d9d9d9")
+        self.Canvas4.configure(borderwidth="2")
+        self.Canvas4.configure(insertbackground="black")
+        self.Canvas4.configure(relief="ridge")
+        self.Canvas4.configure(selectbackground="#c4c4c4")
+        self.Canvas4.configure(selectforeground="black")
 
-        toolbar = NavigationToolbar2Tk(self.canvas5a, self.TNotebook3_t1)
-        toolbar.update()
-        self.canvas5a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.Canvas7 = tk.Canvas(self.TNotebook3_t2)
+        self.Canvas7.place(relx=0.476, rely=0.014, relheight=0.99
+                           , relwidth=0.527)
+        self.Canvas7.configure(background="#d9d9d9")
+        self.Canvas7.configure(borderwidth="2")
+        self.Canvas7.configure(insertbackground="black")
+        self.Canvas7.configure(relief="ridge")
+        self.Canvas7.configure(selectbackground="#c4c4c4")
+        self.Canvas7.configure(selectforeground="black")
 
-        fig6 = Figure(figsize=(5, 8), dpi=100)
-        t = np.arange(0, 3, .01)
-        self.canvas8 = fig6.add_subplot(1, 2, 1)
-        self.canvas9 = fig6.add_subplot(1, 2, 2)
-        self.canvas8y = []
-        self.canvas9y = []
-        self.canvas8x = []
-        self.canvas9x = []
-        self.new8x = 0
-        self.new9x = 0
+        self.Canvas8 = tk.Canvas(self.TNotebook3_t3)
+        self.Canvas8.place(relx=-0.01, rely=0.014, relheight=0.99
+                           , relwidth=0.498)
+        self.Canvas8.configure(background="#d9d9d9")
+        self.Canvas8.configure(borderwidth="2")
+        self.Canvas8.configure(insertbackground="black")
+        self.Canvas8.configure(relief="ridge")
+        self.Canvas8.configure(selectbackground="#c4c4c4")
+        self.Canvas8.configure(selectforeground="black")
 
-        self.canvas6a = FigureCanvasTkAgg(fig6, master=self.TNotebook3_t2)  # A tk.DrawingArea.
-
-        toolbar = NavigationToolbar2Tk(self.canvas6a, self.TNotebook3_t2)
-        toolbar.update()
-        self.canvas6a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
-
-        fig7 = Figure(figsize=(5, 8), dpi=100)
-        t = np.arange(0, 3, .01)
-        self.canvas10 = fig7.add_subplot(1, 2, 1)
-        self.canvas11 = fig7.add_subplot(1, 2, 2)
-        self.canvas10y = []
-        self.canvas11y = []
-        self.canvas10x = []
-        self.canvas11x = []
-        self.new10x = 0
-        self.new11x = 0
-
-        self.canvas7a = FigureCanvasTkAgg(fig7, master=self.TNotebook3_t3)  # A tk.DrawingArea.
-
-        toolbar = NavigationToolbar2Tk(self.canvas7a, self.TNotebook3_t3)
-        toolbar.update()
-        self.canvas7a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.Canvas9 = tk.Canvas(self.TNotebook3_t3)
+        self.Canvas9.place(relx=0.485, rely=0.014, relheight=0.99
+                           , relwidth=0.517)
+        self.Canvas9.configure(background="#d9d9d9")
+        self.Canvas9.configure(borderwidth="2")
+        self.Canvas9.configure(insertbackground="black")
+        self.Canvas9.configure(relief="ridge")
+        self.Canvas9.configure(selectbackground="#c4c4c4")
+        self.Canvas9.configure(selectforeground="black")
 
         self.TNotebook4 = ttk.Notebook(self.TNotebook1_t2)
         self.TNotebook4.place(relx=0.0, rely=0.014, relheight=0.981
@@ -664,7 +641,7 @@ class Toplevel1:
         self.Button2.configure(activebackground="#ececec")
         self.Button2.configure(activeforeground="#000000")
         self.Button2.configure(background="#d9d9d9")
-        self.Button2.configure(command=self.Set1Temperatuur)
+        self.Button2.configure(command=unknown_support.Set1Temperatuur)
         self.Button2.configure(disabledforeground="#a3a3a3")
         self.Button2.configure(foreground="#000000")
         self.Button2.configure(highlightbackground="#d9d9d9")
@@ -781,7 +758,7 @@ class Toplevel1:
         self.Button11.configure(activebackground="#ececec")
         self.Button11.configure(activeforeground="#000000")
         self.Button11.configure(background="#d9d9d9")
-        self.Button11.configure(command=self.Set2Temperatuur)
+        self.Button11.configure(command=unknown_support.Set2Temperatuur)
         self.Button11.configure(disabledforeground="#a3a3a3")
         self.Button11.configure(foreground="#000000")
         self.Button11.configure(highlightbackground="#d9d9d9")
@@ -794,7 +771,7 @@ class Toplevel1:
         self.Button12.configure(activebackground="#ececec")
         self.Button12.configure(activeforeground="#000000")
         self.Button12.configure(background="#d9d9d9")
-        self.Button12.configure(command=self.Set3Temperatuur)
+        self.Button12.configure(command=unknown_support.Set3Temperatuur)
         self.Button12.configure(disabledforeground="#a3a3a3")
         self.Button12.configure(foreground="#000000")
         self.Button12.configure(highlightbackground="#d9d9d9")
@@ -807,7 +784,7 @@ class Toplevel1:
         self.Button13.configure(activebackground="#ececec")
         self.Button13.configure(activeforeground="#000000")
         self.Button13.configure(background="#d9d9d9")
-        self.Button13.configure(command=self.Set4Temperatuur)
+        self.Button13.configure(command=unknown_support.Set4Temperatuur)
         self.Button13.configure(disabledforeground="#a3a3a3")
         self.Button13.configure(foreground="#000000")
         self.Button13.configure(highlightbackground="#d9d9d9")
@@ -820,7 +797,7 @@ class Toplevel1:
         self.Button14.configure(activebackground="#ececec")
         self.Button14.configure(activeforeground="#000000")
         self.Button14.configure(background="#d9d9d9")
-        self.Button14.configure(command=self.Set5Temperatuur)
+        self.Button14.configure(command=unknown_support.Set5Temperatuur)
         self.Button14.configure(disabledforeground="#a3a3a3")
         self.Button14.configure(foreground="#000000")
         self.Button14.configure(highlightbackground="#d9d9d9")
@@ -833,7 +810,7 @@ class Toplevel1:
         self.Button15.configure(activebackground="#ececec")
         self.Button15.configure(activeforeground="#000000")
         self.Button15.configure(background="#d9d9d9")
-        self.Button15.configure(command=self.Set6Temperatuur)
+        self.Button15.configure(command=unknown_support.Set6Temperatuur)
         self.Button15.configure(disabledforeground="#a3a3a3")
         self.Button15.configure(foreground="#000000")
         self.Button15.configure(highlightbackground="#d9d9d9")
@@ -846,7 +823,7 @@ class Toplevel1:
         self.Button16.configure(activebackground="#ececec")
         self.Button16.configure(activeforeground="#000000")
         self.Button16.configure(background="#d9d9d9")
-        self.Button16.configure(command=self.Set7Temperatuur)
+        self.Button16.configure(command=unknown_support.Set7Temperatuur)
         self.Button16.configure(disabledforeground="#a3a3a3")
         self.Button16.configure(foreground="#000000")
         self.Button16.configure(highlightbackground="#d9d9d9")
@@ -859,7 +836,7 @@ class Toplevel1:
         self.Button17.configure(activebackground="#ececec")
         self.Button17.configure(activeforeground="#000000")
         self.Button17.configure(background="#d9d9d9")
-        self.Button17.configure(command=self.Set8Temperatuur)
+        self.Button17.configure(command=unknown_support.Set8Temperatuur)
         self.Button17.configure(disabledforeground="#a3a3a3")
         self.Button17.configure(foreground="#000000")
         self.Button17.configure(highlightbackground="#d9d9d9")
@@ -1195,7 +1172,7 @@ class Toplevel1:
         self.Button24.configure(activebackground="#ececec")
         self.Button24.configure(activeforeground="#000000")
         self.Button24.configure(background="#d9d9d9")
-        self.Button24.configure(command=self.Set1Licht)
+        self.Button24.configure(command=unknown_support.Set1Licht)
         self.Button24.configure(disabledforeground="#a3a3a3")
         self.Button24.configure(foreground="#000000")
         self.Button24.configure(highlightbackground="#d9d9d9")
@@ -1208,7 +1185,7 @@ class Toplevel1:
         self.Button25.configure(activebackground="#ececec")
         self.Button25.configure(activeforeground="#000000")
         self.Button25.configure(background="#d9d9d9")
-        self.Button25.configure(command=self.Set2Licht)
+        self.Button25.configure(command=unknown_support.Set2Licht)
         self.Button25.configure(disabledforeground="#a3a3a3")
         self.Button25.configure(foreground="#000000")
         self.Button25.configure(highlightbackground="#d9d9d9")
@@ -1221,7 +1198,7 @@ class Toplevel1:
         self.Button26.configure(activebackground="#ececec")
         self.Button26.configure(activeforeground="#000000")
         self.Button26.configure(background="#d9d9d9")
-        self.Button26.configure(command=self.Set3Licht)
+        self.Button26.configure(command=unknown_support.Set3Licht)
         self.Button26.configure(disabledforeground="#a3a3a3")
         self.Button26.configure(foreground="#000000")
         self.Button26.configure(highlightbackground="#d9d9d9")
@@ -1234,7 +1211,7 @@ class Toplevel1:
         self.Button27.configure(activebackground="#ececec")
         self.Button27.configure(activeforeground="#000000")
         self.Button27.configure(background="#d9d9d9")
-        self.Button27.configure(command=self.Set4Licht)
+        self.Button27.configure(command=unknown_support.Set4Licht)
         self.Button27.configure(disabledforeground="#a3a3a3")
         self.Button27.configure(foreground="#000000")
         self.Button27.configure(highlightbackground="#d9d9d9")
@@ -1247,7 +1224,7 @@ class Toplevel1:
         self.Button28.configure(activebackground="#ececec")
         self.Button28.configure(activeforeground="#000000")
         self.Button28.configure(background="#d9d9d9")
-        self.Button28.configure(command=self.Set5Licht)
+        self.Button28.configure(command=unknown_support.Set5Licht)
         self.Button28.configure(disabledforeground="#a3a3a3")
         self.Button28.configure(foreground="#000000")
         self.Button28.configure(highlightbackground="#d9d9d9")
@@ -1260,7 +1237,7 @@ class Toplevel1:
         self.Button29.configure(activebackground="#ececec")
         self.Button29.configure(activeforeground="#000000")
         self.Button29.configure(background="#d9d9d9")
-        self.Button29.configure(command=self.Set6Licht)
+        self.Button29.configure(command=unknown_support.Set6Licht)
         self.Button29.configure(disabledforeground="#a3a3a3")
         self.Button29.configure(foreground="#000000")
         self.Button29.configure(highlightbackground="#d9d9d9")
@@ -1273,7 +1250,7 @@ class Toplevel1:
         self.Button30.configure(activebackground="#ececec")
         self.Button30.configure(activeforeground="#000000")
         self.Button30.configure(background="#d9d9d9")
-        self.Button30.configure(command=self.Set7Licht)
+        self.Button30.configure(command=unknown_support.Set7Licht)
         self.Button30.configure(disabledforeground="#a3a3a3")
         self.Button30.configure(foreground="#000000")
         self.Button30.configure(highlightbackground="#d9d9d9")
@@ -1461,7 +1438,7 @@ class Toplevel1:
         self.Button38.configure(activebackground="#ececec")
         self.Button38.configure(activeforeground="#000000")
         self.Button38.configure(background="#d9d9d9")
-        self.Button38.configure(command=self.Set8Licht)
+        self.Button38.configure(command=unknown_support.Set8Licht)
         self.Button38.configure(disabledforeground="#a3a3a3")
         self.Button38.configure(foreground="#000000")
         self.Button38.configure(highlightbackground="#d9d9d9")
@@ -1772,7 +1749,7 @@ class Toplevel1:
         self.Button44.configure(activebackground="#ececec")
         self.Button44.configure(activeforeground="#000000")
         self.Button44.configure(background="#d9d9d9")
-        self.Button44.configure(command=self.Set1Afstand)
+        self.Button44.configure(command=unknown_support.Set1Afstand)
         self.Button44.configure(disabledforeground="#a3a3a3")
         self.Button44.configure(foreground="#000000")
         self.Button44.configure(highlightbackground="#d9d9d9")
@@ -1785,7 +1762,7 @@ class Toplevel1:
         self.Button45.configure(activebackground="#ececec")
         self.Button45.configure(activeforeground="#000000")
         self.Button45.configure(background="#d9d9d9")
-        self.Button45.configure(command=self.Set2Afstand)
+        self.Button45.configure(command=unknown_support.Set2Afstand)
         self.Button45.configure(disabledforeground="#a3a3a3")
         self.Button45.configure(foreground="#000000")
         self.Button45.configure(highlightbackground="#d9d9d9")
@@ -1798,7 +1775,7 @@ class Toplevel1:
         self.Button46.configure(activebackground="#ececec")
         self.Button46.configure(activeforeground="#000000")
         self.Button46.configure(background="#d9d9d9")
-        self.Button46.configure(command=self.Set3Afstand)
+        self.Button46.configure(command=unknown_support.Set3Afstand)
         self.Button46.configure(disabledforeground="#a3a3a3")
         self.Button46.configure(foreground="#000000")
         self.Button46.configure(highlightbackground="#d9d9d9")
@@ -1811,7 +1788,7 @@ class Toplevel1:
         self.Button47.configure(activebackground="#ececec")
         self.Button47.configure(activeforeground="#000000")
         self.Button47.configure(background="#d9d9d9")
-        self.Button47.configure(command=self.Set4Afstand)
+        self.Button47.configure(command=unknown_support.Set4Afstand)
         self.Button47.configure(disabledforeground="#a3a3a3")
         self.Button47.configure(foreground="#000000")
         self.Button47.configure(highlightbackground="#d9d9d9")
@@ -1824,7 +1801,7 @@ class Toplevel1:
         self.Button48.configure(activebackground="#ececec")
         self.Button48.configure(activeforeground="#000000")
         self.Button48.configure(background="#d9d9d9")
-        self.Button48.configure(command=self.Set5Afstand)
+        self.Button48.configure(command=unknown_support.Set5Afstand)
         self.Button48.configure(disabledforeground="#a3a3a3")
         self.Button48.configure(foreground="#000000")
         self.Button48.configure(highlightbackground="#d9d9d9")
@@ -1837,7 +1814,7 @@ class Toplevel1:
         self.Button49.configure(activebackground="#ececec")
         self.Button49.configure(activeforeground="#000000")
         self.Button49.configure(background="#d9d9d9")
-        self.Button49.configure(command=self.Set6Afstand)
+        self.Button49.configure(command=unknown_support.Set6Afstand)
         self.Button49.configure(disabledforeground="#a3a3a3")
         self.Button49.configure(foreground="#000000")
         self.Button49.configure(highlightbackground="#d9d9d9")
@@ -1850,7 +1827,7 @@ class Toplevel1:
         self.Button50.configure(activebackground="#ececec")
         self.Button50.configure(activeforeground="#000000")
         self.Button50.configure(background="#d9d9d9")
-        self.Button50.configure(command=self.Set7Afstand)
+        self.Button50.configure(command=unknown_support.Set7Afstand)
         self.Button50.configure(disabledforeground="#a3a3a3")
         self.Button50.configure(foreground="#000000")
         self.Button50.configure(highlightbackground="#d9d9d9")
@@ -1863,7 +1840,7 @@ class Toplevel1:
         self.Button51.configure(activebackground="#ececec")
         self.Button51.configure(activeforeground="#000000")
         self.Button51.configure(background="#d9d9d9")
-        self.Button51.configure(command=self.Set8Afstand)
+        self.Button51.configure(command=unknown_support.Set8Afstand)
         self.Button51.configure(disabledforeground="#a3a3a3")
         self.Button51.configure(foreground="#000000")
         self.Button51.configure(highlightbackground="#d9d9d9")
@@ -2162,8 +2139,6 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         self.y2 = 0
         self.running = True
         self.setup_arduinos()
-        time.sleep(5)
-        self.counter = 0
         self.loop()
 
     def setup_arduinos(self):
@@ -2171,32 +2146,19 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         for i in comPorts:
             l = str(i).split()
             activeComPorts.append(l[0])
-
+        aantal = 1
         for comPort in activeComPorts:
             ser = serial.Serial(comPort, 19200)
             time.sleep(3)
             test = bytearray(b'\xf3')
             ser.write(test)
             if ser.read() == bytearray(b'\xf3'):
-                arduinos.append(ser)
-
+                arduinos.setdefault(str("Arduino"+str(aantal)) ,ser)
+            aantal+=1
 
     def loop(self):
         global aantal, getallen, aantal_huidig, arduinos
-        if self.counter == 50:
-            self.animatecanvas1(randint(0,5))
-            self.animatecanvas2(randint(0, 5))
-            self.animatecanvas3(randint(0, 5))
-            self.animatecanvas4(randint(0, 5))
-            self.animatecanvas5(randint(0, 5))
-            self.animatecanvas6(randint(0, 5))
-            self.animatecanvas7(randint(0, 5))
-            self.animatecanvas8(randint(0, 5))
-            self.animatecanvas9(randint(0, 5))
-            self.animatecanvas10(randint(0, 5))
-            self.animatecanvas11(randint(0, 5))
-            self.counter = 0
-        for ser in arduinos:
+        for naam, ser in arduinos.items():
             if ser.in_waiting > 0:
                 if ser.read().hex() == 'ff':
                     scale = 16
@@ -2220,233 +2182,37 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
                     distance = int(distance, 2)
                     light = int(light, 2)
                     bit_controle = int(bit_controle, 2)
-                    print("Temperatuur: " + str(temp), "Lichtsensor: " + str(light2), "Distance: " + str(distance),
+                    print("Naam " + naam + "Temperatuur: " + str(temp), " Lichtsensor: " + str(light2), "Distance: " + str(distance),
                           "What light: " + str(light), "Controle: " + str(bit_controle))
                     getallen.append(int(distance))
                     aantal+=1
                 if aantal > aantal_huidig:
                     aantal_huidig = aantal
-        self.counter += 1
+                    self.step(getallen[aantal_huidig-1])
         root.after(10, self.loop)
 
-    def animatecanvas1(self, y):
-        self.canvasx.append(self.newx)
-        if len(self.canvasx) > 20:
-            del self.canvasx[0]
-            del self.canvas1y[0]
-            self.canvas1.clear()
-        self.canvas1y.append(y)
-        self.newx += 1
-        self.canvas1.plot(self.canvasx, self.canvas1y , color= "blue")
-        self.canvas1a.draw()
+    def value_to_y(self, val):
+        return 550 - 2.5 * val
 
-    def animatecanvas2(self, y):
-        self.canvas2x.append(self.new2x)
-        if len(self.canvas2x) > 20:
-            del self.canvas2x[0]
-            del self.canvas2y[0]
-            self.canvas2.clear()
-        self.canvas2y.append(y)
-        self.new2x += 1
-        self.canvas2.plot(self.canvas2x, self.canvas2y , color= "blue")
-        self.canvas2a.draw()
+    def step(self, newY):
+        if self.running:
+            if self.s == 23:
+                # new frame
+                self.s = 1
+                self.x2 = 50
+                self.Canvas1.delete('temp')  # only delete items tagged as temp
+            x1 = self.x2
+            y1 = self.y2
+            self.x2 = 50 + self.s * 50
+            self.y2 = self.value_to_y(newY)
+            self.Canvas1.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
+            self.s = self.s + 1
 
-    def animatecanvas3(self, y):
-        self.canvas3x.append(self.new3x)
-        if len(self.canvas3x) > 20:
-            del self.canvas3x[0]
-            del self.canvas3y[0]
-            self.canvas3.clear()
-        self.canvas3y.append(y)
-        self.new3x += 1
-        self.canvas3.plot(self.canvas3x, self.canvas3y , color= "blue")
-        self.canvas3a.draw()
-
-    def animatecanvas4(self, y):
-        self.canvas4x.append(self.new4x)
-        if len(self.canvas4x) > 20:
-            del self.canvas4x[0]
-            del self.canvas4y[0]
-            self.canvas4.clear()
-        self.canvas4y.append(y)
-        self.new4x += 1
-        self.canvas4.plot(self.canvas4x, self.canvas4y , color= "blue")
-        self.canvas4a.draw()
-
-    def animatecanvas5(self, y):
-        self.canvas5x.append(self.new5x)
-        if len(self.canvas5x) > 20:
-            del self.canvas5x[0]
-            del self.canvas5y[0]
-            self.canvas5.clear()
-        self.canvas5y.append(y)
-        self.new5x += 1
-        self.canvas5.plot(self.canvas5x, self.canvas5y , color= "blue")
-        self.canvas4a.draw()
-
-    def animatecanvas6(self, y):
-        self.canvas6x.append(self.new6x)
-        if len(self.canvas6x) > 20:
-            del self.canvas6x[0]
-            del self.canvas6y[0]
-            self.canvas6.clear()
-        self.canvas6y.append(y)
-        self.new6x += 1
-        self.canvas6.plot(self.canvas6x, self.canvas6y , color= "blue")
-        self.canvas5a.draw()
-
-    def animatecanvas7(self, y):
-        self.canvas7x.append(self.new7x)
-        if len(self.canvas7x) > 20:
-            del self.canvas7x[0]
-            del self.canvas7y[0]
-            self.canvas7.clear()
-        self.canvas7y.append(y)
-        self.new7x += 1
-        self.canvas7.plot(self.canvas7x, self.canvas7y , color= "blue")
-        self.canvas5a.draw()
-
-    def animatecanvas8(self, y):
-        self.canvas8x.append(self.new8x)
-        if len(self.canvas8x) > 20:
-            del self.canvas8x[0]
-            del self.canvas8y[0]
-            self.canvas8.clear()
-        self.canvas8y.append(y)
-        self.new8x += 1
-        self.canvas8.plot(self.canvas8x, self.canvas8y , color= "blue")
-        self.canvas6a.draw()
-
-    def animatecanvas9(self, y):
-        self.canvas9x.append(self.new9x)
-        if len(self.canvas9x) > 20:
-            del self.canvas9x[0]
-            del self.canvas9y[0]
-            self.canvas9.clear()
-        self.canvas9y.append(y)
-        self.new9x += 1
-        self.canvas9.plot(self.canvas9x, self.canvas9y , color= "blue")
-        self.canvas6a.draw()
-
-    def animatecanvas10(self, y):
-        self.canvas10x.append(self.new10x)
-        if len(self.canvas10x) > 20:
-            del self.canvas10x[0]
-            del self.canvas10y[0]
-            self.canvas10.clear()
-        self.canvas10y.append(y)
-        self.new10x += 1
-        self.canvas10.plot(self.canvas10x, self.canvas10y , color= "blue")
-        self.canvas7a.draw()
-
-    def animatecanvas11(self, y):
-        self.canvas11x.append(self.new11x)
-        if len(self.canvas11x) > 20:
-            del self.canvas11x[0]
-            del self.canvas11y[0]
-            self.canvas11.clear()
-        self.canvas11y.append(y)
-        self.new11x += 1
-        self.canvas11.plot(self.canvas11x, self.canvas11y , color= "blue")
-        self.canvas7a.draw()
-
-    def Set1Temperatuur(self):
-        print(self.Entry1.get())
-
-    def Set2Temperatuur(self):
-        print(self.Entry2.get())
-
-    def Set3Temperatuur(self):
-        print(self.Entry3.get())
-
-    def Set4Temperatuur(self):
-        print(self.Entry4.get())
-
-    def Set5Temperatuur(self):
-        print(self.Entry5.get())
-
-    def Set6Temperatuur(self):
-        print(self.Entry6.get())
-
-    def Set7Temperatuur(self):
-        print(self.Entry7.get())
-
-    def Set8Temperatuur(self):
-        print(self.Entry8.get())
-
-    def Set1Licht(self):
-        print(self.Entry9.get())
-
-    def Set2Licht(self):
-        print(self.Entry10.get())
-
-    def Set3Licht(self):
-        print(self.Entry11.get())
-
-    def Set4Licht(self):
-        print(self.Entry12.get())
-
-    def Set5Licht(self):
-        print(self.Entry13.get())
-
-    def Set6Licht(self):
-        print(self.Entry14.get())
-
-    def Set7Licht(self):
-        print(self.Entry15.get())
-
-    def Set8Licht(self):
-        print(self.Entry24.get())
-
-    def Set1Afstand(self):
-        print(self.Entry16.get())
-
-    def Set2Afstand(self):
-        print(self.Entry17.get())
-
-    def Set3Afstand(self):
-        print(self.Entry18.get())
-
-    def Set4Afstand(self):
-        print(self.Entry19.get())
-
-    def Set5Afstand(self):
-        print(self.Entry20.get())
-
-    def Set6Afstand(self):
-        print(self.Entry21.get())
-
-    def Set7Afstand(self):
-        print(self.Entry22.get())
-
-    def Set8Afstand(self):
-        print(self.Entry23.get())
-
-    def SetBar1Data(self, AD1, AD2, AD3, AD4):
-        self.data1 = (AD1, AD2, AD3, AD4)
-        self.ax1.clear()
-        self.ax1.bar(self.ind, self.data1, .5)
-        self.canvasbar1.draw()
-
-    def SetBar2Data(self, AD1, AD2, AD3, AD4):
-        self.data2 = (AD1, AD2, AD3, AD4)
-        self.ax2.clear()
-        self.ax2.bar(self.ind, self.data1, .5)
-        self.canvasbar2.draw()
-
-    def SetBar3Data(self, AD1, AD2, AD3, AD4):
-        self.data3 = (AD1, AD2, AD3, AD4)
-        self.ax3.clear()
-        self.ax3.bar(self.ind, self.data1, .5)
-        self.canvasbar3.draw()
-
-    def FillListbox1(self, string):
-        self.Listbox1.delete(0, END)
-        self.Listbox1.insert(1, string)
-
-    def FillListbox2(self, string):
-        self.Listbox2.delete(0, END)
-        self.Listbox2.insert(1, string)
+    def pause(self):
+        if self.running:
+            self.running = False
+        else:
+            self.running = True
 
 if __name__ == '__main__':
     vp_start_gui()

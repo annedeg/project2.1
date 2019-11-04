@@ -1,5 +1,4 @@
 import sys
-import GUICHRIS
 
 try:
     import Tkinter as tk
@@ -15,7 +14,6 @@ except ImportError:
 
     py3 = True
 
-top = GUICHRIS.Toplevel1
 
 def set_Tk_var():
     global che71
@@ -59,12 +57,12 @@ def set_Tk_var():
 
 
 def CloseScherm():
-    print('unknown_support.CloseScherm')
+    close_scherm_arduino()
     sys.stdout.flush()
 
 
 def OpenScherm():
-    print('unknown_support.OpenScherm')
+    open_scherm_arduino()
     sys.stdout.flush()
 
 
@@ -170,7 +168,6 @@ def Reset5Licht():
 
 def Reset5Temperatuur():
     print('unknown_support.Reset5Temperatuur')
-
     sys.stdout.flush()
 
 
@@ -265,7 +262,6 @@ def Set11Temperatuur():
 
 
 def Set1Afstand():
-    print(top.Set1Temperatuur())
     print('unknown_support.Set1Afstand')
     sys.stdout.flush()
 
@@ -275,8 +271,7 @@ def Set1Licht():
     sys.stdout.flush()
 
 
-def Set1Temperatuur(temperatuur):
-    print(temperatuur)
+def Set1Temperatuur():
     print('unknown_support.Set1Temperatuur')
     sys.stdout.flush()
 
@@ -441,4 +436,10 @@ if __name__ == '__main__':
     unknown.vp_start_gui()
 
 
-
+# def open_scherm_arduino():
+#
+#
+# def close_scherm_arduino():
+#
+#
+# verstuur_iets():
