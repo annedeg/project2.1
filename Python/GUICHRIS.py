@@ -8,6 +8,7 @@ from matplotlib.backends.backend_tkagg import (
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
+import datetime as dt
 
 import numpy as np
 
@@ -324,8 +325,8 @@ class Toplevel1:
         self.TNotebook5_t2.configure(highlightcolor="black")
 
         fig1 = Figure(figsize=(5, 4), dpi=100)
-        t = np.arange(0, 3, .01)
-        canvas1 = fig1.add_subplot(1, 1, 1).plot(t, 2 * np.sin(2 * np.pi * t))
+        self.t = np.arange(0, 3, .01)
+        self.canvas1 = fig1.add_subplot(1, 1, 1)
         canvas1x = []
         canvas1y = []
 
@@ -2219,8 +2220,25 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
                     aantal+=1
                 if aantal > aantal_huidig:
                     aantal_huidig = aantal
-                    self.step(getallen[aantal_huidig-1])
+                self.canvas1.plot(1, 0.5)
         root.after(10, self.loop)
+
+    def animate(i, xs, ys):
+
+        temp_c = 1
+
+        # Add x and y to lists
+        xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
+        ys.append(temp_c)
+
+        # Limit x and y lists to 20 items
+        xs = xs[-20:]
+        ys = ys[-20:]
+
+        # Draw x and y lists
+        self.canvas1.clear()
+        self.canvas1.plot(xs, ys)
+
 
     def value_to_y(self, val):
         return 550 - 2.5 * val
