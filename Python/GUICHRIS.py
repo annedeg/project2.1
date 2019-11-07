@@ -288,14 +288,18 @@ class Toplevel1:
 
         fig4 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas4 = fig4.add_subplot(1, 2, 1)
-        self.canvas5 = fig4.add_subplot(1, 2, 2)
+        self.canvas4 = fig4.add_subplot(1, 3, 1)
+        self.canvas5 = fig4.add_subplot(1, 3, 2)
+        self.canvas12 = fig4.add_subplot(1, 3, 3)
         self.canvas4y = []
         self.canvas5y = []
         self.canvas4x = []
         self.canvas5x = []
+        self.canvas12y = []
+        self.canvas12x = []
         self.new4x = 0
         self.new5x = 0
+        self.new12x = 0
 
         self.canvas4a = FigureCanvasTkAgg(fig4, master=self.TNotebook3_t0)  # A tk.DrawingArea.
 
@@ -305,14 +309,18 @@ class Toplevel1:
 
         fig5 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas6 = fig5.add_subplot(1, 2, 1)
-        self.canvas7 = fig5.add_subplot(1, 2, 2)
+        self.canvas6 = fig5.add_subplot(1, 3, 1)
+        self.canvas7 = fig5.add_subplot(1, 3, 2)
+        self.canvas13 = fig5.add_subplot(1, 3, 3)
         self.canvas6y = []
         self.canvas7y = []
         self.canvas6x = []
         self.canvas7x = []
+        self.canvas13x = []
+        self.canvas13y = []
         self.new6x = 0
         self.new7x = 0
+        self.new13x = 0
 
         self.canvas5a = FigureCanvasTkAgg(fig5, master=self.TNotebook3_t1)  # A tk.DrawingArea.
 
@@ -322,14 +330,18 @@ class Toplevel1:
 
         fig6 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas8 = fig6.add_subplot(1, 2, 1)
-        self.canvas9 = fig6.add_subplot(1, 2, 2)
+        self.canvas8 = fig6.add_subplot(1, 3, 1)
+        self.canvas9 = fig6.add_subplot(1, 3, 2)
+        self.canvas14 = fig6.add_subplot(1, 3, 3)
         self.canvas8y = []
         self.canvas9y = []
         self.canvas8x = []
         self.canvas9x = []
+        self.canvas14x = []
+        self.canvas14y = []
         self.new8x = 0
         self.new9x = 0
+        self.new14x = 0
 
         self.canvas6a = FigureCanvasTkAgg(fig6, master=self.TNotebook3_t2)  # A tk.DrawingArea.
 
@@ -339,14 +351,18 @@ class Toplevel1:
 
         fig7 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas10 = fig7.add_subplot(1, 2, 1)
-        self.canvas11 = fig7.add_subplot(1, 2, 2)
+        self.canvas10 = fig7.add_subplot(1, 3, 1)
+        self.canvas11 = fig7.add_subplot(1, 3, 2)
+        self.canvas15 = fig7.add_subplot(1, 3, 3)
         self.canvas10y = []
         self.canvas11y = []
         self.canvas10x = []
         self.canvas11x = []
+        self.canvas15x = []
+        self.canvas15y = []
         self.new10x = 0
         self.new11x = 0
+        self.new15x = 0
 
         self.canvas7a = FigureCanvasTkAgg(fig7, master=self.TNotebook3_t3)  # A tk.DrawingArea.
 
@@ -1304,6 +1320,50 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         self.canvas11y.append(y)
         self.new11x += 1
         self.canvas11.plot(self.canvas11x, self.canvas11y , color= "blue")
+        self.canvas7a.draw()
+
+    def animatecanvas12(self, y):
+        self.canvas12x.append(self.new12x)
+        if len(self.canvas12x) > 20:
+            del self.canvas12x[0]
+            del self.canvas12y[0]
+            self.canvas12.clear()
+        self.canvas12y.append(y)
+        self.new12x += 1
+        self.canvas12.plot(self.canvas12x, self.canvas12y , color= "blue")
+        self.canvas4a.draw()
+
+    def animatecanvas13(self, y):
+        self.canvas13x.append(self.new13x)
+        if len(self.canvas13x) > 20:
+            del self.canvas13x[0]
+            del self.canvas13y[0]
+            self.canvas13.clear()
+        self.canvas13y.append(y)
+        self.new11x += 1
+        self.canvas13.plot(self.canvas13x, self.canvas13y , color= "blue")
+        self.canvas5a.draw()
+
+    def animatecanvas14(self, y):
+        self.canvas14x.append(self.new14x)
+        if len(self.canvas14x) > 20:
+            del self.canvas14x[0]
+            del self.canvas14y[0]
+            self.canvas14.clear()
+        self.canvas14y.append(y)
+        self.new11x += 1
+        self.canvas14.plot(self.canvas14x, self.canvas14y , color= "blue")
+        self.canvas6a.draw()
+
+    def animatecanvas15(self, y):
+        self.canvas15x.append(self.new15x)
+        if len(self.canvas15x) > 20:
+            del self.canvas15x[0]
+            del self.canvas15y[0]
+            self.canvas15.clear()
+        self.canvas15y.append(y)
+        self.new11x += 1
+        self.canvas15.plot(self.canvas15x, self.canvas15y , color= "blue")
         self.canvas7a.draw()
 
     def Set1Temperatuur(self):
