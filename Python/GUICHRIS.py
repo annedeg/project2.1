@@ -36,8 +36,7 @@ aantal_huidig = 0
 getallen = []
 comPorts = list(serial.tools.list_ports.comports())
 activeComPorts = []
-arduinos = []
-#poopy = 'Poppy'
+arduinos = []l
 
 
 def vp_start_gui():
@@ -1025,67 +1024,41 @@ class Toplevel1:
                                 command=self.Set7Afstand, disabledforeground="#a3a3a3", foreground="#000000",
                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
-        self.Button51 = tk.Button(self.TNotebook4_t2)
+        self.Button51 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button51.place(relx=0.265, rely=0.333, height=24, width=47)
-        self.Button51.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=self.Set8Afstand, disabledforeground="#a3a3a3", foreground="#000000",
-                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
+        self.Button51.configure(command=self.Set8Afstand, text='''Set''')
 
-        self.Button52 = tk.Button(self.TNotebook4_t2)
+        self.Button52 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button52.place(relx=0.324, rely=0.029, height=24, width=39)
-        self.Button52.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset1Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button52.configure(command=unknown_support.Reset1Afstand, text='''Reset''')
 
-        self.Button53 = tk.Button(self.TNotebook4_t2)
+        self.Button53 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button53.place(relx=0.324, rely=0.072, height=24, width=39)
-        self.Button53.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset2Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button53.configure(command=unknown_support.Reset2Afstand, text='''Reset''')
 
-        self.Button54 = tk.Button(self.TNotebook4_t2)
+        self.Button54 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button54.place(relx=0.324, rely=0.116, height=24, width=39)
-        self.Button54.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset3Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button54.configure(command=unknown_support.Reset3Afstand, text='''Reset''')
 
-        self.Button55 = tk.Button(self.TNotebook4_t2)
+        self.Button55 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button55.place(relx=0.324, rely=0.159, height=24, width=39)
-        self.Button55.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset4Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button55.configure(command=unknown_support.Reset4Afstand, text='''Reset''')
 
-        self.Button56 = tk.Button(self.TNotebook4_t2)
+        self.Button56 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button56.place(relx=0.324, rely=0.203, height=24, width=39)
-        self.Button56.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset5Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button56.configure(command=unknown_support.Reset5Afstand, text='''Reset''')
 
-        self.Button57 = tk.Button(self.TNotebook4_t2)
+        self.Button57 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button57.place(relx=0.324, rely=0.246, height=24, width=39)
-        self.Button57.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset6Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button57.configure(command=unknown_support.Reset6Afstand, text='''Reset''')
 
-        self.Button58 = tk.Button(self.TNotebook4_t2)
+        self.Button58 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button58.place(relx=0.324, rely=0.29, height=24, width=39)
-        self.Button58.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset7Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button58.configure(command=unknown_support.Reset7Afstand, text='''Reset''')
 
-        self.Button59 = tk.Button(self.TNotebook4_t2)
+        self.Button59 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button59.place(relx=0.324, rely=0.333, height=24, width=39)
-        self.Button59.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset8Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button59.configure(command=unknown_support.Reset8Afstand, text='''Reset''')
 
         self.Checkbutton13 = tk.Checkbutton(self.TNotebook4_t2)
         self.Checkbutton13.place(relx=0.088, rely=0.391, relheight=0.036
@@ -1135,46 +1108,29 @@ class Toplevel1:
                                      highlightcolor="black", justify='left', text='''Check''',
                                      variable=unknown_support.che125)
 
-        self.Button60 = tk.Button(self.TNotebook4_t2)
+        self.Button60 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button60.place(relx=0.265, rely=0.391, height=24, width=47)
-        self.Button60.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Set9Afstand, disabledforeground="#a3a3a3", foreground="#000000",
-                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
+        self.Button60.configure(command=unknown_support.Set9Afstand, text='''Set''')
 
-        self.Button61 = tk.Button(self.TNotebook4_t2)
+        self.Button61 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button61.place(relx=0.265, rely=0.435, height=24, width=47)
-        self.Button61.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Set10Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Set''')
+        self.Button61.configure(command=unknown_support.Set10Afstand, text='''Set''')
 
-        self.Button62 = tk.Button(self.TNotebook4_t2)
+        self.Button62 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button62.place(relx=0.265, rely=0.478, height=24, width=47)
-        self.Button62.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Set11Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Set''')
+        self.Button62.configure(command=unknown_support.Set11Afstand, text='''Set''')
 
-        self.Button63 = tk.Button(self.TNotebook4_t2)
+        self.Button63 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button63.place(relx=0.324, rely=0.391, height=24, width=39)
-        self.Button63.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset9Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button63.configure(command=unknown_support.Reset9Afstand, text='''Reset''')
 
-        self.Button64 = tk.Button(self.TNotebook4_t2)
+        self.Button64 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button64.place(relx=0.324, rely=0.435, height=24, width=39)
-        self.Button64.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset10Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button64.configure(command=unknown_support.Reset10Afstand, text='''Reset''')
 
-        self.Button65 = tk.Button(self.TNotebook4_t2)
+        self.Button65 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button65.place(relx=0.324, rely=0.478, height=24, width=39)
-        self.Button65.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset11Afstand, disabledforeground="#a3a3a3",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
-                                text='''Reset''')
+        self.Button65.configure(command=unknown_support.Reset11Afstand, text='''Reset''')
 
         self.Label1 = tk.Label(self.TNotebook1_t3)
         self.Label1.place(relx=0.01, rely=0.014, height=391, width=674)
