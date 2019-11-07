@@ -146,7 +146,7 @@ class Toplevel1:
         self.ax1 = bar1.add_subplot(111)
 
         self.data1 = (20, 45, 30, 35)
-
+        self.ax1.set_title('NIET AANGESLOTEN', color="red")
         self.ind = np.arange(4)  # the x locations for the groups
 
         self.canvasbar1 = FigureCanvasTkAgg(bar1, master=self.TNotebook2_t0)
@@ -159,7 +159,7 @@ class Toplevel1:
         self.TNotebook2_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar2 = Figure(figsize=(5, 2), dpi=75)
         self.ax2 = bar2.add_subplot(111)
-
+        self.ax2.set_title('NIET AANGESLOTEN', color="red")
         self.data2 = (20, 35, 30, 35)
 
         self.canvasbar2 = FigureCanvasTkAgg(bar2, master=self.TNotebook2_t1)
@@ -172,7 +172,7 @@ class Toplevel1:
         self.TNotebook2_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar3 = Figure(figsize=(5, 2), dpi=75)
         self.ax3 = bar3.add_subplot(111)
-
+        self.ax3.set_title('NIET AANGESLOTEN', color="red")
         self.data3 = (20, 35, 30, 35)
 
         self.canvasbar3 = FigureCanvasTkAgg(bar3, master=self.TNotebook2_t2)
@@ -224,6 +224,8 @@ class Toplevel1:
         self.fig1 = Figure(figsize=(5, 4), dpi=100)
         self.t = np.arange(0, 3, .01)
         self.canvas1 = self.fig1.add_subplot(1, 1, 1)
+        self.canvas1.set_ylabel('Temperatuur')
+        self.canvas1.set_xlabel('Tijd')
         self.canvasx = []
         self.canvas1y = []
         self.newx = 0
@@ -1516,18 +1518,30 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         self.data1 = (AD1, AD2, AD3, AD4)
         self.ax1.clear()
         self.ax1.bar(self.ind, self.data1, .5)
+        self.ax1.set_xticks(self.ind)
+        self.ax1.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4'))
+        self.ax1.set_title("Gemiddelde Afstand")
+        self.ax1.set_ylabel("Aftand (cm)")
         self.canvasbar1.draw()
 
     def SetBar2Data(self, AD1, AD2, AD3, AD4):
         self.data2 = (AD1, AD2, AD3, AD4)
         self.ax2.clear()
         self.ax2.bar(self.ind, self.data1, .5)
+        self.ax2.set_xticks(self.ind)
+        self.ax2.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4'))
+        self.ax2.set_title("Gemiddelde Lichtintensiteit")
+        self.ax2.set_ylabel("Lichtintensiteit (lux)")
         self.canvasbar2.draw()
 
     def SetBar3Data(self, AD1, AD2, AD3, AD4):
         self.data3 = (AD1, AD2, AD3, AD4)
         self.ax3.clear()
         self.ax3.bar(self.ind, self.data1, .5)
+        self.ax3.set_xticks(self.ind)
+        self.ax3.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4'))
+        self.ax3.set_title("Gemiddelde Temperatuur")
+        self.ax3.set_ylabel("Temperatuur (°C)")
         self.canvasbar3.draw()
 
     def FillListbox1(self, string):
