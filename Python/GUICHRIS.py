@@ -36,7 +36,7 @@ aantal_huidig = 0
 getallen = []
 comPorts = list(serial.tools.list_ports.comports())
 activeComPorts = []
-arduinos = []l
+arduinos = []
 
 
 def vp_start_gui():
@@ -589,11 +589,9 @@ class Toplevel1:
         self.Button19.place(relx=0.265, rely=0.478, height=24, width=47)
         self.Button19.configure(command=unknown_support.Set11Temperatuur, text='''Set''')
 
-        self.Button20 = ttk.Button(self.TNotebook4_t0)
+        self.Button20 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button20.place(relx=0.324, rely=0.391, height=24, width=39)
-        self.Button20.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset9Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
-                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
+        self.Button20.configure(command=unknown_support.Reset9Temperatuur, text='''Reset''')
 
         self.Button21 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button21.place(relx=0.324, rely=0.435, height=24, width=39)
@@ -733,13 +731,11 @@ class Toplevel1:
 
         self.Button36 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button36.place(relx=0.324, rely=0.246, height=24, width=39)
-        self.Button36.configure(ommand=unknown_support.Reset6Licht, text='''Reset''')
+        self.Button36.configure(command=unknown_support.Reset6Licht, text='''Reset''')
 
         self.Button37 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button37.place(relx=0.324, rely=0.29, height=24, width=39)
-        self.Button37.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                command=unknown_support.Reset7Licht, disabledforeground="#a3a3a3", foreground="#000000",
-                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
+        self.Button37.configure(command=unknown_support.Reset7Licht, text='''Reset''')
 
         self.Button31 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button31.place(relx=0.324, rely=0.029, height=24, width=39)
@@ -817,7 +813,7 @@ class Toplevel1:
         self.Button43.place(relx=0.324, rely=0.435, height=24, width=39)
         self.Button43.configure(command=unknown_support.Reset10Licht, text='''Reset''')
 
-        self.Entry24 = tk.Entry(self.TNotebook4_t1, style='Custom.TButton')
+        self.Entry24 = tk.Entry(self.TNotebook4_t1)
         self.Entry24.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
         self.Entry24.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
@@ -957,7 +953,7 @@ class Toplevel1:
         self.Button49.place(relx=0.265, rely=0.246, height=24, width=47)
         self.Button49.configure(command=self.Set6Afstand, text='''Set''')
 
-        self.Button50 = ttk.Button(self., style='Custom.TButton')
+        self.Button50 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button50.place(relx=0.265, rely=0.29, height=24, width=47)
         self.Button50.configure(command=self.Set7Afstand, text='''Set''')
 
