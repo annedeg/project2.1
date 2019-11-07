@@ -1708,7 +1708,7 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
 
     def loop(self):
         global aantal, getallen, aantal_huidig, arduinos
-        self.SetBar1Data(randint(0,20), randint(0,20), randint(0,20), randint(0,20))
+
         for ser in arduinos:
             if ser.in_waiting > 0:
                 if ser.read().hex() == 'ff':
