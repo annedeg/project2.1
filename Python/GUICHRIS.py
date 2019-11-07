@@ -187,19 +187,19 @@ class Toplevel1:
                                 foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
                                 selectbackground="#c4c4c4", selectforeground="black")
 
-        self.Button68 = tk.Button(self.TNotebook1_t0, style='Custom.TButton')
+        self.Button68 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button68.place(relx=0.01, rely=0.521, height=74, width=137)
         self.Button68.configure(command=unknown_support.SwitchToArduino1,  text='''Arduino 1''')
 
-        self.Button69 = tk.Button(self.TNotebook1_t0, style='Custom.TButton')
+        self.Button69 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button69.place(relx=0.155, rely=0.521, height=74, width=127)
         self.Button69.configure(command=unknown_support.SwitchToArduino2, text='''Arduino 2''')
 
-        self.Button70 = tk.Button(self.TNotebook1_t0, style='Custom.TButton')
+        self.Button70 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button70.place(relx=0.01, rely=0.644, height=74, width=137)
         self.Button70.configure(command=unknown_support.SwitchToArduino3,  text='''Arduino 3''')
 
-        self.Button71 = tk.Button(self.TNotebook1_t0, style='Custom.TButton')
+        self.Button71 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button71.place(relx=0.155, rely=0.644, height=74, width=127)
         self.Button71.configure(command=unknown_support.SwitchToArduino4, text='''Arduino 4''')
 
@@ -471,67 +471,67 @@ class Toplevel1:
                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
                               highlightcolor="black", text='''Setting''')
 
-        self.Button2 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button2 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button2.place(relx=0.265, rely=0.029, height=24, width=47)
         self.Button2.configure(command=self.Set1Temperatuur,  text='''Set''')
 
-        self.Button3 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button3 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button3.place(relx=0.324, rely=0.029, height=24, width=37)
         self.Button3.configure(command=unknown_support.Reset1Temperatuur, text='''Reset''')
 
-        self.Button4 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button4 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button4.place(relx=0.324, rely=0.072, height=24, width=37)
         self.Button4.configure(command=unknown_support.Reset2Temperatuur, text='''Reset''')
 
-        self.Button5 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button5 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button5.place(relx=0.324, rely=0.116, height=24, width=37)
         self.Button5.configure(command=unknown_support.Reset3Temperatuur, text='''Reset''')
 
-        self.Button6 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button6 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button6.place(relx=0.324, rely=0.159, height=24, width=37)
         self.Button6.configure(command=unknown_support.Reset4Temperatuur, text='''Reset''')
 
-        self.Button7 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button7 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button7.place(relx=0.324, rely=0.203, height=24, width=37)
         self.Button7.configure(command=unknown_support.Reset5Temperatuur, text='''Reset''')
 
-        self.Button8 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button8 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button8.place(relx=0.324, rely=0.246, height=24, width=37)
         self.Button8.configure(command=unknown_support.Reset6Temperatuur,  text='''Reset''')
 
-        self.Button9 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button9 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button9.place(relx=0.324, rely=0.29, height=24, width=37)
         self.Button9.configure(command=unknown_support.Reset7Temperatuur, text='''Reset''')
 
-        self.Button10 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button10 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button10.place(relx=0.324, rely=0.333, height=24, width=37)
         self.Button10.configure(command=unknown_support.Reset8Temperatuur, text='''Reset''')
 
-        self.Button11 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button11 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button11.place(relx=0.265, rely=0.072, height=24, width=47)
         self.Button11.configure(command=self.Set2Temperatuur, text='''Set''')
 
-        self.Button12 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button12 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button12.place(relx=0.265, rely=0.116, height=24, width=47)
         self.Button12.configure(command=self.Set3Temperatuur, text='''Set''')
 
-        self.Button13 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button13 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button13.place(relx=0.265, rely=0.159, height=24, width=47)
         self.Button13.configure(command=self.Set4Temperatuur, text='''Set''')
 
-        self.Button14 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button14 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button14.place(relx=0.265, rely=0.203, height=24, width=47)
         self.Button14.configure(command=self.Set5Temperatuur, text='''Set''')
 
-        self.Button15 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button15 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button15.place(relx=0.265, rely=0.246, height=24, width=47)
         self.Button15.configure(command=self.Set6Temperatuur, text='''Set''')
 
-        self.Button16 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button16 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button16.place(relx=0.265, rely=0.29, height=24, width=47)
         self.Button16.configure(command=self.Set7Temperatuur, text='''Set''')
 
-        self.Button17 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button17 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button17.place(relx=0.265, rely=0.333, height=24, width=47)
         self.Button17.configure(command=self.Set8Temperatuur, text='''Set''')
 
@@ -577,29 +577,29 @@ class Toplevel1:
                                     disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
                                     highlightcolor="black", justify='left', text='''Check''', variable=unknown_support.che99)
 
-        self.Button18 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button18 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button18.place(relx=0.265, rely=0.391, height=24, width=47)
         self.Button18.configure(command=unknown_support.Set9Temperatuur, text='''Set''')
 
-        self.Button2 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button2 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button2.place(relx=0.265, rely=0.435, height=24, width=47)
         self.Button2.configure(command=unknown_support.Set10Temperatuur, text='''Set''')
 
-        self.Button19 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button19 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button19.place(relx=0.265, rely=0.478, height=24, width=47)
         self.Button19.configure(command=unknown_support.Set11Temperatuur, text='''Set''')
 
-        self.Button20 = tk.Button(self.TNotebook4_t0)
+        self.Button20 = ttk.Button(self.TNotebook4_t0)
         self.Button20.place(relx=0.324, rely=0.391, height=24, width=39)
         self.Button20.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
                                 command=unknown_support.Reset9Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
-        self.Button21 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button21 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button21.place(relx=0.324, rely=0.435, height=24, width=39)
         self.Button21.configure(command=unknown_support.Reset10Temperatuur, text='''Reset''')
 
-        self.Button22 = tk.Button(self.TNotebook4_t0, style='Custom.TButton')
+        self.Button22 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
         self.Button22.place(relx=0.324, rely=0.478, height=24, width=39)
         self.Button22.configure(command=unknown_support.Reset11Temperatuur, text='''Reset''')
 
@@ -687,61 +687,61 @@ class Toplevel1:
                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
                               highlightcolor="black", text='''Setting''')
 
-        self.Button24 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button24 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button24.place(relx=0.265, rely=0.029, height=24, width=47)
         self.Button24.configure(command=self.Set1Licht, text='''Set''')
 
-        self.Button25 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button25 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button25.place(relx=0.265, rely=0.072, height=24, width=47)
         self.Button25.configure(command=self.Set2Licht, text='''Set''')
 
-        self.Button26 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button26 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button26.place(relx=0.265, rely=0.116, height=24, width=47)
         self.Button26.configure(command=self.Set3Licht, text='''Set''')
 
-        self.Button27 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button27 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button27.place(relx=0.265, rely=0.159, height=24, width=47)
         self.Button27.configure(command=self.Set4Licht, text='''Set''')
 
-        self.Button28 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button28 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button28.place(relx=0.265, rely=0.203, height=24, width=47)
         self.Button28.configure(command=self.Set5Licht, text='''Set''')
 
-        self.Button29 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button29 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button29.place(relx=0.265, rely=0.246, height=24, width=47)
         self.Button29.configure(command=self.Set6Licht, text='''Set''')
 
-        self.Button30 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button30 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button30.place(relx=0.265, rely=0.29, height=24, width=47)
         self.Button30.configure(command=self.Set7Licht, text='''Set''')
 
-        self.Button32 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button32 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button32.place(relx=0.324, rely=0.072, height=24, width=39)
         self.Button32.configure(command=unknown_support.Reset2Licht, text='''Reset''')
 
-        self.Button33 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button33 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button33.place(relx=0.324, rely=0.116, height=24, width=39)
         self.Button33.configure(command=unknown_support.Reset3Licht, text='''Reset''')
 
-        self.Button34 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button34 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button34.place(relx=0.324, rely=0.159, height=24, width=39)
         self.Button34.configure(command=unknown_support.Reset4Licht, text='''Reset''')
 
-        self.Button35 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button35 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button35.place(relx=0.324, rely=0.203, height=24, width=39)
         self.Button35.configure(command=unknown_support.Reset5Licht, text='''Reset''')
 
-        self.Button36 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button36 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button36.place(relx=0.324, rely=0.246, height=24, width=39)
         self.Button36.configure(ommand=unknown_support.Reset6Licht, text='''Reset''')
 
-        self.Button37 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button37 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button37.place(relx=0.324, rely=0.29, height=24, width=39)
         self.Button37.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
                                 command=unknown_support.Reset7Licht, disabledforeground="#a3a3a3", foreground="#000000",
                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
-        self.Button31 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button31 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button31.place(relx=0.324, rely=0.029, height=24, width=39)
         self.Button31.configure(command=unknown_support.Reset1Licht, text='''Reset''')
 
@@ -793,27 +793,27 @@ class Toplevel1:
                                      highlightcolor="black", justify='left', text='''Check''',
                                      variable=unknown_support.che77)
 
-        self.Button38 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button38 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button38.place(relx=0.265, rely=0.333, height=24, width=47)
         self.Button38.configure(command=self.Set8Licht, text='''Set''')
 
-        self.Button39 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button39 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button39.place(relx=0.265, rely=0.391, height=24, width=47)
         self.Button39.configure(command=unknown_support.Set9Licht, text='''Set''')
 
-        self.Button40 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button40 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button40.place(relx=0.265, rely=0.435, height=24, width=47)
         self.Button40.configure(command=unknown_support.Set10Licht, text='''Set''')
 
-        self.Button41 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button41 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button41.place(relx=0.324, rely=0.333, height=24, width=39)
         self.Button41.configure(command=unknown_support.Reset8Licht, text='''Reset''')
 
-        self.Button42 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button42 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button42.place(relx=0.324, rely=0.391, height=24, width=39)
         self.Button42.configure(command=unknown_support.Reset9Licht, text='''Reset''')
 
-        self.Button43 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button43 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button43.place(relx=0.324, rely=0.435, height=24, width=39)
         self.Button43.configure(command=unknown_support.Reset10Licht, text='''Reset''')
 
@@ -823,11 +823,11 @@ class Toplevel1:
                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
                                insertbackground="black", selectbackground="#c4c4c4", selectforeground="black")
 
-        self.Button66 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button66 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button66.place(relx=0.265, rely=0.478, height=24, width=47)
         self.Button66.configure(command=unknown_support.Set11Licht, text='''Set''')
 
-        self.Button67 = tk.Button(self.TNotebook4_t1, style='Custom.TButton')
+        self.Button67 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
         self.Button67.place(relx=0.324, rely=0.478, height=24, width=39)
         self.Button67.configure(command=unknown_support.Reset11Licht, text='''Reset''')
 
@@ -933,67 +933,67 @@ class Toplevel1:
                                disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
                                highlightcolor="black", text='''Setting''')
 
-        self.Button44 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button44 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button44.place(relx=0.265, rely=0.029, height=24, width=47)
         self.Button44.configure(command=self.Set1Afstand, text='''Set''')
 
-        self.Button45 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button45 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button45.place(relx=0.265, rely=0.072, height=24, width=47)
         self.Button45.configure(command=self.Set2Afstand, text='''Set''')
 
-        self.Button46 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button46 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button46.place(relx=0.265, rely=0.116, height=24, width=47)
         self.Button46.configure(command=self.Set3Afstand, text='''Set''')
 
-        self.Button47 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button47 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button47.place(relx=0.265, rely=0.159, height=24, width=47)
         self.Button47.configure(command=self.Set4Afstand, text='''Set''')
 
-        self.Button48 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button48 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button48.place(relx=0.265, rely=0.203, height=24, width=47)
         self.Button48.configure(command=self.Set5Afstand, text='''Set''')
 
-        self.Button49 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button49 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button49.place(relx=0.265, rely=0.246, height=24, width=47)
         self.Button49.configure(command=self.Set6Afstand, text='''Set''')
 
-        self.Button50 = tk.Button(self., style='Custom.TButton')
+        self.Button50 = ttk.Button(self., style='Custom.TButton')
         self.Button50.place(relx=0.265, rely=0.29, height=24, width=47)
         self.Button50.configure(command=self.Set7Afstand, text='''Set''')
 
-        self.Button51 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button51 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button51.place(relx=0.265, rely=0.333, height=24, width=47)
         self.Button51.configure(command=self.Set8Afstand, text='''Set''')
 
-        self.Button52 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button52 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button52.place(relx=0.324, rely=0.029, height=24, width=39)
         self.Button52.configure(command=unknown_support.Reset1Afstand, text='''Reset''')
 
-        self.Button53 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button53 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button53.place(relx=0.324, rely=0.072, height=24, width=39)
         self.Button53.configure(command=unknown_support.Reset2Afstand, text='''Reset''')
 
-        self.Button54 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button54 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button54.place(relx=0.324, rely=0.116, height=24, width=39)
         self.Button54.configure(command=unknown_support.Reset3Afstand, text='''Reset''')
 
-        self.Button55 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button55 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button55.place(relx=0.324, rely=0.159, height=24, width=39)
         self.Button55.configure(command=unknown_support.Reset4Afstand, text='''Reset''')
 
-        self.Button56 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button56 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button56.place(relx=0.324, rely=0.203, height=24, width=39)
         self.Button56.configure(command=unknown_support.Reset5Afstand, text='''Reset''')
 
-        self.Button57 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button57 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button57.place(relx=0.324, rely=0.246, height=24, width=39)
         self.Button57.configure(command=unknown_support.Reset6Afstand, text='''Reset''')
 
-        self.Button58 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button58 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button58.place(relx=0.324, rely=0.29, height=24, width=39)
         self.Button58.configure(command=unknown_support.Reset7Afstand, text='''Reset''')
 
-        self.Button59 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button59 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button59.place(relx=0.324, rely=0.333, height=24, width=39)
         self.Button59.configure(command=unknown_support.Reset8Afstand, text='''Reset''')
 
@@ -1045,27 +1045,27 @@ class Toplevel1:
                                      highlightcolor="black", justify='left', text='''Check''',
                                      variable=unknown_support.che125)
 
-        self.Button60 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button60 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button60.place(relx=0.265, rely=0.391, height=24, width=47)
         self.Button60.configure(command=unknown_support.Set9Afstand, text='''Set''')
 
-        self.Button61 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button61 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button61.place(relx=0.265, rely=0.435, height=24, width=47)
         self.Button61.configure(command=unknown_support.Set10Afstand, text='''Set''')
 
-        self.Button62 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button62 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button62.place(relx=0.265, rely=0.478, height=24, width=47)
         self.Button62.configure(command=unknown_support.Set11Afstand, text='''Set''')
 
-        self.Button63 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button63 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button63.place(relx=0.324, rely=0.391, height=24, width=39)
         self.Button63.configure(command=unknown_support.Reset9Afstand, text='''Reset''')
 
-        self.Button64 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button64 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button64.place(relx=0.324, rely=0.435, height=24, width=39)
         self.Button64.configure(command=unknown_support.Reset10Afstand, text='''Reset''')
 
-        self.Button65 = tk.Button(self.TNotebook4_t2, style='Custom.TButton')
+        self.Button65 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
         self.Button65.place(relx=0.324, rely=0.478, height=24, width=39)
         self.Button65.configure(command=unknown_support.Reset11Afstand, text='''Reset''')
 
