@@ -59,11 +59,13 @@ def set_Tk_var():
 
 
 def CloseScherm():
+    GUICHRIS.Toplevel1.close(GUICHRIS.Toplevel1)
     print('unknown_support.CloseScherm')
     sys.stdout.flush()
 
 
 def OpenScherm():
+    GUICHRIS.Toplevel1.open(GUICHRIS.Toplevel1)
     print('unknown_support.OpenScherm')
     sys.stdout.flush()
 

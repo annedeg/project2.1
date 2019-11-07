@@ -72,6 +72,8 @@ def get_temperatuur_1():
 
 class Toplevel1:
     def __init__(self, top=None):
+        self.arduinos = []
+        self.total_data = [[],[],[],[]]
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -122,11 +124,11 @@ class Toplevel1:
 
         self.Button1 = ttk.Button(self.TNotebook1_t0, style= 'Custom.TButton')
         self.Button1.place(relx=0.01, rely=0.767, height=54, width=277)
-        self.Button1.configure(command=unknown_support.OpenScherm, text='''OPEN SCHERM''')
+        self.Button1.configure(command=self.open_zonnescherm, text='''OPEN SCHERM''')
 
         self.Button23 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button23.place(relx=0.01, rely=0.863, height=54, width=277)
-        self.Button23.configure(command=unknown_support.CloseScherm,  text='''CLOSE SCHERM''')
+        self.Button23.configure(command=self.close_zonnescherm,  text='''CLOSE SCHERM''')
 
         self.Listbox1 = tk.Listbox(self.TNotebook1_t0)
         self.Listbox1.place(relx=0.01, rely=0.014, relheight=0.236
@@ -189,19 +191,19 @@ class Toplevel1:
 
         self.Button68 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button68.place(relx=0.01, rely=0.521, height=74, width=137)
-        self.Button68.configure(command=unknown_support.SwitchToArduino1,  text='''Arduino 1''')
+        self.Button68.configure(command=self.switchToArduino,  text='''Arduino 1''')
 
         self.Button69 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button69.place(relx=0.155, rely=0.521, height=74, width=127)
-        self.Button69.configure(command=unknown_support.SwitchToArduino2, text='''Arduino 2''')
+        self.Button69.configure(command=self.switchToArduino2, text='''Arduino 2''')
 
         self.Button70 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button70.place(relx=0.01, rely=0.644, height=74, width=137)
-        self.Button70.configure(command=unknown_support.SwitchToArduino3,  text='''Arduino 3''')
+        self.Button70.configure(command=self.switchToArduino3,  text='''Arduino 3''')
 
         self.Button71 = ttk.Button(self.TNotebook1_t0, style='Custom.TButton')
         self.Button71.place(relx=0.155, rely=0.644, height=74, width=127)
-        self.Button71.configure(command=unknown_support.SwitchToArduino4, text='''Arduino 4''')
+        self.Button71.configure(command=self.switchToArduino4, text='''Arduino 4''')
 
         self.TNotebook5 = ttk.Notebook(self.TNotebook1_t0)
         self.TNotebook5.place(relx=0.291, rely=0.26, relheight=0.721
@@ -1086,10 +1088,15 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         self.running = True
         self.setup_arduinos()
         self.counter = 0
+        self.send = 0
+        self.huidige_grafiek = 0
+        self.temp_gemiddelde = [[],[],[],[]]
+        self.distance_gemiddelde = [[],[],[],[]]
+        self.light_gemiddelde = [[],[],[],[]]
         self.loop()
 
     def setup_arduinos(self):
-        global comPorts, activeComPorts
+        global comPorts, activeComPorts, arduinos
         for i in comPorts:
             l = str(i).split()
             activeComPorts.append(l[0])
@@ -1097,64 +1104,88 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         for comPort in activeComPorts:
             ser = serial.Serial(comPort, 19200)
             time.sleep(3)
-            test = bytearray(b'\xf3')
-            ser.write(test)
-            if ser.read() == bytearray(b'\xf3'):
-                arduinos.append(ser)
-
+            self.arduinos.append(ser)
+        arduinos2 = self.arduinos
 
     def loop(self):
-        global aantal, getallen, aantal_huidig, arduinos
+        global counter, getallen, aantal_huidig, arduinos, send
+        ding = 0
+        for arduino in self.arduinos:
+            if arduino.read().hex() == 'ff':
+                scale = 16
+                num_of_bits = 8
+                binary_value = ""
+                for i in range(4):
+                    binary_value = binary_value + str(bin(int(self.arduinos[self.huidige_grafiek].read().hex(), scale))[2:].zfill(num_of_bits))
+                binary_value = str(binary_value)
+                light = binary_value[0:2]
+                light = light[::-1]
+                temp = binary_value[10:20]
+                temp = temp[::-1]
+                distance = binary_value[2:10]
+                distance = distance[::-1]
+                light2 = binary_value[20:27]
+                light2 = light2[::-1]
+                bit_controle = binary_value[27:]
+                bit_controle = bit_controle[::-1]
+                temp = int(temp, 2)
+                light2 = int(light2, 2)
+                distance = int(distance, 2)
+                light = int(light, 2)
+                bit_controle = int(bit_controle, 2)
 
-        for ser in arduinos:
-            if ser.in_waiting > 0:
-                if ser.read().hex() == 'ff':
-                    scale = 16
-                    num_of_bits = 8
-                    binary_value = ""
-                    for i in range(4):
-                        binary_value = binary_value + str(bin(int(ser.read().hex(), scale))[2:].zfill(num_of_bits))
-                    binary_value = str(binary_value)
-                    light = binary_value[0:2]
-                    light = light[::-1]
-                    temp = binary_value[10:20]
-                    temp = temp[::-1]
-                    distance = binary_value[2:10]
-                    distance = distance[::-1]
-                    light2 = binary_value[20:27]
-                    light2 = light2[::-1]
-                    bit_controle = binary_value[27:]
-                    bit_controle = bit_controle[::-1]
-                    temp = int(temp, 2)
-                    light2 = int(light2, 2)
-                    distance = int(distance, 2)
-                    light = int(light, 2)
-                    bit_controle = int(bit_controle, 2)
-                    if self.counter > 50:
-                        self.animatecanvas1(distance)
-                        self.animatecanvas2(light2)
-                        self.animatecanvas3(temp)
-                        self.animatecanvas4(randint(0, 5))
-                        self.animatecanvas5(randint(0, 5))
-                        self.animatecanvas6(randint(0, 5))
-                        self.animatecanvas7(randint(0, 5))
-                        self.animatecanvas8(randint(0, 5))
-                        self.animatecanvas9(randint(0, 5))
-                        self.animatecanvas10(randint(0, 5))
-                        self.animatecanvas11(randint(0, 5))
+                data = [light, distance, temp, light2, bit_controle]
+                self.total_data[ding].append(data)
+                self.distance_gemiddelde[ding] = self.bereken_gemiddelde(self.total_data, ding, 1, 5)
+                self.light_gemiddelde[ding] = self.bereken_gemiddelde(self.total_data, ding, 3, 5)
+                self.temp_gemiddelde[ding] = self.bereken_gemiddelde(self.total_data, ding, 2, 5)
 
-                        self.counter = 0
-                    print(self.counter)
-                    self.counter+=1
+                if self.send == 1:
+                    ser.write(bytearray(b'\x01'))
+                    self.send = 0
+                if self.send == 2:
+                    ser.write(bytearray(b'\x02'))
+                    self.send = 0
 
-                    print("Temperatuur: " + str(temp), "Lichtsensor: " + str(light2), "Distance: " + str(distance),
-                          "What light: " + str(light), "Controle: " + str(bit_controle))
-                    getallen.append(int(distance))
-                    aantal+=1
-                if aantal > aantal_huidig:
-                    aantal_huidig = aantal
-        self.counter += 1
-        root.after(10, self.loop)
+            ding+=1
+            if self.counter > 3:
+                self.fix_grafieken()
+                self.counter = 0
+            self.counter+=1
+        root.after(500, self.loop)
+
+    def bereken_gemiddelde(self, lijst, ding ,hoeveelste, aantal_voor_gemiddelde):
+        aantal_voor_gemiddelde = -aantal_voor_gemiddelde
+        lijst = lijst[ding][aantal_voor_gemiddelde:]
+        aantal = len(lijst)
+        gemiddelde = 0
+        if aantal == 0:
+            aantal = 1
+        for i in lijst:
+            gemiddelde += i[hoeveelste]
+        gemiddelde = gemiddelde / aantal
+        return gemiddelde
+
+    def fix_zonnescherm(self, gemiddelde):
+        if gemiddelde > 100:
+            self.open_zonnescherm()
+        else:
+            self.close_zonnescherm()
+
+    def fix_grafieken(self):
+        gemiddelde = 0
+        aantal = 0
+        self.animatecanvas1(self.distance_gemiddelde[self.huidige_grafiek])
+        self.animatecanvas3(self.temp_gemiddelde[self.huidige_grafiek])
+        self.animatecanvas2(self.light_gemiddelde[self.huidige_grafiek])
+
+    def open_zonnescherm(self):
+        for i in self.arduinos:
+            i.write(bytearray(b'\x02'))
+
+    def close_zonnescherm(self):
+        for i in self.arduinos:
+            i.write(bytearray(b'\x01'))
 
     def animatecanvas1(self, y):
         self.canvasx.append(self.newx)
@@ -1349,6 +1380,80 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
 
     def Set8Afstand(self):
         print(self.Entry23.get())
+
+
+    def switchToArduino(self):
+        length = len(self.arduinos)
+        if (length > 0):
+            self.canvas1.clear()
+            self.canvas1y.clear()
+            self.canvasx.clear()
+            self.canvas2.clear()
+            self.canvas2y.clear()
+            self.canvas2x.clear()
+            self.canvas3.clear()
+            self.canvas3y.clear()
+            self.canvas3x.clear()
+            self.canvas3.clear()
+            self.newx = 0
+            self.new2x = 0
+            self.new3x = 0
+            self.huidige_grafiek = 0
+
+    def switchToArduino2(self):
+        length = len(self.arduinos)
+        if (length > 1):
+            self.canvas1.clear()
+            self.canvas1y.clear()
+            self.canvasx.clear()
+            self.canvas2.clear()
+            self.canvas2y.clear()
+            self.canvas2x.clear()
+            self.canvas3.clear()
+            self.canvas3y.clear()
+            self.canvas3x.clear()
+            self.canvas3.clear()
+            self.newx = 0
+            self.new2x = 0
+            self.new3x = 0
+            self.huidige_grafiek = 1
+
+    def switchToArduino3(self):
+        length = len(self.arduinos)
+        if (length > 2):
+            self.huidige_grafiek = 2
+            self.canvas1.clear()
+            self.canvas1y.clear()
+            self.canvasx.clear()
+            self.canvas2.clear()
+            self.canvas2y.clear()
+            self.canvas2x.clear()
+            self.canvas3.clear()
+            self.canvas3y.clear()
+            self.canvas3x.clear()
+            self.canvas3.clear()
+            self.newx = 0
+            self.new2x = 0
+            self.new3x = 0
+
+
+    def switchToArduino4(self):
+        length = len(self.arduinos)
+        if (length > 3):
+            self.canvas1.clear()
+            self.canvas1y.clear()
+            self.canvasx.clear()
+            self.canvas2.clear()
+            self.canvas2y.clear()
+            self.canvas2x.clear()
+            self.canvas3.clear()
+            self.canvas3y.clear()
+            self.canvas3x.clear()
+            self.canvas3.clear()
+            self.newx = 0
+            self.new2x = 0
+            self.new3x = 0
+            self.huidige_grafiek = 3
 
     def SetBar1Data(self, AD1, AD2, AD3, AD4):
         self.data1 = (AD1, AD2, AD3, AD4)
