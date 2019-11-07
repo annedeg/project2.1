@@ -67,9 +67,6 @@ def destroy_Toplevel1():
     w.destroy()
     w = None
 
-def get_temperatuur_1():
-    return poopy
-
 class Toplevel1:
     def __init__(self, top=None):
         self.arduinos = []
@@ -83,7 +80,7 @@ class Toplevel1:
         _ana2color = '#ececec'  # Closest X11 color: 'gray92'
         self.style = ttk.Style()
         self.buttonstyle = ttk.Style()
-        self.buttonstyle.configure('Custom.TButton', padding=6, relief="flat", background="#000")
+        self.buttonstyle.configure('Custom.TButton', padding=6, relief="flat", background="#000", anchor=CENTER)
         top.geometry("1032x754+478+139")
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
@@ -291,14 +288,18 @@ class Toplevel1:
 
         fig4 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas4 = fig4.add_subplot(1, 2, 1)
-        self.canvas5 = fig4.add_subplot(1, 2, 2)
+        self.canvas4 = fig4.add_subplot(1, 3, 1)
+        self.canvas5 = fig4.add_subplot(1, 3, 2)
+        self.canvas12 = fig4.add_subplot(1, 3, 3)
         self.canvas4y = []
         self.canvas5y = []
         self.canvas4x = []
         self.canvas5x = []
+        self.canvas12y = []
+        self.canvas12x = []
         self.new4x = 0
         self.new5x = 0
+        self.new12x = 0
 
         self.canvas4a = FigureCanvasTkAgg(fig4, master=self.TNotebook3_t0)  # A tk.DrawingArea.
 
@@ -308,14 +309,18 @@ class Toplevel1:
 
         fig5 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas6 = fig5.add_subplot(1, 2, 1)
-        self.canvas7 = fig5.add_subplot(1, 2, 2)
+        self.canvas6 = fig5.add_subplot(1, 3, 1)
+        self.canvas7 = fig5.add_subplot(1, 3, 2)
+        self.canvas13 = fig5.add_subplot(1, 3, 3)
         self.canvas6y = []
         self.canvas7y = []
         self.canvas6x = []
         self.canvas7x = []
+        self.canvas13x = []
+        self.canvas13y = []
         self.new6x = 0
         self.new7x = 0
+        self.new13x = 0
 
         self.canvas5a = FigureCanvasTkAgg(fig5, master=self.TNotebook3_t1)  # A tk.DrawingArea.
 
@@ -325,14 +330,18 @@ class Toplevel1:
 
         fig6 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas8 = fig6.add_subplot(1, 2, 1)
-        self.canvas9 = fig6.add_subplot(1, 2, 2)
+        self.canvas8 = fig6.add_subplot(1, 3, 1)
+        self.canvas9 = fig6.add_subplot(1, 3, 2)
+        self.canvas14 = fig6.add_subplot(1, 3, 3)
         self.canvas8y = []
         self.canvas9y = []
         self.canvas8x = []
         self.canvas9x = []
+        self.canvas14x = []
+        self.canvas14y = []
         self.new8x = 0
         self.new9x = 0
+        self.new14x = 0
 
         self.canvas6a = FigureCanvasTkAgg(fig6, master=self.TNotebook3_t2)  # A tk.DrawingArea.
 
@@ -342,14 +351,18 @@ class Toplevel1:
 
         fig7 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas10 = fig7.add_subplot(1, 2, 1)
-        self.canvas11 = fig7.add_subplot(1, 2, 2)
+        self.canvas10 = fig7.add_subplot(1, 3, 1)
+        self.canvas11 = fig7.add_subplot(1, 3, 2)
+        self.canvas15 = fig7.add_subplot(1, 3, 3)
         self.canvas10y = []
         self.canvas11y = []
         self.canvas10x = []
         self.canvas11x = []
+        self.canvas15x = []
+        self.canvas15y = []
         self.new10x = 0
         self.new11x = 0
+        self.new15x = 0
 
         self.canvas7a = FigureCanvasTkAgg(fig7, master=self.TNotebook3_t3)  # A tk.DrawingArea.
 
@@ -478,35 +491,35 @@ class Toplevel1:
         self.Button2.configure(command=self.Set1Temperatuur,  text='''Set''')
 
         self.Button3 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button3.place(relx=0.324, rely=0.029, height=24, width=37)
+        self.Button3.place(relx=0.324, rely=0.029, height=24, width=50)
         self.Button3.configure(command=unknown_support.Reset1Temperatuur, text='''Reset''')
 
         self.Button4 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button4.place(relx=0.324, rely=0.072, height=24, width=37)
+        self.Button4.place(relx=0.324, rely=0.072, height=24, width=50)
         self.Button4.configure(command=unknown_support.Reset2Temperatuur, text='''Reset''')
 
         self.Button5 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button5.place(relx=0.324, rely=0.116, height=24, width=37)
+        self.Button5.place(relx=0.324, rely=0.116, height=24, width=50)
         self.Button5.configure(command=unknown_support.Reset3Temperatuur, text='''Reset''')
 
         self.Button6 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button6.place(relx=0.324, rely=0.159, height=24, width=37)
+        self.Button6.place(relx=0.324, rely=0.159, height=24, width=50)
         self.Button6.configure(command=unknown_support.Reset4Temperatuur, text='''Reset''')
 
         self.Button7 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button7.place(relx=0.324, rely=0.203, height=24, width=37)
+        self.Button7.place(relx=0.324, rely=0.203, height=24, width=50)
         self.Button7.configure(command=unknown_support.Reset5Temperatuur, text='''Reset''')
 
         self.Button8 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button8.place(relx=0.324, rely=0.246, height=24, width=37)
+        self.Button8.place(relx=0.324, rely=0.246, height=24, width=50)
         self.Button8.configure(command=unknown_support.Reset6Temperatuur,  text='''Reset''')
 
         self.Button9 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button9.place(relx=0.324, rely=0.29, height=24, width=37)
+        self.Button9.place(relx=0.324, rely=0.29, height=24, width=50)
         self.Button9.configure(command=unknown_support.Reset7Temperatuur, text='''Reset''')
 
         self.Button10 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button10.place(relx=0.324, rely=0.333, height=24, width=37)
+        self.Button10.place(relx=0.324, rely=0.333, height=24, width=50)
         self.Button10.configure(command=unknown_support.Reset8Temperatuur, text='''Reset''')
 
         self.Button11 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
@@ -592,15 +605,15 @@ class Toplevel1:
         self.Button19.configure(command=unknown_support.Set11Temperatuur, text='''Set''')
 
         self.Button20 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button20.place(relx=0.324, rely=0.391, height=24, width=39)
+        self.Button20.place(relx=0.324, rely=0.391, height=24, width=50)
         self.Button20.configure(command=unknown_support.Reset9Temperatuur, text='''Reset''')
 
         self.Button21 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button21.place(relx=0.324, rely=0.435, height=24, width=39)
+        self.Button21.place(relx=0.324, rely=0.435, height=24, width=50)
         self.Button21.configure(command=unknown_support.Reset10Temperatuur, text='''Reset''')
 
         self.Button22 = ttk.Button(self.TNotebook4_t0, style='Custom.TButton')
-        self.Button22.place(relx=0.324, rely=0.478, height=24, width=39)
+        self.Button22.place(relx=0.324, rely=0.478, height=24, width=50)
         self.Button22.configure(command=unknown_support.Reset11Temperatuur, text='''Reset''')
 
         self.Entry9 = tk.Entry(self.TNotebook4_t1)
@@ -716,31 +729,31 @@ class Toplevel1:
         self.Button30.configure(command=self.Set7Licht, text='''Set''')
 
         self.Button32 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button32.place(relx=0.324, rely=0.072, height=24, width=39)
+        self.Button32.place(relx=0.324, rely=0.072, height=24, width=50)
         self.Button32.configure(command=unknown_support.Reset2Licht, text='''Reset''')
 
         self.Button33 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button33.place(relx=0.324, rely=0.116, height=24, width=39)
+        self.Button33.place(relx=0.324, rely=0.116, height=24, width=50)
         self.Button33.configure(command=unknown_support.Reset3Licht, text='''Reset''')
 
         self.Button34 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button34.place(relx=0.324, rely=0.159, height=24, width=39)
+        self.Button34.place(relx=0.324, rely=0.159, height=24, width=50)
         self.Button34.configure(command=unknown_support.Reset4Licht, text='''Reset''')
 
         self.Button35 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button35.place(relx=0.324, rely=0.203, height=24, width=39)
+        self.Button35.place(relx=0.324, rely=0.203, height=24, width=50)
         self.Button35.configure(command=unknown_support.Reset5Licht, text='''Reset''')
 
         self.Button36 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button36.place(relx=0.324, rely=0.246, height=24, width=39)
+        self.Button36.place(relx=0.324, rely=0.246, height=24, width=50)
         self.Button36.configure(command=unknown_support.Reset6Licht, text='''Reset''')
 
         self.Button37 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button37.place(relx=0.324, rely=0.29, height=24, width=39)
+        self.Button37.place(relx=0.324, rely=0.29, height=24, width=50)
         self.Button37.configure(command=unknown_support.Reset7Licht, text='''Reset''')
 
         self.Button31 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button31.place(relx=0.324, rely=0.029, height=24, width=39)
+        self.Button31.place(relx=0.324, rely=0.029, height=24, width=50)
         self.Button31.configure(command=unknown_support.Reset1Licht, text='''Reset''')
 
         self.Checkbutton7 = tk.Checkbutton(self.TNotebook4_t1)
@@ -804,15 +817,15 @@ class Toplevel1:
         self.Button40.configure(command=unknown_support.Set10Licht, text='''Set''')
 
         self.Button41 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button41.place(relx=0.324, rely=0.333, height=24, width=39)
+        self.Button41.place(relx=0.324, rely=0.333, height=24, width=50)
         self.Button41.configure(command=unknown_support.Reset8Licht, text='''Reset''')
 
         self.Button42 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button42.place(relx=0.324, rely=0.391, height=24, width=39)
+        self.Button42.place(relx=0.324, rely=0.391, height=24, width=50)
         self.Button42.configure(command=unknown_support.Reset9Licht, text='''Reset''')
 
         self.Button43 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button43.place(relx=0.324, rely=0.435, height=24, width=39)
+        self.Button43.place(relx=0.324, rely=0.435, height=24, width=50)
         self.Button43.configure(command=unknown_support.Reset10Licht, text='''Reset''')
 
         self.Entry24 = tk.Entry(self.TNotebook4_t1)
@@ -826,7 +839,7 @@ class Toplevel1:
         self.Button66.configure(command=unknown_support.Set11Licht, text='''Set''')
 
         self.Button67 = ttk.Button(self.TNotebook4_t1, style='Custom.TButton')
-        self.Button67.place(relx=0.324, rely=0.478, height=24, width=39)
+        self.Button67.place(relx=0.324, rely=0.478, height=24, width=50)
         self.Button67.configure(command=unknown_support.Reset11Licht, text='''Reset''')
 
         self.Label18 = tk.Label(self.TNotebook4_t1)
@@ -964,35 +977,35 @@ class Toplevel1:
         self.Button51.configure(command=self.Set8Afstand, text='''Set''')
 
         self.Button52 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button52.place(relx=0.324, rely=0.029, height=24, width=39)
+        self.Button52.place(relx=0.324, rely=0.029, height=24, width=50)
         self.Button52.configure(command=unknown_support.Reset1Afstand, text='''Reset''')
 
         self.Button53 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button53.place(relx=0.324, rely=0.072, height=24, width=39)
+        self.Button53.place(relx=0.324, rely=0.072, height=24, width=50)
         self.Button53.configure(command=unknown_support.Reset2Afstand, text='''Reset''')
 
         self.Button54 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button54.place(relx=0.324, rely=0.116, height=24, width=39)
+        self.Button54.place(relx=0.324, rely=0.116, height=24, width=50)
         self.Button54.configure(command=unknown_support.Reset3Afstand, text='''Reset''')
 
         self.Button55 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button55.place(relx=0.324, rely=0.159, height=24, width=39)
+        self.Button55.place(relx=0.324, rely=0.159, height=24, width=50)
         self.Button55.configure(command=unknown_support.Reset4Afstand, text='''Reset''')
 
         self.Button56 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button56.place(relx=0.324, rely=0.203, height=24, width=39)
+        self.Button56.place(relx=0.324, rely=0.203, height=24, width=50)
         self.Button56.configure(command=unknown_support.Reset5Afstand, text='''Reset''')
 
         self.Button57 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button57.place(relx=0.324, rely=0.246, height=24, width=39)
+        self.Button57.place(relx=0.324, rely=0.246, height=24, width=50)
         self.Button57.configure(command=unknown_support.Reset6Afstand, text='''Reset''')
 
         self.Button58 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button58.place(relx=0.324, rely=0.29, height=24, width=39)
+        self.Button58.place(relx=0.324, rely=0.29, height=24, width=50)
         self.Button58.configure(command=unknown_support.Reset7Afstand, text='''Reset''')
 
         self.Button59 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button59.place(relx=0.324, rely=0.333, height=24, width=39)
+        self.Button59.place(relx=0.324, rely=0.333, height=24, width=50)
         self.Button59.configure(command=unknown_support.Reset8Afstand, text='''Reset''')
 
         self.Checkbutton13 = tk.Checkbutton(self.TNotebook4_t2)
@@ -1056,15 +1069,15 @@ class Toplevel1:
         self.Button62.configure(command=unknown_support.Set11Afstand, text='''Set''')
 
         self.Button63 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button63.place(relx=0.324, rely=0.391, height=24, width=39)
+        self.Button63.place(relx=0.324, rely=0.391, height=24, width=50)
         self.Button63.configure(command=unknown_support.Reset9Afstand, text='''Reset''')
 
         self.Button64 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button64.place(relx=0.324, rely=0.435, height=24, width=39)
+        self.Button64.place(relx=0.324, rely=0.435, height=24, width=50)
         self.Button64.configure(command=unknown_support.Reset10Afstand, text='''Reset''')
 
         self.Button65 = ttk.Button(self.TNotebook4_t2, style='Custom.TButton')
-        self.Button65.place(relx=0.324, rely=0.478, height=24, width=39)
+        self.Button65.place(relx=0.324, rely=0.478, height=24, width=50)
         self.Button65.configure(command=unknown_support.Reset11Afstand, text='''Reset''')
 
         self.Label1 = tk.Label(self.TNotebook1_t3)
@@ -1307,6 +1320,50 @@ The term, as well as the shortened form "cuck" for cuckold, originated on websit
         self.canvas11y.append(y)
         self.new11x += 1
         self.canvas11.plot(self.canvas11x, self.canvas11y , color= "blue")
+        self.canvas7a.draw()
+
+    def animatecanvas12(self, y):
+        self.canvas12x.append(self.new12x)
+        if len(self.canvas12x) > 20:
+            del self.canvas12x[0]
+            del self.canvas12y[0]
+            self.canvas12.clear()
+        self.canvas12y.append(y)
+        self.new12x += 1
+        self.canvas12.plot(self.canvas12x, self.canvas12y , color= "blue")
+        self.canvas4a.draw()
+
+    def animatecanvas13(self, y):
+        self.canvas13x.append(self.new13x)
+        if len(self.canvas13x) > 20:
+            del self.canvas13x[0]
+            del self.canvas13y[0]
+            self.canvas13.clear()
+        self.canvas13y.append(y)
+        self.new11x += 1
+        self.canvas13.plot(self.canvas13x, self.canvas13y , color= "blue")
+        self.canvas5a.draw()
+
+    def animatecanvas14(self, y):
+        self.canvas14x.append(self.new14x)
+        if len(self.canvas14x) > 20:
+            del self.canvas14x[0]
+            del self.canvas14y[0]
+            self.canvas14.clear()
+        self.canvas14y.append(y)
+        self.new11x += 1
+        self.canvas14.plot(self.canvas14x, self.canvas14y , color= "blue")
+        self.canvas6a.draw()
+
+    def animatecanvas15(self, y):
+        self.canvas15x.append(self.new15x)
+        if len(self.canvas15x) > 20:
+            del self.canvas15x[0]
+            del self.canvas15y[0]
+            self.canvas15.clear()
+        self.canvas15y.append(y)
+        self.new11x += 1
+        self.canvas15.plot(self.canvas15x, self.canvas15y , color= "blue")
         self.canvas7a.draw()
 
     def Set1Temperatuur(self):
