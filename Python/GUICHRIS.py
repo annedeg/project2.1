@@ -83,9 +83,7 @@ class Toplevel1:
         self.style = ttk.Style()
         if sys.platform == "win32":
             self.style.theme_use('winnative')
-        self.style.configure('.', background=_bgcolor)
-        self.style.configure('.', foreground=_fgcolor)
-        self.style.configure('.', font="TkDefaultFont")
+        self.style.configure('.', background=_bgcolor, foreground=_fgcolor, font="TkDefaultFont")
         self.style.map('.', background=
         [('selected', _compcolor), ('active', _ana2color)])
 
@@ -98,77 +96,52 @@ class Toplevel1:
         top.configure(highlightbackground="#d9d9d9")
         top.configure(highlightcolor="black")
 
-        self.style.configure('TNotebook.Tab', background=_bgcolor)
-        self.style.configure('TNotebook.Tab', foreground=_fgcolor)
+        self.style.configure('TNotebook.Tab', background=_bgcolor, foreground=_fgcolor)
         self.style.map('TNotebook.Tab', background=
         [('selected', _compcolor), ('active', _ana2color)])
         self.TNotebook1 = ttk.Notebook(top)
         self.TNotebook1.place(relx=0.0, rely=0.0, relheight=1.003
                               , relwidth=1.002)
         self.TNotebook1.configure(takefocus="")
+
         self.TNotebook1_t0 = tk.Frame(self.TNotebook1)
         self.TNotebook1.add(self.TNotebook1_t0, padding=3)
         self.TNotebook1.tab(0, text="Dashboard", compound="left", underline="-1"
                             , )
-        self.TNotebook1_t0.configure(background="#d9d9d9")
-        self.TNotebook1_t0.configure(highlightbackground="#d9d9d9")
-        self.TNotebook1_t0.configure(highlightcolor="black")
+        self.TNotebook1_t0.configure(highlightbackground="#d9d9d9", background="#d9d9d9", highlightcolor="black")
+
         self.TNotebook1_t1 = tk.Frame(self.TNotebook1)
         self.TNotebook1.add(self.TNotebook1_t1, padding=3)
         self.TNotebook1.tab(1, text="Graph", compound="left", underline="-1", )
-        self.TNotebook1_t1.configure(background="#d9d9d9")
-        self.TNotebook1_t1.configure(highlightbackground="#d9d9d9")
-        self.TNotebook1_t1.configure(highlightcolor="black")
+        self.TNotebook1_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
         self.TNotebook1_t2 = tk.Frame(self.TNotebook1)
         self.TNotebook1.add(self.TNotebook1_t2, padding=3)
         self.TNotebook1.tab(2, text="Config", compound="none", underline="-1", )
-        self.TNotebook1_t2.configure(background="#d9d9d9")
-        self.TNotebook1_t2.configure(highlightbackground="#d9d9d9")
-        self.TNotebook1_t2.configure(highlightcolor="black")
+        self.TNotebook1_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
         self.TNotebook1_t3 = tk.Frame(self.TNotebook1)
         self.TNotebook1.add(self.TNotebook1_t3, padding=3)
         self.TNotebook1.tab(3, text="Help", compound="none", underline="-1", )
-        self.TNotebook1_t3.configure(background="#d9d9d9")
-        self.TNotebook1_t3.configure(highlightbackground="#d9d9d9")
-        self.TNotebook1_t3.configure(highlightcolor="black")
+        self.TNotebook1_t3.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.Button1 = tk.Button(self.TNotebook1_t0)
         self.Button1.place(relx=0.01, rely=0.767, height=54, width=277)
-        self.Button1.configure(activebackground="#ececec")
-        self.Button1.configure(activeforeground="#000000")
-        self.Button1.configure(background="#d9d9d9")
-        self.Button1.configure(command=unknown_support.OpenScherm)
-        self.Button1.configure(disabledforeground="#a3a3a3")
-        self.Button1.configure(foreground="#000000")
-        self.Button1.configure(highlightbackground="#d9d9d9")
-        self.Button1.configure(highlightcolor="black")
-        self.Button1.configure(pady="0")
-        self.Button1.configure(text='''OPEN SCHERM''')
+        self.Button1.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.OpenScherm, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''OPEN SCHERM''')
 
         self.Button23 = tk.Button(self.TNotebook1_t0)
         self.Button23.place(relx=0.01, rely=0.863, height=54, width=277)
-        self.Button23.configure(activebackground="#ececec")
-        self.Button23.configure(activeforeground="#000000")
-        self.Button23.configure(background="#d9d9d9")
-        self.Button23.configure(command=unknown_support.CloseScherm)
-        self.Button23.configure(disabledforeground="#a3a3a3")
-        self.Button23.configure(foreground="#000000")
-        self.Button23.configure(highlightbackground="#d9d9d9")
-        self.Button23.configure(highlightcolor="black")
-        self.Button23.configure(pady="0")
-        self.Button23.configure(text='''CLOSE SCHERM''')
+        self.Button23.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.CloseScherm, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''CLOSE SCHERM''')
 
         self.Listbox1 = tk.Listbox(self.TNotebook1_t0)
         self.Listbox1.place(relx=0.01, rely=0.014, relheight=0.236
                             , relwidth=0.272)
-        self.Listbox1.configure(background="white")
-        self.Listbox1.configure(disabledforeground="#a3a3a3")
-        self.Listbox1.configure(font="TkFixedFont")
-        self.Listbox1.configure(foreground="#000000")
-        self.Listbox1.configure(highlightbackground="#d9d9d9")
-        self.Listbox1.configure(highlightcolor="black")
-        self.Listbox1.configure(selectbackground="#c4c4c4")
-        self.Listbox1.configure(selectforeground="black")
+        self.Listbox1.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", selectbackground="#c4c4c4", selectforeground="black")
 
         self.TNotebook2 = ttk.Notebook(self.TNotebook1_t0)
         self.TNotebook2.place(relx=0.291, rely=0.014, relheight=0.241
@@ -178,9 +151,7 @@ class Toplevel1:
         self.TNotebook2.add(self.TNotebook2_t0, padding=3)
         self.TNotebook2.tab(0, text="Afstandsensor", compound="left"
                             , underline="-1", )
-        self.TNotebook2_t0.configure(background="#d9d9d9")
-        self.TNotebook2_t0.configure(highlightbackground="#d9d9d9")
-        self.TNotebook2_t0.configure(highlightcolor="black")
+        self.TNotebook2_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar1 = Figure(figsize=(5, 2), dpi=75)
         self.ax1 = bar1.add_subplot(111)
 
@@ -195,9 +166,7 @@ class Toplevel1:
         self.TNotebook2.add(self.TNotebook2_t1, padding=3)
         self.TNotebook2.tab(1, text="Lichtsensor", compound="left", underline="-1"
                             , )
-        self.TNotebook2_t1.configure(background="#d9d9d9")
-        self.TNotebook2_t1.configure(highlightbackground="#d9d9d9")
-        self.TNotebook2_t1.configure(highlightcolor="black")
+        self.TNotebook2_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar2 = Figure(figsize=(5, 2), dpi=75)
         self.ax2 = bar2.add_subplot(111)
 
@@ -210,9 +179,7 @@ class Toplevel1:
         self.TNotebook2.add(self.TNotebook2_t2, padding=3)
         self.TNotebook2.tab(2, text="Temperatuur", compound="none", underline="-1"
                             , )
-        self.TNotebook2_t2.configure(background="#d9d9d9")
-        self.TNotebook2_t2.configure(highlightbackground="#d9d9d9")
-        self.TNotebook2_t2.configure(highlightcolor="black")
+        self.TNotebook2_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar3 = Figure(figsize=(5, 2), dpi=75)
         self.ax3 = bar3.add_subplot(111)
 
@@ -225,66 +192,33 @@ class Toplevel1:
         self.Listbox2 = tk.Listbox(self.TNotebook1_t0)
         self.Listbox2.place(relx=0.01, rely=0.26, relheight=0.236
                             , relwidth=0.272)
-        self.Listbox2.configure(background="white")
-        self.Listbox2.configure(disabledforeground="#a3a3a3")
-        self.Listbox2.configure(font="TkFixedFont")
-        self.Listbox2.configure(foreground="#000000")
-        self.Listbox2.configure(highlightbackground="#d9d9d9")
-        self.Listbox2.configure(highlightcolor="black")
-        self.Listbox2.configure(selectbackground="#c4c4c4")
-        self.Listbox2.configure(selectforeground="black")
+        self.Listbox2.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
+                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                                selectbackground="#c4c4c4", selectforeground="black")
 
         self.Button68 = tk.Button(self.TNotebook1_t0)
         self.Button68.place(relx=0.01, rely=0.521, height=74, width=137)
-        self.Button68.configure(activebackground="#ececec")
-        self.Button68.configure(activeforeground="#000000")
-        self.Button68.configure(background="#d9d9d9")
-        self.Button68.configure(command=unknown_support.SwitchToArduino1)
-        self.Button68.configure(disabledforeground="#a3a3a3")
-        self.Button68.configure(foreground="#000000")
-        self.Button68.configure(highlightbackground="#d9d9d9")
-        self.Button68.configure(highlightcolor="black")
-        self.Button68.configure(pady="0")
-        self.Button68.configure(text='''Arduino 1''')
+        self.Button68.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.SwitchToArduino1, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Arduino 1''')
 
         self.Button69 = tk.Button(self.TNotebook1_t0)
         self.Button69.place(relx=0.155, rely=0.521, height=74, width=127)
-        self.Button69.configure(activebackground="#ececec")
-        self.Button69.configure(activeforeground="#000000")
-        self.Button69.configure(background="#d9d9d9")
-        self.Button69.configure(command=unknown_support.SwitchToArduino2)
-        self.Button69.configure(disabledforeground="#a3a3a3")
-        self.Button69.configure(foreground="#000000")
-        self.Button69.configure(highlightbackground="#d9d9d9")
-        self.Button69.configure(highlightcolor="black")
-        self.Button69.configure(pady="0")
-        self.Button69.configure(text='''Arduino 2''')
+        self.Button69.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.SwitchToArduino2, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Arduino 2''')
 
         self.Button70 = tk.Button(self.TNotebook1_t0)
         self.Button70.place(relx=0.01, rely=0.644, height=74, width=137)
-        self.Button70.configure(activebackground="#ececec")
-        self.Button70.configure(activeforeground="#000000")
-        self.Button70.configure(background="#d9d9d9")
-        self.Button70.configure(command=unknown_support.SwitchToArduino3)
-        self.Button70.configure(disabledforeground="#a3a3a3")
-        self.Button70.configure(foreground="#000000")
-        self.Button70.configure(highlightbackground="#d9d9d9")
-        self.Button70.configure(highlightcolor="black")
-        self.Button70.configure(pady="0")
-        self.Button70.configure(text='''Arduino 3''')
+        self.Button70.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.SwitchToArduino3, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Arduino 3''')
 
         self.Button71 = tk.Button(self.TNotebook1_t0)
         self.Button71.place(relx=0.155, rely=0.644, height=74, width=127)
-        self.Button71.configure(activebackground="#ececec")
-        self.Button71.configure(activeforeground="#000000")
-        self.Button71.configure(background="#d9d9d9")
-        self.Button71.configure(command=unknown_support.SwitchToArduino4)
-        self.Button71.configure(disabledforeground="#a3a3a3")
-        self.Button71.configure(foreground="#000000")
-        self.Button71.configure(highlightbackground="#d9d9d9")
-        self.Button71.configure(highlightcolor="black")
-        self.Button71.configure(pady="0")
-        self.Button71.configure(text='''Arduino 4''')
+        self.Button71.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.SwitchToArduino4, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Arduino 4''')
 
         self.TNotebook5 = ttk.Notebook(self.TNotebook1_t0)
         self.TNotebook5.place(relx=0.291, rely=0.26, relheight=0.721
@@ -293,22 +227,17 @@ class Toplevel1:
         self.TNotebook5_t0 = tk.Frame(self.TNotebook5)
         self.TNotebook5.add(self.TNotebook5_t0, padding=3)
         self.TNotebook5.tab(0, text="Afstand", compound="left", underline="-1", )
-        self.TNotebook5_t0.configure(background="#d9d9d9")
-        self.TNotebook5_t0.configure(highlightbackground="#d9d9d9")
-        self.TNotebook5_t0.configure(highlightcolor="black")
+        self.TNotebook5_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
         self.TNotebook5_t1 = tk.Frame(self.TNotebook5)
         self.TNotebook5.add(self.TNotebook5_t1, padding=3)
         self.TNotebook5.tab(1, text="Licht", compound="left", underline="-1", )
-        self.TNotebook5_t1.configure(background="#d9d9d9")
-        self.TNotebook5_t1.configure(highlightbackground="#d9d9d9")
-        self.TNotebook5_t1.configure(highlightcolor="black")
+        self.TNotebook5_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
         self.TNotebook5_t2 = tk.Frame(self.TNotebook5)
         self.TNotebook5.add(self.TNotebook5_t2, padding=3)
-        self.TNotebook5.tab(2, text="Temperatuur", compound="none", underline="-1"
-                            , )
-        self.TNotebook5_t2.configure(background="#d9d9d9")
-        self.TNotebook5_t2.configure(highlightbackground="#d9d9d9")
-        self.TNotebook5_t2.configure(highlightcolor="black")
+        self.TNotebook5.tab(2, text="Temperatuur", compound="none", underline="-1", )
+        self.TNotebook5_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.fig1 = Figure(figsize=(5, 4), dpi=100)
         self.t = np.arange(0, 3, .01)
@@ -358,30 +287,22 @@ class Toplevel1:
         self.TNotebook3.add(self.TNotebook3_t0, padding=3)
         self.TNotebook3.tab(0, text="Arduino 1", compound="left", underline="-1"
                             , )
-        self.TNotebook3_t0.configure(background="#d9d9d9")
-        self.TNotebook3_t0.configure(highlightbackground="#d9d9d9")
-        self.TNotebook3_t0.configure(highlightcolor="black")
+        self.TNotebook3_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         self.TNotebook3_t1 = tk.Frame(self.TNotebook3)
         self.TNotebook3.add(self.TNotebook3_t1, padding=3)
         self.TNotebook3.tab(1, text="Arduino 2", compound="left", underline="-1"
                             , )
-        self.TNotebook3_t1.configure(background="#d9d9d9")
-        self.TNotebook3_t1.configure(highlightbackground="#d9d9d9")
-        self.TNotebook3_t1.configure(highlightcolor="black")
+        self.TNotebook3_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         self.TNotebook3_t2 = tk.Frame(self.TNotebook3)
         self.TNotebook3.add(self.TNotebook3_t2, padding=3)
         self.TNotebook3.tab(2, text="Arduino 3", compound="none", underline="-1"
                             , )
-        self.TNotebook3_t2.configure(background="#d9d9d9")
-        self.TNotebook3_t2.configure(highlightbackground="#d9d9d9")
-        self.TNotebook3_t2.configure(highlightcolor="black")
+        self.TNotebook3_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         self.TNotebook3_t3 = tk.Frame(self.TNotebook3)
         self.TNotebook3.add(self.TNotebook3_t3, padding=3)
         self.TNotebook3.tab(3, text="Arduino 4", compound="none", underline="-1"
                             , )
-        self.TNotebook3_t3.configure(background="#d9d9d9")
-        self.TNotebook3_t3.configure(highlightbackground="#d9d9d9")
-        self.TNotebook3_t3.configure(highlightcolor="black")
+        self.TNotebook3_t3.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         fig4 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
@@ -455,728 +376,369 @@ class Toplevel1:
         self.TNotebook4.place(relx=0.0, rely=0.014, relheight=0.981
                               , relwidth=0.994)
         self.TNotebook4.configure(takefocus="")
+
         self.TNotebook4_t0 = tk.Frame(self.TNotebook4)
         self.TNotebook4.add(self.TNotebook4_t0, padding=3)
         self.TNotebook4.tab(0, text="Temperatuur", compound="left", underline="-1"
                             , )
-        self.TNotebook4_t0.configure(background="#d9d9d9")
-        self.TNotebook4_t0.configure(highlightbackground="#d9d9d9")
-        self.TNotebook4_t0.configure(highlightcolor="black")
+        self.TNotebook4_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
         self.TNotebook4_t1 = tk.Frame(self.TNotebook4)
         self.TNotebook4.add(self.TNotebook4_t1, padding=3)
         self.TNotebook4.tab(1, text="Licht", compound="left", underline="-1", )
-        self.TNotebook4_t1.configure(background="#d9d9d9")
-        self.TNotebook4_t1.configure(highlightbackground="#d9d9d9")
-        self.TNotebook4_t1.configure(highlightcolor="black")
+        self.TNotebook4_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         self.TNotebook4_t2 = tk.Frame(self.TNotebook4)
         self.TNotebook4.add(self.TNotebook4_t2, padding=3)
         self.TNotebook4.tab(2, text="Afstand", compound="none", underline="-1", )
-        self.TNotebook4_t2.configure(background="#d9d9d9")
-        self.TNotebook4_t2.configure(highlightbackground="#d9d9d9")
-        self.TNotebook4_t2.configure(highlightcolor="black")
+        self.TNotebook4_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.Entry1 = tk.Entry(self.TNotebook4_t0)
         self.Entry1.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
-        self.Entry1.configure(background="white")
-        self.Entry1.configure(disabledforeground="#a3a3a3")
-        self.Entry1.configure(font="TkFixedFont")
-        self.Entry1.configure(foreground="#000000")
-        self.Entry1.configure(highlightbackground="#d9d9d9")
-        self.Entry1.configure(highlightcolor="black")
-        self.Entry1.configure(insertbackground="black")
-        self.Entry1.configure(selectbackground="#c4c4c4")
-        self.Entry1.configure(selectforeground="black")
+        self.Entry1.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry2 = tk.Entry(self.TNotebook4_t0)
         self.Entry2.place(relx=0.088, rely=0.072, height=20, relwidth=0.161)
-        self.Entry2.configure(background="white")
-        self.Entry2.configure(disabledforeground="#a3a3a3")
-        self.Entry2.configure(font="TkFixedFont")
-        self.Entry2.configure(foreground="#000000")
-        self.Entry2.configure(highlightbackground="#d9d9d9")
-        self.Entry2.configure(highlightcolor="black")
-        self.Entry2.configure(insertbackground="black")
-        self.Entry2.configure(selectbackground="#c4c4c4")
-        self.Entry2.configure(selectforeground="black")
+        self.Entry2.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry3 = tk.Entry(self.TNotebook4_t0)
         self.Entry3.place(relx=0.088, rely=0.116, height=20, relwidth=0.161)
-        self.Entry3.configure(background="white")
-        self.Entry3.configure(disabledforeground="#a3a3a3")
-        self.Entry3.configure(font="TkFixedFont")
-        self.Entry3.configure(foreground="#000000")
-        self.Entry3.configure(highlightbackground="#d9d9d9")
-        self.Entry3.configure(highlightcolor="black")
-        self.Entry3.configure(insertbackground="black")
-        self.Entry3.configure(selectbackground="#c4c4c4")
-        self.Entry3.configure(selectforeground="black")
+        self.Entry3.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry4 = tk.Entry(self.TNotebook4_t0)
         self.Entry4.place(relx=0.088, rely=0.159, height=20, relwidth=0.161)
-        self.Entry4.configure(background="white")
-        self.Entry4.configure(disabledforeground="#a3a3a3")
-        self.Entry4.configure(font="TkFixedFont")
-        self.Entry4.configure(foreground="#000000")
-        self.Entry4.configure(highlightbackground="#d9d9d9")
-        self.Entry4.configure(highlightcolor="black")
-        self.Entry4.configure(insertbackground="black")
-        self.Entry4.configure(selectbackground="#c4c4c4")
-        self.Entry4.configure(selectforeground="black")
+        self.Entry4.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry5 = tk.Entry(self.TNotebook4_t0)
         self.Entry5.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
-        self.Entry5.configure(background="white")
-        self.Entry5.configure(disabledforeground="#a3a3a3")
-        self.Entry5.configure(font="TkFixedFont")
-        self.Entry5.configure(foreground="#000000")
-        self.Entry5.configure(highlightbackground="#d9d9d9")
-        self.Entry5.configure(highlightcolor="black")
-        self.Entry5.configure(insertbackground="black")
-        self.Entry5.configure(selectbackground="#c4c4c4")
-        self.Entry5.configure(selectforeground="black")
+        self.Entry5.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry6 = tk.Entry(self.TNotebook4_t0)
         self.Entry6.place(relx=0.088, rely=0.246, height=20, relwidth=0.161)
-        self.Entry6.configure(background="white")
-        self.Entry6.configure(disabledforeground="#a3a3a3")
-        self.Entry6.configure(font="TkFixedFont")
-        self.Entry6.configure(foreground="#000000")
-        self.Entry6.configure(highlightbackground="#d9d9d9")
-        self.Entry6.configure(highlightcolor="black")
-        self.Entry6.configure(insertbackground="black")
-        self.Entry6.configure(selectbackground="#c4c4c4")
-        self.Entry6.configure(selectforeground="black")
+        self.Entry6.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry7 = tk.Entry(self.TNotebook4_t0)
         self.Entry7.place(relx=0.088, rely=0.29, height=20, relwidth=0.161)
-        self.Entry7.configure(background="white")
-        self.Entry7.configure(disabledforeground="#a3a3a3")
-        self.Entry7.configure(font="TkFixedFont")
-        self.Entry7.configure(foreground="#000000")
-        self.Entry7.configure(highlightbackground="#d9d9d9")
-        self.Entry7.configure(highlightcolor="black")
-        self.Entry7.configure(insertbackground="black")
-        self.Entry7.configure(selectbackground="#c4c4c4")
-        self.Entry7.configure(selectforeground="black")
+        self.Entry7.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry8 = tk.Entry(self.TNotebook4_t0)
         self.Entry8.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
-        self.Entry8.configure(background="white")
-        self.Entry8.configure(disabledforeground="#a3a3a3")
-        self.Entry8.configure(font="TkFixedFont")
-        self.Entry8.configure(foreground="#000000")
-        self.Entry8.configure(highlightbackground="#d9d9d9")
-        self.Entry8.configure(highlightcolor="black")
-        self.Entry8.configure(insertbackground="black")
-        self.Entry8.configure(selectbackground="#c4c4c4")
-        self.Entry8.configure(selectforeground="black")
+        self.Entry8.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Label2 = tk.Label(self.TNotebook4_t0)
         self.Label2.place(relx=0.0, rely=0.029, height=21, width=74)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Setting''')
+        self.Label2.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black",  text='''Setting''')
 
         self.Label2 = tk.Label(self.TNotebook4_t0)
         self.Label2.place(relx=0.0, rely=0.072, height=21, width=74)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Setting''')
+        self.Label2.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label2 = tk.Label(self.TNotebook4_t0)
         self.Label2.place(relx=0.0, rely=0.116, height=21, width=74)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Setting''')
+        self.Label2.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label2 = tk.Label(self.TNotebook4_t0)
         self.Label2.place(relx=0.0, rely=0.159, height=21, width=74)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Setting''')
+        self.Label2.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label2 = tk.Label(self.TNotebook4_t0)
         self.Label2.place(relx=0.0, rely=0.203, height=21, width=74)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Setting''')
+        self.Label2.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label2 = tk.Label(self.TNotebook4_t0)
         self.Label2.place(relx=0.0, rely=0.246, height=21, width=74)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Setting''')
+        self.Label2.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label2 = tk.Label(self.TNotebook4_t0)
         self.Label2.place(relx=0.0, rely=0.29, height=21, width=74)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Setting''')
+        self.Label2.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label2 = tk.Label(self.TNotebook4_t0)
         self.Label2.place(relx=0.0, rely=0.333, height=21, width=74)
-        self.Label2.configure(activebackground="#f9f9f9")
-        self.Label2.configure(activeforeground="black")
-        self.Label2.configure(background="#d9d9d9")
-        self.Label2.configure(disabledforeground="#a3a3a3")
-        self.Label2.configure(foreground="#000000")
-        self.Label2.configure(highlightbackground="#d9d9d9")
-        self.Label2.configure(highlightcolor="black")
-        self.Label2.configure(text='''Setting''')
+        self.Label2.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Button2 = tk.Button(self.TNotebook4_t0)
         self.Button2.place(relx=0.265, rely=0.029, height=24, width=47)
-        self.Button2.configure(activebackground="#ececec")
-        self.Button2.configure(activeforeground="#000000")
-        self.Button2.configure(background="#d9d9d9")
-        self.Button2.configure(command=self.Set1Temperatuur)
-        self.Button2.configure(disabledforeground="#a3a3a3")
-        self.Button2.configure(foreground="#000000")
-        self.Button2.configure(highlightbackground="#d9d9d9")
-        self.Button2.configure(highlightcolor="black")
-        self.Button2.configure(pady="0")
-        self.Button2.configure(text='''Set''')
+        self.Button2.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=self.Set1Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button3 = tk.Button(self.TNotebook4_t0)
         self.Button3.place(relx=0.324, rely=0.029, height=24, width=37)
-        self.Button3.configure(activebackground="#ececec")
-        self.Button3.configure(activeforeground="#000000")
-        self.Button3.configure(background="#d9d9d9")
-        self.Button3.configure(command=unknown_support.Reset1Temperatuur)
-        self.Button3.configure(disabledforeground="#a3a3a3")
-        self.Button3.configure(foreground="#000000")
-        self.Button3.configure(highlightbackground="#d9d9d9")
-        self.Button3.configure(highlightcolor="black")
-        self.Button3.configure(pady="0")
-        self.Button3.configure(text='''Reset''')
+        self.Button3.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.Reset1Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button4 = tk.Button(self.TNotebook4_t0)
         self.Button4.place(relx=0.324, rely=0.072, height=24, width=37)
-        self.Button4.configure(activebackground="#ececec")
-        self.Button4.configure(activeforeground="#000000")
-        self.Button4.configure(background="#d9d9d9")
-        self.Button4.configure(command=unknown_support.Reset2Temperatuur)
-        self.Button4.configure(disabledforeground="#a3a3a3")
-        self.Button4.configure(foreground="#000000")
-        self.Button4.configure(highlightbackground="#d9d9d9")
-        self.Button4.configure(highlightcolor="black")
-        self.Button4.configure(pady="0")
-        self.Button4.configure(text='''Reset''')
+        self.Button4.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.Reset2Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button5 = tk.Button(self.TNotebook4_t0)
         self.Button5.place(relx=0.324, rely=0.116, height=24, width=37)
-        self.Button5.configure(activebackground="#ececec")
-        self.Button5.configure(activeforeground="#000000")
-        self.Button5.configure(background="#d9d9d9")
-        self.Button5.configure(command=unknown_support.Reset3Temperatuur)
-        self.Button5.configure(disabledforeground="#a3a3a3")
-        self.Button5.configure(foreground="#000000")
-        self.Button5.configure(highlightbackground="#d9d9d9")
-        self.Button5.configure(highlightcolor="black")
-        self.Button5.configure(pady="0")
-        self.Button5.configure(text='''Reset''')
+        self.Button5.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.Reset3Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button6 = tk.Button(self.TNotebook4_t0)
         self.Button6.place(relx=0.324, rely=0.159, height=24, width=37)
-        self.Button6.configure(activebackground="#ececec")
-        self.Button6.configure(activeforeground="#000000")
-        self.Button6.configure(background="#d9d9d9")
-        self.Button6.configure(command=unknown_support.Reset4Temperatuur)
-        self.Button6.configure(disabledforeground="#a3a3a3")
-        self.Button6.configure(foreground="#000000")
-        self.Button6.configure(highlightbackground="#d9d9d9")
-        self.Button6.configure(highlightcolor="black")
-        self.Button6.configure(pady="0")
-        self.Button6.configure(text='''Reset''')
+        self.Button6.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.Reset4Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button7 = tk.Button(self.TNotebook4_t0)
         self.Button7.place(relx=0.324, rely=0.203, height=24, width=37)
-        self.Button7.configure(activebackground="#ececec")
-        self.Button7.configure(activeforeground="#000000")
-        self.Button7.configure(background="#d9d9d9")
-        self.Button7.configure(command=unknown_support.Reset5Temperatuur)
-        self.Button7.configure(disabledforeground="#a3a3a3")
-        self.Button7.configure(foreground="#000000")
-        self.Button7.configure(highlightbackground="#d9d9d9")
-        self.Button7.configure(highlightcolor="black")
-        self.Button7.configure(pady="0")
-        self.Button7.configure(text='''Reset''')
+        self.Button7.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.Reset5Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button8 = tk.Button(self.TNotebook4_t0)
         self.Button8.place(relx=0.324, rely=0.246, height=24, width=37)
-        self.Button8.configure(activebackground="#ececec")
-        self.Button8.configure(activeforeground="#000000")
-        self.Button8.configure(background="#d9d9d9")
-        self.Button8.configure(command=unknown_support.Reset6Temperatuur)
-        self.Button8.configure(disabledforeground="#a3a3a3")
-        self.Button8.configure(foreground="#000000")
-        self.Button8.configure(highlightbackground="#d9d9d9")
-        self.Button8.configure(highlightcolor="black")
-        self.Button8.configure(pady="0")
-        self.Button8.configure(text='''Reset''')
+        self.Button8.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.Reset6Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button9 = tk.Button(self.TNotebook4_t0)
         self.Button9.place(relx=0.324, rely=0.29, height=24, width=37)
-        self.Button9.configure(activebackground="#ececec")
-        self.Button9.configure(activeforeground="#000000")
-        self.Button9.configure(background="#d9d9d9")
-        self.Button9.configure(command=unknown_support.Reset7Temperatuur)
-        self.Button9.configure(disabledforeground="#a3a3a3")
-        self.Button9.configure(foreground="#000000")
-        self.Button9.configure(highlightbackground="#d9d9d9")
-        self.Button9.configure(highlightcolor="black")
-        self.Button9.configure(pady="0")
-        self.Button9.configure(text='''Reset''')
+        self.Button9.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.Reset7Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button10 = tk.Button(self.TNotebook4_t0)
         self.Button10.place(relx=0.324, rely=0.333, height=24, width=37)
-        self.Button10.configure(activebackground="#ececec")
-        self.Button10.configure(activeforeground="#000000")
-        self.Button10.configure(background="#d9d9d9")
-        self.Button10.configure(command=unknown_support.Reset8Temperatuur)
-        self.Button10.configure(disabledforeground="#a3a3a3")
-        self.Button10.configure(foreground="#000000")
-        self.Button10.configure(highlightbackground="#d9d9d9")
-        self.Button10.configure(highlightcolor="black")
-        self.Button10.configure(pady="0")
-        self.Button10.configure(text='''Reset''')
+        self.Button10.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.Reset8Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button11 = tk.Button(self.TNotebook4_t0)
         self.Button11.place(relx=0.265, rely=0.072, height=24, width=47)
-        self.Button11.configure(activebackground="#ececec")
-        self.Button11.configure(activeforeground="#000000")
-        self.Button11.configure(background="#d9d9d9")
-        self.Button11.configure(command=self.Set2Temperatuur)
-        self.Button11.configure(disabledforeground="#a3a3a3")
-        self.Button11.configure(foreground="#000000")
-        self.Button11.configure(highlightbackground="#d9d9d9")
-        self.Button11.configure(highlightcolor="black")
-        self.Button11.configure(pady="0")
-        self.Button11.configure(text='''Set''')
+        self.Button11.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=self.Set2Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button12 = tk.Button(self.TNotebook4_t0)
         self.Button12.place(relx=0.265, rely=0.116, height=24, width=47)
-        self.Button12.configure(activebackground="#ececec")
-        self.Button12.configure(activeforeground="#000000")
-        self.Button12.configure(background="#d9d9d9")
-        self.Button12.configure(command=self.Set3Temperatuur)
-        self.Button12.configure(disabledforeground="#a3a3a3")
-        self.Button12.configure(foreground="#000000")
-        self.Button12.configure(highlightbackground="#d9d9d9")
-        self.Button12.configure(highlightcolor="black")
-        self.Button12.configure(pady="0")
-        self.Button12.configure(text='''Set''')
+        self.Button12.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=self.Set3Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button13 = tk.Button(self.TNotebook4_t0)
         self.Button13.place(relx=0.265, rely=0.159, height=24, width=47)
-        self.Button13.configure(activebackground="#ececec")
-        self.Button13.configure(activeforeground="#000000")
-        self.Button13.configure(background="#d9d9d9")
-        self.Button13.configure(command=self.Set4Temperatuur)
-        self.Button13.configure(disabledforeground="#a3a3a3")
-        self.Button13.configure(foreground="#000000")
-        self.Button13.configure(highlightbackground="#d9d9d9")
-        self.Button13.configure(highlightcolor="black")
-        self.Button13.configure(pady="0")
-        self.Button13.configure(text='''Set''')
+        self.Button13.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=self.Set4Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button14 = tk.Button(self.TNotebook4_t0)
         self.Button14.place(relx=0.265, rely=0.203, height=24, width=47)
-        self.Button14.configure(activebackground="#ececec")
-        self.Button14.configure(activeforeground="#000000")
-        self.Button14.configure(background="#d9d9d9")
-        self.Button14.configure(command=self.Set5Temperatuur)
-        self.Button14.configure(disabledforeground="#a3a3a3")
-        self.Button14.configure(foreground="#000000")
-        self.Button14.configure(highlightbackground="#d9d9d9")
-        self.Button14.configure(highlightcolor="black")
-        self.Button14.configure(pady="0")
-        self.Button14.configure(text='''Set''')
+        self.Button14.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=self.Set5Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button15 = tk.Button(self.TNotebook4_t0)
         self.Button15.place(relx=0.265, rely=0.246, height=24, width=47)
-        self.Button15.configure(activebackground="#ececec")
-        self.Button15.configure(activeforeground="#000000")
-        self.Button15.configure(background="#d9d9d9")
-        self.Button15.configure(command=self.Set6Temperatuur)
-        self.Button15.configure(disabledforeground="#a3a3a3")
-        self.Button15.configure(foreground="#000000")
-        self.Button15.configure(highlightbackground="#d9d9d9")
-        self.Button15.configure(highlightcolor="black")
-        self.Button15.configure(pady="0")
-        self.Button15.configure(text='''Set''')
+        self.Button15.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=self.Set6Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button16 = tk.Button(self.TNotebook4_t0)
         self.Button16.place(relx=0.265, rely=0.29, height=24, width=47)
-        self.Button16.configure(activebackground="#ececec")
-        self.Button16.configure(activeforeground="#000000")
-        self.Button16.configure(background="#d9d9d9")
-        self.Button16.configure(command=self.Set7Temperatuur)
-        self.Button16.configure(disabledforeground="#a3a3a3")
-        self.Button16.configure(foreground="#000000")
-        self.Button16.configure(highlightbackground="#d9d9d9")
-        self.Button16.configure(highlightcolor="black")
-        self.Button16.configure(pady="0")
-        self.Button16.configure(text='''Set''')
+        self.Button16.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=self.Set7Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button17 = tk.Button(self.TNotebook4_t0)
         self.Button17.place(relx=0.265, rely=0.333, height=24, width=47)
-        self.Button17.configure(activebackground="#ececec")
-        self.Button17.configure(activeforeground="#000000")
-        self.Button17.configure(background="#d9d9d9")
-        self.Button17.configure(command=self.Set8Temperatuur)
-        self.Button17.configure(disabledforeground="#a3a3a3")
-        self.Button17.configure(foreground="#000000")
-        self.Button17.configure(highlightbackground="#d9d9d9")
-        self.Button17.configure(highlightcolor="black")
-        self.Button17.configure(pady="0")
-        self.Button17.configure(text='''Set''')
+        self.Button17.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=self.Set8Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Checkbutton1 = tk.Checkbutton(self.TNotebook4_t0)
         self.Checkbutton1.place(relx=0.088, rely=0.391, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton1.configure(activebackground="#ececec")
-        self.Checkbutton1.configure(activeforeground="#000000")
-        self.Checkbutton1.configure(background="#d9d9d9")
-        self.Checkbutton1.configure(disabledforeground="#a3a3a3")
-        self.Checkbutton1.configure(foreground="#000000")
-        self.Checkbutton1.configure(highlightbackground="#d9d9d9")
-        self.Checkbutton1.configure(highlightcolor="black")
-        self.Checkbutton1.configure(justify='left')
-        self.Checkbutton1.configure(text='''Check''')
-        self.Checkbutton1.configure(variable=unknown_support.che93)
+        self.Checkbutton1.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                    disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                    highlightcolor="black", justify='left', text='''Check''', variable=unknown_support.che93)
 
         self.Checkbutton2 = tk.Checkbutton(self.TNotebook4_t0)
         self.Checkbutton2.place(relx=0.088, rely=0.435, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton2.configure(activebackground="#ececec")
-        self.Checkbutton2.configure(activeforeground="#000000")
-        self.Checkbutton2.configure(background="#d9d9d9")
-        self.Checkbutton2.configure(disabledforeground="#a3a3a3")
-        self.Checkbutton2.configure(foreground="#000000")
-        self.Checkbutton2.configure(highlightbackground="#d9d9d9")
-        self.Checkbutton2.configure(highlightcolor="black")
-        self.Checkbutton2.configure(justify='left')
-        self.Checkbutton2.configure(text='''Check''')
-        self.Checkbutton2.configure(variable=unknown_support.che94)
+        self.Checkbutton2.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                    disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                    highlightcolor="black", justify='left', text='''Check''', variable=unknown_support.che94)
 
         self.Checkbutton3 = tk.Checkbutton(self.TNotebook4_t0)
         self.Checkbutton3.place(relx=0.088, rely=0.478, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton3.configure(activebackground="#ececec")
-        self.Checkbutton3.configure(activeforeground="#000000")
-        self.Checkbutton3.configure(background="#d9d9d9")
-        self.Checkbutton3.configure(disabledforeground="#a3a3a3")
-        self.Checkbutton3.configure(foreground="#000000")
-        self.Checkbutton3.configure(highlightbackground="#d9d9d9")
-        self.Checkbutton3.configure(highlightcolor="black")
-        self.Checkbutton3.configure(justify='left')
-        self.Checkbutton3.configure(text='''Check''')
-        self.Checkbutton3.configure(variable=unknown_support.che95)
+        self.Checkbutton3.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                    disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                    highlightcolor="black", justify='left', text='''Check''', variable=unknown_support.che95)
 
         self.Checkbutton4 = tk.Checkbutton(self.TNotebook4_t0)
         self.Checkbutton4.place(relx=0.157, rely=0.391, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton4.configure(activebackground="#ececec")
-        self.Checkbutton4.configure(activeforeground="#000000")
-        self.Checkbutton4.configure(background="#d9d9d9")
-        self.Checkbutton4.configure(disabledforeground="#a3a3a3")
-        self.Checkbutton4.configure(foreground="#000000")
-        self.Checkbutton4.configure(highlightbackground="#d9d9d9")
-        self.Checkbutton4.configure(highlightcolor="black")
-        self.Checkbutton4.configure(justify='left')
-        self.Checkbutton4.configure(text='''Check''')
-        self.Checkbutton4.configure(variable=unknown_support.che96)
+        self.Checkbutton4.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                    disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                    highlightcolor="black", justify='left', text='''Check''', variable=unknown_support.che96)
 
         self.Checkbutton5 = tk.Checkbutton(self.TNotebook4_t0)
         self.Checkbutton5.place(relx=0.157, rely=0.435, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton5.configure(activebackground="#ececec")
-        self.Checkbutton5.configure(activeforeground="#000000")
-        self.Checkbutton5.configure(background="#d9d9d9")
-        self.Checkbutton5.configure(disabledforeground="#a3a3a3")
-        self.Checkbutton5.configure(foreground="#000000")
-        self.Checkbutton5.configure(highlightbackground="#d9d9d9")
-        self.Checkbutton5.configure(highlightcolor="black")
-        self.Checkbutton5.configure(justify='left')
-        self.Checkbutton5.configure(text='''Check''')
-        self.Checkbutton5.configure(variable=unknown_support.che97)
+        self.Checkbutton5.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                    disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                    highlightcolor="black", justify='left', text='''Check''', variable=unknown_support.che97)
 
         self.Checkbutton6 = tk.Checkbutton(self.TNotebook4_t0)
         self.Checkbutton6.place(relx=0.157, rely=0.478, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton6.configure(activebackground="#ececec")
-        self.Checkbutton6.configure(activeforeground="#000000")
-        self.Checkbutton6.configure(background="#d9d9d9")
-        self.Checkbutton6.configure(disabledforeground="#a3a3a3")
-        self.Checkbutton6.configure(foreground="#000000")
-        self.Checkbutton6.configure(highlightbackground="#d9d9d9")
-        self.Checkbutton6.configure(highlightcolor="black")
-        self.Checkbutton6.configure(justify='left')
-        self.Checkbutton6.configure(text='''Check''')
-        self.Checkbutton6.configure(variable=unknown_support.che99)
+        self.Checkbutton6.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                    disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                    highlightcolor="black", justify='left', text='''Check''', variable=unknown_support.che99)
 
         self.Button18 = tk.Button(self.TNotebook4_t0)
         self.Button18.place(relx=0.265, rely=0.391, height=24, width=47)
-        self.Button18.configure(activebackground="#ececec")
-        self.Button18.configure(activeforeground="#000000")
-        self.Button18.configure(background="#d9d9d9")
-        self.Button18.configure(command=unknown_support.Set9Temperatuur)
-        self.Button18.configure(disabledforeground="#a3a3a3")
-        self.Button18.configure(foreground="#000000")
-        self.Button18.configure(highlightbackground="#d9d9d9")
-        self.Button18.configure(highlightcolor="black")
-        self.Button18.configure(pady="0")
-        self.Button18.configure(text='''Set''')
+        self.Button18.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.Set9Temperatuur, disabledforeground="#a3a3a3",
+                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button2 = tk.Button(self.TNotebook4_t0)
         self.Button2.place(relx=0.265, rely=0.435, height=24, width=47)
-        self.Button2.configure(activebackground="#ececec")
-        self.Button2.configure(activeforeground="#000000")
-        self.Button2.configure(background="#d9d9d9")
-        self.Button2.configure(command=unknown_support.Set10Temperatuur)
-        self.Button2.configure(disabledforeground="#a3a3a3")
-        self.Button2.configure(foreground="#000000")
-        self.Button2.configure(highlightbackground="#d9d9d9")
-        self.Button2.configure(highlightcolor="black")
-        self.Button2.configure(pady="0")
-        self.Button2.configure(text='''Set''')
+        self.Button2.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                               command=unknown_support.Set10Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button19 = tk.Button(self.TNotebook4_t0)
         self.Button19.place(relx=0.265, rely=0.478, height=24, width=47)
-        self.Button19.configure(activebackground="#ececec")
-        self.Button19.configure(activeforeground="#000000")
-        self.Button19.configure(background="#d9d9d9")
-        self.Button19.configure(command=unknown_support.Set11Temperatuur)
-        self.Button19.configure(disabledforeground="#a3a3a3")
-        self.Button19.configure(foreground="#000000")
-        self.Button19.configure(highlightbackground="#d9d9d9")
-        self.Button19.configure(highlightcolor="black")
-        self.Button19.configure(pady="0")
-        self.Button19.configure(text='''Set''')
+        self.Button19.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.Set11Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Set''')
 
         self.Button20 = tk.Button(self.TNotebook4_t0)
         self.Button20.place(relx=0.324, rely=0.391, height=24, width=39)
-        self.Button20.configure(activebackground="#ececec")
-        self.Button20.configure(activeforeground="#000000")
-        self.Button20.configure(background="#d9d9d9")
-        self.Button20.configure(command=unknown_support.Reset9Temperatuur)
-        self.Button20.configure(disabledforeground="#a3a3a3")
-        self.Button20.configure(foreground="#000000")
-        self.Button20.configure(highlightbackground="#d9d9d9")
-        self.Button20.configure(highlightcolor="black")
-        self.Button20.configure(pady="0")
-        self.Button20.configure(text='''Reset''')
+        self.Button20.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.Reset9Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button21 = tk.Button(self.TNotebook4_t0)
         self.Button21.place(relx=0.324, rely=0.435, height=24, width=39)
-        self.Button21.configure(activebackground="#ececec")
-        self.Button21.configure(activeforeground="#000000")
-        self.Button21.configure(background="#d9d9d9")
-        self.Button21.configure(command=unknown_support.Reset10Temperatuur)
-        self.Button21.configure(disabledforeground="#a3a3a3")
-        self.Button21.configure(foreground="#000000")
-        self.Button21.configure(highlightbackground="#d9d9d9")
-        self.Button21.configure(highlightcolor="black")
-        self.Button21.configure(pady="0")
-        self.Button21.configure(text='''Reset''')
+        self.Button21.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.Reset10Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Button22 = tk.Button(self.TNotebook4_t0)
         self.Button22.place(relx=0.324, rely=0.478, height=24, width=39)
-        self.Button22.configure(activebackground="#ececec")
-        self.Button22.configure(activeforeground="#000000")
-        self.Button22.configure(background="#d9d9d9")
-        self.Button22.configure(command=unknown_support.Reset11Temperatuur)
-        self.Button22.configure(disabledforeground="#a3a3a3")
-        self.Button22.configure(foreground="#000000")
-        self.Button22.configure(highlightbackground="#d9d9d9")
-        self.Button22.configure(highlightcolor="black")
-        self.Button22.configure(pady="0")
-        self.Button22.configure(text='''Reset''')
+        self.Button22.configure(activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                command=unknown_support.Reset11Temperatuur, disabledforeground="#a3a3a3", foreground="#000000",
+                                highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Reset''')
 
         self.Entry9 = tk.Entry(self.TNotebook4_t1)
         self.Entry9.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
-        self.Entry9.configure(background="white")
-        self.Entry9.configure(disabledforeground="#a3a3a3")
-        self.Entry9.configure(font="TkFixedFont")
-        self.Entry9.configure(foreground="#000000")
-        self.Entry9.configure(highlightbackground="#d9d9d9")
-        self.Entry9.configure(highlightcolor="black")
-        self.Entry9.configure(insertbackground="black")
-        self.Entry9.configure(selectbackground="#c4c4c4")
-        self.Entry9.configure(selectforeground="black")
+        self.Entry9.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                              selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry10 = tk.Entry(self.TNotebook4_t1)
         self.Entry10.place(relx=0.088, rely=0.072, height=20, relwidth=0.161)
-        self.Entry10.configure(background="white")
-        self.Entry10.configure(disabledforeground="#a3a3a3")
-        self.Entry10.configure(font="TkFixedFont")
-        self.Entry10.configure(foreground="#000000")
-        self.Entry10.configure(highlightbackground="#d9d9d9")
-        self.Entry10.configure(highlightcolor="black")
-        self.Entry10.configure(insertbackground="black")
-        self.Entry10.configure(selectbackground="#c4c4c4")
-        self.Entry10.configure(selectforeground="black")
+        self.Entry10.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                               selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry11 = tk.Entry(self.TNotebook4_t1)
         self.Entry11.place(relx=0.088, rely=0.116, height=20, relwidth=0.161)
-        self.Entry11.configure(background="white")
-        self.Entry11.configure(disabledforeground="#a3a3a3")
-        self.Entry11.configure(font="TkFixedFont")
-        self.Entry11.configure(foreground="#000000")
-        self.Entry11.configure(highlightbackground="#d9d9d9")
-        self.Entry11.configure(highlightcolor="black")
-        self.Entry11.configure(insertbackground="black")
-        self.Entry11.configure(selectbackground="#c4c4c4")
-        self.Entry11.configure(selectforeground="black")
+        self.Entry11.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                               selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry12 = tk.Entry(self.TNotebook4_t1)
         self.Entry12.place(relx=0.088, rely=0.159, height=20, relwidth=0.161)
-        self.Entry12.configure(background="white")
-        self.Entry12.configure(disabledforeground="#a3a3a3")
-        self.Entry12.configure(font="TkFixedFont")
-        self.Entry12.configure(foreground="#000000")
-        self.Entry12.configure(highlightbackground="#d9d9d9")
-        self.Entry12.configure(highlightcolor="black")
-        self.Entry12.configure(insertbackground="black")
-        self.Entry12.configure(selectbackground="#c4c4c4")
-        self.Entry12.configure(selectforeground="black")
+        self.Entry12.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                               selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry13 = tk.Entry(self.TNotebook4_t1)
         self.Entry13.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
-        self.Entry13.configure(background="white")
-        self.Entry13.configure(disabledforeground="#a3a3a3")
-        self.Entry13.configure(font="TkFixedFont")
-        self.Entry13.configure(foreground="#000000")
-        self.Entry13.configure(highlightbackground="#d9d9d9")
-        self.Entry13.configure(highlightcolor="black")
-        self.Entry13.configure(insertbackground="black")
-        self.Entry13.configure(selectbackground="#c4c4c4")
-        self.Entry13.configure(selectforeground="black")
+        self.Entry13.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                               selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry14 = tk.Entry(self.TNotebook4_t1)
         self.Entry14.place(relx=0.088, rely=0.246, height=20, relwidth=0.161)
-        self.Entry14.configure(background="white")
-        self.Entry14.configure(disabledforeground="#a3a3a3")
-        self.Entry14.configure(font="TkFixedFont")
-        self.Entry14.configure(foreground="#000000")
-        self.Entry14.configure(highlightbackground="#d9d9d9")
-        self.Entry14.configure(highlightcolor="black")
-        self.Entry14.configure(insertbackground="black")
-        self.Entry14.configure(selectbackground="#c4c4c4")
-        self.Entry14.configure(selectforeground="black")
+        self.Entry14.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                               selectbackground="#c4c4c4", selectforeground="black")
 
         self.Entry15 = tk.Entry(self.TNotebook4_t1)
         self.Entry15.place(relx=0.088, rely=0.29, height=20, relwidth=0.161)
-        self.Entry15.configure(background="white")
-        self.Entry15.configure(disabledforeground="#a3a3a3")
-        self.Entry15.configure(font="TkFixedFont")
-        self.Entry15.configure(foreground="#000000")
-        self.Entry15.configure(highlightbackground="#d9d9d9")
-        self.Entry15.configure(highlightcolor="black")
-        self.Entry15.configure(insertbackground="black")
-        self.Entry15.configure(selectbackground="#c4c4c4")
-        self.Entry15.configure(selectforeground="black")
+        self.Entry15.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                               highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
+                               selectbackground="#c4c4c4", selectforeground="black")
 
         self.Label3 = tk.Label(self.TNotebook4_t1)
         self.Label3.place(relx=0.02, rely=0.029, height=21, width=43)
-        self.Label3.configure(activebackground="#f9f9f9")
-        self.Label3.configure(activeforeground="black")
-        self.Label3.configure(background="#d9d9d9")
-        self.Label3.configure(disabledforeground="#a3a3a3")
-        self.Label3.configure(foreground="#000000")
-        self.Label3.configure(highlightbackground="#d9d9d9")
-        self.Label3.configure(highlightcolor="black")
-        self.Label3.configure(text='''Setting''')
+        self.Label3.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label4 = tk.Label(self.TNotebook4_t1)
         self.Label4.place(relx=0.02, rely=0.072, height=21, width=43)
-        self.Label4.configure(activebackground="#f9f9f9")
-        self.Label4.configure(activeforeground="black")
-        self.Label4.configure(background="#d9d9d9")
-        self.Label4.configure(disabledforeground="#a3a3a3")
-        self.Label4.configure(foreground="#000000")
-        self.Label4.configure(highlightbackground="#d9d9d9")
-        self.Label4.configure(highlightcolor="black")
-        self.Label4.configure(text='''Setting''')
+        self.Label4.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label5 = tk.Label(self.TNotebook4_t1)
         self.Label5.place(relx=0.02, rely=0.116, height=21, width=43)
-        self.Label5.configure(activebackground="#f9f9f9")
-        self.Label5.configure(activeforeground="black")
-        self.Label5.configure(background="#d9d9d9")
-        self.Label5.configure(disabledforeground="#a3a3a3")
-        self.Label5.configure(foreground="#000000")
-        self.Label5.configure(highlightbackground="#d9d9d9")
-        self.Label5.configure(highlightcolor="black")
-        self.Label5.configure(text='''Setting''')
+        self.Label5.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label6 = tk.Label(self.TNotebook4_t1)
         self.Label6.place(relx=0.02, rely=0.159, height=21, width=43)
-        self.Label6.configure(activebackground="#f9f9f9")
-        self.Label6.configure(activeforeground="black")
-        self.Label6.configure(background="#d9d9d9")
-        self.Label6.configure(disabledforeground="#a3a3a3")
-        self.Label6.configure(foreground="#000000")
-        self.Label6.configure(highlightbackground="#d9d9d9")
-        self.Label6.configure(highlightcolor="black")
-        self.Label6.configure(text='''Setting''')
+        self.Label6.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label7 = tk.Label(self.TNotebook4_t1)
         self.Label7.place(relx=0.02, rely=0.203, height=21, width=43)
-        self.Label7.configure(activebackground="#f9f9f9")
-        self.Label7.configure(activeforeground="black")
-        self.Label7.configure(background="#d9d9d9")
-        self.Label7.configure(disabledforeground="#a3a3a3")
-        self.Label7.configure(foreground="#000000")
-        self.Label7.configure(highlightbackground="#d9d9d9")
-        self.Label7.configure(highlightcolor="black")
-        self.Label7.configure(text='''Setting''')
+        self.Label7.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label8 = tk.Label(self.TNotebook4_t1)
         self.Label8.place(relx=0.02, rely=0.246, height=21, width=43)
-        self.Label8.configure(activebackground="#f9f9f9", activeforeground="black")
-        self.Label8.configure(background="#d9d9d9")
-        self.Label8.configure(disabledforeground="#a3a3a3")
-        self.Label8.configure(foreground="#000000")
-        self.Label8.configure(highlightbackground="#d9d9d9")
-        self.Label8.configure(highlightcolor="black")
-        self.Label8.configure(text='''Setting''')
+        self.Label8.configure(activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                              highlightcolor="black", text='''Setting''')
 
         self.Label9 = tk.Label(self.TNotebook4_t1)
         self.Label9.place(relx=0.02, rely=0.29, height=21, width=43)
