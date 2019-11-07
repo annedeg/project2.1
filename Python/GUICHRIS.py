@@ -67,8 +67,6 @@ def destroy_Toplevel1():
     w.destroy()
     w = None
 
-def get_temperatuur_1():
-    return poopy
 
 class Toplevel1:
     def __init__(self, top=None):
@@ -83,7 +81,7 @@ class Toplevel1:
         _ana2color = '#ececec'  # Closest X11 color: 'gray92'
         self.style = ttk.Style()
         self.buttonstyle = ttk.Style()
-        self.buttonstyle.configure('Custom.TButton', padding=6, relief="flat", background="#000")
+        self.buttonstyle.configure('Custom.TButton', padding=1, relief="flat", background="#000")
         top.geometry("1032x754+478+139")
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
@@ -103,8 +101,7 @@ class Toplevel1:
 
         self.TNotebook1_t0 = tk.Frame(self.TNotebook1)
         self.TNotebook1.add(self.TNotebook1_t0, padding=3)
-        self.TNotebook1.tab(0, text="Dashboard", compound="left", underline="-1"
-                            , )
+        self.TNotebook1.tab(0, text="Dashboard", compound="left", underline="-1", )
         self.TNotebook1_t0.configure(highlightbackground="#d9d9d9", background="#d9d9d9", highlightcolor="black")
 
         self.TNotebook1_t1 = tk.Frame(self.TNotebook1)
