@@ -70,6 +70,7 @@ def destroy_Toplevel1():
 class Toplevel1(tk.Frame):
     def __init__(self, top=None):
         tk.Frame.__init__(self, top)
+        self.zonnescherm_status = 0
         self.arduinos = []
         self.activeComPorts = []
         self.total_data = [[],[],[],[]]
@@ -953,9 +954,9 @@ class Toplevel1(tk.Frame):
         self.dubbel_counter = 0
         self.send = 0
         self.huidige_grafiek = 0
-        self.temp_gemiddelde = [[0],[0],[0],[0]]
-        self.distance_gemiddelde = [[0],[0],[0],[0]]
-        self.light_gemiddelde = [[0],[0],[0],[0]]
+        self.temp_gemiddelde = [0,0,0,0]
+        self.distance_gemiddelde = [0,0,0,0]
+        self.light_gemiddelde = [0,0,0,0]
         self.loop()
 
 
@@ -1025,7 +1026,7 @@ class Toplevel1(tk.Frame):
                         aantal+=1
                     arduino.close()
 
-
+            self.open_or_close(self.temp_gemiddelde, self.light_gemiddelde, self.distance_gemiddelde)
             if self.counter > 3:
                 self.dubbel_counter+=1
                 self.after_idle(self.fix_grafieken)
@@ -1081,6 +1082,11 @@ class Toplevel1(tk.Frame):
         aantal = 0
         aantal_live = len(self.arduinos)
         self.Listbox1.delete(0, END)
+        self.Listbox2.delete(0, END)
+        if self.zonnescherm_status == 0:
+            self.FillListbox2(str("Zonnescherm is dicht "), 1)
+        else:
+            self.FillListbox2(str("Zonnescherm is open "), 1)
         for i in range(4):
             if(i+1 <= aantal_live):
                 self.FillListbox1(str("Arduino ") + str(i+1) + str(" is live"), i+1)
@@ -1089,15 +1095,74 @@ class Toplevel1(tk.Frame):
         self.animatecanvas1(self.distance_gemiddelde[self.huidige_grafiek])
         self.animatecanvas3(self.temp_gemiddelde[self.huidige_grafiek])
         self.animatecanvas2(self.light_gemiddelde[self.huidige_grafiek])
+
+        self.animatecanvas4(self.distance_gemiddelde[0])
+        self.animatecanvas5(self.light_gemiddelde[0])
+        self.animatecanvas6(self.temp_gemiddelde[0])
+        self.animatecanvas7(self.distance_gemiddelde[1])
+        self.animatecanvas8(self.light_gemiddelde[1])
+        self.animatecanvas9(self.temp_gemiddelde[1])
+        self.animatecanvas10(self.distance_gemiddelde[2])
+        self.animatecanvas11(self.light_gemiddelde[2])
+        self.animatecanvas12(self.temp_gemiddelde[2])
+        self.animatecanvas13(self.distance_gemiddelde[3])
+        self.animatecanvas14(self.light_gemiddelde[3])
+        self.animatecanvas15(self.temp_gemiddelde[3])
+
         self.SetBar1Data(self.distance_gemiddelde[0],self.distance_gemiddelde[1],self.distance_gemiddelde[2],self.distance_gemiddelde[3])
         self.SetBar2Data(self.light_gemiddelde[0],self.light_gemiddelde[1],self.light_gemiddelde[2],self.light_gemiddelde[3])
         self.SetBar3Data(self.temp_gemiddelde[0], self.temp_gemiddelde[1], self.temp_gemiddelde[2], self.temp_gemiddelde[3])
 
+
+    def open_or_close(self, gemiddelde_temp, gemiddelde_light, gemiddelde_afstand):
+        aantal_light = 0
+        aantal_temp = 0
+        aantal_afstand = 0
+        light = 0
+        temp = 0
+        afstand = 0
+        print(gemiddelde_temp)
+        for i in gemiddelde_temp:
+            print(i)
+            if i != 0:
+                aantal_temp+=1
+                temp+=i
+
+        for i in gemiddelde_light:
+            if i != 0:
+                aantal_light+=1
+                light+=i
+
+        for i in gemiddelde_afstand:
+            if i != 0:
+                aantal_afstand+=1
+                afstand+=i
+
+        if aantal_light == 0:
+            aantal_light =1
+        if aantal_afstand == 0:
+            aantal_afstand =1
+        if aantal_temp == 0:
+            aantal_temp = 1
+        light = int(light/aantal_light)
+        temp = int(temp/aantal_temp)
+        print(self.maxlight, self.maxtemp, "asadf")
+        if light > self.maxlight:
+            self.open_zonnescherm()
+
+        if temp > self.maxtemp:
+            self.open_zonnescherm()
+
+        if light < self.maxlight and temp < self.maxtemp:
+            self.close_zonnescherm()
+
     def open_zonnescherm(self):
+        self.zonnescherm_status = 1
         for i in self.arduinos:
             i.write(bytearray(b'\x02'))
 
     def close_zonnescherm(self):
+        self.zonnescherm_status = 0
         for i in self.arduinos:
             i.write(bytearray(b'\x01'))
 
@@ -1155,7 +1220,7 @@ class Toplevel1(tk.Frame):
         self.canvas5y.append(y)
         self.new5x += 1
         self.canvas5.plot(self.canvas5x, self.canvas5y , color= "blue")
-        self.canvas4a.draw()
+        self.canvas5a.draw()
 
     def animatecanvas6(self, y):
         self.canvas6x.append(self.new6x)
@@ -1166,7 +1231,7 @@ class Toplevel1(tk.Frame):
         self.canvas6y.append(y)
         self.new6x += 1
         self.canvas6.plot(self.canvas6x, self.canvas6y , color= "blue")
-        self.canvas5a.draw()
+        self.canvas6a.draw()
 
     def animatecanvas7(self, y):
         self.canvas7x.append(self.new7x)
@@ -1177,7 +1242,7 @@ class Toplevel1(tk.Frame):
         self.canvas7y.append(y)
         self.new7x += 1
         self.canvas7.plot(self.canvas7x, self.canvas7y , color= "blue")
-        self.canvas5a.draw()
+        self.canvas7a.draw()
 
     def animatecanvas8(self, y):
         self.canvas8x.append(self.new8x)
@@ -1188,7 +1253,7 @@ class Toplevel1(tk.Frame):
         self.canvas8y.append(y)
         self.new8x += 1
         self.canvas8.plot(self.canvas8x, self.canvas8y , color= "blue")
-        self.canvas6a.draw()
+        self.canvas8a.draw()
 
     def animatecanvas9(self, y):
         self.canvas9x.append(self.new9x)
@@ -1199,7 +1264,7 @@ class Toplevel1(tk.Frame):
         self.canvas9y.append(y)
         self.new9x += 1
         self.canvas9.plot(self.canvas9x, self.canvas9y , color= "blue")
-        self.canvas6a.draw()
+        self.canvas9a.draw()
 
     def animatecanvas10(self, y):
         self.canvas10x.append(self.new10x)
@@ -1210,7 +1275,7 @@ class Toplevel1(tk.Frame):
         self.canvas10y.append(y)
         self.new10x += 1
         self.canvas10.plot(self.canvas10x, self.canvas10y , color= "blue")
-        self.canvas7a.draw()
+        self.canvas10a.draw()
 
     def animatecanvas11(self, y):
         self.canvas11x.append(self.new11x)
@@ -1221,7 +1286,7 @@ class Toplevel1(tk.Frame):
         self.canvas11y.append(y)
         self.new11x += 1
         self.canvas11.plot(self.canvas11x, self.canvas11y , color= "blue")
-        self.canvas7a.draw()
+        self.canvas11a.draw()
 
     def animatecanvas12(self, y):
         self.canvas12x.append(self.new12x)
@@ -1232,7 +1297,7 @@ class Toplevel1(tk.Frame):
         self.canvas12y.append(y)
         self.new12x += 1
         self.canvas12.plot(self.canvas12x, self.canvas12y , color= "blue")
-        self.canvas4a.draw()
+        self.canvas12a.draw()
 
     def animatecanvas13(self, y):
         self.canvas13x.append(self.new13x)
@@ -1243,7 +1308,7 @@ class Toplevel1(tk.Frame):
         self.canvas13y.append(y)
         self.new11x += 1
         self.canvas13.plot(self.canvas13x, self.canvas13y , color= "blue")
-        self.canvas5a.draw()
+        self.canvas13a.draw()
 
     def animatecanvas14(self, y):
         self.canvas14x.append(self.new14x)
@@ -1254,7 +1319,7 @@ class Toplevel1(tk.Frame):
         self.canvas14y.append(y)
         self.new11x += 1
         self.canvas14.plot(self.canvas14x, self.canvas14y , color= "blue")
-        self.canvas6a.draw()
+        self.canvas14a.draw()
 
     def animatecanvas15(self, y):
         self.canvas15x.append(self.new15x)
@@ -1265,7 +1330,7 @@ class Toplevel1(tk.Frame):
         self.canvas15y.append(y)
         self.new11x += 1
         self.canvas15.plot(self.canvas15x, self.canvas15y , color= "blue")
-        self.canvas7a.draw()
+        self.canvas15a.draw()
 
     def Set1Temperatuur(self):
         print(self.Entry1.get())
@@ -1412,18 +1477,17 @@ class Toplevel1(tk.Frame):
     def FillListbox1(self, string, index):
         self.Listbox1.insert(index, string)
 
-    def FillListbox2(self, string):
-        self.Listbox2.delete(0, END)
-        self.Listbox2.insert(1, string)
+    def FillListbox2(self, string, index):
+        self.Listbox2.insert(index, string)
 
     def setTemp(self):
-        self.maxtemp = 99
+        self.maxlight = int(self.Entry1.get())
 
     def setLight(self):
-        self.maxlight = 99
+        self.maxtemp = int(self.Entry2.get())
 
     def resetTemp(self):
-        self.maxtemp = 250
+        self.maxtemp = 200
 
     def resetLight(self):
         self.maxlight = 70
