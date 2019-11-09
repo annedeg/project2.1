@@ -509,96 +509,96 @@ class Toplevel1:
         self.Button71.configure(command=self.switchToArduino4, text='''Arduino 4''')
 
         self.checkbuttonstyle = ttk.Style()
-        self.checkbuttonstyle.configure('Custom.CheckButton', activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+        self.checkbuttonstyle.configure('Custom.TCheckbutton', activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
                                      disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
                                      highlightcolor="black", justify='left', text='''Check''')
 
-        self.Checkbutton1 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.CheckButton')
+        self.Checkbutton1 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton1.place(relx=0.088, rely=0.391, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton1.configure(variable=unknown_support.che93)
 
-        self.Checkbutton2 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.CheckButton')
+        self.Checkbutton2 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton2.place(relx=0.088, rely=0.435, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton2.configure(variable=unknown_support.che94)
 
-        self.Checkbutton3 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.CheckButton')
+        self.Checkbutton3 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton3.place(relx=0.088, rely=0.478, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton3.configure(variable=unknown_support.che95)
 
-        self.Checkbutton4 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.CheckButton')
+        self.Checkbutton4 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton4.place(relx=0.157, rely=0.391, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton4.configure(variable=unknown_support.che96)
 
-        self.Checkbutton5 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.CheckButton')
+        self.Checkbutton5 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton5.place(relx=0.157, rely=0.435, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton5.configure(variable=unknown_support.che97)
 
-        self.Checkbutton6 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.CheckButton')
+        self.Checkbutton6 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton6.place(relx=0.157, rely=0.478, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton6.configure(variable=unknown_support.che99)
 
-        self.Checkbutton7 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.CheckButton')
+        self.Checkbutton7 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton7.place(relx=0.088, rely=0.391, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton7.configure(variable=unknown_support.che72)
 
-        self.Checkbutton8 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.CheckButton')
+        self.Checkbutton8 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton8.place(relx=0.088, rely=0.435, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton8.configure(variable=unknown_support.che73)
 
-        self.Checkbutton9 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.CheckButton')
+        self.Checkbutton9 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton9.place(relx=0.088, rely=0.478, relheight=0.036
                                 , relwidth=0.06)
         self.Checkbutton9.configure(variable=unknown_support.che74)
 
-        self.Checkbutton10 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.CheckButton')
+        self.Checkbutton10 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton10.place(relx=0.157, rely=0.391, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton10.configure(variable=unknown_support.che75)
 
-        self.Checkbutton11 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.CheckButton')
+        self.Checkbutton11 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton11.place(relx=0.157, rely=0.435, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton11.configure(variable=unknown_support.che76)
 
-        self.Checkbutton12 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.CheckButton')
+        self.Checkbutton12 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton12.place(relx=0.157, rely=0.478, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton12.configure(variable=unknown_support.che77)
 
-        self.Checkbutton13 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.CheckButton')
+        self.Checkbutton13 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton13.place(relx=0.088, rely=0.391, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton13.configure(variable=unknown_support.che120)
 
-        self.Checkbutton14 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.CheckButton')
+        self.Checkbutton14 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton14.place(relx=0.088, rely=0.435, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton14.configure(variable=unknown_support.che121)
 
-        self.Checkbutton15 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.CheckButton')
+        self.Checkbutton15 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton15.place(relx=0.088, rely=0.478, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton15.configure(variable=unknown_support.che122)
 
-        self.Checkbutton16 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.CheckButton')
+        self.Checkbutton16 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton16.place(relx=0.157, rely=0.391, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton16.configure(variable=unknown_support.che123)
 
-        self.Checkbutton17 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.CheckButton')
+        self.Checkbutton17 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton17.place(relx=0.157, rely=0.435, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton17.configure(variable=unknown_support.che124)
 
-        self.Checkbutton18 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.CheckButton')
+        self.Checkbutton18 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton18.place(relx=0.157, rely=0.478, relheight=0.036
                                  , relwidth=0.06)
         self.Checkbutton18.configure(variable=unknown_support.che125)
@@ -610,7 +610,7 @@ class Toplevel1:
                                 foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
                                 selectbackground="#c4c4c4", selectforeground="black")
 
-        self.Listbox2 = tk.Listbox(self.TNotebook1_t0, style='Custom.ListBox')
+        self.Listbox2 = tk.Listbox(self.TNotebook1_t0)
         self.Listbox2.place(relx=0.01, rely=0.26, relheight=0.236
                             , relwidth=0.272)
         self.Listbox2.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
@@ -752,88 +752,88 @@ class Toplevel1:
         self.canvas7a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.entry_style = ttk.Style()
-        self.entry_style.configure('Custom.Entry', background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+        self.entry_style.configure('Custom.TEntry', background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
                               highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
                               selectbackground="#c4c4c4", selectforeground="black")
 
-        self.Entry1 = ttk.Entry(self.TNotebook4_t0, style='Custom.Entry')
+        self.Entry1 = ttk.Entry(self.TNotebook4_t0, style='Custom.TEntry')
         self.Entry1.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
 
-        self.Entry2 = ttk.Entry(self.TNotebook4_t0, style='Custom.Entry')
+        self.Entry2 = ttk.Entry(self.TNotebook4_t0, style='Custom.TEntry')
         self.Entry2.place(relx=0.088, rely=0.072, height=20, relwidth=0.161)
 
-        self.Entry3 = ttk.Entry(self.TNotebook4_t0, style='Custom.Entry')
+        self.Entry3 = ttk.Entry(self.TNotebook4_t0, style='Custom.TEntry')
         self.Entry3.place(relx=0.088, rely=0.116, height=20, relwidth=0.161)
 
-        self.Entry4 = ttk.Entry(self.TNotebook4_t0, style='Custom.Entry')
+        self.Entry4 = ttk.Entry(self.TNotebook4_t0, style='Custom.TEntry')
         self.Entry4.place(relx=0.088, rely=0.159, height=20, relwidth=0.161)
 
-        self.Entry5 = ttk.Entry(self.TNotebook4_t0, style='Custom.Entry')
+        self.Entry5 = ttk.Entry(self.TNotebook4_t0, style='Custom.TEntry')
         self.Entry5.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
 
-        self.Entry6 = ttk.Entry(self.TNotebook4_t0, style='Custom.Entry')
+        self.Entry6 = ttk.Entry(self.TNotebook4_t0, style='Custom.TEntry')
         self.Entry6.place(relx=0.088, rely=0.246, height=20, relwidth=0.161)
 
-        self.Entry7 = ttk.Entry(self.TNotebook4_t0, style='Custom.Entry')
+        self.Entry7 = ttk.Entry(self.TNotebook4_t0, style='Custom.TEntry')
         self.Entry7.place(relx=0.088, rely=0.29, height=20, relwidth=0.161)
 
-        self.Entry8 = ttk.Entry(self.TNotebook4_t0, style='Custom.Entry')
+        self.Entry8 = ttk.Entry(self.TNotebook4_t0, style='Custom.TEntry')
         self.Entry8.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
 
-        self.Entry9 = ttk.Entry(self.TNotebook4_t1, style='Custom.Entry')
+        self.Entry9 = ttk.Entry(self.TNotebook4_t1, style='Custom.TEntry')
         self.Entry9.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
 
-        self.Entry10 = ttk.Entry(self.TNotebook4_t1, style='Custom.Entry')
+        self.Entry10 = ttk.Entry(self.TNotebook4_t1, style='Custom.TEntry')
         self.Entry10.place(relx=0.088, rely=0.072, height=20, relwidth=0.161)
 
-        self.Entry11 = ttk.Entry(self.TNotebook4_t1, style='Custom.Entry')
+        self.Entry11 = ttk.Entry(self.TNotebook4_t1, style='Custom.TEntry')
         self.Entry11.place(relx=0.088, rely=0.116, height=20, relwidth=0.161)
 
-        self.Entry12 = ttk.Entry(self.TNotebook4_t1, style='Custom.Entry')
+        self.Entry12 = ttk.Entry(self.TNotebook4_t1, style='Custom.TEntry')
         self.Entry12.place(relx=0.088, rely=0.159, height=20, relwidth=0.161)
 
-        self.Entry13 = ttk.Entry(self.TNotebook4_t1, style='Custom.Entry')
+        self.Entry13 = ttk.Entry(self.TNotebook4_t1, style='Custom.TEntry')
         self.Entry13.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
 
-        self.Entry14 = ttk.Entry(self.TNotebook4_t1, style='Custom.Entry')
+        self.Entry14 = ttk.Entry(self.TNotebook4_t1, style='Custom.TEntry')
         self.Entry14.place(relx=0.088, rely=0.246, height=20, relwidth=0.161)
 
-        self.Entry15 = ttk.Entry(self.TNotebook4_t1, style='Custom.Entry')
+        self.Entry15 = ttk.Entry(self.TNotebook4_t1, style='Custom.TEntry')
         self.Entry15.place(relx=0.088, rely=0.29, height=20, relwidth=0.161)
 
-        self.Entry16 = ttk.Entry(self.TNotebook4_t2, style='Custom.Entry')
+        self.Entry16 = ttk.Entry(self.TNotebook4_t2, style='Custom.TEntry')
         self.Entry16.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
 
-        self.Entry17 = ttk.Entry(self.TNotebook4_t2, style='Custom.Entry')
+        self.Entry17 = ttk.Entry(self.TNotebook4_t2, style='Custom.TEntry')
         self.Entry17.place(relx=0.088, rely=0.072, height=20, relwidth=0.161)
 
-        self.Entry18 = ttk.Entry(self.TNotebook4_t2, style='Custom.Entry')
+        self.Entry18 = ttk.Entry(self.TNotebook4_t2, style='Custom.TEntry')
         self.Entry18.place(relx=0.088, rely=0.116, height=20, relwidth=0.161)
 
-        self.Entry19 = ttk.Entry(self.TNotebook4_t2, style='Custom.Entry')
+        self.Entry19 = ttk.Entry(self.TNotebook4_t2, style='Custom.TEntry')
         self.Entry19.place(relx=0.088, rely=0.159, height=20, relwidth=0.161)
 
-        self.Entry20 = ttk.Entry(self.TNotebook4_t2, style='Custom.Entry')
+        self.Entry20 = ttk.Entry(self.TNotebook4_t2, style='Custom.TEntry')
         self.Entry20.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
 
-        self.Entry21 = ttk.Entry(self.TNotebook4_t2, style='Custom.Entry')
+        self.Entry21 = ttk.Entry(self.TNotebook4_t2, style='Custom.TEntry')
         self.Entry21.place(relx=0.088, rely=0.246, height=20, relwidth=0.161)
 
-        self.Entry22 = ttk.Entry(self.TNotebook4_t2, style='Custom.Entry')
+        self.Entry22 = ttk.Entry(self.TNotebook4_t2, style='Custom.TEntry')
         self.Entry22.place(relx=0.088, rely=0.29, height=20, relwidth=0.161)
 
-        self.Entry23 = ttk.Entry(self.TNotebook4_t2, style='Custom.Entry')
+        self.Entry23 = ttk.Entry(self.TNotebook4_t2, style='Custom.TEntry')
         self.Entry23.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
 
-        self.Entry24 = ttk.Entry(self.TNotebook4_t1, style='Custom.Entry')
+        self.Entry24 = ttk.Entry(self.TNotebook4_t1, style='Custom.TEntry')
         self.Entry24.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
 
         self.label_style = ttk.Style()
-        self.label_style.configure('Custom.Label', activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
+        self.label_style.configure('Custom.TLabel', activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
                               highlightcolor="black")
 
-        self.Label1 = ttk.Label(self.TNotebook1_t3, style='Custom.Label')
+        self.Label1 = ttk.Label(self.TNotebook1_t3, style='Custom.TLabel')
         self.Label1.place(relx=0.01, rely=0.014, height=391, width=674)
         self.Label1.configure(text='''Cuckservative
         From Wikipedia, the free encyclopedia
@@ -844,100 +844,100 @@ class Toplevel1:
 
         The term, as well as the shortened form "cuck" for cuckold, originated on websites such as 4chan (specifically the /pol/ imageboard) and 8chan, the right-wing message board My Posting Career,[1][3] the blog The Right Stuff,[8] and other sites in the alt-right movement.[3][9][10]''')
 
-        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.Label')
+        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.029, height=21, width=74)
         self.Label2.configure(text='''Setting''')
 
-        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.Label')
+        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.072, height=21, width=74)
         self.Label2.configure(text='''Setting''')
 
-        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.Label')
+        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.116, height=21, width=74)
         self.Label2.configure(text='''Setting''')
 
-        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.Label')
+        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.159, height=21, width=74)
         self.Label2.configure(text='''Setting''')
 
-        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.Label')
+        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.203, height=21, width=74)
         self.Label2.configure(text='''Setting''')
 
-        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.Label')
+        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.246, height=21, width=74)
         self.Label2.configure(text='''Setting''')
 
-        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.Label')
+        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.29, height=21, width=74)
         self.Label2.configure(text='''Setting''')
 
-        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.Label')
+        self.Label2 = ttk.Label(self.TNotebook4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.333, height=21, width=74)
         self.Label2.configure(text='''Setting''')
         #TODO waarom plaats je Label2 8 keer met identieke code?
 
-        self.Label3 = ttk.Label(self.TNotebook4_t1, style='Custom.Label')
+        self.Label3 = ttk.Label(self.TNotebook4_t1, style='Custom.TLabel')
         self.Label3.place(relx=0.02, rely=0.029, height=21, width=43)
         self.Label3.configure(text='''Setting''')
 
-        self.Label4 = ttk.Label(self.TNotebook4_t1, style='Custom.Label')
+        self.Label4 = ttk.Label(self.TNotebook4_t1, style='Custom.TLabel')
         self.Label4.place(relx=0.02, rely=0.072, height=21, width=43)
         self.Label4.configure(text='''Setting''')
 
-        self.Label5 = ttk.Label(self.TNotebook4_t1, style='Custom.Label')
+        self.Label5 = ttk.Label(self.TNotebook4_t1, style='Custom.TLabel')
         self.Label5.place(relx=0.02, rely=0.116, height=21, width=43)
         self.Label5.configure(text='''Setting''')
 
-        self.Label6 = ttk.Label(self.TNotebook4_t1, style='Custom.Label')
+        self.Label6 = ttk.Label(self.TNotebook4_t1, style='Custom.TLabel')
         self.Label6.place(relx=0.02, rely=0.159, height=21, width=43)
         self.Label6.configure(text='''Setting''')
 
-        self.Label7 = ttk.Label(self.TNotebook4_t1, style='Custom.Label')
+        self.Label7 = ttk.Label(self.TNotebook4_t1, style='Custom.TLabel')
         self.Label7.place(relx=0.02, rely=0.203, height=21, width=43)
         self.Label7.configure(text='''Setting''')
 
-        self.Label8 = ttk.Label(self.TNotebook4_t1, style='Custom.Label')
+        self.Label8 = ttk.Label(self.TNotebook4_t1, style='Custom.TLabel')
         self.Label8.place(relx=0.02, rely=0.246, height=21, width=43)
         self.Label8.configure(text='''Setting''')
 
-        self.Label9 = ttk.Label(self.TNotebook4_t1, style='Custom.Label')
+        self.Label9 = ttk.Label(self.TNotebook4_t1, style='Custom.TLabel')
         self.Label9.place(relx=0.02, rely=0.29, height=21, width=43)
         self.Label9.configure(text='''Setting''')
 
-        self.Label10 = ttk.Label(self.TNotebook4_t2, style='Custom.Label')
+        self.Label10 = ttk.Label(self.TNotebook4_t2, style='Custom.TLabel')
         self.Label10.place(relx=0.02, rely=0.029, height=21, width=43)
         self.Label10.configure(text='''Setting''')
 
-        self.Label11 = ttk.Label(self.TNotebook4_t2, style='Custom.Label')
+        self.Label11 = ttk.Label(self.TNotebook4_t2, style='Custom.TLabel')
         self.Label11.place(relx=0.02, rely=0.072, height=21, width=44)
         self.Label11.configure(text='''Setting''')
 
-        self.Label12 = ttk.Label(self.TNotebook4_t2, style='Custom.Label')
+        self.Label12 = ttk.Label(self.TNotebook4_t2, style='Custom.TLabel')
         self.Label12.place(relx=0.02, rely=0.116, height=21, width=43)
         self.Label12.configure(text='''Setting''')
 
-        self.Label13 = ttk.Label(self.TNotebook4_t2, style='Custom.Label')
+        self.Label13 = ttk.Label(self.TNotebook4_t2, style='Custom.TLabel')
         self.Label13.place(relx=0.02, rely=0.159, height=21, width=43)
         self.Label13.configure(text='''Setting''')
 
-        self.Label14 = ttk.Label(self.TNotebook4_t2, style='Custom.Label')
+        self.Label14 = ttk.Label(self.TNotebook4_t2, style='Custom.TLabel')
         self.Label14.place(relx=0.02, rely=0.203, height=21, width=43)
         self.Label14.configure(text='''Setting''')
 
-        self.Label15 = ttk.Label(self.TNotebook4_t2, style='Custom.Label')
+        self.Label15 = ttk.Label(self.TNotebook4_t2, style='Custom.TLabel')
         self.Label15.place(relx=0.02, rely=0.246, height=21, width=43)
         self.Label15.configure(text='''Setting''')
 
-        self.Label16 = ttk.Label(self.TNotebook4_t2, style='Custom.Label')
+        self.Label16 = ttk.Label(self.TNotebook4_t2, style='Custom.TLabel')
         self.Label16.place(relx=0.02, rely=0.29, height=21, width=43)
         self.Label16.configure(text='''Setting''')
 
-        self.Label17 = ttk.Label(self.TNotebook4_t2, style='Custom.Label')
+        self.Label17 = ttk.Label(self.TNotebook4_t2, style='Custom.TLabel')
         self.Label17.place(relx=0.02, rely=0.333, height=21, width=43)
         self.Label17.configure(text='''Setting''')
 
-        self.Label18 = ttk.Label(self.TNotebook4_t1, style='Custom.Label')
+        self.Label18 = ttk.Label(self.TNotebook4_t1, style='Custom.TLabel')
         self.Label18.place(relx=0.02, rely=0.333, height=21, width=43)
         self.Label18.configure(text='''Setting''')
 
