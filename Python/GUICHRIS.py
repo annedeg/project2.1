@@ -511,97 +511,97 @@ class Toplevel1:
         self.checkbuttonstyle = ttk.Style()
         self.checkbuttonstyle.configure('Custom.TCheckbutton', activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
                                      disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
-                                     highlightcolor="black", justify='left', text='''Check''')
+                                     highlightcolor="black", justify='left')
 
         self.Checkbutton1 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton1.place(relx=0.088, rely=0.391, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton1.configure(variable=unknown_support.che93)
+        self.Checkbutton1.configure(variable=unknown_support.che93, text='''Check''')
 
         self.Checkbutton2 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton2.place(relx=0.088, rely=0.435, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton2.configure(variable=unknown_support.che94)
+        self.Checkbutton2.configure(variable=unknown_support.che94, text='''Check''')
 
         self.Checkbutton3 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton3.place(relx=0.088, rely=0.478, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton3.configure(variable=unknown_support.che95)
+        self.Checkbutton3.configure(variable=unknown_support.che95, text='''Check''')
 
         self.Checkbutton4 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton4.place(relx=0.157, rely=0.391, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton4.configure(variable=unknown_support.che96)
+        self.Checkbutton4.configure(variable=unknown_support.che96, text='''Check''')
 
         self.Checkbutton5 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton5.place(relx=0.157, rely=0.435, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton5.configure(variable=unknown_support.che97)
+        self.Checkbutton5.configure(variable=unknown_support.che97, text='''Check''')
 
         self.Checkbutton6 = ttk.Checkbutton(self.TNotebook4_t0, style='Custom.TCheckbutton')
         self.Checkbutton6.place(relx=0.157, rely=0.478, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton6.configure(variable=unknown_support.che99)
+        self.Checkbutton6.configure(variable=unknown_support.che99, text='''Check''')
 
         self.Checkbutton7 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton7.place(relx=0.088, rely=0.391, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton7.configure(variable=unknown_support.che72)
+        self.Checkbutton7.configure(variable=unknown_support.che72, text='''Check''')
 
         self.Checkbutton8 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton8.place(relx=0.088, rely=0.435, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton8.configure(variable=unknown_support.che73)
+        self.Checkbutton8.configure(variable=unknown_support.che73, text='''Check''')
 
         self.Checkbutton9 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton9.place(relx=0.088, rely=0.478, relheight=0.036
                                 , relwidth=0.06)
-        self.Checkbutton9.configure(variable=unknown_support.che74)
+        self.Checkbutton9.configure(variable=unknown_support.che74, text='''Check''')
 
         self.Checkbutton10 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton10.place(relx=0.157, rely=0.391, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton10.configure(variable=unknown_support.che75)
+        self.Checkbutton10.configure(variable=unknown_support.che75, text='''Check''')
 
         self.Checkbutton11 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton11.place(relx=0.157, rely=0.435, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton11.configure(variable=unknown_support.che76)
+        self.Checkbutton11.configure(variable=unknown_support.che76, text='''Check''')
 
         self.Checkbutton12 = ttk.Checkbutton(self.TNotebook4_t1, style='Custom.TCheckbutton')
         self.Checkbutton12.place(relx=0.157, rely=0.478, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton12.configure(variable=unknown_support.che77)
+        self.Checkbutton12.configure(variable=unknown_support.che77, text='''Check''')
 
         self.Checkbutton13 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton13.place(relx=0.088, rely=0.391, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton13.configure(variable=unknown_support.che120)
+        self.Checkbutton13.configure(variable=unknown_support.che120, text='''Check''')
 
         self.Checkbutton14 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton14.place(relx=0.088, rely=0.435, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton14.configure(variable=unknown_support.che121)
+        self.Checkbutton14.configure(variable=unknown_support.che121, text='''Check''')
 
         self.Checkbutton15 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton15.place(relx=0.088, rely=0.478, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton15.configure(variable=unknown_support.che122)
+        self.Checkbutton15.configure(variable=unknown_support.che122, text='''Check''')
 
         self.Checkbutton16 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton16.place(relx=0.157, rely=0.391, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton16.configure(variable=unknown_support.che123)
+        self.Checkbutton16.configure(variable=unknown_support.che123, text='''Check''')
 
         self.Checkbutton17 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton17.place(relx=0.157, rely=0.435, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton17.configure(variable=unknown_support.che124)
+        self.Checkbutton17.configure(variable=unknown_support.che124, text='''Check''')
 
         self.Checkbutton18 = ttk.Checkbutton(self.TNotebook4_t2, style='Custom.TCheckbutton')
         self.Checkbutton18.place(relx=0.157, rely=0.478, relheight=0.036
                                  , relwidth=0.06)
-        self.Checkbutton18.configure(variable=unknown_support.che125)
+        self.Checkbutton18.configure(variable=unknown_support.che125, text='''Check''')
 
         self.Listbox1 = tk.Listbox(self.TNotebook1_t0)
         self.Listbox1.place(relx=0.01, rely=0.014, relheight=0.236

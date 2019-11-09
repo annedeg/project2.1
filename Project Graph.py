@@ -3,27 +3,23 @@ from tkinter import *
 
 
 class Graph:
-    def __init__(self):
+    def __init__(self, parent):
         self.s = 1
         self.x2 = 50
         self.y2 = 0
         self.running = True
-        self.gui = Tk()
-        self.canvas = Canvas(self.gui, width=1200, height=600, bg='white')      #kleur kan veranderen
+        self.parent = parent
+        self.canvas = Canvas(parent, width=1200, height=600, bg='white')      #kleur kan veranderen
 
     def value_to_y(self, val):
         return 550 - 5 * val
 
     def initialize(self, width, height, colour):
 
-        self.canvas = Canvas(self.gui, width=width, height=height, bg=colour)              # standaard was 1200, 600
+        self.canvas = Canvas(self.parent, width=width, height=height, bg=colour)              # standaard was 1200, 600
                                                          # colour moet een string zijn met de naam van de kleur, zoals 'white'
-        self.canvas.pack(expand=YES, fill=BOTH)
 
-        Button(self.gui, text='Pause', anchor=E, justify=LEFT, command=self.pause).pack(side=LEFT)  # als het nodig is
-
-        self.canvas.create_line(50, 550, 1150, 550, width=2)  # x-axis dikke lijn
-        self.canvas.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
+        self.canvas.create_line(50, 550, 1150, 55vas.create_text(600, 575, text='Step')  # ik weet niet welke tekst hier moet
         self.canvas.create_line(50, 550, 50, 50, width=2)  # y-axis dikke lijn
         self.canvas.create_text(18, 275,
                            text='Value')  # Ziet er echt super slordig uit maar ik weet niet hoe ik die text opzij kan
@@ -33,7 +29,8 @@ class Graph:
         for i in range(23):
             x = 50 + (i * 50)
             self.canvas.create_line(x, 550, x, 50, width=1, dash=(2, 5))
-            self.canvas.create_text(x, 550, text='%d' % (10 * i), anchor=N)
+            self.canvas.create_text(x, 550, text='%d'0, width=2)  # x-axis dikke lijn
+        self.can % (10 * i), anchor=N)
 
         # y-axis
         for i in range(11):
@@ -66,4 +63,3 @@ graph = Graph()
 graph.initialize(1200, 600, 'white')
 graph.step(50)
 graph.gui.mainloop()
-
