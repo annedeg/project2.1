@@ -2,7 +2,11 @@ import sys
 from tkinter import *
 import serial
 import time
+from send_data import *
 
+import _thread
+import queue
+import unknown_support
 from matplotlib import animation
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
@@ -29,21 +33,46 @@ except ImportError:
 
     py3 = True
 
-import serial.tools.list_ports
-import unknown_support
+
 aantal = 0
 aantal_huidig = 0
 getallen = []
 comPorts = []
 
 
+class ThreadSafeConsole(Text):
+    def __init__(self, master, **options):
+        Text.__init__(self, master, **options)
+        self.queue = queue.Queue()
+        self.update_me()
+    def write(self, line):
+        self.queue.put(line)
+    def clear(self):
+        self.queue.put(None)
+    def update_me(self):
+        try:
+            while 1:
+                line = self.queue.get_nowait()
+                if line is None:
+                    self.delete(1.0, END)
+                else:
+                    self.insert(END, str(line))
+                self.see(END)
+                self.update_idletasks()
+        except queue.Empty:
+            pass
+        self.after(100, self.update_me)
+
+
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
     global val, w, root
     root = tk.Tk()
+    ding = ThreadSafeConsole(root)
     unknown_support.set_Tk_var()
     top = toplevel1(root)
     unknown_support.init(root, top)
+    _thread.start_new(loop_loop, ())
     root.mainloop()
 
 
@@ -67,10 +96,8 @@ def destroy_toplevel1():
     w = None
 
 
-class toplevel1(tk.Frame):
+class toplevel1():
     def __init__(self, top=None):
-        tk.Frame.__init__(self, top)
-        self.zonnescherm_status = 0
         self.arduinos = []
         self.activeComPorts = []
         self.total_data = [[],[],[],[]]
@@ -134,6 +161,8 @@ class toplevel1(tk.Frame):
         self.t_notebook_2_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar1 = Figure(figsize=(5, 2), dpi=75)
         self.ax1 = bar1.add_subplot(111)
+
+
         self.data1 = (20, 45, 30, 35)
         self.ax1.set_title('NIET AANGESLOTEN', color="red")
         self.ind = np.arange(4)  # the x locations for the groups
@@ -222,9 +251,13 @@ class toplevel1(tk.Frame):
         self.ax3.set_title('NIET AANGESLOTEN', color="red")
         self.data3 = (20, 35, 30, 35)
 
+        self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.Button23.place(relx=0.01, rely=0.863, height=54, width=277)
+        self.Button23.configure(command=close_zonnescherm,  text='''CLOSE SCHERM''')
+
         self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
         self.button_1.place(relx=0.01, rely=0.767, height=54, width=277)
-        self.button_1.configure(command=self.open_zonnescherm, text='''OPEN SCHERM''')
+        self.button_1.configure(command=open_zonnescherm, text='''OPEN SCHERM''')
 
         self.button_2 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
         self.button_2.place(relx=0.265, rely=0.029, height=24, width=47)
@@ -631,7 +664,7 @@ class toplevel1(tk.Frame):
         self.fig1 = Figure(figsize=(5, 4), dpi=100)
         self.t = np.arange(0, 3, .01)
         self.canvas1 = self.fig1.add_subplot(1, 1, 1)
-        self.canvas1.set_ylabel('Temperatuur')
+        self.canvas1.set_ylabel('Afstand (cm)')
         self.canvas1.set_xlabel('Tijd')
         self.canvasx = []
         self.canvas1y = []
@@ -949,169 +982,59 @@ class toplevel1(tk.Frame):
         self.x2 = 50
         self.y2 = 0
         self.running = True
-        self.setup_arduinos()
         self.counter = 0
         self.dubbel_counter = 0
-        self.send = 0
         self.huidige_grafiek = 0
-        self.temp_gemiddelde = [0,0,0,0]
-        self.distance_gemiddelde = [0,0,0,0]
-        self.light_gemiddelde = [0,0,0,0]
         self.loop()
+        self.fix_grafieken()
 
 
-    def setup_arduinos(self):
-        comPorts = list(serial.tools.list_ports.comports())
-        for i in comPorts:
-            l = str(i).split()
-            if l[0] not in self.activeComPorts:
-                self.activeComPorts.append(l[0])
-                ser = serial.Serial(l[0], 19200)
-                time.sleep(1)
-                self.arduinos.append(ser)
-            arduinos2 = self.arduinos
 
     def loop(self):
-        global counter, getallen, aantal_huidig, arduinos, send
-
-        if len(self.arduinos) == 0:
-            self.setup_arduinos()
-        else:
-            aantal = 0
+        global counter, getallen, aantal_huidig, arduinos
+        self.open_or_close(temp_gemiddelde, light_gemiddelde, distance_gemiddelde)
+        self.fix_grafieken()
+        root.after(1000, self.loop)
 
 
-
-            ding = 0
-            for arduino in self.arduinos:
-                try:
-                    waarde = arduino.read().hex()
-                    if waarde == 'ff':
-
-                        scale = 16
-                        num_of_bits = 8
-                        binary_value = ""
-                        for i in range(4):
-                            binary_value = str(binary_value) + str(bin(int(self.arduinos[ding].read().hex(), scale))[2:].zfill(num_of_bits))
-                        if str(binary_value[:8]) == "11111111":
-                            binary_value = str(binary_value[8:])
-                            binary_value = str(binary_value) + str(bin(int(self.arduinos[ding].read().hex(), scale))[2:].zfill(num_of_bits))
-
-                        data = self.binary_to_data(binary_value)
-                        self.total_data[ding].append(data)
-                        self.distance_gemiddelde[ding] = self.bereken_gemiddelde(self.total_data, ding, 1, 5)
-                        self.light_gemiddelde[ding] = self.bereken_gemiddelde(self.total_data, ding, 3, 5)
-                        self.temp_gemiddelde[ding] = self.bereken_gemiddelde(self.total_data, ding, 2, 5)
-                        self.total_data[ding].append(data)
-                        if self.send == 1:
-                            ser.write(bytearray(b'\x01'))
-                            self.send = 0
-                        if self.send == 2:
-                            ser.write(bytearray(b'\x02'))
-                            self.send = 0
-                    ding += 1
-                except serial.serialutil.SerialException:
-                    aantal = 0
-                    self.activeComPorts.remove(arduino.name)
-                    for i in self.arduinos:
-                        if i.name == arduino.name:
-                            self.arduinos.pop(aantal)
-                        aantal+=1
-                    arduino.close()
-                except ValueError:
-                    aantal = 0
-                    self.activeComPorts.remove(arduino.name)
-                    for i in self.arduinos:
-                        if i.name == arduino.name:
-                            self.arduinos.pop(aantal)
-                        aantal+=1
-                    arduino.close()
-
-            self.open_or_close(self.temp_gemiddelde, self.light_gemiddelde, self.distance_gemiddelde)
-            if self.counter > 3:
-                self.dubbel_counter+=1
-                self.after_idle(self.fix_grafieken)
-                self.counter = 0
-            self.counter+=1
-
-            if self.dubbel_counter >= 3:
-                self.setup_arduinos()
-
-        root.after(500, self.loop)
-
-    def bereken_gemiddelde(self, lijst, ding ,hoeveelste, aantal_voor_gemiddelde):
-        aantal_voor_gemiddelde = -aantal_voor_gemiddelde
-        lijst = lijst[ding][aantal_voor_gemiddelde:]
-        aantal = len(lijst)
-        gemiddelde = 0
-        if aantal == 0:
-            aantal = 1
-        for i in lijst:
-            gemiddelde += i[hoeveelste]
-        gemiddelde = gemiddelde / aantal
-        return gemiddelde
-
-    def fix_zonnescherm(self, gemiddelde):
-        if gemiddelde > 100:
-            self.open_zonnescherm()
-        else:
-            self.close_zonnescherm()
-
-    def binary_to_data(self, binary_value):
-        light = binary_value[0:2]
-        light = light[::-1]
-        temp = binary_value[10:20]
-        temp = temp[::-1]
-        distance = binary_value[2:10]
-        distance = distance[::-1]
-
-        light2 = binary_value[20:27]
-        light2 = light2[::-1]
-        bit_controle = binary_value[27:]
-        bit_controle = bit_controle[::-1]
-        temp = int(temp, 2)
-        light2 = int(light2, 2)
-        distance = int(distance, 2)
-        light = int(light, 2)
-        bit_controle = int(bit_controle, 2)
-        data = [light, distance, temp, light2, bit_controle]
-        return data
 
         # def fill_listbox_1(self, string_list, index):
     def fix_grafieken(self):
         gemiddelde = 0
         aantal = 0
-        aantal_live = len(self.arduinos)
+        aantal_live = len(arduinos)
         self.listbox_1.delete(0, END)
         self.listbox_2.delete(0, END)
-        if self.zonnescherm_status == 0:
-            self.FillListbox2(str("Zonnescherm is dicht "), 1)
+        status = get_zonnescherm()
+        if status == 0:
+            self.fill_listbox_2(str("Zonnescherm is dicht "), 1)
         else:
-            self.FillListbox2(str("Zonnescherm is open "), 1)
+            self.fill_listbox_2(str("Zonnescherm is open "), 1)
         for i in range(4):
             if(i+1 <= aantal_live):
                 self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is live"), i+1)
             else:
                 self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is niet live"), i+1)
-        self.animatecanvas1(self.distance_gemiddelde[self.huidige_grafiek])
-        self.animatecanvas3(self.temp_gemiddelde[self.huidige_grafiek])
-        self.animatecanvas2(self.light_gemiddelde[self.huidige_grafiek])
+        self.animatecanvas1(distance_gemiddelde[self.huidige_grafiek])
+        self.animatecanvas3(temp_gemiddelde[self.huidige_grafiek])
+        self.animatecanvas2(light_gemiddelde[self.huidige_grafiek])
 
-        self.animatecanvas4(self.distance_gemiddelde[0])
-        self.animatecanvas5(self.light_gemiddelde[0])
-        self.animatecanvas6(self.temp_gemiddelde[0])
-        self.animatecanvas7(self.distance_gemiddelde[1])
-        self.animatecanvas8(self.light_gemiddelde[1])
-        self.animatecanvas9(self.temp_gemiddelde[1])
-        self.animatecanvas10(self.distance_gemiddelde[2])
-        self.animatecanvas11(self.light_gemiddelde[2])
-        self.animatecanvas12(self.temp_gemiddelde[2])
-        self.animatecanvas13(self.distance_gemiddelde[3])
-        self.animatecanvas14(self.light_gemiddelde[3])
-        self.animatecanvas15(self.temp_gemiddelde[3])
+        self.animatecanvas4(distance_gemiddelde[0])
+        self.animatecanvas5(light_gemiddelde[0])
+        self.animatecanvas6(temp_gemiddelde[0])
+        # self.animatecanvas7(self.distance_gemiddelde[1])
+        # self.animatecanvas8(self.light_gemiddelde[1])
+        # self.animatecanvas9(self.temp_gemiddelde[1])
+        # self.animatecanvas10(self.distance_gemiddelde[2])
+        # self.animatecanvas11(self.light_gemiddelde[2])
+        # self.animatecanvas12(self.temp_gemiddelde[2])
+        # self.animatecanvas13(self.distance_gemiddelde[3])
+        # self.animatecanvas14(self.light_gemiddelde[3])
+        # self.animatecanvas15(self.temp_gemiddelde[3])
 
-        self.set_bar1_data(self.distance_gemiddelde[0],self.distance_gemiddelde[1],self.distance_gemiddelde[2],self.distance_gemiddelde[3])
-        self.set_bar2_data(self.light_gemiddelde[0],self.light_gemiddelde[1],self.light_gemiddelde[2],self.light_gemiddelde[3])
-        self.set_bar3_data(self.temp_gemiddelde[0], self.temp_gemiddelde[1], self.temp_gemiddelde[2], self.temp_gemiddelde[3])
+        self.set_bar1_data(distance_gemiddelde[0],distance_gemiddelde[1],distance_gemiddelde[2],distance_gemiddelde[3])
+        self.set_bar2_data(light_gemiddelde[0],light_gemiddelde[1],light_gemiddelde[2],light_gemiddelde[3])
+        self.set_bar3_data(temp_gemiddelde[0], temp_gemiddelde[1], temp_gemiddelde[2], temp_gemiddelde[3])
 
 
     def open_or_close(self, gemiddelde_temp, gemiddelde_light, gemiddelde_afstand):
@@ -1121,9 +1044,7 @@ class toplevel1(tk.Frame):
         light = 0
         temp = 0
         afstand = 0
-        print(gemiddelde_temp)
         for i in gemiddelde_temp:
-            print(i)
             if i != 0:
                 aantal_temp+=1
                 temp+=i
@@ -1146,25 +1067,16 @@ class toplevel1(tk.Frame):
             aantal_temp = 1
         light = int(light/aantal_light)
         temp = int(temp/aantal_temp)
-        print(self.maxlight, self.maxtemp, "asadf")
         if light > self.maxlight:
-            self.open_zonnescherm()
+            print("licht")
+            _thread.start_new(open_zonnescherm, ())
 
         if temp > self.maxtemp:
-            self.open_zonnescherm()
+            print("temp")
+            _thread.start_new(open_zonnescherm, ())
 
         if light < self.maxlight and temp < self.maxtemp:
-            self.close_zonnescherm()
-
-    def open_zonnescherm(self):
-        self.zonnescherm_status = 1
-        for i in self.arduinos:
-            i.write(bytearray(b'\x02'))
-
-    def close_zonnescherm(self):
-        self.zonnescherm_status = 0
-        for i in self.arduinos:
-            i.write(bytearray(b'\x01'))
+            _thread.start_new(close_zonnescherm, ())
 
     def animatecanvas1(self, y):
         self.canvasx.append(self.newx)
@@ -1421,25 +1333,25 @@ class toplevel1(tk.Frame):
 
 
     def switchToArduino(self):
-        length = len(self.arduinos)
+        length = len(arduinos)
         if (length > 0):
             self.clear_canvasses_dashboard()
             self.huidige_grafiek = 0
 
     def switchToArduino2(self):
-        length = len(self.arduinos)
+        length = len(arduinos)
         if (length > 1):
             self.clear_canvasses_dashboard()
             self.huidige_grafiek = 1
 
     def switchToArduino3(self):
-        length = len(self.arduinos)
+        length = len(arduinos)
         if (length > 2):
             self.huidige_grafiek = 2
             self.clear_canvasses_dashboard()
 
     def switchToArduino4(self):
-        length = len(self.arduinos)
+        length = len(arduinos)
         if (length > 3):
             self.clear_canvasses_dashboard()
             self.huidige_grafiek = 3
@@ -1481,10 +1393,11 @@ class toplevel1(tk.Frame):
         self.listbox_2.insert(index, string)
 
     def set_temp(self):
-        self.maxlight = int(self.Entry1.get())
+        self.maxtemp = int(self.entry_1.get())
 
     def set_light(self):
-        self.maxtemp = int(self.Entry2.get())
+        self.maxlight = int(self.entry_2.get())
+
 
     def reset_temp(self):
         self.maxtemp = 200
@@ -1494,6 +1407,3 @@ class toplevel1(tk.Frame):
 
 if __name__ == '__main__':
     vp_start_gui()
-
-
-
