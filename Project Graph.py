@@ -66,4 +66,3 @@ graph = Graph()
 graph.initialize(1200, 600, 'white')
 graph.step(50)
 graph.gui.mainloop()
-
