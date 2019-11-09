@@ -1454,78 +1454,44 @@ class Toplevel1:
     def Set8Afstand(self):
         print(self.Entry23.get())
 
+    def clear_canvasses_dashboard(self):
+        self.canvas1.clear()
+        self.canvas1y.clear()
+        self.canvasx.clear()
+        self.canvas2.clear()
+        self.canvas2y.clear()
+        self.canvas2x.clear()
+        self.canvas3.clear()
+        self.canvas3y.clear()
+        self.canvas3x.clear()
+        self.canvas3.clear()
+        self.newx = 0
+        self.new2x = 0
+        self.new3x = 0
+
 
     def switchToArduino(self):
         length = len(self.arduinos)
         if (length > 0):
-            self.canvas1.clear()
-            self.canvas1y.clear()
-            self.canvasx.clear()
-            self.canvas2.clear()
-            self.canvas2y.clear()
-            self.canvas2x.clear()
-            self.canvas3.clear()
-            self.canvas3y.clear()
-            self.canvas3x.clear()
-            self.canvas3.clear()
-            self.newx = 0
-            self.new2x = 0
-            self.new3x = 0
+            self.clear_canvasses_dashboard()
             self.huidige_grafiek = 0
 
     def switchToArduino2(self):
         length = len(self.arduinos)
         if (length > 1):
-            self.canvas1.clear()
-            self.canvas1y.clear()
-            self.canvasx.clear()
-            self.canvas2.clear()
-            self.canvas2y.clear()
-            self.canvas2x.clear()
-            self.canvas3.clear()
-            self.canvas3y.clear()
-            self.canvas3x.clear()
-            self.canvas3.clear()
-            self.newx = 0
-            self.new2x = 0
-            self.new3x = 0
+            self.clear_canvasses_dashboard()
             self.huidige_grafiek = 1
 
     def switchToArduino3(self):
         length = len(self.arduinos)
         if (length > 2):
             self.huidige_grafiek = 2
-            self.canvas1.clear()
-            self.canvas1y.clear()
-            self.canvasx.clear()
-            self.canvas2.clear()
-            self.canvas2y.clear()
-            self.canvas2x.clear()
-            self.canvas3.clear()
-            self.canvas3y.clear()
-            self.canvas3x.clear()
-            self.canvas3.clear()
-            self.newx = 0
-            self.new2x = 0
-            self.new3x = 0
-
+            self.clear_canvasses_dashboard()
 
     def switchToArduino4(self):
         length = len(self.arduinos)
         if (length > 3):
-            self.canvas1.clear()
-            self.canvas1y.clear()
-            self.canvasx.clear()
-            self.canvas2.clear()
-            self.canvas2y.clear()
-            self.canvas2x.clear()
-            self.canvas3.clear()
-            self.canvas3y.clear()
-            self.canvas3x.clear()
-            self.canvas3.clear()
-            self.newx = 0
-            self.new2x = 0
-            self.new3x = 0
+            self.clear_canvasses_dashboard()
             self.huidige_grafiek = 3
 
     def SetBar1Data(self, AD1, AD2, AD3, AD4):
