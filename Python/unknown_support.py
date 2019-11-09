@@ -15,7 +15,7 @@ except ImportError:
 
     py3 = True
 
-top = GUICHRIS.Toplevel1
+top = GUICHRIS.toplevel1
 
 def set_Tk_var():
     global che71
