@@ -6,7 +6,6 @@ from send_data import *
 
 import _thread
 import queue
-import unknown_support
 from matplotlib import animation
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
@@ -85,9 +84,7 @@ def create_toplevel1(root, *args, **kwargs):
     global w, w_win, rt
     rt = root
     w = tk.Toplevel(root)
-    unknown_support.set_Tk_var()
     top = TopLevel1(w)
-    unknown_support.init(w, top, *args, **kwargs)
     return w, top
 
 
@@ -1014,8 +1011,9 @@ class TopLevel1:
         self.animatecanvas11(light_gemiddelde[3])
         self.animatecanvas15(temp_gemiddelde[3])
 
-        self.set_bar1_data(distance_gemiddelde[0],distance_gemiddelde[1],distance_gemiddelde[2],distance_gemiddelde[3])
-        self.set_bar2_data(light_gemiddelde[0],light_gemiddelde[1],light_gemiddelde[2],light_gemiddelde[3])
+        self.set_bar1_data(distance_gemiddelde[0], distance_gemiddelde[1], distance_gemiddelde[2],
+                           distance_gemiddelde[3])
+        self.set_bar2_data(light_gemiddelde[0], light_gemiddelde[1], light_gemiddelde[2], light_gemiddelde[3])
         self.set_bar3_data(temp_gemiddelde[0], temp_gemiddelde[1], temp_gemiddelde[2], temp_gemiddelde[3])
 
     def open_or_close(self, gemiddelde_temp, gemiddelde_light, gemiddelde_afstand):
@@ -1068,7 +1066,7 @@ class TopLevel1:
         self.canvas1y.append(y)
         self.newx += 1
         self.canvas1.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas1.plot(self.canvasx, self.canvas1y , color= "blue")
+        self.canvas1.plot(self.canvasx, self.canvas1y, color="blue")
         self.canvas1a.draw()
 
     def animatecanvas2(self, y):
@@ -1079,7 +1077,7 @@ class TopLevel1:
             self.canvas2.clear()
         self.canvas2y.append(y)
         self.new2x += 1
-        self.canvas2.plot(self.canvas2x, self.canvas2y , color= "blue")
+        self.canvas2.plot(self.canvas2x, self.canvas2y, color="blue")
         self.canvas2a.draw()
 
     def animatecanvas3(self, y):
@@ -1090,7 +1088,7 @@ class TopLevel1:
             self.canvas3.clear()
         self.canvas3y.append(y)
         self.new3x += 1
-        self.canvas3.plot(self.canvas3x, self.canvas3y , color= "blue")
+        self.canvas3.plot(self.canvas3x, self.canvas3y, color="blue")
         self.canvas3a.draw()
 
     def animatecanvas4(self, y):
@@ -1102,7 +1100,7 @@ class TopLevel1:
         self.canvas4y.append(y)
         self.new4x += 1
         self.canvas1.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas4.plot(self.canvas4x, self.canvas4y , color= "blue")
+        self.canvas4.plot(self.canvas4x, self.canvas4y, color="blue")
         self.canvas4a.draw()
 
     def animatecanvas5(self, y):
@@ -1113,7 +1111,7 @@ class TopLevel1:
             self.canvas5.clear()
         self.canvas5y.append(y)
         self.new5x += 1
-        self.canvas5.plot(self.canvas5x, self.canvas5y , color= "blue")
+        self.canvas5.plot(self.canvas5x, self.canvas5y, color="blue")
         self.canvas4a.draw()
 
     def animatecanvas6(self, y):
@@ -1124,7 +1122,7 @@ class TopLevel1:
             self.canvas6.clear()
         self.canvas6y.append(y)
         self.new6x += 1
-        self.canvas6.plot(self.canvas6x, self.canvas6y , color= "blue")
+        self.canvas6.plot(self.canvas6x, self.canvas6y, color="blue")
         self.canvas5a.draw()
 
     def animatecanvas7(self, y):
@@ -1135,7 +1133,7 @@ class TopLevel1:
             self.canvas7.clear()
         self.canvas7y.append(y)
         self.new7x += 1
-        self.canvas7.plot(self.canvas7x, self.canvas7y , color= "blue")
+        self.canvas7.plot(self.canvas7x, self.canvas7y, color="blue")
         self.canvas5a.draw()
 
     def animatecanvas8(self, y):
@@ -1146,7 +1144,7 @@ class TopLevel1:
             self.canvas8.clear()
         self.canvas8y.append(y)
         self.new8x += 1
-        self.canvas8.plot(self.canvas8x, self.canvas8y , color= "blue")
+        self.canvas8.plot(self.canvas8x, self.canvas8y, color="blue")
         self.canvas6a.draw()
 
     def animatecanvas9(self, y):
@@ -1157,7 +1155,7 @@ class TopLevel1:
             self.canvas9.clear()
         self.canvas9y.append(y)
         self.new9x += 1
-        self.canvas9.plot(self.canvas9x, self.canvas9y , color= "blue")
+        self.canvas9.plot(self.canvas9x, self.canvas9y, color="blue")
         self.canvas6a.draw()
 
     def animatecanvas10(self, y):
@@ -1168,7 +1166,7 @@ class TopLevel1:
             self.canvas10.clear()
         self.canvas10y.append(y)
         self.new10x += 1
-        self.canvas10.plot(self.canvas10x, self.canvas10y , color= "blue")
+        self.canvas10.plot(self.canvas10x, self.canvas10y, color="blue")
         self.canvas7a.draw()
 
     def animatecanvas11(self, y):
@@ -1179,7 +1177,7 @@ class TopLevel1:
             self.canvas11.clear()
         self.canvas11y.append(y)
         self.new11x += 1
-        self.canvas11.plot(self.canvas11x, self.canvas11y , color= "blue")
+        self.canvas11.plot(self.canvas11x, self.canvas11y, color="blue")
         self.canvas7a.draw()
 
     def animatecanvas12(self, y):
@@ -1190,7 +1188,7 @@ class TopLevel1:
             self.canvas12.clear()
         self.canvas12y.append(y)
         self.new12x += 1
-        self.canvas12.plot(self.canvas12x, self.canvas12y , color= "blue")
+        self.canvas12.plot(self.canvas12x, self.canvas12y, color="blue")
         self.canvas4a.draw()
 
     def animatecanvas13(self, y):
@@ -1201,7 +1199,7 @@ class TopLevel1:
             self.canvas13.clear()
         self.canvas13y.append(y)
         self.new13x += 1
-        self.canvas13.plot(self.canvas13x, self.canvas13y , color= "blue")
+        self.canvas13.plot(self.canvas13x, self.canvas13y, color="blue")
         self.canvas5a.draw()
 
     def animatecanvas14(self, y):
@@ -1212,7 +1210,7 @@ class TopLevel1:
             self.canvas14.clear()
         self.canvas14y.append(y)
         self.new14x += 1
-        self.canvas14.plot(self.canvas14x, self.canvas14y , color= "blue")
+        self.canvas14.plot(self.canvas14x, self.canvas14y, color="blue")
         self.canvas6a.draw()
 
     def animatecanvas15(self, y):
@@ -1223,7 +1221,7 @@ class TopLevel1:
             self.canvas15.clear()
         self.canvas15y.append(y)
         self.new15x += 1
-        self.canvas15.plot(self.canvas15x, self.canvas15y , color= "blue")
+        self.canvas15.plot(self.canvas15x, self.canvas15y, color="blue")
         self.canvas7a.draw()
 
     def set_1_temperatuur(self):
