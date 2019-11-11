@@ -9,6 +9,7 @@ temp_gemiddelde = [0,0,0,0]
 total_data = [[],[],[],[]]
 zonnescherm_status = 0
 aantal_rondes = 0
+huidige_arduino = 0
 
 def setup_arduinos():
     comPorts = list(serial.tools.list_ports.comports())
@@ -16,6 +17,7 @@ def setup_arduinos():
         l = str(i).split()
         if l[0] not in activeComPorts:
             activeComPorts.append(l[0])
+            print(l[0])
             ser = serial.Serial(l[0], 19200)
             time.sleep(1)
             arduinos.append(ser)
@@ -56,11 +58,12 @@ def binary_to_data(binary_value):
 
 def loop_data():
 
-    global arduinos, aantal_rondes, binary_value, light_gemiddelde, temp_gemiddelde, distance_gemiddelde, total_data
+    global arduinos, aantal_rondes, binary_value, light_gemiddelde, temp_gemiddelde, distance_gemiddelde, total_data, huidige_arduino
     ding = 0
-    for arduino in arduinos:
-        print(arduino.in_waiting)
-        try:
+    if len(arduinos) > 0:
+        for arduino in arduinos:
+            huidige_arduino = arduino
+            print(arduino.in_waiting)
             waarde = arduino.read().hex()
             if waarde == 'ff':
                 scale = 16
@@ -85,24 +88,26 @@ def loop_data():
                 aantal_rondes+=1
                 if aantal_rondes > 3:
                     setup_arduinos()
-        except serial.serialutil.SerialException:
-            aantal = 0
-            activeComPorts.remove(arduino.name)
-            for i in arduinos:
-                if i.name == arduino.name:
-                    arduinos.pop(aantal)
-                aantal += 1
-
-            arduino.close()
-        except ValueError:
-            aantal = 0
-            activeComPorts.remove(arduino.name)
-            for i in arduinos:
-                if i.name == arduino.name:
-                    arduinos.pop(aantal)
-                aantal += 1
-            arduino.close()
-
+                    aantal_rondes = 0
+            # except serial.serialutil.SerialException:
+            #     aantal = 0
+            #     activeComPorts.remove(arduino.name)
+            #     for i in arduinos:
+            #         if i.name == arduino.name:
+            #             arduinos.pop(aantal)
+            #         aantal += 1
+            #
+            #     arduino.close()
+            # except ValueError:
+            #     aantal = 0
+            #     activeComPorts.remove(arduino.name)
+            #     for i in arduinos:
+            #         if i.name == arduino.name:
+            #             arduinos.pop(aantal)
+            #         aantal += 1
+            #     arduino.close()
+    else:
+        setup_arduinos()
 def loop_loop():
     setup_arduinos()
     aantal_loop = 0

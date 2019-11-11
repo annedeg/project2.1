@@ -72,9 +72,7 @@ def vp_start_gui():
     global val, w, root
     root = tk.Tk()
     ding = ThreadSafeConsole(root)
-    unknown_support.set_Tk_var()
     top = TopLevel1(root)
-    unknown_support.init(root, top)
     _thread.start_new(loop_loop, ())
     root.mainloop()
 
@@ -1052,14 +1050,14 @@ class TopLevel1:
         temp = int(temp/aantal_temp)
         if light > self.maxlight:
             print("licht")
-            _thread.start_new(open_zonnescherm, ())
+            open_zonnescherm()
 
         if temp > self.maxtemp:
             print("temp")
-            _thread.start_new(open_zonnescherm, ())
+            open_zonnescherm()
 
         if light < self.maxlight and temp < self.maxtemp:
-            _thread.start_new(close_zonnescherm, ())
+            close_zonnescherm()
 
     def animatecanvas1(self, y):
         self.canvasx.append(self.newx)
