@@ -1003,15 +1003,15 @@ class TopLevel1:
 
         self.animatecanvas4(distance_gemiddelde[0])
         self.animatecanvas5(light_gemiddelde[0])
-        self.animatecanvas6(temp_gemiddelde[0])
-        self.animatecanvas7(distance_gemiddelde[1])
-        self.animatecanvas8(light_gemiddelde[1])
-        self.animatecanvas9(temp_gemiddelde[1])
-        self.animatecanvas10(distance_gemiddelde[2])
-        self.animatecanvas11(light_gemiddelde[2])
-        self.animatecanvas12(temp_gemiddelde[2])
-        self.animatecanvas13(distance_gemiddelde[3])
-        self.animatecanvas14(light_gemiddelde[3])
+        self.animatecanvas12(temp_gemiddelde[0])
+        self.animatecanvas6(distance_gemiddelde[1])
+        self.animatecanvas7(light_gemiddelde[1])
+        self.animatecanvas13(temp_gemiddelde[1])
+        self.animatecanvas8(distance_gemiddelde[2])
+        self.animatecanvas9(light_gemiddelde[2])
+        self.animatecanvas14(temp_gemiddelde[2])
+        self.animatecanvas10(distance_gemiddelde[3])
+        self.animatecanvas11(light_gemiddelde[3])
         self.animatecanvas15(temp_gemiddelde[3])
 
         self.set_bar1_data(distance_gemiddelde[0],distance_gemiddelde[1],distance_gemiddelde[2],distance_gemiddelde[3])
@@ -1200,7 +1200,7 @@ class TopLevel1:
             del self.canvas13y[0]
             self.canvas13.clear()
         self.canvas13y.append(y)
-        self.new11x += 1
+        self.new13x += 1
         self.canvas13.plot(self.canvas13x, self.canvas13y , color= "blue")
         self.canvas5a.draw()
 
@@ -1211,7 +1211,7 @@ class TopLevel1:
             del self.canvas14y[0]
             self.canvas14.clear()
         self.canvas14y.append(y)
-        self.new11x += 1
+        self.new14x += 1
         self.canvas14.plot(self.canvas14x, self.canvas14y , color= "blue")
         self.canvas6a.draw()
 
@@ -1222,7 +1222,7 @@ class TopLevel1:
             del self.canvas15y[0]
             self.canvas15.clear()
         self.canvas15y.append(y)
-        self.new11x += 1
+        self.new15x += 1
         self.canvas15.plot(self.canvas15x, self.canvas15y , color= "blue")
         self.canvas7a.draw()
 
