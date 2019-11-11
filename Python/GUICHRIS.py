@@ -104,6 +104,7 @@ class TopLevel1:
         self.total_data = [[], [], [], []]
         self.maxtemp = 25
         self.maxlight = 80
+        self.run_config = True
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -529,16 +530,16 @@ class TopLevel1:
         self.button_71.place(relx=0.155, rely=0.644, height=74, width=127)
         self.button_71.configure(command=self.switch_to_arduino_4, text='''Arduino 4''')
 
-        # self.checkbuttonstyle = ttk.Style()
-        # self.checkbuttonstyle.configure('Custom.TCheckbutton', activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-        #                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
-        #                              highlightcolor="black", justify='left')
-        #
-        # self.Checkbutton1 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
-        # self.Checkbutton1.place(relx=0.088, rely=0.391, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton1.configure(variable=unknown_support.che93, text='''Check''')
-        #
+        self.checkbuttonstyle = ttk.Style()
+        self.checkbuttonstyle.configure('Custom.TCheckbutton', activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
+                                     disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                     highlightcolor="black", justify='left')
+
+        self.Checkbutton1 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
+        self.Checkbutton1.place(relx=0.088, rely=0.116, relheight=0.036, relwidth=39)
+        self.Checkbutton1.configure(variable=self.run_config, onvalue=True, offvalue=False,
+                                    text='''Use the above config''')
+
         # self.Checkbutton2 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
         # self.Checkbutton2.place(relx=0.088, rely=0.435, relheight=0.036
         #                         , relwidth=0.06)
@@ -1048,16 +1049,17 @@ class TopLevel1:
             aantal_temp = 1
         light = int(light/aantal_light)
         temp = int(temp/aantal_temp)
-        if light > self.maxlight:
-            print("licht")
-            open_zonnescherm()
+        if self.run_config:
+            if light > self.maxlight:
+                print("licht")
+                open_zonnescherm()
 
-        if temp > self.maxtemp:
-            print("temp")
-            open_zonnescherm()
+            if temp > self.maxtemp:
+                print("temp")
+                open_zonnescherm()
 
-        if light < self.maxlight and temp < self.maxtemp:
-            close_zonnescherm()
+            if light < self.maxlight and temp < self.maxtemp:
+                close_zonnescherm()
 
     def animatecanvas1(self, y):
         self.canvasx.append(self.newx)
@@ -1372,6 +1374,9 @@ class TopLevel1:
 
     def fill_listbox_2(self, string, index):
         self.listbox_2.insert(index, string)
+
+    def set_run_config(self):
+        self.run_config = True
 
     def set_temp(self):
         self.maxtemp = int(self.entry_1.get())
