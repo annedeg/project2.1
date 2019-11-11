@@ -917,6 +917,7 @@ class TopLevel1:
         self.label_1 = ttk.Label(self.t_notebook_1_t3, style='Custom.TLabel')
         self.label_1.place(relx=0.01, rely=0.014, height=674, width=674)
         self.label_1.configure(text='''INSTRUCTIONS:
+        
         DASHBOARD:
         The dashboard shows an overview of the application, including graphs showing the current distance (between the
         sun blind and it's lowest point, as a check whether or not the sun blind is functioning correctly), temperature 
