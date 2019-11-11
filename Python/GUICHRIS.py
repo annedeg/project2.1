@@ -101,6 +101,8 @@ class TopLevel1:
         self.total_data = [[], [], [], [], []]
         self.maxtemp = 25
         self.maxlight = 80
+        self.mindistance = 20
+        self.maxdistance = 140
         self.run_config = True
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
@@ -262,15 +264,23 @@ class TopLevel1:
         self.button_5 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
         self.button_5.place(relx=0.324, rely=0.072, height=24, relwidth=0.05)
         self.button_5.configure(command=self.reset_light, text='''Reset''')
-        #
-        # self.Button5 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button5.place(relx=0.324, rely=0.116, height=24, width=37)
-        # self.Button5.configure(command=unknown_support.Reset3Temperatuur, text='''Reset''')
-        #
-        # self.Button6 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button6.place(relx=0.324, rely=0.159, height=24, width=37)
-        # self.Button6.configure(command=unknown_support.Reset4Temperatuur, text='''Reset''')
-        #
+
+        self.Button6 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.Button6.place(relx=0.265, rely=0.116, height=24, relwidth=0.05)
+        self.Button6.configure(command=self.set_min_distance, text='''Set''')
+
+        self.Button7 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.Button7.place(relx=0.265, rely=0.159, height=24, relwidth=0.05)
+        self.Button7.configure(command=self.set_max_distance, text='''Set''')
+
+        self.Button8 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.Button8.place(relx=0.324, rely=0.116, height=24, relwidth=0.05)
+        self.Button8.configure(command=self.reset_min_distance, text='''Reset''')
+
+        self.Button9 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.Button9.place(relx=0.324, rely=0.159, height=24, relwidth=0.05)
+        self.Button9.configure(command=self.reset_max_distance, text='''Reset''')
+
         # self.Button7 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
         # self.Button7.place(relx=0.324, rely=0.203, height=24, width=37)
         # self.Button7.configure(command=unknown_support.Reset5Temperatuur, text='''Reset''')
@@ -290,15 +300,7 @@ class TopLevel1:
         # self.Button11 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
         # self.Button11.place(relx=0.265, rely=0.072, height=24, width=47)
         # self.Button11.configure(command=self.Set2Temperatuur, text='''Set''')
-        # #
-        # self.Button12 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button12.place(relx=0.265, rely=0.116, height=24, width=47)
-        # self.Button12.configure(command=self.Set3Temperatuur, text='''Set''')
-        #
-        # self.Button13 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button13.place(relx=0.265, rely=0.159, height=24, width=47)
-        # self.Button13.configure(command=self.Set4Temperatuur, text='''Set''')
-        #
+
         # self.Button14 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
         # self.Button14.place(relx=0.265, rely=0.203, height=24, width=47)
         # self.Button14.configure(command=self.Set5Temperatuur, text='''Set''')
@@ -541,7 +543,7 @@ class TopLevel1:
                                      highlightcolor="black", justify='left')
 
         self.Checkbutton1 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
-        self.Checkbutton1.place(relx=0.088, rely=0.116, relheight=0.036, relwidth=39)
+        self.Checkbutton1.place(relx=0.101, rely=0.203, relheight=0.036, relwidth=39)
         self.Checkbutton1.configure(variable=self.run_config, onvalue=True, offvalue=False,
                                     text='''Use the above config''')
 
@@ -838,17 +840,17 @@ class TopLevel1:
                                    selectforeground="black")
 
         self.entry_1 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
-        self.entry_1.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
+        self.entry_1.place(relx=0.101, rely=0.029, height=20, relwidth=0.161)
 
         self.entry_2 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
-        self.entry_2.place(relx=0.088, rely=0.072, height=20, relwidth=0.161)
+        self.entry_2.place(relx=0.101, rely=0.072, height=20, relwidth=0.161)
 
-        # self.Entry3 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
-        # self.Entry3.place(relx=0.088, rely=0.116, height=20, relwidth=0.161)
-        #
-        # self.Entry4 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
-        # self.Entry4.place(relx=0.088, rely=0.159, height=20, relwidth=0.161)
-        #
+        self.entry_3 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
+        self.entry_3.place(relx=0.101, rely=0.116, height=20, relwidth=0.161)
+
+        self.entry_4 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
+        self.entry_4.place(relx=0.101, rely=0.159, height=20, relwidth=0.161)
+
         # self.Entry5 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
         # self.Entry5.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
         #
@@ -952,21 +954,21 @@ class TopLevel1:
         A revolution in our generation!''')
 
         self.label_2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
-        self.label_2.place(relx=0.0, rely=0.029, height=21, width=74)
+        self.label_2.place(relx=0.0, rely=0.029, height=21, relwidth=0.1)
         self.label_2.configure(text='''Set temperatuur''')
 
         self.label_2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
-        self.label_2.place(relx=0.0, rely=0.072, height=21, width=74)
+        self.label_2.place(relx=0.0, rely=0.072, height=21, relwidth=0.1)
         self.label_2.configure(text='''Set light''')
 
-        # self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
-        # self.Label2.place(relx=0.0, rely=0.116, height=21, width=74)
-        # self.Label2.configure(text='''Setting''')
-        #
-        # self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
-        # self.Label2.place(relx=0.0, rely=0.159, height=21, width=74)
-        # self.Label2.configure(text='''Setting''')
-        #
+        self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
+        self.Label2.place(relx=0.0, rely=0.116, height=21, relwidth=0.1)
+        self.Label2.configure(text='''Set minimal distance''')
+
+        self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
+        self.Label2.place(relx=0.0, rely=0.159, height=21, relwidth=0.1)
+        self.Label2.configure(text='''Set maximum distance''')
+
         # self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         # self.Label2.place(relx=0.0, rely=0.203, height=21, width=74)
         # self.Label2.configure(text='''Setting''')
@@ -1524,16 +1526,40 @@ class TopLevel1:
         self.run_config = True
 
     def set_temp(self):
-        self.maxtemp = int(self.entry_1.get())
+        try:
+            self.maxtemp = int(self.entry_1.get())
+        except ValueError:
+            print("Value of maxtemp has not changed")
 
     def set_light(self):
-        self.maxlight = int(self.entry_2.get())
+        try:
+            self.maxlight = int(self.entry_2.get())
+        except ValueError:
+            print("Value of maxlight has not changed")
 
     def reset_temp(self):
         self.maxtemp = 200
 
     def reset_light(self):
         self.maxlight = 70
+
+    def set_min_distance(self):
+        try:
+            self.mindistance = int(self.entry_3.get())
+        except:
+            print("Value of mindistance has not changed")
+
+    def set_max_distance(self):
+        try:
+            self.maxdistance = int(self.entry_4.get())
+        except:
+            print("Value of maxdistance has not changed")
+
+    def reset_min_distance(self):
+        self.mindistance = 20
+
+    def reset_max_distance(self):
+        self.maxdistance = 140
 
 
 if __name__ == '__main__':
