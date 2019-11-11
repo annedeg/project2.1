@@ -7,7 +7,7 @@ distance_gemiddelde = [0, 0, 0, 0, 0]
 light_gemiddelde = [0, 0, 0, 0, 0]
 temp_gemiddelde = [0, 0, 0, 0, 0]
 total_data = [[], [], [], [], []]
-zonnescherm_status = 0
+zonnescherm_status = [-1,-1,-1,-1,-1]
 zonnescherm_doel = 0
 aantal_rondes = 0
 aantal_loop = 0
@@ -120,20 +120,20 @@ def loop_loop():
 
 def open_zonnescherm(aantal):
     global zonnescherm_status
-    zonnescherm_status = 1
+    zonnescherm_status[aantal] = 1
     i = arduinos[aantal]
     i.write(bytearray(b'\x01'))
 
 
 def close_zonnescherm(aantal):
     global zonnescherm_status
-    zonnescherm_status = 2
+    zonnescherm_status[aantal] = 2
     i = arduinos[aantal]
     i.write(bytearray(b'\x02'))
 
 def knipper(aantal):
     global zonnescherm_status
-    zonnescherm_status = 3
+    zonnescherm_status[aantal] = 3
     i = arduinos[aantal]
     i.write(bytearray(b'\x03'))
 
