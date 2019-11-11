@@ -101,9 +101,9 @@ class TopLevel1:
         self.total_data = [[], [], [], [], []]
         self.maxtemp = 25
         self.maxlight = 80
+        self.run_config = 1
         self.mindistance = 20
         self.maxdistance = 140
-        self.run_config = True
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -548,7 +548,7 @@ class TopLevel1:
 
         self.Checkbutton1 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
         self.Checkbutton1.place(relx=0.101, rely=0.203, relheight=0.036, relwidth=39)
-        self.Checkbutton1.configure(variable=self.run_config, onvalue=True, offvalue=False,
+        self.Checkbutton1.configure(command=self.toggle_config,
                                     text='''Use the above config''')
 
         # self.Checkbutton2 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
@@ -645,6 +645,12 @@ class TopLevel1:
         self.listbox_2 = tk.Listbox(self.t_notebook_1_t0)
         self.listbox_2.place(relx=0.01, rely=0.26, relheight=0.236, relwidth=0.272)
         self.listbox_2.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
+                                 foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                                 selectbackground="#c4c4c4", selectforeground="black")
+
+        self.listbox_3 = tk.Listbox(self.t_notebook_4_t0)
+        self.listbox_3.place(relx=0.40, rely=0.014, relheight=0.100, relwidth=0.272)
+        self.listbox_3.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
                                  foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
                                  selectbackground="#c4c4c4", selectforeground="black")
 
@@ -1044,16 +1050,26 @@ class TopLevel1:
         aantal_live = len(arduinos)
         self.listbox_1.delete(0, END)
         self.listbox_2.delete(0, END)
+        self.listbox_3.delete(0, END)
+
         status = get_zonnescherm()
         if status == 0:
             self.fill_listbox_2(str("Zonnescherm is dicht "), 1)
         else:
             self.fill_listbox_2(str("Zonnescherm is open "), 1)
-        for i in range(4):
+        for i in range(5):
             if i+1 <= aantal_live:
                 self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is live"), i+1)
             else:
                 self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is niet live"), i+1)
+        config_status = ""
+        if self.run_config == 1:
+            config_status = "aan"
+        else:
+            config_status = "uit"
+        self.fill_listbox_3(str("Config staat: " + config_status),1)
+        self.fill_listbox_3(str("Huidige temp instelling: " + str(self.maxtemp)),2)
+        self.fill_listbox_3(str("Huidige light instelling: " + str(self.maxlight)),3)
         self.animatecanvas1(distance_gemiddelde[self.huidige_grafiek])
         self.animatecanvas3(temp_gemiddelde[self.huidige_grafiek])
         self.animatecanvas2(light_gemiddelde[self.huidige_grafiek])
@@ -1109,18 +1125,16 @@ class TopLevel1:
             aantal_temp = 1
         light = int(light/aantal_light)
         temp = int(temp/aantal_temp)
-        if self.run_config:
+        if self.run_config == 1:
             if light > self.maxlight:
-                print("licht")
-                open_zonnescherm()
-
+                print("LIGHT | OPEN")
             if temp > self.maxtemp:
-                print("temp")
-                open_zonnescherm()
-
-            if light < self.maxlight and temp < self.maxtemp:
-                close_zonnescherm()
-
+                print("TEMP | OPEN")
+            if light < self.maxlight:
+                print("LIGHT | CLOSE")
+            if  temp < self.maxtemp:
+                print("TEMP | CLOSE")
+            print("")
     def animatecanvas1(self, y):
         self.canvasx.append(self.newx)
         if len(self.canvasx) > 20:
@@ -1548,14 +1562,20 @@ class TopLevel1:
     def fill_listbox_2(self, string, index):
         self.listbox_2.insert(index, string)
 
-    def set_run_config(self):
-        self.run_config = True
+    def fill_listbox_3(self, string, index):
+        self.listbox_3.insert(index, string)
 
     def set_temp(self):
         try:
             self.maxtemp = int(self.entry_1.get())
         except ValueError:
             print("Value of maxtemp has not changed")
+
+    def toggle_config(self):
+        if self.run_config == 0:
+            self.run_config = 1
+        else:
+            self.run_config = 0
 
     def set_light(self):
         try:

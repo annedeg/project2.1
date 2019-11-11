@@ -8,8 +8,9 @@ light_gemiddelde = [0, 0, 0, 0, 0]
 temp_gemiddelde = [0, 0, 0, 0, 0]
 total_data = [[], [], [], [], []]
 zonnescherm_status = 0
+zonnescherm_doel = 0
 aantal_rondes = 0
-huidige_arduino = 0
+aantal_loop = 0
 
 
 def setup_arduinos():
@@ -18,7 +19,6 @@ def setup_arduinos():
         l = str(i).split()
         if l[0] not in activeComPorts:
             activeComPorts.append(l[0])
-            print(l[0])
             ser = serial.Serial(l[0], 19200)
             time.sleep(1)
             arduinos.append(ser)
@@ -59,20 +59,16 @@ def binary_to_data(binary_value):
 
 
 def loop_data():
-
-    global arduinos, aantal_rondes, binary_value, light_gemiddelde, temp_gemiddelde, distance_gemiddelde, total_data, \
-           huidige_arduino
+    global arduinos, aantal_rondes, binary_value, light_gemiddelde, temp_gemiddelde, distance_gemiddelde, total_data
     ding = 0
     if len(arduinos) > 0:
         for arduino in arduinos:
-            huidige_arduino = arduino
-            print(arduino.in_waiting)
             waarde = arduino.read().hex()
             if waarde == 'ff':
                 scale = 16
                 num_of_bits = 8
                 binary_value = ""
-                for i in range(4):
+                for i in range(5):
                     binary_value = str(binary_value) + str(
                         bin(int(arduino.read().hex(), scale))[2:].zfill(num_of_bits))
                 if str(binary_value[:8]) == "11111111":
@@ -119,34 +115,76 @@ def loop_loop():
     global zonnescherm_status
     while 1:
         loop_data()
-        if aantal_loop > 5:
-            if zonnescherm_status == 0:
-                for i in arduinos:
-                    i.write(bytearray(b'\x01'))
-            elif zonnescherm_status == 1:
-                for i in arduinos:
-                    i.write(bytearray(b'\x02'))
-            aantal_loop = 0
-        aantal_loop += 1
+        check_zonnescherm()
 
 
-def open_zonnescherm():
+def open_zonnescherm(aantal):
     global zonnescherm_status
-
-    if zonnescherm_status == 0:
-        zonnescherm_status = 1
-        for i in arduinos:
-            i.write(bytearray(b'\x02'))
+    zonnescherm_status = 1
+    i = arduinos[aantal]
+    i.write(bytearray(b'\x01'))
 
 
-def close_zonnescherm():
+def close_zonnescherm(aantal):
     global zonnescherm_status
-    if zonnescherm_status == 1:
-        zonnescherm_status = 0
-        for i in arduinos:
-            i.write(bytearray(b'\x01'))
+    zonnescherm_status = 2
+    i = arduinos[aantal]
+    i.write(bytearray(b'\x02'))
 
+def knipper(aantal):
+    global zonnescherm_status
+    zonnescherm_status = 3
+    i = arduinos[aantal]
+    i.write(bytearray(b'\x03'))
+
+def check_zonnescherm():
+    aantal = 0
+    for i in arduinos:
+        distance = distance_gemiddelde[aantal]
+        if distance > 180: # ik heb geen idee welke waarde je wilt
+            close_zonnescherm(aantal)
+        elif distance < 40:
+            open_zonnescherm(aantal)
+        else:
+            knipper(aantal)
+        aantal+=1
+
+# def check_zonnescherm():
+#     global zonnescherm_status, zonnescherm_doel
+#     if zonnescherm_status == 0:
+#         for i in arduinos:
+#             i.write(bytearray(b'\x01'))
+#     elif zonnescherm_status == 1:
+#         for i in arduinos:
+#             i.write(bytearray(b'\x02'))
+#     elif zonnescherm_status == 2:
+#         print(zonnescherm_status, zonnescherm_doel)
+#         if zonnescherm_doel == 1 and gemiddelde_gemiddelde_afstand() > 100:
+#             zonnescherm_doel = 0
+#             zonnescherm_status = 0
+#             for i in arduinos:
+#                 i.write(bytearray(b'\x01'))
+#
+#         if zonnescherm_doel == 2 and gemiddelde_gemiddelde_afstand() < 40:
+#             zonnescherm_doel = 0
+#             zonnescherm_status = 1
+#             for i in arduinos:
+#                 i.write(bytearray(b'\x02'))
+
+
+
+def gemiddelde_gemiddelde_afstand():
+    aantal = 0
+    totaal = 0
+    for i in range(0, len(arduinos)):
+        aantal+=1
+        totaal+=distance_gemiddelde[i]
+
+    if aantal == 0:
+        aantal = 1
+    return totaal/aantal
 
 def get_zonnescherm():
     global zonnescherm_status
     return zonnescherm_status
+
