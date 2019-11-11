@@ -45,10 +45,13 @@ class ThreadSafeConsole(Text):
         Text.__init__(self, master, **options)
         self.queue = queue.Queue()
         self.update_me()
+    
     def write(self, line):
         self.queue.put(line)
+    
     def clear(self):
         self.queue.put(None)
+    
     def update_me(self):
         try:
             while 1:
@@ -70,7 +73,7 @@ def vp_start_gui():
     root = tk.Tk()
     ding = ThreadSafeConsole(root)
     unknown_support.set_Tk_var()
-    top = toplevel1(root)
+    top = TopLevel1(root)
     unknown_support.init(root, top)
     _thread.start_new(loop_loop, ())
     root.mainloop()
@@ -85,7 +88,7 @@ def create_toplevel1(root, *args, **kwargs):
     rt = root
     w = tk.Toplevel(root)
     unknown_support.set_Tk_var()
-    top = toplevel1(w)
+    top = TopLevel1(w)
     unknown_support.init(w, top, *args, **kwargs)
     return w, top
 
@@ -96,11 +99,11 @@ def destroy_toplevel1():
     w = None
 
 
-class toplevel1():
+class TopLevel1:
     def __init__(self, top=None):
         self.arduinos = []
         self.activeComPorts = []
-        self.total_data = [[],[],[],[]]
+        self.total_data = [[], [], [], []]
         self.maxtemp = 25
         self.maxlight = 80
         '''This class configures and populates the toplevel window.
@@ -123,11 +126,9 @@ class toplevel1():
         top.configure(highlightcolor="black")
 
         self.style.configure('TNotebook.Tab', background=_bgcolor, foreground=_fgcolor)
-        self.style.map('TNotebook.Tab', background=
-        [('selected', _compcolor), ('active', _ana2color)])
+        self.style.map('TNotebook.Tab', background=[('selected', _compcolor), ('active', _ana2color)])
         self.t_notebook_1 = ttk.Notebook(top)
-        self.t_notebook_1.place(relx=0.0, rely=0.0, relheight=1.003
-                              , relwidth=1.002)
+        self.t_notebook_1.place(relx=0.0, rely=0.0, relheight=1.003, relwidth=1.002)
         self.t_notebook_1.configure(takefocus="")
 
         self.t_notebook_1_t0 = tk.Frame(self.t_notebook_1)
@@ -151,17 +152,14 @@ class toplevel1():
         self.t_notebook_1_t3.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.t_notebook_2 = ttk.Notebook(self.t_notebook_1_t0)
-        self.t_notebook_2.place(relx=0.291, rely=0.014, relheight=0.241
-                              , relwidth=0.68)
+        self.t_notebook_2.place(relx=0.291, rely=0.014, relheight=0.241, relwidth=0.68)
         self.t_notebook_2.configure(takefocus="")
         self.t_notebook_2_t0 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t0, padding=3)
-        self.t_notebook_2.tab(0, text="Afstandsensor", compound="left"
-                            , underline="-1", )
+        self.t_notebook_2.tab(0, text="Afstandsensor", compound="left", underline="-1", )
         self.t_notebook_2_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar1 = Figure(figsize=(5, 2), dpi=75)
         self.ax1 = bar1.add_subplot(111)
-
 
         self.data1 = (20, 45, 30, 35)
         self.ax1.set_title('NIET AANGESLOTEN', color="red")
@@ -169,8 +167,7 @@ class toplevel1():
 
         self.t_notebook_2_t1 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t1, padding=3)
-        self.t_notebook_2.tab(1, text="Lichtsensor", compound="left", underline="-1"
-                            , )
+        self.t_notebook_2.tab(1, text="Lichtsensor", compound="left", underline="-1")
         self.t_notebook_2_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar2 = Figure(figsize=(5, 2), dpi=75)
         self.ax2 = bar2.add_subplot(111)
@@ -179,44 +176,36 @@ class toplevel1():
 
         self.t_notebook_2_t2 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t2, padding=3)
-        self.t_notebook_2.tab(2, text="Temperatuur", compound="none", underline="-1"
-                            , )
+        self.t_notebook_2.tab(2, text="Temperatuur", compound="none", underline="-1")
         self.t_notebook_2_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.t_notebook_3 = ttk.Notebook(self.t_notebook_1_t1)
-        self.t_notebook_3.place(relx=0.0, rely=0.014, relheight=0.995
-                              , relwidth=1.004)
+        self.t_notebook_3.place(relx=0.0, rely=0.014, relheight=0.995, relwidth=1.004)
         self.t_notebook_3.configure(takefocus="")
         self.t_notebook_3_t0 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t0, padding=3)
-        self.t_notebook_3.tab(0, text="Arduino 1", compound="left", underline="-1"
-                            , )
+        self.t_notebook_3.tab(0, text="Arduino 1", compound="left", underline="-1")
         self.t_notebook_3_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         self.t_notebook_3_t1 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t1, padding=3)
-        self.t_notebook_3.tab(1, text="Arduino 2", compound="left", underline="-1"
-                            , )
+        self.t_notebook_3.tab(1, text="Arduino 2", compound="left", underline="-1")
         self.t_notebook_3_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         self.t_notebook_3_t2 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t2, padding=3)
-        self.t_notebook_3.tab(2, text="Arduino 3", compound="none", underline="-1"
-                            , )
+        self.t_notebook_3.tab(2, text="Arduino 3", compound="none", underline="-1")
         self.t_notebook_3_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         self.t_notebook_3_t3 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t3, padding=3)
-        self.t_notebook_3.tab(3, text="Arduino 4", compound="none", underline="-1"
-                            , )
+        self.t_notebook_3.tab(3, text="Arduino 4", compound="none", underline="-1")
         self.t_notebook_3_t3.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.t_notebook_4 = ttk.Notebook(self.t_notebook_1_t2)
-        self.t_notebook_4.place(relx=0.0, rely=0.014, relheight=0.981
-                              , relwidth=0.994)
+        self.t_notebook_4.place(relx=0.0, rely=0.014, relheight=0.981, relwidth=0.994)
         self.t_notebook_4.configure(takefocus="")
 
         self.t_notebook_4_t0 = tk.Frame(self.t_notebook_4)
         self.t_notebook_4.add(self.t_notebook_4_t0, padding=3)
-        self.t_notebook_4.tab(0, text="Set zonnescherm config", compound="left", underline="-1"
-                            , )
+        self.t_notebook_4.tab(0, text="Set zonnescherm config", compound="left", underline="-1")
         self.t_notebook_4_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         # self.t_notebook_4_t1 = tk.Frame(self.t_notebook_4)
@@ -229,8 +218,7 @@ class toplevel1():
         # self.t_notebook_4_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.t_notebook_5 = ttk.Notebook(self.t_notebook_1_t0)
-        self.t_notebook_5.place(relx=0.291, rely=0.26, relheight=0.721
-                              , relwidth=0.693)
+        self.t_notebook_5.place(relx=0.291, rely=0.26, relheight=0.721, relwidth=0.693)
         self.t_notebook_5.configure(takefocus="")
         self.t_notebook_5_t0 = tk.Frame(self.t_notebook_5)
         self.t_notebook_5.add(self.t_notebook_5_t0, padding=3)
@@ -529,19 +517,19 @@ class toplevel1():
 
         self.button_68 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
         self.button_68.place(relx=0.01, rely=0.521, height=74, width=137)
-        self.button_68.configure(command=self.switchToArduino, text='''Arduino 1''')
+        self.button_68.configure(command=self.switch_to_arduino, text='''Arduino 1''')
 
         self.button_69 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
         self.button_69.place(relx=0.155, rely=0.521, height=74, width=127)
-        self.button_69.configure(command=self.switchToArduino2, text='''Arduino 2''')
+        self.button_69.configure(command=self.switch_to_arduino_2, text='''Arduino 2''')
 
         self.button_70 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
         self.button_70.place(relx=0.01, rely=0.644, height=74, width=137)
-        self.button_70.configure(command=self.switchToArduino3, text='''Arduino 3''')
+        self.button_70.configure(command=self.switch_to_arduino_3, text='''Arduino 3''')
 
         self.button_71 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
         self.button_71.place(relx=0.155, rely=0.644, height=74, width=127)
-        self.button_71.configure(command=self.switchToArduino4, text='''Arduino 4''')
+        self.button_71.configure(command=self.switch_to_arduino_4, text='''Arduino 4''')
 
         # self.checkbuttonstyle = ttk.Style()
         # self.checkbuttonstyle.configure('Custom.TCheckbutton', activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
@@ -639,18 +627,16 @@ class toplevel1():
         # self.Checkbutton18.configure(variable=unknown_support.che125, text='''Check''')
 
         self.listbox_1 = tk.Listbox(self.t_notebook_1_t0)
-        self.listbox_1.place(relx=0.01, rely=0.014, relheight=0.236
-                            , relwidth=0.272)
+        self.listbox_1.place(relx=0.01, rely=0.014, relheight=0.236, relwidth=0.272)
         self.listbox_1.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
-                                selectbackground="#c4c4c4", selectforeground="black")
+                                 foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                                 selectbackground="#c4c4c4", selectforeground="black")
 
         self.listbox_2 = tk.Listbox(self.t_notebook_1_t0)
-        self.listbox_2.place(relx=0.01, rely=0.26, relheight=0.236
-                            , relwidth=0.272)
+        self.listbox_2.place(relx=0.01, rely=0.26, relheight=0.236, relwidth=0.272)
         self.listbox_2.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
-                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
-                                selectbackground="#c4c4c4", selectforeground="black")
+                                 foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                                 selectbackground="#c4c4c4", selectforeground="black")
 
         self.canvasbar1 = FigureCanvasTkAgg(bar1, master=self.t_notebook_2_t0)
         self.canvasbar1.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
@@ -678,7 +664,7 @@ class toplevel1():
 
         fig2 = Figure(figsize=(5, 4), dpi=100)
         t = np.arange(0, 3, .01)
-        self.canvas2 = fig2.add_subplot(1,1,1)
+        self.canvas2 = fig2.add_subplot(1, 1, 1)
         self.canvas2y = []
         self.canvas2x = []
         self.new2x = 0
@@ -787,9 +773,10 @@ class toplevel1():
         self.canvas7a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
         self.entry_style = ttk.Style()
-        self.entry_style.configure('Custom.TEntry', background="white", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
-                              highlightbackground="#d9d9d9", highlightcolor="black", insertbackground="black",
-                              selectbackground="#c4c4c4", selectforeground="black")
+        self.entry_style.configure('Custom.TEntry', background="white", disabledforeground="#a3a3a3",
+                                   font="TkFixedFont", foreground="#000000", highlightbackground="#d9d9d9",
+                                   highlightcolor="black", insertbackground="black", selectbackground="#c4c4c4",
+                                   selectforeground="black")
 
         self.entry_1 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
         self.entry_1.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
@@ -864,9 +851,9 @@ class toplevel1():
         # self.Entry24.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
 
         self.label_style = ttk.Style()
-        self.label_style.configure('Custom.TLabel', activebackground="#f9f9f9", activeforeground="black", background="#d9d9d9",
-                              disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
-                              highlightcolor="black")
+        self.label_style.configure('Custom.TLabel', activebackground="#f9f9f9", activeforeground="black",
+                                   background="#d9d9d9", disabledforeground="#a3a3a3", foreground="#000000",
+                                   highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.label_1 = ttk.Label(self.t_notebook_1_t3, style='Custom.TLabel')
         self.label_1.place(relx=0.01, rely=0.014, height=391, width=674)
@@ -988,17 +975,14 @@ class toplevel1():
         self.loop()
         self.fix_grafieken()
 
-
-
     def loop(self):
         global counter, getallen, aantal_huidig, arduinos
         self.open_or_close(temp_gemiddelde, light_gemiddelde, distance_gemiddelde)
         self.fix_grafieken()
         root.after(1000, self.loop)
 
+    # def fill_listbox_1(self, string_list, index):
 
-
-        # def fill_listbox_1(self, string_list, index):
     def fix_grafieken(self):
         gemiddelde = 0
         aantal = 0
@@ -1011,7 +995,7 @@ class toplevel1():
         else:
             self.fill_listbox_2(str("Zonnescherm is open "), 1)
         for i in range(4):
-            if(i+1 <= aantal_live):
+            if i+1 <= aantal_live:
                 self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is live"), i+1)
             else:
                 self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is niet live"), i+1)
@@ -1036,7 +1020,6 @@ class toplevel1():
         self.set_bar2_data(light_gemiddelde[0],light_gemiddelde[1],light_gemiddelde[2],light_gemiddelde[3])
         self.set_bar3_data(temp_gemiddelde[0], temp_gemiddelde[1], temp_gemiddelde[2], temp_gemiddelde[3])
 
-
     def open_or_close(self, gemiddelde_temp, gemiddelde_light, gemiddelde_afstand):
         aantal_light = 0
         aantal_temp = 0
@@ -1046,23 +1029,23 @@ class toplevel1():
         afstand = 0
         for i in gemiddelde_temp:
             if i != 0:
-                aantal_temp+=1
-                temp+=i
+                aantal_temp += 1
+                temp += i
 
         for i in gemiddelde_light:
             if i != 0:
-                aantal_light+=1
-                light+=i
+                aantal_light += 1
+                light += i
 
         for i in gemiddelde_afstand:
             if i != 0:
-                aantal_afstand+=1
-                afstand+=i
+                aantal_afstand += 1
+                afstand += i
 
         if aantal_light == 0:
-            aantal_light =1
+            aantal_light = 1
         if aantal_afstand == 0:
-            aantal_afstand =1
+            aantal_afstand = 1
         if aantal_temp == 0:
             aantal_temp = 1
         light = int(light/aantal_light)
@@ -1331,33 +1314,32 @@ class toplevel1():
         self.new2x = 0
         self.new3x = 0
 
-
-    def switchToArduino(self):
+    def switch_to_arduino(self):
         length = len(arduinos)
-        if (length > 0):
+        if length > 0:
             self.clear_canvasses_dashboard()
             self.huidige_grafiek = 0
 
-    def switchToArduino2(self):
+    def switch_to_arduino_2(self):
         length = len(arduinos)
-        if (length > 1):
+        if length > 1:
             self.clear_canvasses_dashboard()
             self.huidige_grafiek = 1
 
-    def switchToArduino3(self):
+    def switch_to_arduino_3(self):
         length = len(arduinos)
-        if (length > 2):
-            self.huidige_grafiek = 2
+        if length > 2:
             self.clear_canvasses_dashboard()
+            self.huidige_grafiek = 2
 
-    def switchToArduino4(self):
+    def switch_to_arduino_4(self):
         length = len(arduinos)
-        if (length > 3):
+        if length > 3:
             self.clear_canvasses_dashboard()
             self.huidige_grafiek = 3
 
-    def set_bar1_data(self, AD1, AD2, AD3, AD4):
-        self.data1 = (AD1, AD2, AD3, AD4)
+    def set_bar1_data(self, ad1, ad2, ad3, ad4):
+        self.data1 = (ad1, ad2, ad3, ad4)
         self.ax1.clear()
         self.ax1.bar(self.ind, self.data1, .5)
         self.ax1.set_xticks(self.ind)
@@ -1366,8 +1348,8 @@ class toplevel1():
         self.ax1.set_ylabel("Aftand (cm)")
         self.canvasbar1.draw()
 
-    def set_bar2_data(self, AD1, AD2, AD3, AD4):
-        self.data2 = (AD1, AD2, AD3, AD4)
+    def set_bar2_data(self, ad1, ad2, ad3, ad4):
+        self.data2 = (ad1, ad2, ad3, ad4)
         self.ax2.clear()
         self.ax2.bar(self.ind, self.data2, .5)
         self.ax2.set_xticks(self.ind)
@@ -1376,8 +1358,8 @@ class toplevel1():
         self.ax2.set_ylabel("Lichtintensiteit (lux)")
         self.canvasbar2.draw()
 
-    def set_bar3_data(self, AD1, AD2, AD3, AD4):
-        self.data3 = (AD1, AD2, AD3, AD4)
+    def set_bar3_data(self, ad1, ad2, ad3, ad4):
+        self.data3 = (ad1, ad2, ad3, ad4)
         self.ax3.clear()
         self.ax3.bar(self.ind, self.data3, .5)
         self.ax3.set_xticks(self.ind)
@@ -1398,12 +1380,12 @@ class toplevel1():
     def set_light(self):
         self.maxlight = int(self.entry_2.get())
 
-
     def reset_temp(self):
         self.maxtemp = 200
 
     def reset_light(self):
         self.maxlight = 70
+
 
 if __name__ == '__main__':
     vp_start_gui()
