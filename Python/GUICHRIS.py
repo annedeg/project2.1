@@ -113,7 +113,11 @@ class TopLevel1:
         _ana2color = '#ececec'  # Closest X11 color: 'gray92'
         self.style = ttk.Style()
         self.buttonstyle = ttk.Style()
+        self.redbutton = ttk.Style()
+        self.greenbutton = ttk.Style()
         self.buttonstyle.configure('Custom.TButton', padding=1, relief="flat", background="black")
+        self.redbutton.configure('Red.TButton', padding=1, relief="flat", background="red", foreground="black")
+        self.greenbutton.configure('Green.TButton', padding=1, relief="flat", background="green", foreground="black")
         top.geometry("1400x840+478+139")
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
@@ -241,27 +245,27 @@ class TopLevel1:
         self.ax3.set_title('NIET AANGESLOTEN', color="red")
         self.data3 = (20, 35, 30, 35)
 
-        self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Red.TButton')
         self.Button23.place(relx=0.01, rely=0.863, height=54, relwidth=0.270)
         self.Button23.configure(command=close_zonnescherm,  text='''CLOSE SCHERM''')
 
-        self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Green.TButton')
         self.button_1.place(relx=0.01, rely=0.767, height=54, relwidth=0.270)
         self.button_1.configure(command=open_zonnescherm, text='''OPEN SCHERM''')
 
-        self.button_2 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.button_2 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.button_2.place(relx=0.265, rely=0.029, height=24, relwidth=0.05)
         self.button_2.configure(command=self.set_temp, text='''Set''')
 
-        self.button_3 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.button_3 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.button_3.place(relx=0.265, rely=0.072, height=24, relwidth=0.05)
         self.button_3.configure(command=self.set_light, text='''Set''')
 
-        self.button_4 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.button_4 = ttk.Button(self.t_notebook_4_t0, style='Red.TButton')
         self.button_4.place(relx=0.324, rely=0.029, height=24, relwidth=0.05)
         self.button_4.configure(command=self.reset_temp, text='''Reset''')
 
-        self.button_5 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.button_5 = ttk.Button(self.t_notebook_4_t0, style='Red.TButton')
         self.button_5.place(relx=0.324, rely=0.072, height=24, relwidth=0.05)
         self.button_5.configure(command=self.reset_light, text='''Reset''')
 
@@ -539,8 +543,8 @@ class TopLevel1:
 
         self.checkbuttonstyle = ttk.Style()
         self.checkbuttonstyle.configure('Custom.TCheckbutton', activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
-                                     disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
-                                     highlightcolor="black", justify='left')
+                                        disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                        highlightcolor="black", justify='left')
 
         self.Checkbutton1 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
         self.Checkbutton1.place(relx=0.101, rely=0.203, relheight=0.036, relwidth=39)
@@ -656,8 +660,6 @@ class TopLevel1:
         self.fig1 = Figure(figsize=(5, 4), dpi=100)
         self.t = np.arange(0, 3, .01)
         self.canvas1 = self.fig1.add_subplot(1, 1, 1)
-        self.canvas1.set_ylabel('Afstand (cm)')
-        self.canvas1.set_xlabel('Tijd')
         self.canvasx = []
         self.canvas1y = []
         self.newx = 0
@@ -671,8 +673,6 @@ class TopLevel1:
         fig2 = Figure(figsize=(5, 4), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas2 = fig2.add_subplot(1, 1, 1)
-        self.canvas2.set_ylabel('Licht (lux)')
-        self.canvas2.set_xlabel('Tijd')
         self.canvas2y = []
         self.canvas2x = []
         self.new2x = 0
@@ -686,8 +686,6 @@ class TopLevel1:
         fig3 = Figure(figsize=(5, 4), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas3 = fig3.add_subplot(1, 1, 1)
-        self.canvas3.set_ylabel('Temperatuur (°C)')
-        self.canvas3.set_xlabel('Tijd')
         self.canvas3y = []
         self.canvas3x = []
         self.new3x = 0
@@ -701,14 +699,8 @@ class TopLevel1:
         fig4 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas4 = fig4.add_subplot(1, 3, 1)
-        self.canvas4.set_ylabel('Afstand (cm)')
-        self.canvas4.set_xlabel('Tijd')
         self.canvas5 = fig4.add_subplot(1, 3, 2)
-        self.canvas5.set_ylabel('Licht (lux)')
-        self.canvas5.set_xlabel('Tijd')
         self.canvas12 = fig4.add_subplot(1, 3, 3)
-        self.canvas12.set_ylabel('Temperatuur (°C)')
-        self.canvas12.set_xlabel('Tijd')
         self.canvas4y = []
         self.canvas5y = []
         self.canvas4x = []
@@ -728,14 +720,8 @@ class TopLevel1:
         fig5 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas6 = fig5.add_subplot(1, 3, 1)
-        self.canvas6.set_ylabel('Afstand (cm)')
-        self.canvas6.set_xlabel('Tijd')
         self.canvas7 = fig5.add_subplot(1, 3, 2)
-        self.canvas7.set_ylabel('Licht (lux)')
-        self.canvas7.set_xlabel('Tijd')
         self.canvas13 = fig5.add_subplot(1, 3, 3)
-        self.canvas13.set_ylabel('Temperatuur (°C)')
-        self.canvas13.set_xlabel('Tijd')
         self.canvas6y = []
         self.canvas7y = []
         self.canvas6x = []
@@ -755,14 +741,8 @@ class TopLevel1:
         fig6 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas8 = fig6.add_subplot(1, 3, 1)
-        self.canvas8.set_ylabel('Afstand (cm)')
-        self.canvas8.set_xlabel('Tijd')
         self.canvas9 = fig6.add_subplot(1, 3, 2)
-        self.canvas9.set_ylabel('Licht (lux)')
-        self.canvas9.set_xlabel('Tijd')
         self.canvas14 = fig6.add_subplot(1, 3, 3)
-        self.canvas14.set_ylabel('Temperatuur (°C)')
-        self.canvas14.set_xlabel('Tijd')
         self.canvas8y = []
         self.canvas9y = []
         self.canvas8x = []
@@ -782,14 +762,8 @@ class TopLevel1:
         fig7 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas10 = fig7.add_subplot(1, 3, 1)
-        self.canvas10.set_ylabel('Afstand (cm)')
-        self.canvas10.set_xlabel('Tijd')
         self.canvas11 = fig7.add_subplot(1, 3, 2)
-        self.canvas11.set_ylabel('Licht (lux)')
-        self.canvas11.set_xlabel('Tijd')
         self.canvas15 = fig7.add_subplot(1, 3, 3)
-        self.canvas15.set_ylabel('Temperatuur (°C)')
-        self.canvas15.set_xlabel('Tijd')
         self.canvas10y = []
         self.canvas11y = []
         self.canvas10x = []
@@ -809,14 +783,8 @@ class TopLevel1:
         fig8 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas16 = fig8.add_subplot(1, 3, 1)
-        self.canvas16.set_ylabel('Afstand (cm)')
-        self.canvas16.set_xlabel('Tijd')
         self.canvas17 = fig8.add_subplot(1, 3, 2)
-        self.canvas17.set_ylabel('Licht (lux)')
-        self.canvas17.set_xlabel('Tijd')
         self.canvas18 = fig8.add_subplot(1, 3, 3)
-        self.canvas18.set_ylabel('Temperatuur (°C)')
-        self.canvas18.set_xlabel('Tijd')
         self.canvas16y = []
         self.canvas17y = []
         self.canvas16x = []
@@ -1162,6 +1130,9 @@ class TopLevel1:
         self.canvas1y.append(y)
         self.newx += 1
         self.canvas1.set_ylim(0, 300)  # change this if the max limit has to change
+        self.canvas1.set_title('Gemiddelde Afstand')
+        self.canvas1.set_ylabel('Afstand (cm)')
+        self.canvas1.set_xlabel('Tijd')
         self.canvas1.plot(self.canvasx, self.canvas1y, color="blue")
         self.canvas1a.draw()
 
@@ -1174,7 +1145,10 @@ class TopLevel1:
         self.canvas2y.append(y)
         self.new2x += 1
         self.canvas2.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas2.plot(self.canvas2x, self.canvas2y, color="blue")
+        self.canvas2.set_title('Gemiddelde Lichtintensiteit')
+        self.canvas2.set_ylabel('Licht (lux)')
+        self.canvas2.set_xlabel('Tijd')
+        self.canvas2.plot(self.canvas2x, self.canvas2y, color="yellow")
         self.canvas2a.draw()
 
     def animatecanvas3(self, y):
@@ -1186,7 +1160,10 @@ class TopLevel1:
         self.canvas3y.append(y)
         self.new3x += 1
         self.canvas3.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas3.plot(self.canvas3x, self.canvas3y, color="blue")
+        self.canvas3.set_title('Gemiddelde Temperatuur')
+        self.canvas3.set_ylabel('Temperatuur (°C)')
+        self.canvas3.set_xlabel('Tijd')
+        self.canvas3.plot(self.canvas3x, self.canvas3y, color="red")
         self.canvas3a.draw()
 
     def animatecanvas4(self, y):
@@ -1198,6 +1175,9 @@ class TopLevel1:
         self.canvas4y.append(y)
         self.new4x += 1
         self.canvas4.set_ylim(0, 300)  # change this if the max limit has to change
+        self.canvas4.set_title('Gemiddelde Afstand')
+        self.canvas4.set_ylabel('Afstand (cm)')
+        self.canvas4.set_xlabel('Tijd')
         self.canvas4.plot(self.canvas4x, self.canvas4y, color="blue")
         self.canvas4a.draw()
 
@@ -1210,7 +1190,10 @@ class TopLevel1:
         self.canvas5y.append(y)
         self.new5x += 1
         self.canvas5.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas5.plot(self.canvas5x, self.canvas5y, color="blue")
+        self.canvas5.set_title('Gemiddelde Temperatuur')
+        self.canvas5.set_ylabel('Temperatuur (°C)')
+        self.canvas5.set_xlabel('Tijd')
+        self.canvas5.plot(self.canvas5x, self.canvas5y, color="red")
         self.canvas4a.draw()
 
     def animatecanvas6(self, y):
@@ -1222,6 +1205,9 @@ class TopLevel1:
         self.canvas6y.append(y)
         self.new6x += 1
         self.canvas6.set_ylim(0, 300)  # change this if the max limit has to change
+        self.canvas6.set_title('Gemiddelde Afstand')
+        self.canvas6.set_ylabel('Afstand (cm)')
+        self.canvas6.set_xlabel('Tijd')
         self.canvas6.plot(self.canvas6x, self.canvas6y, color="blue")
         self.canvas5a.draw()
 
@@ -1234,7 +1220,10 @@ class TopLevel1:
         self.canvas7y.append(y)
         self.new7x += 1
         self.canvas7.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas7.plot(self.canvas7x, self.canvas7y, color="blue")
+        self.canvas7.set_title('Gemiddelde Temperatuur')
+        self.canvas7.set_ylabel('Temperatuur (°C)')
+        self.canvas7.set_xlabel('Tijd')
+        self.canvas7.plot(self.canvas7x, self.canvas7y, color="red")
         self.canvas5a.draw()
 
     def animatecanvas8(self, y):
@@ -1246,6 +1235,9 @@ class TopLevel1:
         self.canvas8y.append(y)
         self.new8x += 1
         self.canvas8.set_ylim(0, 300)  # change this if the max limit has to change
+        self.canvas8.set_title('Gemiddelde Afstand')
+        self.canvas8.set_ylabel('Afstand (cm)')
+        self.canvas8.set_xlabel('Tijd')
         self.canvas8.plot(self.canvas8x, self.canvas8y, color="blue")
         self.canvas6a.draw()
 
@@ -1258,7 +1250,10 @@ class TopLevel1:
         self.canvas9y.append(y)
         self.new9x += 1
         self.canvas9.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas9.plot(self.canvas9x, self.canvas9y, color="blue")
+        self.canvas9.set_title('Gemiddelde Temperatuur')
+        self.canvas9.set_ylabel('Temperatuur (°C)')
+        self.canvas9.set_xlabel('Tijd')
+        self.canvas9.plot(self.canvas9x, self.canvas9y, color="red")
         self.canvas6a.draw()
 
     def animatecanvas10(self, y):
@@ -1270,6 +1265,9 @@ class TopLevel1:
         self.canvas10y.append(y)
         self.new10x += 1
         self.canvas10.set_ylim(0, 300)  # change this if the max limit has to change
+        self.canvas10.set_title('Gemiddelde Afstand')
+        self.canvas10.set_ylabel('Afstand (cm)')
+        self.canvas10.set_xlabel('Tijd')
         self.canvas10.plot(self.canvas10x, self.canvas10y, color="blue")
         self.canvas7a.draw()
 
@@ -1282,7 +1280,10 @@ class TopLevel1:
         self.canvas11y.append(y)
         self.new11x += 1
         self.canvas11.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas11.plot(self.canvas11x, self.canvas11y, color="blue")
+        self.canvas11.set_title('Gemiddelde Temperatuur')
+        self.canvas11.set_ylabel('Temperatuur (°C)')
+        self.canvas11.set_xlabel('Tijd')
+        self.canvas11.plot(self.canvas11x, self.canvas11y, color="red")
         self.canvas7a.draw()
 
     def animatecanvas12(self, y):
@@ -1294,7 +1295,10 @@ class TopLevel1:
         self.canvas12y.append(y)
         self.new12x += 1
         self.canvas12.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas12.plot(self.canvas12x, self.canvas12y, color="blue")
+        self.canvas12.set_title('Gemiddelde Lichtintensiteit')
+        self.canvas12.set_ylabel('Licht (lux)')
+        self.canvas12.set_xlabel('Tijd')
+        self.canvas12.plot(self.canvas12x, self.canvas12y, color="yellow")
         self.canvas4a.draw()
 
     def animatecanvas13(self, y):
@@ -1306,7 +1310,10 @@ class TopLevel1:
         self.canvas13y.append(y)
         self.new13x += 1
         self.canvas13.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas13.plot(self.canvas13x, self.canvas13y, color="blue")
+        self.canvas13.set_title('Gemiddelde Lichtintensiteit')
+        self.canvas13.set_ylabel('Licht (lux)')
+        self.canvas13.set_xlabel('Tijd')
+        self.canvas13.plot(self.canvas13x, self.canvas13y, color="yellow")
         self.canvas5a.draw()
 
     def animatecanvas14(self, y):
@@ -1318,7 +1325,10 @@ class TopLevel1:
         self.canvas14y.append(y)
         self.new14x += 1
         self.canvas14.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas14.plot(self.canvas14x, self.canvas14y, color="blue")
+        self.canvas14.set_title('Gemiddelde Lichtintensiteit')
+        self.canvas14.set_ylabel('Licht (lux)')
+        self.canvas14.set_xlabel('Tijd')
+        self.canvas14.plot(self.canvas14x, self.canvas14y, color="yellow")
         self.canvas6a.draw()
 
     def animatecanvas15(self, y):
@@ -1330,7 +1340,10 @@ class TopLevel1:
         self.canvas15y.append(y)
         self.new15x += 1
         self.canvas15.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas15.plot(self.canvas15x, self.canvas15y, color="blue")
+        self.canvas15.set_title('Gemiddelde Lichtintensiteit')
+        self.canvas15.set_ylabel('Licht (lux)')
+        self.canvas15.set_xlabel('Tijd')
+        self.canvas15.plot(self.canvas15x, self.canvas15y, color="yellow")
         self.canvas7a.draw()
 
     def animatecanvas16(self, y):
@@ -1341,7 +1354,10 @@ class TopLevel1:
             self.canvas16.clear()
         self.canvas16y.append(y)
         self.new16x += 1
-        self.canvas16.set_ylim(0, 120)  # change this if the max limit has to change
+        self.canvas16.set_ylim(0, 300)  # change this if the max limit has to change
+        self.canvas16.set_title('Gemiddelde Afstand')
+        self.canvas16.set_ylabel('Afstand (cm)')
+        self.canvas16.set_xlabel('Tijd')
         self.canvas16.plot(self.canvas16x, self.canvas16y, color="blue")
         self.canvas8a.draw()
 
@@ -1353,8 +1369,11 @@ class TopLevel1:
             self.canvas17.clear()
         self.canvas17y.append(y)
         self.new17x += 1
-        self.canvas17.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas17.plot(self.canvas17x, self.canvas17y, color="blue")
+        self.canvas17.set_ylim(0, 80)  # change this if the max limit has to change
+        self.canvas17.set_title('Gemiddelde Temperatuur')
+        self.canvas17.set_ylabel('Temperatuur (°C)')
+        self.canvas17.set_xlabel('Tijd')
+        self.canvas17.plot(self.canvas17x, self.canvas17y, color="red")
         self.canvas8a.draw()
 
     def animatecanvas18(self, y):
@@ -1366,7 +1385,10 @@ class TopLevel1:
         self.canvas18y.append(y)
         self.new18x += 1
         self.canvas18.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas18.plot(self.canvas18x, self.canvas18y, color="blue")
+        self.canvas18.set_title('Gemiddelde Lichtintensiteit')
+        self.canvas18.set_ylabel('Licht (lux)')
+        self.canvas18.set_xlabel('Tijd')
+        self.canvas18.plot(self.canvas18x, self.canvas18y, color="yellow")
         self.canvas8a.draw()
 
     def set_1_temperatuur(self):
@@ -1499,7 +1521,7 @@ class TopLevel1:
     def set_bar2_data(self, ad1, ad2, ad3, ad4, ad5):
         self.data2 = (ad1, ad2, ad3, ad4, ad5)
         self.ax2.clear()
-        self.ax2.bar(self.ind, self.data2, .5)
+        self.ax2.bar(self.ind, self.data2, .5, color="yellow")
         self.ax2.set_xticks(self.ind)
         self.ax2.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4', 'Arduino 5'))
         self.ax2.set_title("Gemiddelde Lichtintensiteit")
@@ -1509,7 +1531,7 @@ class TopLevel1:
     def set_bar3_data(self, ad1, ad2, ad3, ad4, ad5):
         self.data3 = (ad1, ad2, ad3, ad4, ad5)
         self.ax3.clear()
-        self.ax3.bar(self.ind, self.data3, .5)
+        self.ax3.bar(self.ind, self.data3, .5, color="red")
         self.ax3.set_xticks(self.ind)
         self.ax3.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4', 'Arduino 5'))
         self.ax3.set_title("Gemiddelde Temperatuur")
@@ -1518,6 +1540,10 @@ class TopLevel1:
 
     def fill_listbox_1(self, string, index):
         self.listbox_1.insert(index, string)
+        if len(string) == 22:
+            self.listbox_1.itemconfig(index-1, {'bg':'red', 'fg':'white'})
+        else:
+            self.listbox_1.itemconfig(index - 1, {'bg': 'green'})
 
     def fill_listbox_2(self, string, index):
         self.listbox_2.insert(index, string)
