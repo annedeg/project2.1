@@ -104,6 +104,7 @@ class TopLevel1:
         self.run_config = 1
         self.mindistance = 20
         self.maxdistance = 140
+        self.tmp_for_styles = 0
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -115,9 +116,19 @@ class TopLevel1:
         self.buttonstyle = ttk.Style()
         self.redbutton = ttk.Style()
         self.greenbutton = ttk.Style()
+        self.arduino1style = ttk.Style()
+        self.arduino2style = ttk.Style()
+        self.arduino3style = ttk.Style()
+        self.arduino4style = ttk.Style()
+        self.arduino5style = ttk.Style()
         self.buttonstyle.configure('Custom.TButton', padding=1, relief="flat", background="black")
         self.redbutton.configure('Red.TButton', padding=1, relief="flat", background="red", foreground="black")
         self.greenbutton.configure('Green.TButton', padding=1, relief="flat", background="green", foreground="black")
+        self.arduino1style.configure('Arduino1.TButton', padding=1, relief="flat", background="grey", foreground="grey")
+        self.arduino2style.configure('Arduino2.TButton', padding=1, relief="flat", background="grey", foreground="grey")
+        self.arduino3style.configure('Arduino3.TButton', padding=1, relief="flat", background="grey", foreground="grey")
+        self.arduino4style.configure('Arduino4.TButton', padding=1, relief="flat", background="grey", foreground="grey")
+        self.arduino5style.configure('Arduino5.TButton', padding=1, relief="flat", background="grey", foreground="grey")
         top.geometry("1400x840+478+139")
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
@@ -158,27 +169,27 @@ class TopLevel1:
         self.t_notebook_2.configure(takefocus="")
         self.t_notebook_2_t0 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t0, padding=3)
-        self.t_notebook_2.tab(0, text="Afstandsensor", compound="left", underline="-1", )
+        self.t_notebook_2.tab(0, text="Distancesensor", compound="left", underline="-1", )
         self.t_notebook_2_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar1 = Figure(figsize=(5, 2), dpi=75)
         self.ax1 = bar1.add_subplot(111)
 
         self.data1 = (20, 45, 30, 35)
-        self.ax1.set_title('NIET AANGESLOTEN', color="red")
+        self.ax1.set_title('NOT CONNECTED', color="red")
         self.ind = np.arange(5)  # the x locations for the groups
 
         self.t_notebook_2_t1 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t1, padding=3)
-        self.t_notebook_2.tab(1, text="Lichtsensor", compound="left", underline="-1")
+        self.t_notebook_2.tab(1, text="Lightsensor", compound="left", underline="-1")
         self.t_notebook_2_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar2 = Figure(figsize=(5, 2), dpi=75)
         self.ax2 = bar2.add_subplot(111)
-        self.ax2.set_title('NIET AANGESLOTEN', color="red")
+        self.ax2.set_title('NOT CONNECTED', color="red")
         self.data2 = (20, 35, 30, 35)
 
         self.t_notebook_2_t2 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t2, padding=3)
-        self.t_notebook_2.tab(2, text="Temperatuur", compound="none", underline="-1")
+        self.t_notebook_2.tab(2, text="Temperature", compound="none", underline="-1")
         self.t_notebook_2_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.t_notebook_3 = ttk.Notebook(self.t_notebook_1_t1)
@@ -211,7 +222,7 @@ class TopLevel1:
 
         self.t_notebook_4_t0 = tk.Frame(self.t_notebook_4)
         self.t_notebook_4.add(self.t_notebook_4_t0, padding=3)
-        self.t_notebook_4.tab(0, text="Set zonnescherm config", compound="left", underline="-1")
+        self.t_notebook_4.tab(0, text="Set sunshade config", compound="left", underline="-1")
         self.t_notebook_4_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         # self.t_notebook_4_t1 = tk.Frame(self.t_notebook_4)
@@ -228,30 +239,30 @@ class TopLevel1:
         self.t_notebook_5.configure(takefocus="")
         self.t_notebook_5_t0 = tk.Frame(self.t_notebook_5)
         self.t_notebook_5.add(self.t_notebook_5_t0, padding=3)
-        self.t_notebook_5.tab(0, text="Afstand", compound="left", underline="-1", )
+        self.t_notebook_5.tab(0, text="Distance", compound="left", underline="-1", )
         self.t_notebook_5_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.t_notebook_5_t1 = tk.Frame(self.t_notebook_5)
         self.t_notebook_5.add(self.t_notebook_5_t1, padding=3)
-        self.t_notebook_5.tab(1, text="Licht", compound="left", underline="-1", )
+        self.t_notebook_5.tab(1, text="Light", compound="left", underline="-1", )
         self.t_notebook_5_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.t_notebook_5_t2 = tk.Frame(self.t_notebook_5)
         self.t_notebook_5.add(self.t_notebook_5_t2, padding=3)
-        self.t_notebook_5.tab(2, text="Temperatuur", compound="none", underline="-1", )
+        self.t_notebook_5.tab(2, text="Temperature", compound="none", underline="-1", )
         self.t_notebook_5_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
         bar3 = Figure(figsize=(5, 2), dpi=75)
         self.ax3 = bar3.add_subplot(111)
-        self.ax3.set_title('NIET AANGESLOTEN', color="red")
+        self.ax3.set_title('NOT CONNECTED', color="red")
         self.data3 = (20, 35, 30, 35)
 
         self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Red.TButton')
         self.Button23.place(relx=0.01, rely=0.863, height=54, relwidth=0.270)
-        self.Button23.configure(command=close_zonnescherm,  text='''CLOSE SCHERM''')
+        self.Button23.configure(command=close_zonnescherm,  text='''CLOSE SUNSHADE''')
 
         self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Green.TButton')
         self.button_1.place(relx=0.01, rely=0.767, height=54, relwidth=0.270)
-        self.button_1.configure(command=open_zonnescherm, text='''OPEN SCHERM''')
+        self.button_1.configure(command=open_zonnescherm, text='''OPEN SUNSHADE''')
 
         self.button_2 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.button_2.place(relx=0.265, rely=0.029, height=24, relwidth=0.05)
@@ -521,23 +532,23 @@ class TopLevel1:
         # self.Button67.place(relx=0.324, rely=0.478, height=24, width=39)
         # self.Button67.configure(command=unknown_support.Reset11Licht, text='''Reset''')
 
-        self.button_68 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.button_68 = ttk.Button(self.t_notebook_1_t0, style='Arduino1.TButton')
         self.button_68.place(relx=0.01, rely=0.521, height=74, relwidth=0.080)
         self.button_68.configure(command=self.switch_to_arduino, text='''Arduino 1''')
 
-        self.button_69 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.button_69 = ttk.Button(self.t_notebook_1_t0, style='Arduino2.TButton')
         self.button_69.place(relx=0.105, rely=0.521, height=74, relwidth=0.080)
         self.button_69.configure(command=self.switch_to_arduino_2, text='''Arduino 2''')
 
-        self.button_70 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.button_70 = ttk.Button(self.t_notebook_1_t0, style='Arduino3.TButton')
         self.button_70.place(relx=0.200, rely=0.521, height=74, relwidth=0.080)
         self.button_70.configure(command=self.switch_to_arduino_3, text='''Arduino 3''')
 
-        self.button_71 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.button_71 = ttk.Button(self.t_notebook_1_t0, style='Arduino4.TButton')
         self.button_71.place(relx=0.05, rely=0.644, height=74, relwidth=0.080)
         self.button_71.configure(command=self.switch_to_arduino_4, text='''Arduino 4''')
 
-        self.button_72 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.button_72 = ttk.Button(self.t_notebook_1_t0, style='Arduino5.TButton')
         self.button_72.place(relx=0.155, rely=0.644, height=74, relwidth=0.080)
         self.button_72.configure(command=self.switch_to_arduino_5, text='''Arduino 5''')
 
@@ -929,7 +940,7 @@ class TopLevel1:
 
         self.label_2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         self.label_2.place(relx=0.0, rely=0.029, height=21, relwidth=0.1)
-        self.label_2.configure(text='''Set temperatuur''')
+        self.label_2.configure(text='''Set temperature''')
 
         self.label_2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         self.label_2.place(relx=0.0, rely=0.072, height=21, relwidth=0.1)
@@ -1053,23 +1064,25 @@ class TopLevel1:
         self.listbox_3.delete(0, END)
 
         status = get_zonnescherm()
+        if self.tmp_for_styles != aantal_live:
+            self.reset_arduino_button_styles(aantal_live)
         if status == 0:
-            self.fill_listbox_2(str("Zonnescherm is dicht "), 1)
+            self.fill_listbox_2(str("Sunshade is closed "), 1)
         else:
-            self.fill_listbox_2(str("Zonnescherm is open "), 1)
+            self.fill_listbox_2(str("Sunshade is open "), 1)
         for i in range(5):
             if i+1 <= aantal_live:
-                self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is live"), i+1)
+                self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is online"), i+1)
             else:
-                self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is niet live"), i+1)
+                self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is not online"), i+1)
         config_status = ""
         if self.run_config == 1:
-            config_status = "aan"
+            config_status = "on"
         else:
-            config_status = "uit"
-        self.fill_listbox_3(str("Config staat: " + config_status),1)
-        self.fill_listbox_3(str("Huidige temp instelling: " + str(self.maxtemp)),2)
-        self.fill_listbox_3(str("Huidige light instelling: " + str(self.maxlight)),3)
+            config_status = "off"
+        self.fill_listbox_3(str("Config is: " + config_status),1)
+        self.fill_listbox_3(str("Current temp setting: " + str(self.maxtemp)),2)
+        self.fill_listbox_3(str("Current light setting: " + str(self.maxlight)),3)
         self.animatecanvas1(distance_gemiddelde[self.huidige_grafiek])
         self.animatecanvas3(temp_gemiddelde[self.huidige_grafiek])
         self.animatecanvas2(light_gemiddelde[self.huidige_grafiek])
@@ -1144,9 +1157,9 @@ class TopLevel1:
         self.canvas1y.append(y)
         self.newx += 1
         self.canvas1.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas1.set_title('Gemiddelde Afstand')
-        self.canvas1.set_ylabel('Afstand (cm)')
-        self.canvas1.set_xlabel('Tijd')
+        self.canvas1.set_title('Average distance')
+        self.canvas1.set_ylabel('Distance (cm)')
+        self.canvas1.set_xlabel('Time')
         self.canvas1.plot(self.canvasx, self.canvas1y, color="blue")
         self.canvas1a.draw()
 
@@ -1159,9 +1172,9 @@ class TopLevel1:
         self.canvas2y.append(y)
         self.new2x += 1
         self.canvas2.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas2.set_title('Gemiddelde Lichtintensiteit')
-        self.canvas2.set_ylabel('Licht (lux)')
-        self.canvas2.set_xlabel('Tijd')
+        self.canvas2.set_title('Average lightintensity')
+        self.canvas2.set_ylabel('Light (lux)')
+        self.canvas2.set_xlabel('Time')
         self.canvas2.plot(self.canvas2x, self.canvas2y, color="yellow")
         self.canvas2a.draw()
 
@@ -1174,9 +1187,9 @@ class TopLevel1:
         self.canvas3y.append(y)
         self.new3x += 1
         self.canvas3.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas3.set_title('Gemiddelde Temperatuur')
-        self.canvas3.set_ylabel('Temperatuur (°C)')
-        self.canvas3.set_xlabel('Tijd')
+        self.canvas3.set_title('Average Temperature')
+        self.canvas3.set_ylabel('Temperature (°C)')
+        self.canvas3.set_xlabel('Time')
         self.canvas3.plot(self.canvas3x, self.canvas3y, color="red")
         self.canvas3a.draw()
 
@@ -1189,9 +1202,9 @@ class TopLevel1:
         self.canvas4y.append(y)
         self.new4x += 1
         self.canvas4.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas4.set_title('Gemiddelde Afstand')
-        self.canvas4.set_ylabel('Afstand (cm)')
-        self.canvas4.set_xlabel('Tijd')
+        self.canvas4.set_title('Average distance')
+        self.canvas4.set_ylabel('Distance (cm)')
+        self.canvas4.set_xlabel('Time')
         self.canvas4.plot(self.canvas4x, self.canvas4y, color="blue")
         self.canvas4a.draw()
 
@@ -1204,9 +1217,9 @@ class TopLevel1:
         self.canvas5y.append(y)
         self.new5x += 1
         self.canvas5.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas5.set_title('Gemiddelde Temperatuur')
-        self.canvas5.set_ylabel('Temperatuur (°C)')
-        self.canvas5.set_xlabel('Tijd')
+        self.canvas5.set_title('Average temperature')
+        self.canvas5.set_ylabel('Temperature (°C)')
+        self.canvas5.set_xlabel('Time')
         self.canvas5.plot(self.canvas5x, self.canvas5y, color="red")
         self.canvas4a.draw()
 
@@ -1219,9 +1232,9 @@ class TopLevel1:
         self.canvas6y.append(y)
         self.new6x += 1
         self.canvas6.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas6.set_title('Gemiddelde Afstand')
-        self.canvas6.set_ylabel('Afstand (cm)')
-        self.canvas6.set_xlabel('Tijd')
+        self.canvas6.set_title('Average distance')
+        self.canvas6.set_ylabel('Distance (cm)')
+        self.canvas6.set_xlabel('Time')
         self.canvas6.plot(self.canvas6x, self.canvas6y, color="blue")
         self.canvas5a.draw()
 
@@ -1234,9 +1247,9 @@ class TopLevel1:
         self.canvas7y.append(y)
         self.new7x += 1
         self.canvas7.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas7.set_title('Gemiddelde Temperatuur')
-        self.canvas7.set_ylabel('Temperatuur (°C)')
-        self.canvas7.set_xlabel('Tijd')
+        self.canvas7.set_title('Average temperature')
+        self.canvas7.set_ylabel('Temperature (°C)')
+        self.canvas7.set_xlabel('Time')
         self.canvas7.plot(self.canvas7x, self.canvas7y, color="red")
         self.canvas5a.draw()
 
@@ -1249,9 +1262,9 @@ class TopLevel1:
         self.canvas8y.append(y)
         self.new8x += 1
         self.canvas8.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas8.set_title('Gemiddelde Afstand')
-        self.canvas8.set_ylabel('Afstand (cm)')
-        self.canvas8.set_xlabel('Tijd')
+        self.canvas8.set_title('Average distance')
+        self.canvas8.set_ylabel('Distance (cm)')
+        self.canvas8.set_xlabel('Time')
         self.canvas8.plot(self.canvas8x, self.canvas8y, color="blue")
         self.canvas6a.draw()
 
@@ -1264,9 +1277,9 @@ class TopLevel1:
         self.canvas9y.append(y)
         self.new9x += 1
         self.canvas9.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas9.set_title('Gemiddelde Temperatuur')
-        self.canvas9.set_ylabel('Temperatuur (°C)')
-        self.canvas9.set_xlabel('Tijd')
+        self.canvas9.set_title('Average temperature')
+        self.canvas9.set_ylabel('Temperature (°C)')
+        self.canvas9.set_xlabel('Time')
         self.canvas9.plot(self.canvas9x, self.canvas9y, color="red")
         self.canvas6a.draw()
 
@@ -1279,9 +1292,9 @@ class TopLevel1:
         self.canvas10y.append(y)
         self.new10x += 1
         self.canvas10.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas10.set_title('Gemiddelde Afstand')
-        self.canvas10.set_ylabel('Afstand (cm)')
-        self.canvas10.set_xlabel('Tijd')
+        self.canvas10.set_title('Average distance')
+        self.canvas10.set_ylabel('Distance (cm)')
+        self.canvas10.set_xlabel('Time')
         self.canvas10.plot(self.canvas10x, self.canvas10y, color="blue")
         self.canvas7a.draw()
 
@@ -1294,9 +1307,9 @@ class TopLevel1:
         self.canvas11y.append(y)
         self.new11x += 1
         self.canvas11.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas11.set_title('Gemiddelde Temperatuur')
-        self.canvas11.set_ylabel('Temperatuur (°C)')
-        self.canvas11.set_xlabel('Tijd')
+        self.canvas11.set_title('Average temperature')
+        self.canvas11.set_ylabel('Temperature (°C)')
+        self.canvas11.set_xlabel('Time')
         self.canvas11.plot(self.canvas11x, self.canvas11y, color="red")
         self.canvas7a.draw()
 
@@ -1309,9 +1322,9 @@ class TopLevel1:
         self.canvas12y.append(y)
         self.new12x += 1
         self.canvas12.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas12.set_title('Gemiddelde Lichtintensiteit')
-        self.canvas12.set_ylabel('Licht (lux)')
-        self.canvas12.set_xlabel('Tijd')
+        self.canvas12.set_title('Average lightintensity')
+        self.canvas12.set_ylabel('Light (lux)')
+        self.canvas12.set_xlabel('Time')
         self.canvas12.plot(self.canvas12x, self.canvas12y, color="yellow")
         self.canvas4a.draw()
 
@@ -1324,9 +1337,9 @@ class TopLevel1:
         self.canvas13y.append(y)
         self.new13x += 1
         self.canvas13.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas13.set_title('Gemiddelde Lichtintensiteit')
-        self.canvas13.set_ylabel('Licht (lux)')
-        self.canvas13.set_xlabel('Tijd')
+        self.canvas13.set_title('Average lightintensity')
+        self.canvas13.set_ylabel('Light (lux)')
+        self.canvas13.set_xlabel('Time')
         self.canvas13.plot(self.canvas13x, self.canvas13y, color="yellow")
         self.canvas5a.draw()
 
@@ -1339,9 +1352,9 @@ class TopLevel1:
         self.canvas14y.append(y)
         self.new14x += 1
         self.canvas14.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas14.set_title('Gemiddelde Lichtintensiteit')
-        self.canvas14.set_ylabel('Licht (lux)')
-        self.canvas14.set_xlabel('Tijd')
+        self.canvas14.set_title('Average lightintensity')
+        self.canvas14.set_ylabel('Light (lux)')
+        self.canvas14.set_xlabel('Time')
         self.canvas14.plot(self.canvas14x, self.canvas14y, color="yellow")
         self.canvas6a.draw()
 
@@ -1354,9 +1367,9 @@ class TopLevel1:
         self.canvas15y.append(y)
         self.new15x += 1
         self.canvas15.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas15.set_title('Gemiddelde Lichtintensiteit')
-        self.canvas15.set_ylabel('Licht (lux)')
-        self.canvas15.set_xlabel('Tijd')
+        self.canvas15.set_title('Average lightintensity')
+        self.canvas15.set_ylabel('Light (lux)')
+        self.canvas15.set_xlabel('Time')
         self.canvas15.plot(self.canvas15x, self.canvas15y, color="yellow")
         self.canvas7a.draw()
 
@@ -1369,9 +1382,9 @@ class TopLevel1:
         self.canvas16y.append(y)
         self.new16x += 1
         self.canvas16.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas16.set_title('Gemiddelde Afstand')
-        self.canvas16.set_ylabel('Afstand (cm)')
-        self.canvas16.set_xlabel('Tijd')
+        self.canvas16.set_title('Average distance')
+        self.canvas16.set_ylabel('Distance (cm)')
+        self.canvas16.set_xlabel('Time')
         self.canvas16.plot(self.canvas16x, self.canvas16y, color="blue")
         self.canvas8a.draw()
 
@@ -1384,9 +1397,9 @@ class TopLevel1:
         self.canvas17y.append(y)
         self.new17x += 1
         self.canvas17.set_ylim(0, 80)  # change this if the max limit has to change
-        self.canvas17.set_title('Gemiddelde Temperatuur')
-        self.canvas17.set_ylabel('Temperatuur (°C)')
-        self.canvas17.set_xlabel('Tijd')
+        self.canvas17.set_title('Average temperature')
+        self.canvas17.set_ylabel('Temperature (°C)')
+        self.canvas17.set_xlabel('Time')
         self.canvas17.plot(self.canvas17x, self.canvas17y, color="red")
         self.canvas8a.draw()
 
@@ -1399,9 +1412,9 @@ class TopLevel1:
         self.canvas18y.append(y)
         self.new18x += 1
         self.canvas18.set_ylim(0, 120)  # change this if the max limit has to change
-        self.canvas18.set_title('Gemiddelde Lichtintensiteit')
-        self.canvas18.set_ylabel('Licht (lux)')
-        self.canvas18.set_xlabel('Tijd')
+        self.canvas18.set_title('Average lightintensity')
+        self.canvas18.set_ylabel('Light (lux)')
+        self.canvas18.set_xlabel('Time')
         self.canvas18.plot(self.canvas18x, self.canvas18y, color="yellow")
         self.canvas8a.draw()
 
@@ -1492,34 +1505,57 @@ class TopLevel1:
         self.new2x = 0
         self.new3x = 0
 
+    def reset_arduino_button_styles(self, amount_of_arduinos):
+        self.tmp_for_styles = amount_of_arduinos
+        if len(arduinos) >= 1:
+            self.arduino1style.configure("Arduino1.TButton", background="black", foreground="black", font=('Sans','10','normal'))
+        if len(arduinos) >= 2:
+            self.arduino2style.configure("Arduino2.TButton", background="black", foreground="black", font=('Sans','10','normal'))
+        if len(arduinos) >= 3:
+            self.arduino3style.configure("Arduino3.TButton", background="black", foreground="black", font=('Sans','10','normal'))
+        if len(arduinos) >= 4:
+            self.arduino4style.configure("Arduino4.TButton", background="black", foreground="black", font=('Sans','10','normal'))
+        if len(arduinos) >= 5:
+            self.arduino5style.configure("Arduino5.TButton", background="black", foreground="black", font=('Sans','10','normal'))
+
     def switch_to_arduino(self):
         length = len(arduinos)
         if length > 0:
             self.clear_canvasses_dashboard()
+            self.reset_arduino_button_styles(length)
+            self.arduino1style.configure("Arduino1.TButton", background="green", foreground="black", font=('Sans','10','bold'))
             self.huidige_grafiek = 0
 
     def switch_to_arduino_2(self):
         length = len(arduinos)
         if length > 1:
             self.clear_canvasses_dashboard()
-            self.huidige_grafiek = 1
+            self.reset_arduino_button_styles(length)
+            self.arduino2style.configure("Arduino2.TButton", background="green", foreground="black", font=('Sans','10','bold'))
+            self.huidige_grafiek = 1                #led = rood
 
     def switch_to_arduino_3(self):
         length = len(arduinos)
         if length > 2:
             self.clear_canvasses_dashboard()
-            self.huidige_grafiek = 2
+            self.reset_arduino_button_styles(length)
+            self.arduino3style.configure("Arduino3.TButton", background="green", foreground="black", font=('Sans','10','bold'))
+            self.huidige_grafiek = 2                #led = groen
 
     def switch_to_arduino_4(self):
         length = len(arduinos)
         if length > 3:
             self.clear_canvasses_dashboard()
-            self.huidige_grafiek = 3
+            self.reset_arduino_button_styles(length)
+            self.arduino4style.configure("Arduino4.TButton", background="green", foreground="black", font=('Sans','10','bold'))
+            self.huidige_grafiek = 3                #led = rood
 
     def switch_to_arduino_5(self):
         length = len(arduinos)
         if length > 4:
             self.clear_canvasses_dashboard()
+            self.reset_arduino_button_styles(length)
+            self.arduino5style.configure("Arduino5.TButton", background="green", foreground="black", font=('Sans','10','bold'))
             self.huidige_grafiek = 4
 
     def set_bar1_data(self, ad1, ad2, ad3, ad4, ad5):
@@ -1528,8 +1564,8 @@ class TopLevel1:
         self.ax1.bar(self.ind, self.data1, .5)
         self.ax1.set_xticks(self.ind)
         self.ax1.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4', 'Arduino 5'))
-        self.ax1.set_title("Gemiddelde Afstand")
-        self.ax1.set_ylabel("Aftand (cm)")
+        self.ax1.set_title("Average distance")
+        self.ax1.set_ylabel("distance (cm)")
         self.canvasbar1.draw()
 
     def set_bar2_data(self, ad1, ad2, ad3, ad4, ad5):
@@ -1538,8 +1574,8 @@ class TopLevel1:
         self.ax2.bar(self.ind, self.data2, .5, color="yellow")
         self.ax2.set_xticks(self.ind)
         self.ax2.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4', 'Arduino 5'))
-        self.ax2.set_title("Gemiddelde Lichtintensiteit")
-        self.ax2.set_ylabel("Lichtintensiteit (lux)")
+        self.ax2.set_title("Average lightintensity")
+        self.ax2.set_ylabel("Lightintensity (lux)")
         self.canvasbar2.draw()
 
     def set_bar3_data(self, ad1, ad2, ad3, ad4, ad5):
@@ -1548,13 +1584,13 @@ class TopLevel1:
         self.ax3.bar(self.ind, self.data3, .5, color="red")
         self.ax3.set_xticks(self.ind)
         self.ax3.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4', 'Arduino 5'))
-        self.ax3.set_title("Gemiddelde Temperatuur")
-        self.ax3.set_ylabel("Temperatuur (°C)")
+        self.ax3.set_title("Average temperature")
+        self.ax3.set_ylabel("Temperature (°C)")
         self.canvasbar3.draw()
 
     def fill_listbox_1(self, string, index):
         self.listbox_1.insert(index, string)
-        if len(string) == 22:
+        if len(string) == 23:
             self.listbox_1.itemconfig(index-1, {'bg':'red', 'fg':'white'})
         else:
             self.listbox_1.itemconfig(index - 1, {'bg': 'green'})
