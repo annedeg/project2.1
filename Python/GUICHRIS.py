@@ -111,7 +111,7 @@ class TopLevel1:
         self.style = ttk.Style()
         self.buttonstyle = ttk.Style()
         self.buttonstyle.configure('Custom.TButton', padding=1, relief="flat", background="black")
-        top.geometry("1032x754+478+139")
+        top.geometry("1400x840+478+139")
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
         top.resizable(1, 1)
@@ -660,6 +660,8 @@ class TopLevel1:
         fig2 = Figure(figsize=(5, 4), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas2 = fig2.add_subplot(1, 1, 1)
+        self.canvas2.set_ylabel('Licht (lux)')
+        self.canvas2.set_xlabel('Tijd')
         self.canvas2y = []
         self.canvas2x = []
         self.new2x = 0
@@ -673,6 +675,8 @@ class TopLevel1:
         fig3 = Figure(figsize=(5, 4), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas3 = fig3.add_subplot(1, 1, 1)
+        self.canvas3.set_ylabel('Temperatuur (°C)')
+        self.canvas3.set_xlabel('Tijd')
         self.canvas3y = []
         self.canvas3x = []
         self.new3x = 0
@@ -686,8 +690,14 @@ class TopLevel1:
         fig4 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas4 = fig4.add_subplot(1, 3, 1)
+        self.canvas4.set_ylabel('Afstand (cm)')
+        self.canvas4.set_xlabel('Tijd')
         self.canvas5 = fig4.add_subplot(1, 3, 2)
+        self.canvas5.set_ylabel('Licht (lux)')
+        self.canvas5.set_xlabel('Tijd')
         self.canvas12 = fig4.add_subplot(1, 3, 3)
+        self.canvas12.set_ylabel('Temperatuur (°C)')
+        self.canvas12.set_xlabel('Tijd')
         self.canvas4y = []
         self.canvas5y = []
         self.canvas4x = []
@@ -707,8 +717,14 @@ class TopLevel1:
         fig5 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas6 = fig5.add_subplot(1, 3, 1)
+        self.canvas6.set_ylabel('Afstand (cm)')
+        self.canvas6.set_xlabel('Tijd')
         self.canvas7 = fig5.add_subplot(1, 3, 2)
+        self.canvas7.set_ylabel('Licht (lux)')
+        self.canvas7.set_xlabel('Tijd')
         self.canvas13 = fig5.add_subplot(1, 3, 3)
+        self.canvas13.set_ylabel('Temperatuur (°C)')
+        self.canvas13.set_xlabel('Tijd')
         self.canvas6y = []
         self.canvas7y = []
         self.canvas6x = []
@@ -728,8 +744,14 @@ class TopLevel1:
         fig6 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas8 = fig6.add_subplot(1, 3, 1)
+        self.canvas8.set_ylabel('Afstand (cm)')
+        self.canvas8.set_xlabel('Tijd')
         self.canvas9 = fig6.add_subplot(1, 3, 2)
+        self.canvas9.set_ylabel('Licht (lux)')
+        self.canvas9.set_xlabel('Tijd')
         self.canvas14 = fig6.add_subplot(1, 3, 3)
+        self.canvas14.set_ylabel('Temperatuur (°C)')
+        self.canvas14.set_xlabel('Tijd')
         self.canvas8y = []
         self.canvas9y = []
         self.canvas8x = []
@@ -749,8 +771,14 @@ class TopLevel1:
         fig7 = Figure(figsize=(5, 8), dpi=100)
         t = np.arange(0, 3, .01)
         self.canvas10 = fig7.add_subplot(1, 3, 1)
+        self.canvas10.set_ylabel('Afstand (cm)')
+        self.canvas10.set_xlabel('Tijd')
         self.canvas11 = fig7.add_subplot(1, 3, 2)
+        self.canvas11.set_ylabel('Licht (lux)')
+        self.canvas11.set_xlabel('Tijd')
         self.canvas15 = fig7.add_subplot(1, 3, 3)
+        self.canvas15.set_ylabel('Temperatuur (°C)')
+        self.canvas15.set_xlabel('Tijd')
         self.canvas10y = []
         self.canvas11y = []
         self.canvas10x = []
