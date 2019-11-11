@@ -110,7 +110,7 @@ class TopLevel1:
         _ana2color = '#ececec'  # Closest X11 color: 'gray92'
         self.style = ttk.Style()
         self.buttonstyle = ttk.Style()
-        self.buttonstyle.configure('Custom.TButton', padding=1, relief="flat", background="#000")
+        self.buttonstyle.configure('Custom.TButton', padding=1, relief="flat", background="black")
         top.geometry("1032x754+478+139")
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
@@ -1077,7 +1077,6 @@ class TopLevel1:
             self.canvas2.clear()
         self.canvas2y.append(y)
         self.new2x += 1
-        self.canvas2.plot(self.canvas2x, self.canvas2y, color="blue")
         self.canvas2.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas2.plot(self.canvas2x, self.canvas2y, color="blue")
         self.canvas2a.draw()
@@ -1090,7 +1089,6 @@ class TopLevel1:
             self.canvas3.clear()
         self.canvas3y.append(y)
         self.new3x += 1
-        self.canvas3.plot(self.canvas3x, self.canvas3y, color="blue")
         self.canvas3.set_ylim(0, 80)  # change this if the max limit has to change
         self.canvas3.plot(self.canvas3x, self.canvas3y, color="blue")
         self.canvas3a.draw()
@@ -1103,8 +1101,6 @@ class TopLevel1:
             self.canvas4.clear()
         self.canvas4y.append(y)
         self.new4x += 1
-        self.canvas1.set_ylim(0, 300)  # change this if the max limit has to change
-        self.canvas4.plot(self.canvas4x, self.canvas4y, color="blue")
         self.canvas4.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas4.plot(self.canvas4x, self.canvas4y, color="blue")
         self.canvas4a.draw()
@@ -1117,7 +1113,6 @@ class TopLevel1:
             self.canvas5.clear()
         self.canvas5y.append(y)
         self.new5x += 1
-        self.canvas5.plot(self.canvas5x, self.canvas5y, color="blue")
         self.canvas5.set_ylim(0, 80)  # change this if the max limit has to change
         self.canvas5.plot(self.canvas5x, self.canvas5y, color="blue")
         self.canvas4a.draw()
@@ -1130,7 +1125,6 @@ class TopLevel1:
             self.canvas6.clear()
         self.canvas6y.append(y)
         self.new6x += 1
-        self.canvas6.plot(self.canvas6x, self.canvas6y, color="blue")
         self.canvas6.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas6.plot(self.canvas6x, self.canvas6y, color="blue")
         self.canvas5a.draw()
@@ -1143,7 +1137,6 @@ class TopLevel1:
             self.canvas7.clear()
         self.canvas7y.append(y)
         self.new7x += 1
-        self.canvas7.plot(self.canvas7x, self.canvas7y, color="blue")
         self.canvas7.set_ylim(0, 80)  # change this if the max limit has to change
         self.canvas7.plot(self.canvas7x, self.canvas7y, color="blue")
         self.canvas5a.draw()
@@ -1156,7 +1149,6 @@ class TopLevel1:
             self.canvas8.clear()
         self.canvas8y.append(y)
         self.new8x += 1
-        self.canvas8.plot(self.canvas8x, self.canvas8y, color="blue")
         self.canvas8.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas8.plot(self.canvas8x, self.canvas8y, color="blue")
         self.canvas6a.draw()
@@ -1169,7 +1161,6 @@ class TopLevel1:
             self.canvas9.clear()
         self.canvas9y.append(y)
         self.new9x += 1
-        self.canvas9.plot(self.canvas9x, self.canvas9y, color="blue")
         self.canvas9.set_ylim(0, 80)  # change this if the max limit has to change
         self.canvas9.plot(self.canvas9x, self.canvas9y, color="blue")
         self.canvas6a.draw()
@@ -1182,7 +1173,6 @@ class TopLevel1:
             self.canvas10.clear()
         self.canvas10y.append(y)
         self.new10x += 1
-        self.canvas10.plot(self.canvas10x, self.canvas10y, color="blue")
         self.canvas10.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas10.plot(self.canvas10x, self.canvas10y, color="blue")
         self.canvas7a.draw()
@@ -1195,7 +1185,6 @@ class TopLevel1:
             self.canvas11.clear()
         self.canvas11y.append(y)
         self.new11x += 1
-        self.canvas11.plot(self.canvas11x, self.canvas11y, color="blue")
         self.canvas11.set_ylim(0, 80)  # change this if the max limit has to change
         self.canvas11.plot(self.canvas11x, self.canvas11y, color="blue")
         self.canvas7a.draw()
@@ -1208,7 +1197,6 @@ class TopLevel1:
             self.canvas12.clear()
         self.canvas12y.append(y)
         self.new12x += 1
-        self.canvas12.plot(self.canvas12x, self.canvas12y, color="blue")
         self.canvas12.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas12.plot(self.canvas12x, self.canvas12y, color="blue")
         self.canvas4a.draw()
@@ -1221,7 +1209,6 @@ class TopLevel1:
             self.canvas13.clear()
         self.canvas13y.append(y)
         self.new13x += 1
-        self.canvas13.plot(self.canvas13x, self.canvas13y, color="blue")
         self.canvas13.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas13.plot(self.canvas13x, self.canvas13y, color="blue")
         self.canvas5a.draw()
@@ -1234,7 +1221,6 @@ class TopLevel1:
             self.canvas14.clear()
         self.canvas14y.append(y)
         self.new14x += 1
-        self.canvas14.plot(self.canvas14x, self.canvas14y, color="blue")
         self.canvas14.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas14.plot(self.canvas14x, self.canvas14y, color="blue")
         self.canvas6a.draw()
@@ -1247,7 +1233,6 @@ class TopLevel1:
             self.canvas15.clear()
         self.canvas15y.append(y)
         self.new15x += 1
-        self.canvas15.plot(self.canvas15x, self.canvas15y, color="blue")
         self.canvas15.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas15.plot(self.canvas15x, self.canvas15y, color="blue")
         self.canvas7a.draw()
