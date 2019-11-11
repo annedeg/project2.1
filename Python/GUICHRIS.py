@@ -880,15 +880,40 @@ class TopLevel1:
                                    highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.label_1 = ttk.Label(self.t_notebook_1_t3, style='Custom.TLabel')
-        self.label_1.place(relx=0.01, rely=0.014, height=391, width=674)
-        self.label_1.configure(text='''Cuckservative
-        From Wikipedia, the free encyclopedia
-        Jump to navigationJump to search
-        "Cuckservative" is a pejorative[1] formed as a portmanteau of "cuck", a shortened form of the word cuckold, and the political designation conservative.[2] It has become a label used by white nationalists and the alt-right in the United States.[3][4][5][6]
-
-        The word "cuckservative" reached a high level of mainstream political conversation around mid-July 2015, where it gained media attention just a few weeks before the start of the first Republican primary debate for the 2016 United States presidential election.[4][7]
-
-        The term, as well as the shortened form "cuck" for cuckold, originated on websites such as 4chan (specifically the /pol/ imageboard) and 8chan, the right-wing message board My Posting Career,[1][3] the blog The Right Stuff,[8] and other sites in the alt-right movement.[3][9][10]''')
+        self.label_1.place(relx=0.01, rely=0.014, height=674, width=674)
+        self.label_1.configure(text='''INSTRUCTIONS:
+        DASHBOARD:
+        The dashboard shows an overview of the application, including graphs showing the current distance (between the
+        sun blind and it's lowest point, as a check whether or not the sun blind is functioning correctly), temperature 
+        (in °C), and light level (in Lux), as well as controls for the sunblind, bar graphs showing average values, and
+        controls to determine which Arduino is shown in the graphs.
+        
+        GRAPH:
+        The graph tab shows all data from all arduino's in seperate graphs. Use the tabs to switch between which Arduino
+        to display.
+    
+        CONFIG:
+        The config window allows you to configure at what settings you want the sun screen to automatically open/close.
+        
+        The Temprature field allows a user to set a minimum temperature (in °C) through the set button. 
+        If the temperature falls below this value the screen will automatically close, if the temperature exceeds the
+        set minimum the screen will automatically open.
+        
+        The Light field allows a user to set a minimum light value (in Lux) through the set button.
+        If the light value falls below this value the screen will automaticall close, if the light value exceeds the
+        set minimum the screen will automatically open.
+        
+        The reset buttons will set the minimum temprature/light value (depending on the reset button used) back to their
+        default value.
+        
+        The "Use the above config" checkbox determines whether or not the screen will atuomatically open/close if
+        minimum values are reached/exceeded.
+        
+        HELP:
+        This current window
+        
+        Free Hong Kong!
+        A revolution in our generation!''')
 
         self.label_2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         self.label_2.place(relx=0.0, rely=0.029, height=21, width=74)
