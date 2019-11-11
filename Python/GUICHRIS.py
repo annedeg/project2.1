@@ -1100,33 +1100,34 @@ class TopLevel1:
     def fix_grafieken(self):
         self.animatecanvas1(distance_gemiddelde[self.huidige_grafiek])
         self.animatecanvas2(light_gemiddelde[self.huidige_grafiek])
-        self.animatecanvas3(temp_gemiddelde[self.huidige_grafiek])
+        self.animatecanvas3(int(temp_gemiddelde[self.huidige_grafiek]/10))
 
         self.animatecanvas4(distance_gemiddelde[0])
-        self.animatecanvas5(temp_gemiddelde[0])
+        self.animatecanvas5(int(temp_gemiddelde[0]/10))
         self.animatecanvas12(light_gemiddelde[0])
         self.animatecanvas6(distance_gemiddelde[1])
-        self.animatecanvas7(temp_gemiddelde[1])
+        self.animatecanvas7(int(temp_gemiddelde[1]/10))
         self.animatecanvas13(light_gemiddelde[1])
         self.animatecanvas8(distance_gemiddelde[2])
-        self.animatecanvas9(temp_gemiddelde[2])
+        self.animatecanvas9(int(temp_gemiddelde[2]/10))
         self.animatecanvas14(light_gemiddelde[2])
         self.animatecanvas10(distance_gemiddelde[3])
-        self.animatecanvas11(temp_gemiddelde[3])
+        self.animatecanvas11(int(temp_gemiddelde[3]/10))
         self.animatecanvas15(light_gemiddelde[3])
         self.animatecanvas16(distance_gemiddelde[4])
-        self.animatecanvas17(temp_gemiddelde[4])
+        self.animatecanvas17(int(temp_gemiddelde[4]/10))
         self.animatecanvas18(light_gemiddelde[4])
 
         self.set_bar1_data(distance_gemiddelde[0], distance_gemiddelde[1], distance_gemiddelde[2],
                            distance_gemiddelde[3], distance_gemiddelde[4])
         self.set_bar2_data(light_gemiddelde[0], light_gemiddelde[1], light_gemiddelde[2], light_gemiddelde[3],
                            light_gemiddelde[4])
-        self.set_bar3_data(temp_gemiddelde[0], temp_gemiddelde[1], temp_gemiddelde[2], temp_gemiddelde[3],
-                           temp_gemiddelde[4])
+        self.set_bar3_data(int(temp_gemiddelde[0]/10), int(temp_gemiddelde[1]/10), int(temp_gemiddelde[2]/10), int(temp_gemiddelde[3]/10),
+                           int(temp_gemiddelde[4]/10))
 
 
     def open_or_close(self, gemiddelde_temp, gemiddelde_light, gemiddelde_afstand):
+        aantal_live = len(arduinos)
         aantal_light = 0
         aantal_temp = 0
         aantal_afstand = 0
@@ -1136,7 +1137,7 @@ class TopLevel1:
         for i in gemiddelde_temp:
             if i != 0:
                 aantal_temp += 1
-                temp += i
+                temp += int(i/10)
 
         for i in gemiddelde_light:
             if i != 0:
@@ -1157,6 +1158,13 @@ class TopLevel1:
         light = int(light/aantal_light)
         temp = int(temp/aantal_temp)
         if self.run_config == 1:
+            #for i in range(0, aantal_live):
+                #if light > self.maxlight or temp > self.maxtemp:
+                    #if zonnescherm_status[i] == 2:
+                        #open_zonnescherm()                             #deze code kan alleen wanneer er echt een motor is aangesloten.
+               # else:
+                    #if zonnescherm_status[i] == 1:
+                        #close_zonnescherm()
             if light > self.maxlight:
                 print("LIGHT | OPEN")
             if temp > self.maxtemp:
@@ -1204,7 +1212,7 @@ class TopLevel1:
             self.canvas3.clear()
         self.canvas3y.append(y)
         self.new3x += 1
-        self.canvas3.set_ylim(0, 350)  # change this if the max limit has to change
+        self.canvas3.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas3.set_title('Average Temperature')
         self.canvas3.set_ylabel('Temperature (°C)')
         self.canvas3.set_xlabel('Time')
@@ -1234,7 +1242,7 @@ class TopLevel1:
             self.canvas5.clear()
         self.canvas5y.append(y)
         self.new5x += 1
-        self.canvas5.set_ylim(0, 350)  # change this if the max limit has to change
+        self.canvas5.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas5.set_title('Average temperature')
         self.canvas5.set_ylabel('Temperature (°C)')
         self.canvas5.set_xlabel('Time')
@@ -1264,7 +1272,7 @@ class TopLevel1:
             self.canvas7.clear()
         self.canvas7y.append(y)
         self.new7x += 1
-        self.canvas7.set_ylim(0, 350)  # change this if the max limit has to change
+        self.canvas7.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas7.set_title('Average temperature')
         self.canvas7.set_ylabel('Temperature (°C)')
         self.canvas7.set_xlabel('Time')
@@ -1294,7 +1302,7 @@ class TopLevel1:
             self.canvas9.clear()
         self.canvas9y.append(y)
         self.new9x += 1
-        self.canvas9.set_ylim(0, 350)  # change this if the max limit has to change
+        self.canvas9.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas9.set_title('Average temperature')
         self.canvas9.set_ylabel('Temperature (°C)')
         self.canvas9.set_xlabel('Time')
@@ -1324,7 +1332,7 @@ class TopLevel1:
             self.canvas11.clear()
         self.canvas11y.append(y)
         self.new11x += 1
-        self.canvas11.set_ylim(0, 350)  # change this if the max limit has to change
+        self.canvas11.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas11.set_title('Average temperature')
         self.canvas11.set_ylabel('Temperature (°C)')
         self.canvas11.set_xlabel('Time')
@@ -1414,7 +1422,7 @@ class TopLevel1:
             self.canvas17.clear()
         self.canvas17y.append(y)
         self.new17x += 1
-        self.canvas17.set_ylim(0, 350)  # change this if the max limit has to change
+        self.canvas17.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas17.set_title('Average temperature')
         self.canvas17.set_ylabel('Temperature (°C)')
         self.canvas17.set_xlabel('Time')
@@ -1662,7 +1670,7 @@ class TopLevel1:
             print("Value of maxlight has not changed")
 
     def reset_temp(self):
-        self.maxtemp = 200
+        self.maxtemp = 20
 
     def reset_light(self):
         self.maxlight = 70
