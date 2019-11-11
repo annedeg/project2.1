@@ -269,19 +269,19 @@ class TopLevel1:
         self.button_5.place(relx=0.324, rely=0.072, height=24, relwidth=0.05)
         self.button_5.configure(command=self.reset_light, text='''Reset''')
 
-        self.Button6 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.Button6 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.Button6.place(relx=0.265, rely=0.116, height=24, relwidth=0.05)
         self.Button6.configure(command=self.set_min_distance, text='''Set''')
 
-        self.Button7 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.Button7 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.Button7.place(relx=0.265, rely=0.159, height=24, relwidth=0.05)
         self.Button7.configure(command=self.set_max_distance, text='''Set''')
 
-        self.Button8 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.Button8 = ttk.Button(self.t_notebook_4_t0, style='Red.TButton')
         self.Button8.place(relx=0.324, rely=0.116, height=24, relwidth=0.05)
         self.Button8.configure(command=self.reset_min_distance, text='''Reset''')
 
-        self.Button9 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
+        self.Button9 = ttk.Button(self.t_notebook_4_t0, style='Red.TButton')
         self.Button9.place(relx=0.324, rely=0.159, height=24, relwidth=0.05)
         self.Button9.configure(command=self.reset_max_distance, text='''Reset''')
 
