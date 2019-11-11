@@ -3,17 +3,18 @@ import serial.tools.list_ports
 
 arduinos = []
 activeComPorts = []
-distance_gemiddelde = [0,0,0,0]
-light_gemiddelde = [0,0,0,0]
-temp_gemiddelde = [0,0,0,0]
-total_data = [[],[],[],[]]
+distance_gemiddelde = [0, 0, 0, 0]
+light_gemiddelde = [0, 0, 0, 0]
+temp_gemiddelde = [0, 0, 0, 0]
+total_data = [[], [], [], []]
 zonnescherm_status = 0
 aantal_rondes = 0
 huidige_arduino = 0
 
+
 def setup_arduinos():
-    comPorts = list(serial.tools.list_ports.comports())
-    for i in comPorts:
+    com_ports = list(serial.tools.list_ports.comports())
+    for i in com_ports:
         l = str(i).split()
         if l[0] not in activeComPorts:
             activeComPorts.append(l[0])
@@ -23,7 +24,7 @@ def setup_arduinos():
             arduinos.append(ser)
 
 
-def bereken_gemiddelde(lijst, ding ,hoeveelste, aantal_voor_gemiddelde):
+def bereken_gemiddelde(lijst, ding, hoeveelste, aantal_voor_gemiddelde):
     aantal_voor_gemiddelde = -aantal_voor_gemiddelde
     lijst = lijst[ding][aantal_voor_gemiddelde:]
     aantal = len(lijst)
@@ -34,6 +35,7 @@ def bereken_gemiddelde(lijst, ding ,hoeveelste, aantal_voor_gemiddelde):
         gemiddelde += i[hoeveelste]
     gemiddelde = gemiddelde / aantal
     return gemiddelde
+
 
 def binary_to_data(binary_value):
     light = binary_value[0:2]
@@ -58,7 +60,8 @@ def binary_to_data(binary_value):
 
 def loop_data():
 
-    global arduinos, aantal_rondes, binary_value, light_gemiddelde, temp_gemiddelde, distance_gemiddelde, total_data, huidige_arduino
+    global arduinos, aantal_rondes, binary_value, light_gemiddelde, temp_gemiddelde, distance_gemiddelde, total_data, \
+           huidige_arduino
     ding = 0
     if len(arduinos) > 0:
         for arduino in arduinos:
@@ -85,7 +88,7 @@ def loop_data():
                 temp_gemiddelde[ding] = bereken_gemiddelde(total_data, ding, 2, 5)
                 total_data[ding].append(data)
                 ding += 1
-                aantal_rondes+=1
+                aantal_rondes += 1
                 if aantal_rondes > 3:
                     setup_arduinos()
                     aantal_rondes = 0
@@ -108,6 +111,8 @@ def loop_data():
             #     arduino.close()
     else:
         setup_arduinos()
+
+
 def loop_loop():
     setup_arduinos()
     aantal_loop = 0
@@ -122,7 +127,8 @@ def loop_loop():
                 for i in arduinos:
                     i.write(bytearray(b'\x02'))
             aantal_loop = 0
-        aantal_loop+=1
+        aantal_loop += 1
+
 
 def open_zonnescherm():
     global zonnescherm_status
@@ -139,6 +145,7 @@ def close_zonnescherm():
         zonnescherm_status = 0
         for i in arduinos:
             i.write(bytearray(b'\x01'))
+
 
 def get_zonnescherm():
     global zonnescherm_status
