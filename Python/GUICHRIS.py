@@ -98,7 +98,7 @@ class TopLevel1:
     def __init__(self, top=None):
         self.arduinos = []
         self.activeComPorts = []
-        self.total_data = [[], [], [], []]
+        self.total_data = [[], [], [], [], []]
         self.maxtemp = 25
         self.maxlight = 80
         self.run_config = True
@@ -159,7 +159,7 @@ class TopLevel1:
 
         self.data1 = (20, 45, 30, 35)
         self.ax1.set_title('NIET AANGESLOTEN', color="red")
-        self.ind = np.arange(4)  # the x locations for the groups
+        self.ind = np.arange(5)  # the x locations for the groups
 
         self.t_notebook_2_t1 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t1, padding=3)
@@ -194,6 +194,10 @@ class TopLevel1:
         self.t_notebook_3.add(self.t_notebook_3_t3, padding=3)
         self.t_notebook_3.tab(3, text="Arduino 4", compound="none", underline="-1")
         self.t_notebook_3_t3.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+        self.t_notebook_3_t4 = tk.Frame(self.t_notebook_3)
+        self.t_notebook_3.add(self.t_notebook_3_t4, padding=3)
+        self.t_notebook_3.tab(4, text="Arduino 5", compound="none", underline="-1")
+        self.t_notebook_3_t4.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.t_notebook_4 = ttk.Notebook(self.t_notebook_1_t2)
         self.t_notebook_4.place(relx=0.0, rely=0.014, relheight=0.981, relwidth=0.994)
@@ -236,27 +240,27 @@ class TopLevel1:
         self.data3 = (20, 35, 30, 35)
 
         self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.Button23.place(relx=0.01, rely=0.863, height=54, width=377)
+        self.Button23.place(relx=0.01, rely=0.863, height=54, relwidth=0.270)
         self.Button23.configure(command=close_zonnescherm,  text='''CLOSE SCHERM''')
 
         self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_1.place(relx=0.01, rely=0.767, height=54, width=377)
+        self.button_1.place(relx=0.01, rely=0.767, height=54, relwidth=0.270)
         self.button_1.configure(command=open_zonnescherm, text='''OPEN SCHERM''')
 
         self.button_2 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        self.button_2.place(relx=0.265, rely=0.029, height=24, width=47)
+        self.button_2.place(relx=0.265, rely=0.029, height=24, relwidth=0.05)
         self.button_2.configure(command=self.set_temp, text='''Set''')
 
         self.button_3 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        self.button_3.place(relx=0.265, rely=0.072, height=24, width=47)
+        self.button_3.place(relx=0.265, rely=0.072, height=24, relwidth=0.05)
         self.button_3.configure(command=self.set_light, text='''Set''')
 
         self.button_4 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        self.button_4.place(relx=0.324, rely=0.029, height=24, width=37)
+        self.button_4.place(relx=0.324, rely=0.029, height=24, relwidth=0.05)
         self.button_4.configure(command=self.reset_temp, text='''Reset''')
 
         self.button_5 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        self.button_5.place(relx=0.324, rely=0.072, height=24, width=37)
+        self.button_5.place(relx=0.324, rely=0.072, height=24, relwidth=0.05)
         self.button_5.configure(command=self.reset_light, text='''Reset''')
         #
         # self.Button5 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
@@ -512,20 +516,24 @@ class TopLevel1:
         # self.Button67.configure(command=unknown_support.Reset11Licht, text='''Reset''')
 
         self.button_68 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_68.place(relx=0.01, rely=0.521, height=74, width=177)
+        self.button_68.place(relx=0.01, rely=0.521, height=74, relwidth=0.080)
         self.button_68.configure(command=self.switch_to_arduino, text='''Arduino 1''')
 
         self.button_69 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_69.place(relx=0.155, rely=0.521, height=74, width=177)
+        self.button_69.place(relx=0.105, rely=0.521, height=74, relwidth=0.080)
         self.button_69.configure(command=self.switch_to_arduino_2, text='''Arduino 2''')
 
         self.button_70 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_70.place(relx=0.01, rely=0.644, height=74, width=177)
+        self.button_70.place(relx=0.200, rely=0.521, height=74, relwidth=0.080)
         self.button_70.configure(command=self.switch_to_arduino_3, text='''Arduino 3''')
 
         self.button_71 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_71.place(relx=0.155, rely=0.644, height=74, width=177)
+        self.button_71.place(relx=0.05, rely=0.644, height=74, relwidth=0.080)
         self.button_71.configure(command=self.switch_to_arduino_4, text='''Arduino 4''')
+
+        self.button_72 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
+        self.button_72.place(relx=0.155, rely=0.644, height=74, relwidth=0.080)
+        self.button_72.configure(command=self.switch_to_arduino_5, text='''Arduino 5''')
 
         self.checkbuttonstyle = ttk.Style()
         self.checkbuttonstyle.configure('Custom.TCheckbutton', activebackground="#ececec", activeforeground="#000000", background="#d9d9d9",
@@ -796,6 +804,33 @@ class TopLevel1:
         toolbar.update()
         self.canvas7a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        fig8 = Figure(figsize=(5, 8), dpi=100)
+        t = np.arange(0, 3, .01)
+        self.canvas16 = fig8.add_subplot(1, 3, 1)
+        self.canvas16.set_ylabel('Afstand (cm)')
+        self.canvas16.set_xlabel('Tijd')
+        self.canvas17 = fig8.add_subplot(1, 3, 2)
+        self.canvas17.set_ylabel('Licht (lux)')
+        self.canvas17.set_xlabel('Tijd')
+        self.canvas18 = fig8.add_subplot(1, 3, 3)
+        self.canvas18.set_ylabel('Temperatuur (°C)')
+        self.canvas18.set_xlabel('Tijd')
+        self.canvas16y = []
+        self.canvas17y = []
+        self.canvas16x = []
+        self.canvas17x = []
+        self.canvas18x = []
+        self.canvas18y = []
+        self.new16x = 0
+        self.new17x = 0
+        self.new18x = 0
+
+        self.canvas8a = FigureCanvasTkAgg(fig8, master=self.t_notebook_3_t4)  # A tk.DrawingArea.
+
+        toolbar = NavigationToolbar2Tk(self.canvas8a, self.t_notebook_3_t4)
+        toolbar.update()
+        self.canvas8a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
         self.entry_style = ttk.Style()
         self.entry_style.configure('Custom.TEntry', background="white", disabledforeground="#a3a3a3",
                                    font="TkFixedFont", foreground="#000000", highlightbackground="#d9d9d9",
@@ -1039,11 +1074,14 @@ class TopLevel1:
         self.animatecanvas10(distance_gemiddelde[3])
         self.animatecanvas11(light_gemiddelde[3])
         self.animatecanvas15(temp_gemiddelde[3])
+        self.animatecanvas16(distance_gemiddelde[4])
+        self.animatecanvas17(light_gemiddelde[4])
+        self.animatecanvas18(temp_gemiddelde[4])
 
         self.set_bar1_data(distance_gemiddelde[0], distance_gemiddelde[1], distance_gemiddelde[2],
-                           distance_gemiddelde[3])
-        self.set_bar2_data(light_gemiddelde[0], light_gemiddelde[1], light_gemiddelde[2], light_gemiddelde[3])
-        self.set_bar3_data(temp_gemiddelde[0], temp_gemiddelde[1], temp_gemiddelde[2], temp_gemiddelde[3])
+                           distance_gemiddelde[3], distance_gemiddelde[4])
+        self.set_bar2_data(light_gemiddelde[0], light_gemiddelde[1], light_gemiddelde[2], light_gemiddelde[3], light_gemiddelde[4])
+        self.set_bar3_data(temp_gemiddelde[0], temp_gemiddelde[1], temp_gemiddelde[2], temp_gemiddelde[3], temp_gemiddelde[4])
 
     def open_or_close(self, gemiddelde_temp, gemiddelde_light, gemiddelde_afstand):
         aantal_light = 0
@@ -1267,6 +1305,42 @@ class TopLevel1:
         self.canvas15.plot(self.canvas15x, self.canvas15y, color="blue")
         self.canvas7a.draw()
 
+    def animatecanvas16(self, y):
+        self.canvas16x.append(self.new16x)
+        if len(self.canvas16x) > 20:
+            del self.canvas16x[0]
+            del self.canvas16y[0]
+            self.canvas16.clear()
+        self.canvas16y.append(y)
+        self.new16x += 1
+        self.canvas16.set_ylim(0, 120)  # change this if the max limit has to change
+        self.canvas16.plot(self.canvas16x, self.canvas16y, color="blue")
+        self.canvas8a.draw()
+
+    def animatecanvas17(self, y):
+        self.canvas17x.append(self.new17x)
+        if len(self.canvas17x) > 20:
+            del self.canvas17x[0]
+            del self.canvas17y[0]
+            self.canvas17.clear()
+        self.canvas17y.append(y)
+        self.new17x += 1
+        self.canvas17.set_ylim(0, 120)  # change this if the max limit has to change
+        self.canvas17.plot(self.canvas17x, self.canvas17y, color="blue")
+        self.canvas8a.draw()
+
+    def animatecanvas18(self, y):
+        self.canvas18x.append(self.new18x)
+        if len(self.canvas18x) > 20:
+            del self.canvas18x[0]
+            del self.canvas18y[0]
+            self.canvas18.clear()
+        self.canvas18y.append(y)
+        self.new18x += 1
+        self.canvas18.set_ylim(0, 120)  # change this if the max limit has to change
+        self.canvas18.plot(self.canvas18x, self.canvas18y, color="blue")
+        self.canvas8a.draw()
+
     def set_1_temperatuur(self):
         print(self.entry_1.get())
 
@@ -1378,32 +1452,38 @@ class TopLevel1:
             self.clear_canvasses_dashboard()
             self.huidige_grafiek = 3
 
-    def set_bar1_data(self, ad1, ad2, ad3, ad4):
-        self.data1 = (ad1, ad2, ad3, ad4)
+    def switch_to_arduino_5(self):
+        length = len(arduinos)
+        if length > 4:
+            self.clear_canvasses_dashboard()
+            self.huidige_grafiek = 4
+
+    def set_bar1_data(self, ad1, ad2, ad3, ad4, ad5):
+        self.data1 = (ad1, ad2, ad3, ad4, ad5)
         self.ax1.clear()
         self.ax1.bar(self.ind, self.data1, .5)
         self.ax1.set_xticks(self.ind)
-        self.ax1.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4'))
+        self.ax1.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4', 'Arduino 5'))
         self.ax1.set_title("Gemiddelde Afstand")
         self.ax1.set_ylabel("Aftand (cm)")
         self.canvasbar1.draw()
 
-    def set_bar2_data(self, ad1, ad2, ad3, ad4):
-        self.data2 = (ad1, ad2, ad3, ad4)
+    def set_bar2_data(self, ad1, ad2, ad3, ad4, ad5):
+        self.data2 = (ad1, ad2, ad3, ad4, ad5)
         self.ax2.clear()
         self.ax2.bar(self.ind, self.data2, .5)
         self.ax2.set_xticks(self.ind)
-        self.ax2.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4'))
+        self.ax2.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4', 'Arduino 5'))
         self.ax2.set_title("Gemiddelde Lichtintensiteit")
         self.ax2.set_ylabel("Lichtintensiteit (lux)")
         self.canvasbar2.draw()
 
-    def set_bar3_data(self, ad1, ad2, ad3, ad4):
-        self.data3 = (ad1, ad2, ad3, ad4)
+    def set_bar3_data(self, ad1, ad2, ad3, ad4, ad5):
+        self.data3 = (ad1, ad2, ad3, ad4, ad5)
         self.ax3.clear()
         self.ax3.bar(self.ind, self.data3, .5)
         self.ax3.set_xticks(self.ind)
-        self.ax3.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4'))
+        self.ax3.set_xticklabels(('Arduino 1', 'Arduino 2', 'Arduino 3', 'Arduino 4', 'Arduino 5'))
         self.ax3.set_title("Gemiddelde Temperatuur")
         self.ax3.set_ylabel("Temperatuur (°C)")
         self.canvasbar3.draw()

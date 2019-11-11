@@ -3,10 +3,10 @@ import serial.tools.list_ports
 
 arduinos = []
 activeComPorts = []
-distance_gemiddelde = [0, 0, 0, 0]
-light_gemiddelde = [0, 0, 0, 0]
-temp_gemiddelde = [0, 0, 0, 0]
-total_data = [[], [], [], []]
+distance_gemiddelde = [0, 0, 0, 0, 0]
+light_gemiddelde = [0, 0, 0, 0, 0]
+temp_gemiddelde = [0, 0, 0, 0, 0]
+total_data = [[], [], [], [], []]
 zonnescherm_status = 0
 aantal_rondes = 0
 huidige_arduino = 0
