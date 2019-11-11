@@ -236,11 +236,11 @@ class TopLevel1:
         self.data3 = (20, 35, 30, 35)
 
         self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.Button23.place(relx=0.01, rely=0.863, height=54, width=277)
+        self.Button23.place(relx=0.01, rely=0.863, height=54, width=377)
         self.Button23.configure(command=close_zonnescherm,  text='''CLOSE SCHERM''')
 
         self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_1.place(relx=0.01, rely=0.767, height=54, width=277)
+        self.button_1.place(relx=0.01, rely=0.767, height=54, width=377)
         self.button_1.configure(command=open_zonnescherm, text='''OPEN SCHERM''')
 
         self.button_2 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
@@ -512,19 +512,19 @@ class TopLevel1:
         # self.Button67.configure(command=unknown_support.Reset11Licht, text='''Reset''')
 
         self.button_68 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_68.place(relx=0.01, rely=0.521, height=74, width=137)
+        self.button_68.place(relx=0.01, rely=0.521, height=74, width=177)
         self.button_68.configure(command=self.switch_to_arduino, text='''Arduino 1''')
 
         self.button_69 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_69.place(relx=0.155, rely=0.521, height=74, width=127)
+        self.button_69.place(relx=0.155, rely=0.521, height=74, width=177)
         self.button_69.configure(command=self.switch_to_arduino_2, text='''Arduino 2''')
 
         self.button_70 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_70.place(relx=0.01, rely=0.644, height=74, width=137)
+        self.button_70.place(relx=0.01, rely=0.644, height=74, width=177)
         self.button_70.configure(command=self.switch_to_arduino_3, text='''Arduino 3''')
 
         self.button_71 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        self.button_71.place(relx=0.155, rely=0.644, height=74, width=127)
+        self.button_71.place(relx=0.155, rely=0.644, height=74, width=177)
         self.button_71.configure(command=self.switch_to_arduino_4, text='''Arduino 4''')
 
         self.checkbuttonstyle = ttk.Style()
