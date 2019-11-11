@@ -11,6 +11,11 @@ zonnescherm_status = [-1,-1,-1,-1,-1]
 zonnescherm_doel = 0
 aantal_rondes = 0
 aantal_loop = 0
+open_of_dicht = 0
+current_graph = -1
+current_config_setting = -1
+min_length = 20
+max_length = 100
 
 
 def setup_arduinos():
@@ -63,6 +68,7 @@ def loop_data():
     ding = 0
     if len(arduinos) > 0:
         for arduino in arduinos:
+            print(arduino.in_waiting)
             waarde = arduino.read().hex()
             if waarde == 'ff':
                 scale = 16
@@ -117,19 +123,37 @@ def loop_loop():
         loop_data()
         check_zonnescherm()
 
+def open_zonnescherm(aantal = None):
+    if aantal == None and current_config_setting == 0:
+        aantal = current_graph
+        print("Je zet nu arduino " + str(aantal+1) + " aan")
+    elif(aantal == None):
+        print(current_config_setting)
+    else:
+        open_of_dicht = 1
+        global zonnescherm_status
+        zonnescherm_status[aantal] = 1
+        i = arduinos[aantal]
+        i.write(bytearray(b'\x02'))
 
-def open_zonnescherm(aantal):
-    global zonnescherm_status
-    zonnescherm_status[aantal] = 1
-    i = arduinos[aantal]
-    i.write(bytearray(b'\x01'))
 
+def close_zonnescherm(aantal = None):
+    if aantal == None and current_config_setting == 0:
+        aantal = current_graph
+        print("Je zet nu arduino " + str(aantal+1) + " uit")
+    elif(aantal == None):
+        print("")
+    else:
+        open_of_dicht = 2
+        global zonnescherm_status
+        zonnescherm_status[aantal] = 2
+        i = arduinos[aantal]
+        i.write(bytearray(b'\x01'))
 
-def close_zonnescherm(aantal):
-    global zonnescherm_status
-    zonnescherm_status[aantal] = 2
-    i = arduinos[aantal]
-    i.write(bytearray(b'\x02'))
+def set_current_graph(ding, ding2):
+    global current_graph, current_config_setting
+    current_graph = ding
+    current_config_setting = ding2
 
 def knipper(aantal):
     global zonnescherm_status
@@ -141,10 +165,10 @@ def check_zonnescherm():
     aantal = 0
     for i in arduinos:
         distance = distance_gemiddelde[aantal]
-        if distance > 180: # ik heb geen idee welke waarde je wilt
-            close_zonnescherm(aantal)
-        elif distance < 40:
+        if distance > max_length: # ik heb geen idee welke waarde je wilt
             open_zonnescherm(aantal)
+        elif distance < min_length:
+            close_zonnescherm(aantal)
         else:
             knipper(aantal)
         aantal+=1
@@ -172,6 +196,10 @@ def check_zonnescherm():
 #                 i.write(bytearray(b'\x02'))
 
 
+def set_min_max_length(min = None, max = None):
+    global min_length, max_length
+    min_length = min
+    max_length = max
 
 def gemiddelde_gemiddelde_afstand():
     aantal = 0

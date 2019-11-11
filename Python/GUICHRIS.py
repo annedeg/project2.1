@@ -101,9 +101,10 @@ class TopLevel1:
         self.total_data = [[], [], [], [], []]
         self.maxtemp = 25
         self.maxlight = 80
-        self.run_config = 1
+        self.run_config = 0
         self.mindistance = 20
         self.maxdistance = 140
+        self.open_of_dicht = 0
         self.tmp_for_styles = 0
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
@@ -116,6 +117,8 @@ class TopLevel1:
         self.buttonstyle = ttk.Style()
         self.redbutton = ttk.Style()
         self.greenbutton = ttk.Style()
+        self.redbuttonfull = ttk.Style()
+        self.greenbuttonfull = ttk.Style()
         self.arduino1style = ttk.Style()
         self.arduino2style = ttk.Style()
         self.arduino3style = ttk.Style()
@@ -124,6 +127,9 @@ class TopLevel1:
         self.buttonstyle.configure('Custom.TButton', padding=1, relief="flat", background="black")
         self.redbutton.configure('Red.TButton', padding=1, relief="flat", background="red", foreground="black")
         self.greenbutton.configure('Green.TButton', padding=1, relief="flat", background="green", foreground="black")
+        self.redbuttonfull.configure('Redfull.TButton', bd = 4,background="red", foreground="red")
+        self.greenbuttonfull.configure('Redfull.TButton', bd = 4,background="green", foreground="green")
+
         self.arduino1style.configure('Arduino1.TButton', padding=1, relief="flat", background="grey", foreground="grey")
         self.arduino2style.configure('Arduino2.TButton', padding=1, relief="flat", background="grey", foreground="grey")
         self.arduino3style.configure('Arduino3.TButton', padding=1, relief="flat", background="grey", foreground="grey")
@@ -660,7 +666,7 @@ class TopLevel1:
                                  selectbackground="#c4c4c4", selectforeground="black")
 
         self.listbox_3 = tk.Listbox(self.t_notebook_4_t0)
-        self.listbox_3.place(relx=0.40, rely=0.014, relheight=0.100, relwidth=0.272)
+        self.listbox_3.place(relx=0.40, rely=0.028, relheight=0.166, relwidth=0.272)
         self.listbox_3.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
                                  foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
                                  selectbackground="#c4c4c4", selectforeground="black")
@@ -1045,31 +1051,36 @@ class TopLevel1:
         self.dubbel_counter = 0
         self.huidige_grafiek = 0
         self.loop()
-        self.fix_grafieken()
 
     def loop(self):
         global counter, getallen, aantal_huidig, arduinos
+
         self.open_or_close(temp_gemiddelde, light_gemiddelde, distance_gemiddelde)
-        self.fix_grafieken()
+        self.main_loop()
         root.after(1000, self.loop)
 
     # def fill_listbox_1(self, string_list, index):
 
-    def fix_grafieken(self):
-        gemiddelde = 0
-        aantal = 0
+    def main_loop(self):
+        self.fix_grafieken()
+        self.button_kleur()
         aantal_live = len(arduinos)
         self.listbox_1.delete(0, END)
         self.listbox_2.delete(0, END)
         self.listbox_3.delete(0, END)
-
+        set_current_graph(self.huidige_grafiek, self.run_config)
         status = get_zonnescherm()
         if self.tmp_for_styles != aantal_live:
             self.reset_arduino_button_styles(aantal_live)
-        if status == 0:
-            self.fill_listbox_2(str("Sunshade is closed "), 1)
-        else:
-            self.fill_listbox_2(str("Sunshade is open "), 1)
+
+        set_min_max_length(self.mindistance ,self.maxdistance)
+        for i in range(5):
+            if zonnescherm_status[i] == 1:
+                self.fill_listbox_2(str("Sunblind ") + str(i + 1) + str(" is open"), i + 1)
+            elif zonnescherm_status[i] == 2:
+                self.fill_listbox_2(str("Sunblind ") + str(i + 1) + str(" is closed"), i + 1)
+            elif zonnescherm_status[i] == 3:
+                self.fill_listbox_2(str("Sunblind ") + str(i + 1) + str(" is buzy"), i + 1)
         for i in range(5):
             if i+1 <= aantal_live:
                 self.fill_listbox_1(str("Arduino ") + str(i+1) + str(" is online"), i+1)
@@ -1083,30 +1094,37 @@ class TopLevel1:
         self.fill_listbox_3(str("Config is: " + config_status),1)
         self.fill_listbox_3(str("Current temp setting: " + str(self.maxtemp)),2)
         self.fill_listbox_3(str("Current light setting: " + str(self.maxlight)),3)
+        self.fill_listbox_3(str("Current min distance setting: " + str(self.mindistance)),4)
+        self.fill_listbox_3(str("Current max distance setting: " + str(self.maxdistance)),5)
+
+    def fix_grafieken(self):
         self.animatecanvas1(distance_gemiddelde[self.huidige_grafiek])
-        self.animatecanvas3(temp_gemiddelde[self.huidige_grafiek])
         self.animatecanvas2(light_gemiddelde[self.huidige_grafiek])
+        self.animatecanvas3(temp_gemiddelde[self.huidige_grafiek])
 
         self.animatecanvas4(distance_gemiddelde[0])
-        self.animatecanvas5(light_gemiddelde[0])
-        self.animatecanvas12(temp_gemiddelde[0])
+        self.animatecanvas5(temp_gemiddelde[0])
+        self.animatecanvas12(light_gemiddelde[0])
         self.animatecanvas6(distance_gemiddelde[1])
-        self.animatecanvas7(light_gemiddelde[1])
-        self.animatecanvas13(temp_gemiddelde[1])
+        self.animatecanvas7(temp_gemiddelde[1])
+        self.animatecanvas13(light_gemiddelde[1])
         self.animatecanvas8(distance_gemiddelde[2])
-        self.animatecanvas9(light_gemiddelde[2])
-        self.animatecanvas14(temp_gemiddelde[2])
+        self.animatecanvas9(temp_gemiddelde[2])
+        self.animatecanvas14(light_gemiddelde[2])
         self.animatecanvas10(distance_gemiddelde[3])
-        self.animatecanvas11(light_gemiddelde[3])
-        self.animatecanvas15(temp_gemiddelde[3])
+        self.animatecanvas11(temp_gemiddelde[3])
+        self.animatecanvas15(light_gemiddelde[3])
         self.animatecanvas16(distance_gemiddelde[4])
-        self.animatecanvas17(light_gemiddelde[4])
-        self.animatecanvas18(temp_gemiddelde[4])
+        self.animatecanvas17(temp_gemiddelde[4])
+        self.animatecanvas18(light_gemiddelde[4])
 
         self.set_bar1_data(distance_gemiddelde[0], distance_gemiddelde[1], distance_gemiddelde[2],
                            distance_gemiddelde[3], distance_gemiddelde[4])
-        self.set_bar2_data(light_gemiddelde[0], light_gemiddelde[1], light_gemiddelde[2], light_gemiddelde[3], light_gemiddelde[4])
-        self.set_bar3_data(temp_gemiddelde[0], temp_gemiddelde[1], temp_gemiddelde[2], temp_gemiddelde[3], temp_gemiddelde[4])
+        self.set_bar2_data(light_gemiddelde[0], light_gemiddelde[1], light_gemiddelde[2], light_gemiddelde[3],
+                           light_gemiddelde[4])
+        self.set_bar3_data(temp_gemiddelde[0], temp_gemiddelde[1], temp_gemiddelde[2], temp_gemiddelde[3],
+                           temp_gemiddelde[4])
+
 
     def open_or_close(self, gemiddelde_temp, gemiddelde_light, gemiddelde_afstand):
         aantal_light = 0
@@ -1186,7 +1204,7 @@ class TopLevel1:
             self.canvas3.clear()
         self.canvas3y.append(y)
         self.new3x += 1
-        self.canvas3.set_ylim(0, 80)  # change this if the max limit has to change
+        self.canvas3.set_ylim(0, 350)  # change this if the max limit has to change
         self.canvas3.set_title('Average Temperature')
         self.canvas3.set_ylabel('Temperature (°C)')
         self.canvas3.set_xlabel('Time')
@@ -1216,7 +1234,7 @@ class TopLevel1:
             self.canvas5.clear()
         self.canvas5y.append(y)
         self.new5x += 1
-        self.canvas5.set_ylim(0, 80)  # change this if the max limit has to change
+        self.canvas5.set_ylim(0, 350)  # change this if the max limit has to change
         self.canvas5.set_title('Average temperature')
         self.canvas5.set_ylabel('Temperature (°C)')
         self.canvas5.set_xlabel('Time')
@@ -1246,7 +1264,7 @@ class TopLevel1:
             self.canvas7.clear()
         self.canvas7y.append(y)
         self.new7x += 1
-        self.canvas7.set_ylim(0, 80)  # change this if the max limit has to change
+        self.canvas7.set_ylim(0, 350)  # change this if the max limit has to change
         self.canvas7.set_title('Average temperature')
         self.canvas7.set_ylabel('Temperature (°C)')
         self.canvas7.set_xlabel('Time')
@@ -1276,7 +1294,7 @@ class TopLevel1:
             self.canvas9.clear()
         self.canvas9y.append(y)
         self.new9x += 1
-        self.canvas9.set_ylim(0, 80)  # change this if the max limit has to change
+        self.canvas9.set_ylim(0, 350)  # change this if the max limit has to change
         self.canvas9.set_title('Average temperature')
         self.canvas9.set_ylabel('Temperature (°C)')
         self.canvas9.set_xlabel('Time')
@@ -1306,7 +1324,7 @@ class TopLevel1:
             self.canvas11.clear()
         self.canvas11y.append(y)
         self.new11x += 1
-        self.canvas11.set_ylim(0, 80)  # change this if the max limit has to change
+        self.canvas11.set_ylim(0, 350)  # change this if the max limit has to change
         self.canvas11.set_title('Average temperature')
         self.canvas11.set_ylabel('Temperature (°C)')
         self.canvas11.set_xlabel('Time')
@@ -1396,7 +1414,7 @@ class TopLevel1:
             self.canvas17.clear()
         self.canvas17y.append(y)
         self.new17x += 1
-        self.canvas17.set_ylim(0, 80)  # change this if the max limit has to change
+        self.canvas17.set_ylim(0, 350)  # change this if the max limit has to change
         self.canvas17.set_title('Average temperature')
         self.canvas17.set_ylabel('Temperature (°C)')
         self.canvas17.set_xlabel('Time')
@@ -1597,9 +1615,33 @@ class TopLevel1:
 
     def fill_listbox_2(self, string, index):
         self.listbox_2.insert(index, string)
+        if "open" in string:
+            self.listbox_2.itemconfig(index-1, {'bg':'green', 'fg':'black'})
+        elif "closed" in string:
+            self.listbox_2.itemconfig(index - 1, {'bg': 'red', 'fg':'white'})
+        else:
+            self.listbox_2.itemconfig(index - 1, {'bg': 'yellow', 'fg': 'black'})
 
     def fill_listbox_3(self, string, index):
         self.listbox_3.insert(index, string)
+
+
+    def button_kleur(self):
+        if self.run_config == 0:
+            if open_of_dicht == 1:
+                self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Greenfull.TButton')
+                self.Button23.place(relx=0.01, rely=0.863, height=54, relwidth=0.270)
+                self.Button23.configure(command=open_zonnescherm, text='''CLOSE SCHERM''')
+                self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Redfull.TButton')
+                self.button_1.place(relx=0.01, rely=0.767, height=54, relwidth=0.270)
+                self.button_1.configure(command=open_zonnescherm, text='''OPEN SCHERM''')
+            elif open_of_dicht == 2:
+                self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Red.TButton')
+                self.button_1.place(relx=0.01, rely=0.767, height=54, relwidth=0.270)
+                self.button_1.configure(command=close_zonnescherm, text='''OPEN SCHERM''')
+                self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Greenfull.TButton')
+                self.Button23.place(relx=0.01, rely=0.863, height=54, relwidth=0.270)
+                self.Button23.configure(command=close_zonnescherm, text='''CLOSE SCHERM''')
 
     def set_temp(self):
         try:
