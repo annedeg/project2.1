@@ -1117,7 +1117,7 @@ class TopLevel1:
             self.reset_arduino_button_styles(length)
             self.arduino3style.configure("Arduino3.TButton", background="green", foreground="black",
                                          font=('Sans', '10', 'bold'))
-            self.huidige_grafiek = 2                #led = groen
+            self.huidige_grafiek = 2                # led = groen
 
     # switch the dashboard graph to the selected arduino
     def switch_to_arduino_4(self):
@@ -1176,7 +1176,7 @@ class TopLevel1:
     def fill_listbox_1(self, string, index):
         self.listbox_1.insert(index, string)
         if len(string) == 23:
-            self.listbox_1.itemconfig(index-1, {'bg':'red', 'fg':'white'})
+            self.listbox_1.itemconfig(index-1, {'bg':'red', 'fg': 'white'})
         else:
             self.listbox_1.itemconfig(index - 1, {'bg': 'green'})
 
@@ -1184,9 +1184,9 @@ class TopLevel1:
     def fill_listbox_2(self, string, index):
         self.listbox_2.insert(index, string)
         if "open" in string:
-            self.listbox_2.itemconfig(index-1, {'bg':'green', 'fg':'black'})
+            self.listbox_2.itemconfig(index-1, {'bg': 'green', 'fg': 'black'})
         elif "closed" in string:
-            self.listbox_2.itemconfig(index - 1, {'bg': 'red', 'fg':'white'})
+            self.listbox_2.itemconfig(index - 1, {'bg': 'red', 'fg': 'white'})
         else:
             self.listbox_2.itemconfig(index - 1, {'bg': 'yellow', 'fg': 'black'})
 
@@ -1245,14 +1245,14 @@ class TopLevel1:
     def set_min_distance(self):
         try:
             self.mindistance = int(self.entry_3.get())
-        except:
+        except ValueError:
             print("Value of mindistance has not changed")
 
     # set the max distance
     def set_max_distance(self):
         try:
             self.maxdistance = int(self.entry_4.get())
-        except:
+        except ValueError:
             print("Value of maxdistance has not changed")
 
     # reset the min distance
