@@ -908,7 +908,7 @@ class TopLevel1:
                                    highlightbackground="#d9d9d9", highlightcolor="black")
 
         self.label_1 = ttk.Label(self.t_notebook_1_t3, style='Custom.TLabel')
-        self.label_1.place(relx=0.01, rely=0.014, height=674, width=674)
+        self.label_1.place(relx=0.01, rely=0.00, height=674, width=674)
         self.label_1.configure(text='''INSTRUCTIONS:
         
         DASHBOARD:
