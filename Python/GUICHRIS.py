@@ -732,7 +732,7 @@ class TopLevel1:
         self.canvas1.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas1.set_title('Average distance')
         self.canvas1.set_ylabel('Distance (cm)')
-        self.canvas1.set_xlabel('Time')
+        self.canvas1.set_xlabel('Time (s)')
         self.canvas1.plot(self.canvasx, self.canvas1y, color="blue")
         self.canvas1a.draw()
 
@@ -748,7 +748,7 @@ class TopLevel1:
         self.canvas2.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas2.set_title('Average lightintensity')
         self.canvas2.set_ylabel('Light (lux)')
-        self.canvas2.set_xlabel('Time')
+        self.canvas2.set_xlabel('Time (s)')
         self.canvas2.plot(self.canvas2x, self.canvas2y, color="yellow")
         self.canvas2a.draw()
 
@@ -764,7 +764,7 @@ class TopLevel1:
         self.canvas3.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas3.set_title('Average Temperature')
         self.canvas3.set_ylabel('Temperature (°C)')
-        self.canvas3.set_xlabel('Time')
+        self.canvas3.set_xlabel('Time (s)')
         self.canvas3.plot(self.canvas3x, self.canvas3y, color="red")
         self.canvas3a.draw()
 
@@ -780,7 +780,7 @@ class TopLevel1:
         self.canvas4.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas4.set_title('Average distance')
         self.canvas4.set_ylabel('Distance (cm)')
-        self.canvas4.set_xlabel('Time')
+        self.canvas4.set_xlabel('Time (s)')
         self.canvas4.plot(self.canvas4x, self.canvas4y, color="blue")
         self.canvas4a.draw()
 
@@ -796,7 +796,7 @@ class TopLevel1:
         self.canvas5.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas5.set_title('Average temperature')
         self.canvas5.set_ylabel('Temperature (°C)')
-        self.canvas5.set_xlabel('Time')
+        self.canvas5.set_xlabel('Time (s)')
         self.canvas5.plot(self.canvas5x, self.canvas5y, color="red")
         self.canvas4a.draw()
 
@@ -812,7 +812,7 @@ class TopLevel1:
         self.canvas6.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas6.set_title('Average distance')
         self.canvas6.set_ylabel('Distance (cm)')
-        self.canvas6.set_xlabel('Time')
+        self.canvas6.set_xlabel('Time (s)')
         self.canvas6.plot(self.canvas6x, self.canvas6y, color="blue")
         self.canvas5a.draw()
 
@@ -828,7 +828,7 @@ class TopLevel1:
         self.canvas7.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas7.set_title('Average temperature')
         self.canvas7.set_ylabel('Temperature (°C)')
-        self.canvas7.set_xlabel('Time')
+        self.canvas7.set_xlabel('Time (s)')
         self.canvas7.plot(self.canvas7x, self.canvas7y, color="red")
         self.canvas5a.draw()
 
@@ -844,7 +844,7 @@ class TopLevel1:
         self.canvas8.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas8.set_title('Average distance')
         self.canvas8.set_ylabel('Distance (cm)')
-        self.canvas8.set_xlabel('Time')
+        self.canvas8.set_xlabel('Time (s)')
         self.canvas8.plot(self.canvas8x, self.canvas8y, color="blue")
         self.canvas6a.draw()
 
@@ -860,7 +860,7 @@ class TopLevel1:
         self.canvas9.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas9.set_title('Average temperature')
         self.canvas9.set_ylabel('Temperature (°C)')
-        self.canvas9.set_xlabel('Time')
+        self.canvas9.set_xlabel('Time (s)')
         self.canvas9.plot(self.canvas9x, self.canvas9y, color="red")
         self.canvas6a.draw()
 
@@ -876,7 +876,7 @@ class TopLevel1:
         self.canvas10.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas10.set_title('Average distance')
         self.canvas10.set_ylabel('Distance (cm)')
-        self.canvas10.set_xlabel('Time')
+        self.canvas10.set_xlabel('Time (s)')
         self.canvas10.plot(self.canvas10x, self.canvas10y, color="blue")
         self.canvas7a.draw()
 
@@ -892,7 +892,7 @@ class TopLevel1:
         self.canvas11.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas11.set_title('Average temperature')
         self.canvas11.set_ylabel('Temperature (°C)')
-        self.canvas11.set_xlabel('Time')
+        self.canvas11.set_xlabel('Time (s)')
         self.canvas11.plot(self.canvas11x, self.canvas11y, color="red")
         self.canvas7a.draw()
 
@@ -908,7 +908,7 @@ class TopLevel1:
         self.canvas12.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas12.set_title('Average lightintensity')
         self.canvas12.set_ylabel('Light (lux)')
-        self.canvas12.set_xlabel('Time')
+        self.canvas12.set_xlabel('Time (s)')
         self.canvas12.plot(self.canvas12x, self.canvas12y, color="yellow")
         self.canvas4a.draw()
 
@@ -924,7 +924,7 @@ class TopLevel1:
         self.canvas13.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas13.set_title('Average lightintensity')
         self.canvas13.set_ylabel('Light (lux)')
-        self.canvas13.set_xlabel('Time')
+        self.canvas13.set_xlabel('Time (s)')
         self.canvas13.plot(self.canvas13x, self.canvas13y, color="yellow")
         self.canvas5a.draw()
 
@@ -940,7 +940,7 @@ class TopLevel1:
         self.canvas14.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas14.set_title('Average lightintensity')
         self.canvas14.set_ylabel('Light (lux)')
-        self.canvas14.set_xlabel('Time')
+        self.canvas14.set_xlabel('Time (s)')
         self.canvas14.plot(self.canvas14x, self.canvas14y, color="yellow")
         self.canvas6a.draw()
 
@@ -956,7 +956,7 @@ class TopLevel1:
         self.canvas15.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas15.set_title('Average lightintensity')
         self.canvas15.set_ylabel('Light (lux)')
-        self.canvas15.set_xlabel('Time')
+        self.canvas15.set_xlabel('Time (s)')
         self.canvas15.plot(self.canvas15x, self.canvas15y, color="yellow")
         self.canvas7a.draw()
 
@@ -972,7 +972,7 @@ class TopLevel1:
         self.canvas16.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas16.set_title('Average distance')
         self.canvas16.set_ylabel('Distance (cm)')
-        self.canvas16.set_xlabel('Time')
+        self.canvas16.set_xlabel('Time (s)')
         self.canvas16.plot(self.canvas16x, self.canvas16y, color="blue")
         self.canvas8a.draw()
 
@@ -988,7 +988,7 @@ class TopLevel1:
         self.canvas17.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas17.set_title('Average temperature')
         self.canvas17.set_ylabel('Temperature (°C)')
-        self.canvas17.set_xlabel('Time')
+        self.canvas17.set_xlabel('Time (s)')
         self.canvas17.plot(self.canvas17x, self.canvas17y, color="red")
         self.canvas8a.draw()
 
@@ -1004,7 +1004,7 @@ class TopLevel1:
         self.canvas18.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas18.set_title('Average lightintensity')
         self.canvas18.set_ylabel('Light (lux)')
-        self.canvas18.set_xlabel('Time')
+        self.canvas18.set_xlabel('Time (s)')
         self.canvas18.plot(self.canvas18x, self.canvas18y, color="yellow")
         self.canvas8a.draw()
 
