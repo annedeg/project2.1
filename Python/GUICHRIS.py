@@ -606,7 +606,7 @@ class TopLevel1:
         self.dubbel_counter = 0
         self.huidige_grafiek = 0
         self.loop()
-
+    #Breaking the root.mainloop with a loop
     def loop(self):
         global counter, getallen, aantal_huidig, arduinos
 
@@ -614,8 +614,7 @@ class TopLevel1:
         self.main_loop()
         root.after(1000, self.loop)
 
-    # def fill_listbox_1(self, string_list, index):
-
+    #main loop for running all the funtions
     def main_loop(self):
         self.fix_grafieken()
         self.button_kleur()
@@ -651,8 +650,7 @@ class TopLevel1:
         self.fill_listbox_3(str("Current light setting: " + str(self.maxlight)),3)
         self.fill_listbox_3(str("Current min distance setting: " + str(self.mindistance)),4)
         self.fill_listbox_3(str("Current max distance setting: " + str(self.maxdistance)),5)
-
-    #Deze functie update alle grafieken met recente waardes vanaf de sensoren die geconnect zijn aan de Arduino
+    #updating the graphs
     def fix_grafieken(self):
         self.animatecanvas1(distance_gemiddelde[self.huidige_grafiek])
         self.animatecanvas2(light_gemiddelde[self.huidige_grafiek])
@@ -681,7 +679,7 @@ class TopLevel1:
         self.set_bar3_data(int(temp_gemiddelde[0]/10), int(temp_gemiddelde[1]/10), int(temp_gemiddelde[2]/10), int(temp_gemiddelde[3]/10),
                            int(temp_gemiddelde[4]/10))
 
-
+    #The function for auto open or closing
     def open_or_close(self, gemiddelde_temp, gemiddelde_light, gemiddelde_afstand):
         aantal_live = len(arduinos)
         aantal_light = 0
@@ -731,6 +729,7 @@ class TopLevel1:
             if  temp < self.maxtemp:
                 print("TEMP | CLOSE")
             print("")
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas1(self, y):
         self.canvasx.append(self.newx)
         if len(self.canvasx) > 20:
@@ -745,7 +744,7 @@ class TopLevel1:
         self.canvas1.set_xlabel('Time')
         self.canvas1.plot(self.canvasx, self.canvas1y, color="blue")
         self.canvas1a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas2(self, y):
         self.canvas2x.append(self.new2x)
         if len(self.canvas2x) > 20:
@@ -760,7 +759,7 @@ class TopLevel1:
         self.canvas2.set_xlabel('Time')
         self.canvas2.plot(self.canvas2x, self.canvas2y, color="yellow")
         self.canvas2a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas3(self, y):
         self.canvas3x.append(self.new3x)
         if len(self.canvas3x) > 20:
@@ -775,7 +774,7 @@ class TopLevel1:
         self.canvas3.set_xlabel('Time')
         self.canvas3.plot(self.canvas3x, self.canvas3y, color="red")
         self.canvas3a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas4(self, y):
         self.canvas4x.append(self.new4x)
         if len(self.canvas4x) > 20:
@@ -790,7 +789,7 @@ class TopLevel1:
         self.canvas4.set_xlabel('Time')
         self.canvas4.plot(self.canvas4x, self.canvas4y, color="blue")
         self.canvas4a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas5(self, y):
         self.canvas5x.append(self.new5x)
         if len(self.canvas5x) > 20:
@@ -805,7 +804,7 @@ class TopLevel1:
         self.canvas5.set_xlabel('Time')
         self.canvas5.plot(self.canvas5x, self.canvas5y, color="red")
         self.canvas4a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas6(self, y):
         self.canvas6x.append(self.new6x)
         if len(self.canvas6x) > 20:
@@ -820,7 +819,7 @@ class TopLevel1:
         self.canvas6.set_xlabel('Time')
         self.canvas6.plot(self.canvas6x, self.canvas6y, color="blue")
         self.canvas5a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas7(self, y):
         self.canvas7x.append(self.new7x)
         if len(self.canvas7x) > 20:
@@ -835,7 +834,7 @@ class TopLevel1:
         self.canvas7.set_xlabel('Time')
         self.canvas7.plot(self.canvas7x, self.canvas7y, color="red")
         self.canvas5a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas8(self, y):
         self.canvas8x.append(self.new8x)
         if len(self.canvas8x) > 20:
@@ -850,7 +849,7 @@ class TopLevel1:
         self.canvas8.set_xlabel('Time')
         self.canvas8.plot(self.canvas8x, self.canvas8y, color="blue")
         self.canvas6a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas9(self, y):
         self.canvas9x.append(self.new9x)
         if len(self.canvas9x) > 20:
@@ -865,7 +864,7 @@ class TopLevel1:
         self.canvas9.set_xlabel('Time')
         self.canvas9.plot(self.canvas9x, self.canvas9y, color="red")
         self.canvas6a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas10(self, y):
         self.canvas10x.append(self.new10x)
         if len(self.canvas10x) > 20:
@@ -880,7 +879,7 @@ class TopLevel1:
         self.canvas10.set_xlabel('Time')
         self.canvas10.plot(self.canvas10x, self.canvas10y, color="blue")
         self.canvas7a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas11(self, y):
         self.canvas11x.append(self.new11x)
         if len(self.canvas11x) > 20:
@@ -895,7 +894,7 @@ class TopLevel1:
         self.canvas11.set_xlabel('Time')
         self.canvas11.plot(self.canvas11x, self.canvas11y, color="red")
         self.canvas7a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas12(self, y):
         self.canvas12x.append(self.new12x)
         if len(self.canvas12x) > 20:
@@ -910,7 +909,7 @@ class TopLevel1:
         self.canvas12.set_xlabel('Time')
         self.canvas12.plot(self.canvas12x, self.canvas12y, color="yellow")
         self.canvas4a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas13(self, y):
         self.canvas13x.append(self.new13x)
         if len(self.canvas13x) > 20:
@@ -925,7 +924,7 @@ class TopLevel1:
         self.canvas13.set_xlabel('Time')
         self.canvas13.plot(self.canvas13x, self.canvas13y, color="yellow")
         self.canvas5a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas14(self, y):
         self.canvas14x.append(self.new14x)
         if len(self.canvas14x) > 20:
@@ -940,7 +939,7 @@ class TopLevel1:
         self.canvas14.set_xlabel('Time')
         self.canvas14.plot(self.canvas14x, self.canvas14y, color="yellow")
         self.canvas6a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas15(self, y):
         self.canvas15x.append(self.new15x)
         if len(self.canvas15x) > 20:
@@ -955,7 +954,7 @@ class TopLevel1:
         self.canvas15.set_xlabel('Time')
         self.canvas15.plot(self.canvas15x, self.canvas15y, color="yellow")
         self.canvas7a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas16(self, y):
         self.canvas16x.append(self.new16x)
         if len(self.canvas16x) > 20:
@@ -970,7 +969,7 @@ class TopLevel1:
         self.canvas16.set_xlabel('Time')
         self.canvas16.plot(self.canvas16x, self.canvas16y, color="blue")
         self.canvas8a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas17(self, y):
         self.canvas17x.append(self.new17x)
         if len(self.canvas17x) > 20:
@@ -985,7 +984,7 @@ class TopLevel1:
         self.canvas17.set_xlabel('Time')
         self.canvas17.plot(self.canvas17x, self.canvas17y, color="red")
         self.canvas8a.draw()
-
+    #Animate function for graph, input new Y and increments the X
     def animatecanvas18(self, y):
         self.canvas18x.append(self.new18x)
         if len(self.canvas18x) > 20:
@@ -1001,6 +1000,7 @@ class TopLevel1:
         self.canvas18.plot(self.canvas18x, self.canvas18y, color="yellow")
         self.canvas8a.draw()
 
+    # clears the graphs on the dashboard and all of their values
     def clear_canvasses_dashboard(self):
         self.canvas1.clear()
         self.canvas1y.clear()
@@ -1015,7 +1015,7 @@ class TopLevel1:
         self.newx = 0
         self.new2x = 0
         self.new3x = 0
-
+    #resets the buttons for switching the arduino's
     def reset_arduino_button_styles(self, amount_of_arduinos):
         self.tmp_for_styles = amount_of_arduinos
         if len(arduinos) >= 1:
@@ -1028,7 +1028,7 @@ class TopLevel1:
             self.arduino4style.configure("Arduino4.TButton", background="black", foreground="black", font=('Sans','10','normal'))
         if len(arduinos) >= 5:
             self.arduino5style.configure("Arduino5.TButton", background="black", foreground="black", font=('Sans','10','normal'))
-
+    #switch the dashboard graph to the selected arduino
     def switch_to_arduino(self):
         length = len(arduinos)
         if length > 0:
@@ -1036,7 +1036,7 @@ class TopLevel1:
             self.reset_arduino_button_styles(length)
             self.arduino1style.configure("Arduino1.TButton", background="green", foreground="black", font=('Sans','10','bold'))
             self.huidige_grafiek = 0
-
+    #switch the dashboard graph to the selected arduino
     def switch_to_arduino_2(self):
         length = len(arduinos)
         if length > 1:
@@ -1044,7 +1044,7 @@ class TopLevel1:
             self.reset_arduino_button_styles(length)
             self.arduino2style.configure("Arduino2.TButton", background="green", foreground="black", font=('Sans','10','bold'))
             self.huidige_grafiek = 1                #led = rood
-
+    #switch the dashboard graph to the selected arduino
     def switch_to_arduino_3(self):
         length = len(arduinos)
         if length > 2:
@@ -1052,7 +1052,7 @@ class TopLevel1:
             self.reset_arduino_button_styles(length)
             self.arduino3style.configure("Arduino3.TButton", background="green", foreground="black", font=('Sans','10','bold'))
             self.huidige_grafiek = 2                #led = groen
-
+    #switch the dashboard graph to the selected arduino
     def switch_to_arduino_4(self):
         length = len(arduinos)
         if length > 3:
@@ -1060,7 +1060,7 @@ class TopLevel1:
             self.reset_arduino_button_styles(length)
             self.arduino4style.configure("Arduino4.TButton", background="green", foreground="black", font=('Sans','10','bold'))
             self.huidige_grafiek = 3                #led = rood
-
+    #switch the dashboard graph to the selected arduino
     def switch_to_arduino_5(self):
         length = len(arduinos)
         if length > 4:
@@ -1068,7 +1068,7 @@ class TopLevel1:
             self.reset_arduino_button_styles(length)
             self.arduino5style.configure("Arduino5.TButton", background="green", foreground="black", font=('Sans','10','bold'))
             self.huidige_grafiek = 4
-
+    #setter for bar3, this is the DISTANCE field on the dashboard
     def set_bar1_data(self, ad1, ad2, ad3, ad4, ad5):
         self.data1 = (ad1, ad2, ad3, ad4, ad5)
         self.ax1.clear()
@@ -1078,7 +1078,7 @@ class TopLevel1:
         self.ax1.set_title("Average distance")
         self.ax1.set_ylabel("distance (cm)")
         self.canvasbar1.draw()
-
+    #setter for bar3, this is the LIGHT field on the dashboard
     def set_bar2_data(self, ad1, ad2, ad3, ad4, ad5):
         self.data2 = (ad1, ad2, ad3, ad4, ad5)
         self.ax2.clear()
@@ -1088,7 +1088,7 @@ class TopLevel1:
         self.ax2.set_title("Average lightintensity")
         self.ax2.set_ylabel("Lightintensity (lux)")
         self.canvasbar2.draw()
-
+    #setter for bar3, this is the temperature field on the dashboard
     def set_bar3_data(self, ad1, ad2, ad3, ad4, ad5):
         self.data3 = (ad1, ad2, ad3, ad4, ad5)
         self.ax3.clear()
@@ -1098,7 +1098,7 @@ class TopLevel1:
         self.ax3.set_title("Average temperature")
         self.ax3.set_ylabel("Temperature (°C)")
         self.canvasbar3.draw()
-
+    # fill function for listbox1, TOP one on dashboard
     def fill_listbox_1(self, string, index):
         self.listbox_1.insert(index, string)
         if len(string) == 23:
@@ -1106,6 +1106,7 @@ class TopLevel1:
         else:
             self.listbox_1.itemconfig(index - 1, {'bg': 'green'})
 
+    # fill function for listbox2, BOTTOM one on dashboard
     def fill_listbox_2(self, string, index):
         self.listbox_2.insert(index, string)
         if "open" in string:
@@ -1114,10 +1115,11 @@ class TopLevel1:
             self.listbox_2.itemconfig(index - 1, {'bg': 'red', 'fg':'white'})
         else:
             self.listbox_2.itemconfig(index - 1, {'bg': 'yellow', 'fg': 'black'})
-
+    #fill function for listbox3, the listbox on the config pane
     def fill_listbox_3(self, string, index):
         self.listbox_3.insert(index, string)
 
+    #function that colors the button when a open or close signal is given
     def button_kleur(self):
         if self.run_config == 0:
             if open_of_dicht == 1:
@@ -1134,46 +1136,47 @@ class TopLevel1:
                 self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Greenfull.TButton')
                 self.Button23.place(relx=0.01, rely=0.863, height=54, relwidth=0.270)
                 self.Button23.configure(command=close_zonnescherm, text='''CLOSE SCHERM''')
-
+    #set function for the max temperature
     def set_temp(self):
         try:
             self.maxtemp = int(self.entry_1.get())
         except ValueError:
             print("Value of maxtemp has not changed")
-
+    #toggle checkbox in config panel
     def toggle_config(self):
         if self.run_config == 0:
             self.run_config = 1
         else:
             self.run_config = 0
-
+    #set the light value
     def set_light(self):
         try:
             self.maxlight = int(self.entry_2.get())
         except ValueError:
             print("Value of maxlight has not changed")
-
+    #reset temp field
     def reset_temp(self):
         self.maxtemp = 20
-
+    #reset the light field
     def reset_light(self):
         self.maxlight = 70
-
+    #set the minimum distance
     def set_min_distance(self):
         try:
             self.mindistance = int(self.entry_3.get())
         except:
             print("Value of mindistance has not changed")
-
+    #set the max distance
     def set_max_distance(self):
         try:
             self.maxdistance = int(self.entry_4.get())
         except:
             print("Value of maxdistance has not changed")
-
+    #reset the min distance
     def reset_min_distance(self):
         self.mindistance = 20
 
+    #reset the max distance
     def reset_max_distance(self):
         self.maxdistance = 140
 
