@@ -231,15 +231,6 @@ class TopLevel1:
         self.t_notebook_4.tab(0, text="Set sunshade config", compound="left", underline="-1")
         self.t_notebook_4_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
-        # self.t_notebook_4_t1 = tk.Frame(self.t_notebook_4)
-        # self.t_notebook_4.add(self.t_notebook_4_t1, padding=3)
-        # self.t_notebook_4.tab(1, text="Licht", compound="left", underline="-1", )
-        # self.t_notebook_4_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
-        # self.t_notebook_4_t2 = tk.Frame(self.t_notebook_4)
-        # self.t_notebook_4.add(self.t_notebook_4_t2, padding=3)
-        # self.t_notebook_4.tab(2, text="Afstand", compound="none", underline="-1", )
-        # self.t_notebook_4_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
-
         self.t_notebook_5 = ttk.Notebook(self.t_notebook_1_t0)
         self.t_notebook_5.place(relx=0.291, rely=0.26, relheight=0.721, relwidth=0.693)
         self.t_notebook_5.configure(takefocus="")
@@ -262,298 +253,77 @@ class TopLevel1:
         self.ax3.set_title('NOT CONNECTED', color="red")
         self.data3 = (20, 35, 30, 35)
 
+        #The button "CLOSE SUNBLIND" on the "Dashboard" page.
         self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Red.TButton')
         self.Button23.place(relx=0.01, rely=0.863, height=54, relwidth=0.270)
-        self.Button23.configure(command=close_zonnescherm,  text='''CLOSE SUNSHADE''')
+        self.Button23.configure(command=close_zonnescherm,  text='''CLOSE SUNBLIND''')
 
+        #The button "OPEN SUNBLIND" on the "Dashboard" page.
         self.button_1 = ttk.Button(self.t_notebook_1_t0, style='Green.TButton')
         self.button_1.place(relx=0.01, rely=0.767, height=54, relwidth=0.270)
-        self.button_1.configure(command=open_zonnescherm, text='''OPEN SUNSHADE''')
+        self.button_1.configure(command=open_zonnescherm, text='''OPEN SUNBLIND''')
 
+        #The 1st "Set" button on the page "Config"
         self.button_2 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.button_2.place(relx=0.265, rely=0.029, height=24, relwidth=0.05)
         self.button_2.configure(command=self.set_temp, text='''Set''')
 
+        #The 1st "Set" button on the page "Config"
         self.button_3 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.button_3.place(relx=0.265, rely=0.072, height=24, relwidth=0.05)
         self.button_3.configure(command=self.set_light, text='''Set''')
 
+        #The 1st "Reset" button on the page "Config"
         self.button_4 = ttk.Button(self.t_notebook_4_t0, style='Red.TButton')
         self.button_4.place(relx=0.324, rely=0.029, height=24, relwidth=0.05)
         self.button_4.configure(command=self.reset_temp, text='''Reset''')
 
+        #The 2nd "Reset" button on the page "Config"
         self.button_5 = ttk.Button(self.t_notebook_4_t0, style='Red.TButton')
         self.button_5.place(relx=0.324, rely=0.072, height=24, relwidth=0.05)
         self.button_5.configure(command=self.reset_light, text='''Reset''')
 
+        #The 1st "Set" button on the page "Config"
         self.Button6 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.Button6.place(relx=0.265, rely=0.116, height=24, relwidth=0.05)
         self.Button6.configure(command=self.set_min_distance, text='''Set''')
 
+        #The 1st "Set" button on the page "Config"
         self.Button7 = ttk.Button(self.t_notebook_4_t0, style='Green.TButton')
         self.Button7.place(relx=0.265, rely=0.159, height=24, relwidth=0.05)
         self.Button7.configure(command=self.set_max_distance, text='''Set''')
 
+        #The 3th "Reset" button on the page "Config"
         self.Button8 = ttk.Button(self.t_notebook_4_t0, style='Red.TButton')
         self.Button8.place(relx=0.324, rely=0.116, height=24, relwidth=0.05)
         self.Button8.configure(command=self.reset_min_distance, text='''Reset''')
 
+        #The 4th "Reset" button on the page "Config"
         self.Button9 = ttk.Button(self.t_notebook_4_t0, style='Red.TButton')
         self.Button9.place(relx=0.324, rely=0.159, height=24, relwidth=0.05)
         self.Button9.configure(command=self.reset_max_distance, text='''Reset''')
 
-        # self.Button7 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button7.place(relx=0.324, rely=0.203, height=24, width=37)
-        # self.Button7.configure(command=unknown_support.Reset5Temperatuur, text='''Reset''')
-        #
-        # self.Button8 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button8.place(relx=0.324, rely=0.246, height=24, width=37)
-        # self.Button8.configure(command=unknown_support.Reset6Temperatuur, text='''Reset''')
-        #
-        # self.Button9 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button9.place(relx=0.324, rely=0.29, height=24, width=37)
-        # self.Button9.configure(command=unknown_support.Reset7Temperatuur, text='''Reset''')
-        #
-        # self.Button10 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button10.place(relx=0.324, rely=0.333, height=24, width=37)
-        # self.Button10.configure(command=unknown_support.Reset8Temperatuur, text='''Reset''')
-        #
-        # self.Button11 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button11.place(relx=0.265, rely=0.072, height=24, width=47)
-        # self.Button11.configure(command=self.Set2Temperatuur, text='''Set''')
-
-        # self.Button14 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button14.place(relx=0.265, rely=0.203, height=24, width=47)
-        # self.Button14.configure(command=self.Set5Temperatuur, text='''Set''')
-        #
-        # self.Button15 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button15.place(relx=0.265, rely=0.246, height=24, width=47)
-        # self.Button15.configure(command=self.Set6Temperatuur, text='''Set''')
-        #
-        # self.Button16 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button16.place(relx=0.265, rely=0.29, height=24, width=47)
-        # self.Button16.configure(command=self.Set7Temperatuur, text='''Set''')
-        #
-        # self.Button17 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button17.place(relx=0.265, rely=0.333, height=24, width=47)
-        # self.Button17.configure(command=self.Set8Temperatuur, text='''Set''')
-        #
-        # self.Button18 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button18.place(relx=0.265, rely=0.391, height=24, width=47)
-        # self.Button18.configure(command=unknown_support.Set9Temperatuur, text='''Set''')
-        #
-        # self.Button19 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button19.place(relx=0.265, rely=0.478, height=24, width=47)
-        # self.Button19.configure(command=unknown_support.Set11Temperatuur, text='''Set''')
-        #
-        # self.Button20 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button20.place(relx=0.324, rely=0.391, height=24, width=39)
-        # self.Button20.configure(command=unknown_support.Reset9Temperatuur, text='''Reset''')
-        #
-        # self.Button21 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button21.place(relx=0.324, rely=0.435, height=24, width=39)
-        # self.Button21.configure(command=unknown_support.Reset10Temperatuur, text='''Reset''')
-        #
-        # self.Button22 = ttk.Button(self.t_notebook_4_t0, style='Custom.TButton')
-        # self.Button22.place(relx=0.324, rely=0.478, height=24, width=39)
-        # self.Button22.configure(command=unknown_support.Reset11Temperatuur, text='''Reset''')
-        #
-        # self.Button23 = ttk.Button(self.t_notebook_1_t0, style='Custom.TButton')
-        # self.Button23.place(relx=0.01, rely=0.863, height=54, width=277)
-        # self.Button23.configure(command=self.close_zonnescherm,  text='''CLOSE SCHERM''')
-        #
-        # self.Button24 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button24.place(relx=0.265, rely=0.029, height=24, width=47)
-        # self.Button24.configure(command=self.Set1Licht, text='''Set''')
-        #
-        # self.Button25 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button25.place(relx=0.265, rely=0.072, height=24, width=47)
-        # self.Button25.configure(command=self.Set2Licht, text='''Set''')
-        #
-        # self.Button26 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button26.place(relx=0.265, rely=0.116, height=24, width=47)
-        # self.Button26.configure(command=self.Set3Licht, text='''Set''')
-        #
-        # self.Button27 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button27.place(relx=0.265, rely=0.159, height=24, width=47)
-        # self.Button27.configure(command=self.Set4Licht, text='''Set''')
-        #
-        # self.Button28 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button28.place(relx=0.265, rely=0.203, height=24, width=47)
-        # self.Button28.configure(command=self.Set5Licht, text='''Set''')
-        #
-        # self.Button29 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button29.place(relx=0.265, rely=0.246, height=24, width=47)
-        # self.Button29.configure(command=self.Set6Licht, text='''Set''')
-        #
-        # self.Button30 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button30.place(relx=0.265, rely=0.29, height=24, width=47)
-        # self.Button30.configure(command=self.Set7Licht, text='''Set''')
-        #
-        # self.Button31 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button31.place(relx=0.324, rely=0.029, height=24, width=39)
-        # self.Button31.configure(command=unknown_support.Reset1Licht, text='''Reset''')
-        #
-        # self.Button32 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button32.place(relx=0.324, rely=0.072, height=24, width=39)
-        # self.Button32.configure(command=unknown_support.Reset2Licht, text='''Reset''')
-        #
-        # self.Button33 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button33.place(relx=0.324, rely=0.116, height=24, width=39)
-        # self.Button33.configure(command=unknown_support.Reset3Licht, text='''Reset''')
-        #
-        # self.Button34 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button34.place(relx=0.324, rely=0.159, height=24, width=39)
-        # self.Button34.configure(command=unknown_support.Reset4Licht, text='''Reset''')
-        #
-        # self.Button35 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button35.place(relx=0.324, rely=0.203, height=24, width=39)
-        # self.Button35.configure(command=unknown_support.Reset5Licht, text='''Reset''')
-        #
-        # self.Button36 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button36.place(relx=0.324, rely=0.246, height=24, width=39)
-        # self.Button36.configure(command=unknown_support.Reset6Licht, text='''Reset''')
-        #
-        # self.Button37 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button37.place(relx=0.324, rely=0.29, height=24, width=39)
-        # self.Button37.configure(command=unknown_support.Reset7Licht, text='''Reset''')
-        #
-        # self.Button38 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button38.place(relx=0.265, rely=0.333, height=24, width=47)
-        # self.Button38.configure(command=self.Set8Licht, text='''Set''')
-        #
-        # self.Button39 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button39.place(relx=0.265, rely=0.391, height=24, width=47)
-        # self.Button39.configure(command=unknown_support.Set9Licht, text='''Set''')
-        #
-        # self.Button40 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button40.place(relx=0.265, rely=0.435, height=24, width=47)
-        # self.Button40.configure(command=unknown_support.Set10Licht, text='''Set''')
-        #
-        # self.Button41 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button41.place(relx=0.324, rely=0.333, height=24, width=39)
-        # self.Button41.configure(command=unknown_support.Reset8Licht, text='''Reset''')
-        #
-        # self.Button42 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button42.place(relx=0.324, rely=0.391, height=24, width=39)
-        # self.Button42.configure(command=unknown_support.Reset9Licht, text='''Reset''')
-        #
-        # self.Button43 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button43.place(relx=0.324, rely=0.435, height=24, width=39)
-        # self.Button43.configure(command=unknown_support.Reset10Licht, text='''Reset''')
-        #
-        # self.Button44 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button44.place(relx=0.265, rely=0.029, height=24, width=47)
-        # self.Button44.configure(command=self.Set1Afstand, text='''Set''')
-        #
-        # self.Button45 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button45.place(relx=0.265, rely=0.072, height=24, width=47)
-        # self.Button45.configure(command=self.Set2Afstand, text='''Set''')
-        #
-        # self.Button46 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button46.place(relx=0.265, rely=0.116, height=24, width=47)
-        # self.Button46.configure(command=self.Set3Afstand, text='''Set''')
-        #
-        # self.Button47 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button47.place(relx=0.265, rely=0.159, height=24, width=47)
-        # self.Button47.configure(command=self.Set4Afstand, text='''Set''')
-        #
-        # self.Button48 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button48.place(relx=0.265, rely=0.203, height=24, width=47)
-        # self.Button48.configure(command=self.Set5Afstand, text='''Set''')
-        #
-        # self.Button49 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button49.place(relx=0.265, rely=0.246, height=24, width=47)
-        # self.Button49.configure(command=self.Set6Afstand, text='''Set''')
-        #
-        # self.Button50 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button50.place(relx=0.265, rely=0.29, height=24, width=47)
-        # self.Button50.configure(command=self.Set7Afstand, text='''Set''')
-        #
-        # self.Button51 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button51.place(relx=0.265, rely=0.333, height=24, width=47)
-        # self.Button51.configure(command=self.Set8Afstand, text='''Set''')
-        #
-        # self.Button52 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button52.place(relx=0.324, rely=0.029, height=24, width=39)
-        # self.Button52.configure(command=unknown_support.Reset1Afstand, text='''Reset''')
-        #
-        # self.Button53 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button53.place(relx=0.324, rely=0.072, height=24, width=39)
-        # self.Button53.configure(command=unknown_support.Reset2Afstand, text='''Reset''')
-        #
-        # self.Button54 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button54.place(relx=0.324, rely=0.116, height=24, width=39)
-        # self.Button54.configure(command=unknown_support.Reset3Afstand, text='''Reset''')
-        #
-        # self.Button55 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button55.place(relx=0.324, rely=0.159, height=24, width=39)
-        # self.Button55.configure(command=unknown_support.Reset4Afstand, text='''Reset''')
-        #
-        # self.Button56 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button56.place(relx=0.324, rely=0.203, height=24, width=39)
-        # self.Button56.configure(command=unknown_support.Reset5Afstand, text='''Reset''')
-        #
-        # self.Button57 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button57.place(relx=0.324, rely=0.246, height=24, width=39)
-        # self.Button57.configure(command=unknown_support.Reset6Afstand, text='''Reset''')
-        #
-        # self.Button58 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button58.place(relx=0.324, rely=0.29, height=24, width=39)
-        # self.Button58.configure(command=unknown_support.Reset7Afstand, text='''Reset''')
-        #
-        # self.Button59 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button59.place(relx=0.324, rely=0.333, height=24, width=39)
-        # self.Button59.configure(command=unknown_support.Reset8Afstand, text='''Reset''')
-        #
-        # self.Button60 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button60.place(relx=0.265, rely=0.391, height=24, width=47)
-        # self.Button60.configure(command=unknown_support.Set9Afstand, text='''Set''')
-        #
-        # self.Button61 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button61.place(relx=0.265, rely=0.435, height=24, width=47)
-        # self.Button61.configure(command=unknown_support.Set10Afstand, text='''Set''')
-        #
-        # self.Button62 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button62.place(relx=0.265, rely=0.478, height=24, width=47)
-        # self.Button62.configure(command=unknown_support.Set11Afstand, text='''Set''')
-        #
-        # self.Button63 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button63.place(relx=0.324, rely=0.391, height=24, width=39)
-        # self.Button63.configure(command=unknown_support.Reset9Afstand, text='''Reset''')
-        #
-        # self.Button64 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button64.place(relx=0.324, rely=0.435, height=24, width=39)
-        # self.Button64.configure(command=unknown_support.Reset10Afstand, text='''Reset''')
-        #
-        # self.Button65 = ttk.Button(self.t_notebook_4_t2, style='Custom.TButton')
-        # self.Button65.place(relx=0.324, rely=0.478, height=24, width=39)
-        # self.Button65.configure(command=unknown_support.Reset11Afstand, text='''Reset''')
-        #
-        # self.Button66 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button66.place(relx=0.265, rely=0.478, height=24, width=47)
-        # self.Button66.configure(command=unknown_support.Set11Licht, text='''Set''')
-        #
-        # self.Button67 = ttk.Button(self.t_notebook_4_t1, style='Custom.TButton')
-        # self.Button67.place(relx=0.324, rely=0.478, height=24, width=39)
-        # self.Button67.configure(command=unknown_support.Reset11Licht, text='''Reset''')
-
+        #The button for "Arduino 1" on the "Dashboard" page
         self.button_68 = ttk.Button(self.t_notebook_1_t0, style='Arduino1.TButton')
         self.button_68.place(relx=0.01, rely=0.521, height=74, relwidth=0.080)
         self.button_68.configure(command=self.switch_to_arduino, text='''Arduino 1''')
 
+        #The button for "Arduino 2" on the "Dashboard" page
         self.button_69 = ttk.Button(self.t_notebook_1_t0, style='Arduino2.TButton')
         self.button_69.place(relx=0.105, rely=0.521, height=74, relwidth=0.080)
         self.button_69.configure(command=self.switch_to_arduino_2, text='''Arduino 2''')
 
+        #The button for "Arduino 3" on the "Dashboard" page
         self.button_70 = ttk.Button(self.t_notebook_1_t0, style='Arduino3.TButton')
         self.button_70.place(relx=0.200, rely=0.521, height=74, relwidth=0.080)
         self.button_70.configure(command=self.switch_to_arduino_3, text='''Arduino 3''')
 
+        #The button for "Arduino 4" on the "Dashboard" page
         self.button_71 = ttk.Button(self.t_notebook_1_t0, style='Arduino4.TButton')
         self.button_71.place(relx=0.05, rely=0.644, height=74, relwidth=0.080)
         self.button_71.configure(command=self.switch_to_arduino_4, text='''Arduino 4''')
 
+        #The button for "Arduino 5" on the "Dashboard" page
         self.button_72 = ttk.Button(self.t_notebook_1_t0, style='Arduino5.TButton')
         self.button_72.place(relx=0.155, rely=0.644, height=74, relwidth=0.080)
         self.button_72.configure(command=self.switch_to_arduino_5, text='''Arduino 5''')
@@ -563,95 +333,11 @@ class TopLevel1:
                                         disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
                                         highlightcolor="black", justify='left')
 
+        #The checkbutton box for using the changeable config, executes the function "self.toggle_config".
         self.Checkbutton1 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
         self.Checkbutton1.place(relx=0.101, rely=0.203, relheight=0.036, relwidth=39)
         self.Checkbutton1.configure(command=self.toggle_config,
                                     text='''Use the above config''')
-
-        # self.Checkbutton2 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
-        # self.Checkbutton2.place(relx=0.088, rely=0.435, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton2.configure(variable=unknown_support.che94, text='''Check''')
-        #
-        # self.Checkbutton3 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
-        # self.Checkbutton3.place(relx=0.088, rely=0.478, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton3.configure(variable=unknown_support.che95, text='''Check''')
-        #
-        # self.Checkbutton4 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
-        # self.Checkbutton4.place(relx=0.157, rely=0.391, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton4.configure(variable=unknown_support.che96, text='''Check''')
-        #
-        # self.Checkbutton5 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
-        # self.Checkbutton5.place(relx=0.157, rely=0.435, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton5.configure(variable=unknown_support.che97, text='''Check''')
-        #
-        # self.Checkbutton6 = ttk.Checkbutton(self.t_notebook_4_t0, style='Custom.TCheckbutton')
-        # self.Checkbutton6.place(relx=0.157, rely=0.478, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton6.configure(variable=unknown_support.che99, text='''Check''')
-        #
-        # # self.Checkbutton7 = ttk.Checkbutton(self.t_notebook_4_t1, style='Custom.TCheckbutton')
-        # self.Checkbutton7.place(relx=0.088, rely=0.391, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton7.configure(variable=unknown_support.che72, text='''Check''')
-        #
-        # self.Checkbutton8 = ttk.Checkbutton(self.t_notebook_4_t1, style='Custom.TCheckbutton')
-        # self.Checkbutton8.place(relx=0.088, rely=0.435, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton8.configure(variable=unknown_support.che73, text='''Check''')
-        #
-        # self.Checkbutton9 = ttk.Checkbutton(self.t_notebook_4_t1, style='Custom.TCheckbutton')
-        # self.Checkbutton9.place(relx=0.088, rely=0.478, relheight=0.036
-        #                         , relwidth=0.06)
-        # self.Checkbutton9.configure(variable=unknown_support.che74, text='''Check''')
-        #
-        # self.Checkbutton10 = ttk.Checkbutton(self.t_notebook_4_t1, style='Custom.TCheckbutton')
-        # self.Checkbutton10.place(relx=0.157, rely=0.391, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton10.configure(variable=unknown_support.che75, text='''Check''')
-        #
-        # self.Checkbutton11 = ttk.Checkbutton(self.t_notebook_4_t1, style='Custom.TCheckbutton')
-        # self.Checkbutton11.place(relx=0.157, rely=0.435, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton11.configure(variable=unknown_support.che76, text='''Check''')
-        #
-        # self.Checkbutton12 = ttk.Checkbutton(self.t_notebook_4_t1, style='Custom.TCheckbutton')
-        # self.Checkbutton12.place(relx=0.157, rely=0.478, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton12.configure(variable=unknown_support.che77, text='''Check''')
-        #
-        # self.Checkbutton13 = ttk.Checkbutton(self.t_notebook_4_t2, style='Custom.TCheckbutton')
-        # self.Checkbutton13.place(relx=0.088, rely=0.391, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton13.configure(variable=unknown_support.che120, text='''Check''')
-        #
-        # self.Checkbutton14 = ttk.Checkbutton(self.t_notebook_4_t2, style='Custom.TCheckbutton')
-        # self.Checkbutton14.place(relx=0.088, rely=0.435, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton14.configure(variable=unknown_support.che121, text='''Check''')
-        #
-        # self.Checkbutton15 = ttk.Checkbutton(self.t_notebook_4_t2, style='Custom.TCheckbutton')
-        # self.Checkbutton15.place(relx=0.088, rely=0.478, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton15.configure(variable=unknown_support.che122, text='''Check''')
-        #
-        # self.Checkbutton16 = ttk.Checkbutton(self.t_notebook_4_t2, style='Custom.TCheckbutton')
-        # self.Checkbutton16.place(relx=0.157, rely=0.391, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton16.configure(variable=unknown_support.che123, text='''Check''')
-        #
-        # self.Checkbutton17 = ttk.Checkbutton(self.t_notebook_4_t2, style='Custom.TCheckbutton')
-        # self.Checkbutton17.place(relx=0.157, rely=0.435, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton17.configure(variable=unknown_support.che124, text='''Check''')
-        #
-        # self.Checkbutton18 = ttk.Checkbutton(self.t_notebook_4_t2, style='Custom.TCheckbutton')
-        # self.Checkbutton18.place(relx=0.157, rely=0.478, relheight=0.036
-        #                          , relwidth=0.06)
-        # self.Checkbutton18.configure(variable=unknown_support.che125, text='''Check''')
 
         self.listbox_1 = tk.Listbox(self.t_notebook_1_t0)
         self.listbox_1.place(relx=0.01, rely=0.014, relheight=0.236, relwidth=0.272)
@@ -824,89 +510,35 @@ class TopLevel1:
         toolbar.update()
         self.canvas8a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        #Style for all the entry boxes on the "Config" page.
         self.entry_style = ttk.Style()
         self.entry_style.configure('Custom.TEntry', background="white", disabledforeground="#a3a3a3",
                                    font="TkFixedFont", foreground="#000000", highlightbackground="#d9d9d9",
                                    highlightcolor="black", insertbackground="black", selectbackground="#c4c4c4",
                                    selectforeground="black")
 
+        #The 1st entry box on the "Config" page.
         self.entry_1 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
         self.entry_1.place(relx=0.101, rely=0.029, height=20, relwidth=0.161)
 
+        #The 2nd entry box on the "Config" page.
         self.entry_2 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
         self.entry_2.place(relx=0.101, rely=0.072, height=20, relwidth=0.161)
 
+        #The 3rd entry box on the "Config" page.
         self.entry_3 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
         self.entry_3.place(relx=0.101, rely=0.116, height=20, relwidth=0.161)
 
+        #The 4th entry box on the "Config" page.
         self.entry_4 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
         self.entry_4.place(relx=0.101, rely=0.159, height=20, relwidth=0.161)
-
-        # self.Entry5 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
-        # self.Entry5.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
-        #
-        # self.Entry6 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
-        # self.Entry6.place(relx=0.088, rely=0.246, height=20, relwidth=0.161)
-        #
-        # self.Entry7 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
-        # self.Entry7.place(relx=0.088, rely=0.29, height=20, relwidth=0.161)
-        #
-        # self.Entry8 = ttk.Entry(self.t_notebook_4_t0, style='Custom.TEntry')
-        # self.Entry8.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
-        #
-        # self.Entry9 = ttk.Entry(self.t_notebook_4_t1, style='Custom.TEntry')
-        # self.Entry9.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
-        #
-        # self.Entry10 = ttk.Entry(self.t_notebook_4_t1, style='Custom.TEntry')
-        # self.Entry10.place(relx=0.088, rely=0.072, height=20, relwidth=0.161)
-        #
-        # self.Entry11 = ttk.Entry(self.t_notebook_4_t1, style='Custom.TEntry')
-        # self.Entry11.place(relx=0.088, rely=0.116, height=20, relwidth=0.161)
-        #
-        # self.Entry12 = ttk.Entry(self.t_notebook_4_t1, style='Custom.TEntry')
-        # self.Entry12.place(relx=0.088, rely=0.159, height=20, relwidth=0.161)
-        #
-        # self.Entry13 = ttk.Entry(self.t_notebook_4_t1, style='Custom.TEntry')
-        # self.Entry13.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
-        #
-        # self.Entry14 = ttk.Entry(self.t_notebook_4_t1, style='Custom.TEntry')
-        # self.Entry14.place(relx=0.088, rely=0.246, height=20, relwidth=0.161)
-        #
-        # self.Entry15 = ttk.Entry(self.t_notebook_4_t1, style='Custom.TEntry')
-        # self.Entry15.place(relx=0.088, rely=0.29, height=20, relwidth=0.161)
-        #
-        # self.Entry16 = ttk.Entry(self.t_notebook_4_t2, style='Custom.TEntry')
-        # self.Entry16.place(relx=0.088, rely=0.029, height=20, relwidth=0.161)
-        #
-        # self.Entry17 = ttk.Entry(self.t_notebook_4_t2, style='Custom.TEntry')
-        # self.Entry17.place(relx=0.088, rely=0.072, height=20, relwidth=0.161)
-        #
-        # self.Entry18 = ttk.Entry(self.t_notebook_4_t2, style='Custom.TEntry')
-        # self.Entry18.place(relx=0.088, rely=0.116, height=20, relwidth=0.161)
-        #
-        # self.Entry19 = ttk.Entry(self.t_notebook_4_t2, style='Custom.TEntry')
-        # self.Entry19.place(relx=0.088, rely=0.159, height=20, relwidth=0.161)
-        #
-        # self.Entry20 = ttk.Entry(self.t_notebook_4_t2, style='Custom.TEntry')
-        # self.Entry20.place(relx=0.088, rely=0.203, height=20, relwidth=0.161)
-        #
-        # self.Entry21 = ttk.Entry(self.t_notebook_4_t2, style='Custom.TEntry')
-        # self.Entry21.place(relx=0.088, rely=0.246, height=20, relwidth=0.161)
-        #
-        # self.Entry22 = ttk.Entry(self.t_notebook_4_t2, style='Custom.TEntry')
-        # self.Entry22.place(relx=0.088, rely=0.29, height=20, relwidth=0.161)
-        #
-        # self.Entry23 = ttk.Entry(self.t_notebook_4_t2, style='Custom.TEntry')
-        # self.Entry23.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
-        #
-        # self.Entry24 = ttk.Entry(self.t_notebook_4_t1, style='Custom.TEntry')
-        # self.Entry24.place(relx=0.088, rely=0.333, height=20, relwidth=0.161)
 
         self.label_style = ttk.Style()
         self.label_style.configure('Custom.TLabel', activebackground="#f9f9f9", activeforeground="black",
                                    background="#d9d9d9", disabledforeground="#a3a3a3", foreground="#000000",
                                    highlightbackground="#d9d9d9", highlightcolor="black")
 
+        #Label for the text on the "Help" page.
         self.label_1 = ttk.Label(self.t_notebook_1_t3, style='Custom.TLabel')
         self.label_1.place(relx=0.01, rely=0.014, height=674, width=674)
         self.label_1.configure(text='''INSTRUCTIONS:
@@ -944,102 +576,25 @@ class TopLevel1:
         Free Hong Kong!
         A revolution in our generation!''')
 
+        #1st label on the "Config" page.
         self.label_2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         self.label_2.place(relx=0.0, rely=0.029, height=21, relwidth=0.1)
         self.label_2.configure(text='''Set temperature''')
 
+        #2nd label on the "Config" page.
         self.label_2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         self.label_2.place(relx=0.0, rely=0.072, height=21, relwidth=0.1)
         self.label_2.configure(text='''Set light''')
 
+        #3rd label on the "Config" page.
         self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.116, height=21, relwidth=0.1)
         self.Label2.configure(text='''Set minimal distance''')
 
+        #4th label on the "Config" page.
         self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.159, height=21, relwidth=0.1)
         self.Label2.configure(text='''Set maximum distance''')
-
-        # self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
-        # self.Label2.place(relx=0.0, rely=0.203, height=21, width=74)
-        # self.Label2.configure(text='''Setting''')
-        #
-        # self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
-        # self.Label2.place(relx=0.0, rely=0.246, height=21, width=74)
-        # self.Label2.configure(text='''Setting''')
-        #
-        # self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
-        # self.Label2.place(relx=0.0, rely=0.29, height=21, width=74)
-        # self.Label2.configure(text='''Setting''')
-        #
-        # self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
-        # self.Label2.place(relx=0.0, rely=0.333, height=21, width=74)
-        # self.Label2.configure(text='''Setting''')
-        #TODO waarom plaats je Label2 8 keer met identieke code?
-
-        # self.Label3 = ttk.Label(self.t_notebook_4_t1, style='Custom.TLabel')
-        # self.Label3.place(relx=0.02, rely=0.029, height=21, width=43)
-        # self.Label3.configure(text='''Setting''')
-        #
-        # self.Label4 = ttk.Label(self.t_notebook_4_t1, style='Custom.TLabel')
-        # self.Label4.place(relx=0.02, rely=0.072, height=21, width=43)
-        # self.Label4.configure(text='''Setting''')
-        #
-        # self.Label5 = ttk.Label(self.t_notebook_4_t1, style='Custom.TLabel')
-        # self.Label5.place(relx=0.02, rely=0.116, height=21, width=43)
-        # self.Label5.configure(text='''Setting''')
-        #
-        # self.Label6 = ttk.Label(self.t_notebook_4_t1, style='Custom.TLabel')
-        # self.Label6.place(relx=0.02, rely=0.159, height=21, width=43)
-        # self.Label6.configure(text='''Setting''')
-        #
-        # self.Label7 = ttk.Label(self.t_notebook_4_t1, style='Custom.TLabel')
-        # self.Label7.place(relx=0.02, rely=0.203, height=21, width=43)
-        # self.Label7.configure(text='''Setting''')
-        #
-        # self.Label8 = ttk.Label(self.t_notebook_4_t1, style='Custom.TLabel')
-        # self.Label8.place(relx=0.02, rely=0.246, height=21, width=43)
-        # self.Label8.configure(text='''Setting''')
-        #
-        # self.Label9 = ttk.Label(self.t_notebook_4_t1, style='Custom.TLabel')
-        # self.Label9.place(relx=0.02, rely=0.29, height=21, width=43)
-        # self.Label9.configure(text='''Setting''')
-        #
-        # self.Label10 = ttk.Label(self.t_notebook_4_t2, style='Custom.TLabel')
-        # self.Label10.place(relx=0.02, rely=0.029, height=21, width=43)
-        # self.Label10.configure(text='''Setting''')
-        #
-        # self.Label11 = ttk.Label(self.t_notebook_4_t2, style='Custom.TLabel')
-        # self.Label11.place(relx=0.02, rely=0.072, height=21, width=44)
-        # self.Label11.configure(text='''Setting''')
-        #
-        # self.Label12 = ttk.Label(self.t_notebook_4_t2, style='Custom.TLabel')
-        # self.Label12.place(relx=0.02, rely=0.116, height=21, width=43)
-        # self.Label12.configure(text='''Setting''')
-        #
-        # self.Label13 = ttk.Label(self.t_notebook_4_t2, style='Custom.TLabel')
-        # self.Label13.place(relx=0.02, rely=0.159, height=21, width=43)
-        # self.Label13.configure(text='''Setting''')
-        #
-        # self.Label14 = ttk.Label(self.t_notebook_4_t2, style='Custom.TLabel')
-        # self.Label14.place(relx=0.02, rely=0.203, height=21, width=43)
-        # self.Label14.configure(text='''Setting''')
-        #
-        # self.Label15 = ttk.Label(self.t_notebook_4_t2, style='Custom.TLabel')
-        # self.Label15.place(relx=0.02, rely=0.246, height=21, width=43)
-        # self.Label15.configure(text='''Setting''')
-        #
-        # self.Label16 = ttk.Label(self.t_notebook_4_t2, style='Custom.TLabel')
-        # self.Label16.place(relx=0.02, rely=0.29, height=21, width=43)
-        # self.Label16.configure(text='''Setting''')
-        #
-        # self.Label17 = ttk.Label(self.t_notebook_4_t2, style='Custom.TLabel')
-        # self.Label17.place(relx=0.02, rely=0.333, height=21, width=43)
-        # self.Label17.configure(text='''Setting''')
-        #
-        # self.Label18 = ttk.Label(self.t_notebook_4_t1, style='Custom.TLabel')
-        # self.Label18.place(relx=0.02, rely=0.333, height=21, width=43)
-        # self.Label18.configure(text='''Setting''')
 
         self.menubar = tk.Menu(top, font="TkMenuFont", bg=_bgcolor, fg=_fgcolor)
         top.configure(menu=self.menubar)
@@ -1097,6 +652,7 @@ class TopLevel1:
         self.fill_listbox_3(str("Current min distance setting: " + str(self.mindistance)),4)
         self.fill_listbox_3(str("Current max distance setting: " + str(self.maxdistance)),5)
 
+    #Deze functie update alle grafieken met recente waardes vanaf de sensoren die geconnect zijn aan de Arduino
     def fix_grafieken(self):
         self.animatecanvas1(distance_gemiddelde[self.huidige_grafiek])
         self.animatecanvas2(light_gemiddelde[self.huidige_grafiek])
@@ -1158,13 +714,14 @@ class TopLevel1:
         light = int(light/aantal_light)
         temp = int(temp/aantal_temp)
         if self.run_config == 1:
-            #for i in range(0, aantal_live):
-                #if light > self.maxlight or temp > self.maxtemp:
-                    #if zonnescherm_status[i] == 2:
-                        #open_zonnescherm()                             #deze code kan alleen wanneer er echt een motor is aangesloten.
-               # else:
-                    #if zonnescherm_status[i] == 1:
-                        #close_zonnescherm()
+            # deze code kan alleen wanneer er echt een motor is aangesloten.
+                #for i in range(0, aantal_live):
+                    #if light > self.maxlight or temp > self.maxtemp:
+                        #if zonnescherm_status[i] == 2:
+                            #open_zonnescherm()
+                   # else:
+                        #if zonnescherm_status[i] == 1:
+                            #close_zonnescherm()
             if light > self.maxlight:
                 print("LIGHT | OPEN")
             if temp > self.maxtemp:
@@ -1444,78 +1001,6 @@ class TopLevel1:
         self.canvas18.plot(self.canvas18x, self.canvas18y, color="yellow")
         self.canvas8a.draw()
 
-    def set_1_temperatuur(self):
-        print(self.entry_1.get())
-
-    def set_2_temperatuur(self):
-        print(self.entry_2.get())
-
-    def set_3_temperatuur(self):
-        print(self.Entry3.get())
-
-    def set_4_temperatuur(self):
-        print(self.Entry4.get())
-
-    def set_5_temperatuur(self):
-        print(self.Entry5.get())
-
-    def set_6_temperatuur(self):
-        print(self.Entry6.get())
-
-    def set_7_temperatuur(self):
-        print(self.Entry7.get())
-
-    def set_8_temperatuur(self):
-        print(self.Entry8.get())
-
-    def set_1_licht(self):
-        print(self.Entry9.get())
-
-    def set_2_licht(self):
-        print(self.Entry10.get())
-
-    def Set3Licht(self):
-        print(self.Entry11.get())
-
-    def Set4Licht(self):
-        print(self.Entry12.get())
-
-    def Set5Licht(self):
-        print(self.Entry13.get())
-
-    def Set6Licht(self):
-        print(self.Entry14.get())
-
-    def Set7Licht(self):
-        print(self.Entry15.get())
-
-    def Set8Licht(self):
-        print(self.Entry24.get())
-
-    def Set1Afstand(self):
-        print(self.Entry16.get())
-
-    def Set2Afstand(self):
-        print(self.Entry17.get())
-
-    def Set3Afstand(self):
-        print(self.Entry18.get())
-
-    def Set4Afstand(self):
-        print(self.Entry19.get())
-
-    def Set5Afstand(self):
-        print(self.Entry20.get())
-
-    def Set6Afstand(self):
-        print(self.Entry21.get())
-
-    def Set7Afstand(self):
-        print(self.Entry22.get())
-
-    def Set8Afstand(self):
-        print(self.Entry23.get())
-
     def clear_canvasses_dashboard(self):
         self.canvas1.clear()
         self.canvas1y.clear()
@@ -1632,7 +1117,6 @@ class TopLevel1:
 
     def fill_listbox_3(self, string, index):
         self.listbox_3.insert(index, string)
-
 
     def button_kleur(self):
         if self.run_config == 0:
