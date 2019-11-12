@@ -1,3 +1,7 @@
+#  LIBS USED:    matplotlib
+#                numpy
+#                pyserial
+
 import time
 import serial.tools.list_ports
 
@@ -17,7 +21,7 @@ current_config_setting = -1
 min_length = 20
 max_length = 100
 
-#setup the arduino's and connects to them
+# setup the arduino's and connects to them
 def setup_arduinos():
     com_ports = list(serial.tools.list_ports.comports())
     for i in com_ports:
@@ -28,7 +32,7 @@ def setup_arduinos():
             time.sleep(1)
             arduinos.append(ser)
 
-#calculates the mean in python with all the things in a list
+# calculates the mean in python with all the things in a list
 def bereken_gemiddelde(lijst, ding, hoeveelste, aantal_voor_gemiddelde):
     aantal_voor_gemiddelde = -aantal_voor_gemiddelde
     lijst = lijst[ding][aantal_voor_gemiddelde:]
@@ -41,7 +45,7 @@ def bereken_gemiddelde(lijst, ding, hoeveelste, aantal_voor_gemiddelde):
     gemiddelde = gemiddelde / aantal
     return gemiddelde
 
-
+# converts binary to data
 def binary_to_data(binary_value):
     light = binary_value[0:2]
     light = light[::-1]
@@ -62,7 +66,7 @@ def binary_to_data(binary_value):
     data = [light, distance, temp, light2, bit_controle]
     return data
 
-
+# loop for getting the data out of arduino
 def loop_data():
     global arduinos, aantal_rondes, binary_value, light_gemiddelde, temp_gemiddelde, distance_gemiddelde, total_data
     ding = 0
@@ -94,27 +98,30 @@ def loop_data():
                 if aantal_rondes > 3:
                     setup_arduinos()
                     aantal_rondes = 0
-            # except serial.serialutil.SerialException:
-            #     aantal = 0
-            #     activeComPorts.remove(arduino.name)
-            #     for i in arduinos:
-            #         if i.name == arduino.name:
-            #             arduinos.pop(aantal)
-            #         aantal += 1
-            #
-            #     arduino.close()
-            # except ValueError:
-            #     aantal = 0
-            #     activeComPorts.remove(arduino.name)
-            #     for i in arduinos:
-            #         if i.name == arduino.name:
-            #             arduinos.pop(aantal)
-            #         aantal += 1
-            #     arduino.close()
+
+            # THIS WAS THE EXCEPTION HANDELING BEFORE THE THREADING
+
+            #  except serial.serialutil.SerialException:
+            #      aantal = 0
+            #      activeComPorts.remove(arduino.name)
+            #      for i in arduinos:
+            #          if i.name == arduino.name:
+            #              arduinos.pop(aantal)
+            #          aantal += 1
+            # 
+            #      arduino.close()
+            #  except ValueError:
+            #      aantal = 0
+            #      activeComPorts.remove(arduino.name)
+            #      for i in arduinos:
+            #          if i.name == arduino.name:
+            #              arduinos.pop(aantal)
+            #          aantal += 1
+            #      arduino.close()
     else:
         setup_arduinos()
 
-
+# main loop
 def loop_loop():
     setup_arduinos()
     aantal_loop = 0
@@ -122,7 +129,7 @@ def loop_loop():
     while 1:
         loop_data()
         check_zonnescherm()
-
+# open the sunscreen
 def open_zonnescherm(aantal = None):
     if aantal == None and current_config_setting == 0:
         aantal = current_graph
@@ -136,7 +143,7 @@ def open_zonnescherm(aantal = None):
         i = arduinos[aantal]
         i.write(bytearray(b'\x02'))
 
-
+# close the sunblind
 def close_zonnescherm(aantal = None):
     if aantal == None and current_config_setting == 0:
         aantal = current_graph
@@ -149,23 +156,23 @@ def close_zonnescherm(aantal = None):
         zonnescherm_status[aantal] = 2
         i = arduinos[aantal]
         i.write(bytearray(b'\x01'))
-
+# set data for graph
 def set_current_graph(ding, ding2):
     global current_graph, current_config_setting
     current_graph = ding
     current_config_setting = ding2
-
+# blink the leds
 def knipper(aantal):
     global zonnescherm_status
     zonnescherm_status[aantal] = 3
     i = arduinos[aantal]
     i.write(bytearray(b'\x03'))
-
+# checks for open or close with distance
 def check_zonnescherm():
     aantal = 0
     for i in arduinos:
         distance = distance_gemiddelde[aantal]
-        if distance > max_length: # ik heb geen idee welke waarde je wilt
+        if distance > max_length: #  ik heb geen idee welke waarde je wilt
             open_zonnescherm(aantal)
         elif distance < min_length:
             close_zonnescherm(aantal)
@@ -173,34 +180,34 @@ def check_zonnescherm():
             knipper(aantal)
         aantal+=1
 
-# def check_zonnescherm():
-#     global zonnescherm_status, zonnescherm_doel
-#     if zonnescherm_status == 0:
-#         for i in arduinos:
-#             i.write(bytearray(b'\x01'))
-#     elif zonnescherm_status == 1:
-#         for i in arduinos:
-#             i.write(bytearray(b'\x02'))
-#     elif zonnescherm_status == 2:
-#         print(zonnescherm_status, zonnescherm_doel)
-#         if zonnescherm_doel == 1 and gemiddelde_gemiddelde_afstand() > 100:
-#             zonnescherm_doel = 0
-#             zonnescherm_status = 0
-#             for i in arduinos:
-#                 i.write(bytearray(b'\x01'))
-#
-#         if zonnescherm_doel == 2 and gemiddelde_gemiddelde_afstand() < 40:
-#             zonnescherm_doel = 0
-#             zonnescherm_status = 1
-#             for i in arduinos:
-#                 i.write(bytearray(b'\x02'))
+#  def check_zonnescherm():
+#      global zonnescherm_status, zonnescherm_doel
+#      if zonnescherm_status == 0:
+#          for i in arduinos:
+#              i.write(bytearray(b'\x01'))
+#      elif zonnescherm_status == 1:
+#          for i in arduinos:
+#              i.write(bytearray(b'\x02'))
+#      elif zonnescherm_status == 2:
+#          print(zonnescherm_status, zonnescherm_doel)
+#          if zonnescherm_doel == 1 and gemiddelde_gemiddelde_afstand() > 100:
+#              zonnescherm_doel = 0
+#              zonnescherm_status = 0
+#              for i in arduinos:
+#                  i.write(bytearray(b'\x01'))
+# 
+#          if zonnescherm_doel == 2 and gemiddelde_gemiddelde_afstand() < 40:
+#              zonnescherm_doel = 0
+#              zonnescherm_status = 1
+#              for i in arduinos:
+#                  i.write(bytearray(b'\x02'))
 
-
+# Setter for the minimum distance
 def set_min_max_length(min = None, max = None):
     global min_length, max_length
     min_length = min
     max_length = max
-
+# Calculation of the mean
 def gemiddelde_gemiddelde_afstand():
     aantal = 0
     totaal = 0
@@ -211,7 +218,7 @@ def gemiddelde_gemiddelde_afstand():
     if aantal == 0:
         aantal = 1
     return totaal/aantal
-
+# Gets the status(OPEN OR CLOSE) from the sunblind
 def get_zonnescherm():
     global zonnescherm_status
     return zonnescherm_status
