@@ -21,6 +21,7 @@ current_config_setting = -1
 min_length = 20
 max_length = 100
 
+
 # setup the arduino's and connects to them
 def setup_arduinos():
     com_ports = list(serial.tools.list_ports.comports())
@@ -31,6 +32,7 @@ def setup_arduinos():
             ser = serial.Serial(l[0], 19200)
             time.sleep(1)
             arduinos.append(ser)
+
 
 # calculates the mean in python with all the things in a list
 def bereken_gemiddelde(lijst, ding, hoeveelste, aantal_voor_gemiddelde):
@@ -44,6 +46,7 @@ def bereken_gemiddelde(lijst, ding, hoeveelste, aantal_voor_gemiddelde):
         gemiddelde += i[hoeveelste]
     gemiddelde = gemiddelde / aantal
     return gemiddelde
+
 
 # converts binary to data
 def binary_to_data(binary_value):
@@ -65,6 +68,7 @@ def binary_to_data(binary_value):
     bit_controle = int(bit_controle, 2)
     data = [light, distance, temp, light2, bit_controle]
     return data
+
 
 # loop for getting the data out of arduino
 def loop_data():
@@ -108,7 +112,7 @@ def loop_data():
             #          if i.name == arduino.name:
             #              arduinos.pop(aantal)
             #          aantal += 1
-            # 
+            #
             #      arduino.close()
             #  except ValueError:
             #      aantal = 0
@@ -121,6 +125,7 @@ def loop_data():
     else:
         setup_arduinos()
 
+
 # main loop
 def loop_loop():
     setup_arduinos()
@@ -129,12 +134,14 @@ def loop_loop():
     while 1:
         loop_data()
         check_zonnescherm()
+
+
 # open the sunscreen
 def open_zonnescherm(aantal = None):
-    if aantal == None and current_config_setting == 0:
+    if aantal is None and current_config_setting == 0:
         aantal = current_graph
         print("Je zet nu arduino " + str(aantal+1) + " aan")
-    elif(aantal == None):
+    elif aantal is None:
         print(current_config_setting)
     else:
         open_of_dicht = 1
@@ -143,12 +150,13 @@ def open_zonnescherm(aantal = None):
         i = arduinos[aantal]
         i.write(bytearray(b'\x02'))
 
+
 # close the sunblind
 def close_zonnescherm(aantal = None):
-    if aantal == None and current_config_setting == 0:
+    if aantal is None and current_config_setting == 0:
         aantal = current_graph
         print("Je zet nu arduino " + str(aantal+1) + " uit")
-    elif(aantal == None):
+    elif aantal is None:
         print("")
     else:
         open_of_dicht = 2
@@ -156,29 +164,35 @@ def close_zonnescherm(aantal = None):
         zonnescherm_status[aantal] = 2
         i = arduinos[aantal]
         i.write(bytearray(b'\x01'))
+
+
 # set data for graph
 def set_current_graph(ding, ding2):
     global current_graph, current_config_setting
     current_graph = ding
     current_config_setting = ding2
+
+
 # blink the leds
 def knipper(aantal):
     global zonnescherm_status
     zonnescherm_status[aantal] = 3
     i = arduinos[aantal]
     i.write(bytearray(b'\x03'))
+
+
 # checks for open or close with distance
 def check_zonnescherm():
     aantal = 0
     for i in arduinos:
         distance = distance_gemiddelde[aantal]
-        if distance > max_length: #  ik heb geen idee welke waarde je wilt
+        if distance > max_length:
             open_zonnescherm(aantal)
         elif distance < min_length:
             close_zonnescherm(aantal)
         else:
             knipper(aantal)
-        aantal+=1
+        aantal += 1
 
 #  def check_zonnescherm():
 #      global zonnescherm_status, zonnescherm_doel
@@ -195,29 +209,33 @@ def check_zonnescherm():
 #              zonnescherm_status = 0
 #              for i in arduinos:
 #                  i.write(bytearray(b'\x01'))
-# 
+#
 #          if zonnescherm_doel == 2 and gemiddelde_gemiddelde_afstand() < 40:
 #              zonnescherm_doel = 0
 #              zonnescherm_status = 1
 #              for i in arduinos:
 #                  i.write(bytearray(b'\x02'))
 
+
 # Setter for the minimum distance
-def set_min_max_length(min = None, max = None):
+def set_min_max_length(min =None, max =None):
     global min_length, max_length
     min_length = min
     max_length = max
+
 # Calculation of the mean
 def gemiddelde_gemiddelde_afstand():
     aantal = 0
     totaal = 0
     for i in range(0, len(arduinos)):
-        aantal+=1
-        totaal+=distance_gemiddelde[i]
+        aantal += 1
+        totaal += distance_gemiddelde[i]
 
     if aantal == 0:
         aantal = 1
     return totaal/aantal
+
+
 # Gets the status(OPEN OR CLOSE) from the sunblind
 def get_zonnescherm():
     global zonnescherm_status
