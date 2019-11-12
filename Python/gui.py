@@ -1,3 +1,7 @@
+# LIBS USED:    matplotlib
+#               numpy
+#               pyserial
+
 from tkinter import *
 from receive_data import *
 
@@ -35,13 +39,16 @@ class ThreadSafeConsole(Text):
         Text.__init__(self, master, **options)
         self.queue = queue.Queue()
         self.update_me()
-    
+
+    # Add task to Thread
     def write(self, line):
         self.queue.put(line)
-    
+
+    # Clears the Thread
     def clear(self):
         self.queue.put(None)
-    
+
+    # Updates the Thread
     def update_me(self):
         try:
             while 1:
@@ -56,7 +63,7 @@ class ThreadSafeConsole(Text):
             pass
         self.after(100, self.update_me)
 
-
+# Starts the GUI
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
     global val, w, root
@@ -69,7 +76,7 @@ def vp_start_gui():
 
 w = None
 
-
+# Creates a TopLevel
 def create_toplevel1(root, *args, **kwargs):
     '''Starting point when module is imported by another program.'''
     global w, w_win, rt
@@ -78,7 +85,7 @@ def create_toplevel1(root, *args, **kwargs):
     top = TopLevel1(w)
     return w, top
 
-
+# Funtion for closing the GUI
 def destroy_toplevel1():
     global w
     w.destroy()
@@ -130,32 +137,38 @@ class TopLevel1:
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
         top.resizable(1, 1)
-        top.title("GUI")
+        top.title("CUCKS GUI")
         top.configure(background="#d9d9d9")
         top.configure(highlightbackground="#d9d9d9")
         top.configure(highlightcolor="black")
 
+        # Style for all the notebook instances
         self.style.configure('TNotebook.Tab', background=_bgcolor, foreground=_fgcolor)
         self.style.map('TNotebook.Tab', background=[('selected', _compcolor), ('active', _ana2color)])
+
         self.t_notebook_1 = ttk.Notebook(top)
         self.t_notebook_1.place(relx=0.0, rely=0.0, relheight=1.003, relwidth=1.002)
         self.t_notebook_1.configure(takefocus="")
 
+        # Notebook for the Dashboard
         self.t_notebook_1_t0 = tk.Frame(self.t_notebook_1)
         self.t_notebook_1.add(self.t_notebook_1_t0, padding=3)
         self.t_notebook_1.tab(0, text="Dashboard", compound="left", underline="-1", )
         self.t_notebook_1_t0.configure(highlightbackground="#d9d9d9", background="#d9d9d9", highlightcolor="black")
 
+        # Notebook for the Graph
         self.t_notebook_1_t1 = tk.Frame(self.t_notebook_1)
         self.t_notebook_1.add(self.t_notebook_1_t1, padding=3)
         self.t_notebook_1.tab(1, text="Graph", compound="left", underline="-1", )
         self.t_notebook_1_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
+        # Notebook for the Config
         self.t_notebook_1_t2 = tk.Frame(self.t_notebook_1)
         self.t_notebook_1.add(self.t_notebook_1_t2, padding=3)
         self.t_notebook_1.tab(2, text="Config", compound="none", underline="-1", )
         self.t_notebook_1_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
+        # Notebook for the Help
         self.t_notebook_1_t3 = tk.Frame(self.t_notebook_1)
         self.t_notebook_1.add(self.t_notebook_1_t3, padding=3)
         self.t_notebook_1.tab(3, text="Help", compound="none", underline="-1", )
@@ -164,6 +177,8 @@ class TopLevel1:
         self.t_notebook_2 = ttk.Notebook(self.t_notebook_1_t0)
         self.t_notebook_2.place(relx=0.291, rely=0.014, relheight=0.241, relwidth=0.68)
         self.t_notebook_2.configure(takefocus="")
+
+        # Notebook for the Distance sensor in Dashboard pane
         self.t_notebook_2_t0 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t0, padding=3)
         self.t_notebook_2.tab(0, text="Distancesensor", compound="left", underline="-1", )
@@ -175,6 +190,7 @@ class TopLevel1:
         self.ax1.set_title('NOT CONNECTED', color="red")
         self.ind = np.arange(5)  # the x locations for the groups
 
+        # Notebook for the Light sensor in Dashboard pane
         self.t_notebook_2_t1 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t1, padding=3)
         self.t_notebook_2.tab(1, text="Lightsensor", compound="left", underline="-1")
@@ -184,6 +200,7 @@ class TopLevel1:
         self.ax2.set_title('NOT CONNECTED', color="red")
         self.data2 = (20, 35, 30, 35)
 
+        # Notebook for the Temperature sensor in Dashboard pane
         self.t_notebook_2_t2 = tk.Frame(self.t_notebook_2)
         self.t_notebook_2.add(self.t_notebook_2_t2, padding=3)
         self.t_notebook_2.tab(2, text="Temperature", compound="none", underline="-1")
@@ -192,22 +209,32 @@ class TopLevel1:
         self.t_notebook_3 = ttk.Notebook(self.t_notebook_1_t1)
         self.t_notebook_3.place(relx=0.0, rely=0.014, relheight=0.995, relwidth=1.004)
         self.t_notebook_3.configure(takefocus="")
+
+        # Notebook for the Arduino 1 in Dashboard pane
         self.t_notebook_3_t0 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t0, padding=3)
         self.t_notebook_3.tab(0, text="Arduino 1", compound="left", underline="-1")
         self.t_notebook_3_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
+        # Notebook for the Arduino 2 in Dashboard pane
         self.t_notebook_3_t1 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t1, padding=3)
         self.t_notebook_3.tab(1, text="Arduino 2", compound="left", underline="-1")
         self.t_notebook_3_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
+        # Notebook for the Arduino 3 in Dashboard pane
         self.t_notebook_3_t2 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t2, padding=3)
         self.t_notebook_3.tab(2, text="Arduino 3", compound="none", underline="-1")
         self.t_notebook_3_t2.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
+        # Notebook for the Arduino 4 in Dashboard pane
         self.t_notebook_3_t3 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t3, padding=3)
         self.t_notebook_3.tab(3, text="Arduino 4", compound="none", underline="-1")
         self.t_notebook_3_t3.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
+
+        # Notebook for the Arduino 5 in Dashboard pane
         self.t_notebook_3_t4 = tk.Frame(self.t_notebook_3)
         self.t_notebook_3.add(self.t_notebook_3_t4, padding=3)
         self.t_notebook_3.tab(4, text="Arduino 5", compound="none", underline="-1")
@@ -217,6 +244,7 @@ class TopLevel1:
         self.t_notebook_4.place(relx=0.0, rely=0.014, relheight=0.981, relwidth=0.994)
         self.t_notebook_4.configure(takefocus="")
 
+        # Notebook for the configuring sunshade configuration in Config pane
         self.t_notebook_4_t0 = tk.Frame(self.t_notebook_4)
         self.t_notebook_4.add(self.t_notebook_4_t0, padding=3)
         self.t_notebook_4.tab(0, text="Set sunshade config", compound="left", underline="-1")
@@ -225,16 +253,20 @@ class TopLevel1:
         self.t_notebook_5 = ttk.Notebook(self.t_notebook_1_t0)
         self.t_notebook_5.place(relx=0.291, rely=0.26, relheight=0.721, relwidth=0.693)
         self.t_notebook_5.configure(takefocus="")
+
+        # Notebook for the Distance on Dashboard pane
         self.t_notebook_5_t0 = tk.Frame(self.t_notebook_5)
         self.t_notebook_5.add(self.t_notebook_5_t0, padding=3)
         self.t_notebook_5.tab(0, text="Distance", compound="left", underline="-1", )
         self.t_notebook_5_t0.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
+        # Notebook for the Light on Dashboard pane
         self.t_notebook_5_t1 = tk.Frame(self.t_notebook_5)
         self.t_notebook_5.add(self.t_notebook_5_t1, padding=3)
         self.t_notebook_5.tab(1, text="Light", compound="left", underline="-1", )
         self.t_notebook_5_t1.configure(background="#d9d9d9", highlightbackground="#d9d9d9", highlightcolor="black")
 
+        # Notebook for the Temperature on Dashboard pane
         self.t_notebook_5_t2 = tk.Frame(self.t_notebook_5)
         self.t_notebook_5.add(self.t_notebook_5_t2, padding=3)
         self.t_notebook_5.tab(2, text="Temperature", compound="none", underline="-1", )
@@ -330,33 +362,40 @@ class TopLevel1:
         self.Checkbutton1.configure(command=self.toggle_config,
                                     text='''Use the above config''')
 
+        # 1st listbox at Dashboard pane
         self.listbox_1 = tk.Listbox(self.t_notebook_1_t0)
         self.listbox_1.place(relx=0.01, rely=0.014, relheight=0.236, relwidth=0.272)
         self.listbox_1.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
                                  foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
                                  selectbackground="#c4c4c4", selectforeground="black")
 
+        # 2nd listbox at Dashboard pane
         self.listbox_2 = tk.Listbox(self.t_notebook_1_t0)
         self.listbox_2.place(relx=0.01, rely=0.26, relheight=0.236, relwidth=0.272)
         self.listbox_2.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
                                  foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
                                  selectbackground="#c4c4c4", selectforeground="black")
 
+        # listbox at Config pane
         self.listbox_3 = tk.Listbox(self.t_notebook_4_t0)
         self.listbox_3.place(relx=0.40, rely=0.028, relheight=0.166, relwidth=0.272)
         self.listbox_3.configure(background="white", disabledforeground="#a3a3a3", font="TkFixedFont",
                                  foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
                                  selectbackground="#c4c4c4", selectforeground="black")
 
+        # Distance sensor bar graph - Dashboard
         self.canvasbar1 = FigureCanvasTkAgg(bar1, master=self.t_notebook_2_t0)
         self.canvasbar1.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Light sensor bar graph - Dashboard
         self.canvasbar2 = FigureCanvasTkAgg(bar2, master=self.t_notebook_2_t1)
         self.canvasbar2.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Temperature sensor bar graph - Dashboard
         self.canvasbar3 = FigureCanvasTkAgg(bar3, master=self.t_notebook_2_t2)
         self.canvasbar3.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Distance graph dashboard - canvas
         self.fig1 = Figure(figsize=(5, 4), dpi=100)
         self.canvas1 = self.fig1.add_subplot(1, 1, 1)
         self.canvasx = []
@@ -369,6 +408,7 @@ class TopLevel1:
         self.toolbar.update()
         self.canvas1a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Light graph dashboard - canvas
         fig2 = Figure(figsize=(5, 4), dpi=100)
         self.canvas2 = fig2.add_subplot(1, 1, 1)
         self.canvas2y = []
@@ -381,6 +421,7 @@ class TopLevel1:
         toolbar.update()
         self.canvas2a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Temperature graph dashboard - canvas
         fig3 = Figure(figsize=(5, 4), dpi=100)
         self.canvas3 = fig3.add_subplot(1, 1, 1)
         self.canvas3y = []
@@ -393,6 +434,7 @@ class TopLevel1:
         toolbar.update()
         self.canvas3a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Distance, Light and Temperature graphs of Arduino 1 in graph panel
         fig4 = Figure(figsize=(5, 8), dpi=100)
         self.canvas4 = fig4.add_subplot(1, 3, 1)
         self.canvas5 = fig4.add_subplot(1, 3, 2)
@@ -413,6 +455,7 @@ class TopLevel1:
         toolbar.update()
         self.canvas4a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Distance, Light and Temperature graphs of Arduino 2 in graph panel
         fig5 = Figure(figsize=(5, 8), dpi=100)
         self.canvas6 = fig5.add_subplot(1, 3, 1)
         self.canvas7 = fig5.add_subplot(1, 3, 2)
@@ -433,6 +476,7 @@ class TopLevel1:
         toolbar.update()
         self.canvas5a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Distance, Light and Temperature graphs of Arduino 3 in graph panel
         fig6 = Figure(figsize=(5, 8), dpi=100)
         self.canvas8 = fig6.add_subplot(1, 3, 1)
         self.canvas9 = fig6.add_subplot(1, 3, 2)
@@ -453,6 +497,7 @@ class TopLevel1:
         toolbar.update()
         self.canvas6a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Distance, Light and Temperature graphs of Arduino 4 in graph panel
         fig7 = Figure(figsize=(5, 8), dpi=100)
         self.canvas10 = fig7.add_subplot(1, 3, 1)
         self.canvas11 = fig7.add_subplot(1, 3, 2)
@@ -473,6 +518,7 @@ class TopLevel1:
         toolbar.update()
         self.canvas7a.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+        # Distance, Light and Temperature graphs of Arduino 5 in graph panel
         fig8 = Figure(figsize=(5, 8), dpi=100)
         self.canvas16 = fig8.add_subplot(1, 3, 1)
         self.canvas17 = fig8.add_subplot(1, 3, 2)
@@ -583,7 +629,6 @@ class TopLevel1:
         self.Label2 = ttk.Label(self.t_notebook_4_t0, style='Custom.TLabel')
         self.Label2.place(relx=0.0, rely=0.159, height=21, relwidth=0.1)
         self.Label2.configure(text='''Set maximum distance''')
-
 
         self.menubar = tk.Menu(top, font="TkMenuFont", bg=_bgcolor, fg=_fgcolor)
         top.configure(menu=self.menubar)
@@ -717,7 +762,7 @@ class TopLevel1:
                 print("TEMP | OPEN")
             if light < self.maxlight:
                 print("LIGHT | CLOSE")
-            if  temp < self.maxtemp:
+            if temp < self.maxtemp:
                 print("TEMP | CLOSE")
             print("")
 
@@ -733,7 +778,7 @@ class TopLevel1:
         self.canvas1.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas1.set_title('Average distance')
         self.canvas1.set_ylabel('Distance (cm)')
-        self.canvas1.set_xlabel('Time')
+        self.canvas1.set_xlabel('Time (s)')
         self.canvas1.plot(self.canvasx, self.canvas1y, color="blue")
         self.canvas1a.draw()
 
@@ -749,7 +794,7 @@ class TopLevel1:
         self.canvas2.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas2.set_title('Average lightintensity')
         self.canvas2.set_ylabel('Light (lux)')
-        self.canvas2.set_xlabel('Time')
+        self.canvas2.set_xlabel('Time (s)')
         self.canvas2.plot(self.canvas2x, self.canvas2y, color="yellow")
         self.canvas2a.draw()
 
@@ -765,7 +810,7 @@ class TopLevel1:
         self.canvas3.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas3.set_title('Average Temperature')
         self.canvas3.set_ylabel('Temperature (°C)')
-        self.canvas3.set_xlabel('Time')
+        self.canvas3.set_xlabel('Time (s)')
         self.canvas3.plot(self.canvas3x, self.canvas3y, color="red")
         self.canvas3a.draw()
 
@@ -781,7 +826,7 @@ class TopLevel1:
         self.canvas4.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas4.set_title('Average distance')
         self.canvas4.set_ylabel('Distance (cm)')
-        self.canvas4.set_xlabel('Time')
+        self.canvas4.set_xlabel('Time (s)')
         self.canvas4.plot(self.canvas4x, self.canvas4y, color="blue")
         self.canvas4a.draw()
 
@@ -797,7 +842,7 @@ class TopLevel1:
         self.canvas5.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas5.set_title('Average temperature')
         self.canvas5.set_ylabel('Temperature (°C)')
-        self.canvas5.set_xlabel('Time')
+        self.canvas5.set_xlabel('Time (s)')
         self.canvas5.plot(self.canvas5x, self.canvas5y, color="red")
         self.canvas4a.draw()
 
@@ -813,7 +858,7 @@ class TopLevel1:
         self.canvas6.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas6.set_title('Average distance')
         self.canvas6.set_ylabel('Distance (cm)')
-        self.canvas6.set_xlabel('Time')
+        self.canvas6.set_xlabel('Time (s)')
         self.canvas6.plot(self.canvas6x, self.canvas6y, color="blue")
         self.canvas5a.draw()
 
@@ -829,7 +874,7 @@ class TopLevel1:
         self.canvas7.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas7.set_title('Average temperature')
         self.canvas7.set_ylabel('Temperature (°C)')
-        self.canvas7.set_xlabel('Time')
+        self.canvas7.set_xlabel('Time (s)')
         self.canvas7.plot(self.canvas7x, self.canvas7y, color="red")
         self.canvas5a.draw()
 
@@ -845,7 +890,7 @@ class TopLevel1:
         self.canvas8.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas8.set_title('Average distance')
         self.canvas8.set_ylabel('Distance (cm)')
-        self.canvas8.set_xlabel('Time')
+        self.canvas8.set_xlabel('Time (s)')
         self.canvas8.plot(self.canvas8x, self.canvas8y, color="blue")
         self.canvas6a.draw()
 
@@ -861,7 +906,7 @@ class TopLevel1:
         self.canvas9.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas9.set_title('Average temperature')
         self.canvas9.set_ylabel('Temperature (°C)')
-        self.canvas9.set_xlabel('Time')
+        self.canvas9.set_xlabel('Time (s)')
         self.canvas9.plot(self.canvas9x, self.canvas9y, color="red")
         self.canvas6a.draw()
 
@@ -877,7 +922,7 @@ class TopLevel1:
         self.canvas10.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas10.set_title('Average distance')
         self.canvas10.set_ylabel('Distance (cm)')
-        self.canvas10.set_xlabel('Time')
+        self.canvas10.set_xlabel('Time (s)')
         self.canvas10.plot(self.canvas10x, self.canvas10y, color="blue")
         self.canvas7a.draw()
 
@@ -893,7 +938,7 @@ class TopLevel1:
         self.canvas11.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas11.set_title('Average temperature')
         self.canvas11.set_ylabel('Temperature (°C)')
-        self.canvas11.set_xlabel('Time')
+        self.canvas11.set_xlabel('Time (s)')
         self.canvas11.plot(self.canvas11x, self.canvas11y, color="red")
         self.canvas7a.draw()
 
@@ -909,7 +954,7 @@ class TopLevel1:
         self.canvas12.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas12.set_title('Average lightintensity')
         self.canvas12.set_ylabel('Light (lux)')
-        self.canvas12.set_xlabel('Time')
+        self.canvas12.set_xlabel('Time (s)')
         self.canvas12.plot(self.canvas12x, self.canvas12y, color="yellow")
         self.canvas4a.draw()
 
@@ -925,7 +970,7 @@ class TopLevel1:
         self.canvas13.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas13.set_title('Average lightintensity')
         self.canvas13.set_ylabel('Light (lux)')
-        self.canvas13.set_xlabel('Time')
+        self.canvas13.set_xlabel('Time (s)')
         self.canvas13.plot(self.canvas13x, self.canvas13y, color="yellow")
         self.canvas5a.draw()
 
@@ -941,7 +986,7 @@ class TopLevel1:
         self.canvas14.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas14.set_title('Average lightintensity')
         self.canvas14.set_ylabel('Light (lux)')
-        self.canvas14.set_xlabel('Time')
+        self.canvas14.set_xlabel('Time (s)')
         self.canvas14.plot(self.canvas14x, self.canvas14y, color="yellow")
         self.canvas6a.draw()
 
@@ -957,7 +1002,7 @@ class TopLevel1:
         self.canvas15.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas15.set_title('Average lightintensity')
         self.canvas15.set_ylabel('Light (lux)')
-        self.canvas15.set_xlabel('Time')
+        self.canvas15.set_xlabel('Time (s)')
         self.canvas15.plot(self.canvas15x, self.canvas15y, color="yellow")
         self.canvas7a.draw()
 
@@ -973,7 +1018,7 @@ class TopLevel1:
         self.canvas16.set_ylim(0, 300)  # change this if the max limit has to change
         self.canvas16.set_title('Average distance')
         self.canvas16.set_ylabel('Distance (cm)')
-        self.canvas16.set_xlabel('Time')
+        self.canvas16.set_xlabel('Time (s)')
         self.canvas16.plot(self.canvas16x, self.canvas16y, color="blue")
         self.canvas8a.draw()
 
@@ -989,7 +1034,7 @@ class TopLevel1:
         self.canvas17.set_ylim(0, 35)  # change this if the max limit has to change
         self.canvas17.set_title('Average temperature')
         self.canvas17.set_ylabel('Temperature (°C)')
-        self.canvas17.set_xlabel('Time')
+        self.canvas17.set_xlabel('Time (s)')
         self.canvas17.plot(self.canvas17x, self.canvas17y, color="red")
         self.canvas8a.draw()
 
@@ -1005,7 +1050,7 @@ class TopLevel1:
         self.canvas18.set_ylim(0, 120)  # change this if the max limit has to change
         self.canvas18.set_title('Average lightintensity')
         self.canvas18.set_ylabel('Light (lux)')
-        self.canvas18.set_xlabel('Time')
+        self.canvas18.set_xlabel('Time (s)')
         self.canvas18.plot(self.canvas18x, self.canvas18y, color="yellow")
         self.canvas8a.draw()
 
@@ -1074,7 +1119,7 @@ class TopLevel1:
                                          font=('Sans', '10', 'bold'))
             self.huidige_grafiek = 2                #led = groen
 
-    #s witch the dashboard graph to the selected arduino
+    # switch the dashboard graph to the selected arduino
     def switch_to_arduino_4(self):
         length = len(arduinos)
         if length > 3:
