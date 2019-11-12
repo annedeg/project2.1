@@ -1,5 +1,5 @@
 from tkinter import *
-from send_data import *
+from receive_data import *
 
 import _thread
 import queue
