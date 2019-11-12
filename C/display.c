@@ -1,3 +1,5 @@
+//This file was downloaded from blackboard and we did not create this.
+
 #include "distance.h"
 
 //********** start display ***********
