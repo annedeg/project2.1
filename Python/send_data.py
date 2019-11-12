@@ -1,3 +1,7 @@
+# LIBS USED:    matplotlib
+#               numpy
+#               pyserial
+
 import time
 import serial.tools.list_ports
 
