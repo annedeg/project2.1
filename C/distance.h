@@ -1,3 +1,5 @@
+//Here are our distance functions.
+
 #define HIGH 0x1
 #define LOW 0x0
 

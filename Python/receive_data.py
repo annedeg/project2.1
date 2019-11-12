@@ -17,7 +17,7 @@ current_config_setting = -1
 min_length = 20
 max_length = 100
 
-
+#setup the arduino's and connects to them
 def setup_arduinos():
     com_ports = list(serial.tools.list_ports.comports())
     for i in com_ports:
@@ -28,7 +28,7 @@ def setup_arduinos():
             time.sleep(1)
             arduinos.append(ser)
 
-
+#calculates the mean in python with all the things in a list
 def bereken_gemiddelde(lijst, ding, hoeveelste, aantal_voor_gemiddelde):
     aantal_voor_gemiddelde = -aantal_voor_gemiddelde
     lijst = lijst[ding][aantal_voor_gemiddelde:]

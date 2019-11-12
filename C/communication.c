@@ -2,6 +2,12 @@
 #include <stdint.h>
 #include <math.h>
 volatile extern uint8_t current_distance;
+
+/*
+* Communication.c is one of the most essential pieces in our C code.
+* It gets all the input and it transmit every data.
+*/
+
 void uart_init()
 {
 	// set the baud rate
@@ -26,63 +32,50 @@ uint8_t receive() {
 	return UDR0;
 }
 
+/* Check if data was send. If so save it and set the lights accordingly. */
 void receive_if_send() {
 	if(UCSR0A & (1 << 7)) {
 		uint8_t data = receive();
 		data = (int) data;
 		check_lights(data);
-		show_distance(data);
+		handmatig = 0;
+	} else {
+		check_lights(rol_luik_status);
 	}
 } 
 
-void receive_and_transmit() {
-	volatile uint8_t data = 0;
-	while (data == 0) {
-		data = receive();
-		transmit(data);
-	}
-}
-
-void send_status() {
-	transmit(rol_luik_status);
-}
-
-void check_status() {
-	uint8_t data = 0x00;
-	data = receive();
-	if(data == 0x1) {
-		set_rol_luik_status(1);
-	}
-	if(data == 0x2) {
-		set_rol_luik_status(2);
-	}
-	if(data == 0x3) {
-		set_rol_luik_status(3);
-	}
-	
-}
-
+// Send all the data in a specific way. This design can be found in our technical design what you can find here: https://drive.google.com/file/d/1I5dLaODou5_8nIarDF2WDtAQAurOe5Mj/view?usp=sharing
 void send_all() {
-
 	int counter = 0;
+	
+	//Set the amount of bits every value can have.
 	int light_bit = 2;
 	int ult_bit = 8;
 	int temp_bit = 10;
 	int light_bit2 = 7;
 	int cont_bit = 5;
-
-	uint8_t temp =(uint8_t) getTemperature();
-	uint8_t light2=(uint8_t) get_adc_value();
-	uint8_t dist = (uint8_t) get_distance();
-	uint8_t light = (uint8_t) get_light_status();
 	
+	uint8_t temp = 0;
+	uint8_t light2 = 0;
+	uint8_t dist = 0;
+	
+	if(langzaam == 0) {
+		temp =(uint8_t) getTemperature();
+		light2=(uint8_t) get_adc_value();
+		dist = (uint8_t) get_distance();
+	} else {
+		get_gemiddelde();
+		temp =(uint8_t) get_temp();
+		light2=(uint8_t) get_licht();
+		dist = (uint8_t) get_afstand();
 
+	}
+	uint8_t light = (uint8_t) get_light_status();
 	int totaal = 0;
 	uint8_t binary[32];
 	uint8_t byte[4][8];
 	uint8_t getal[4];
 	
-
 /*
  * test.c
  *
@@ -90,7 +83,7 @@ void send_all() {
  * Author : adgra
  */ 
 
-
+	//Build binary string.
 	for(int i = 0; i<light_bit;i++) {
 		if(light%2==1) {
 			binary[counter] = 1;
@@ -147,7 +140,7 @@ void send_all() {
 		counter+=1;
 	}
 
-
+	//Set data in an array.
 	volatile int ding[4];
 	int aantal = 0;
 	for(int i=0; i<4; i++) {
@@ -159,42 +152,13 @@ void send_all() {
 			aantal++;
 		}
 	}
+	//First byte is to be sure data was send.
 	transmit(0xff);
+	
+	//Then we transfer 4 bytes of data.
 	transmit(ding[0]);
 	transmit(ding[1]);
 	transmit(ding[2]);
 	transmit(ding[3]);
-
-}
-
-void receive_all() {
-	uint8_t byte_1 = receive();
-	uint8_t byte_2 = receive();
-	uint8_t byte_3 = receive();
-	uint8_t byte_4 = receive();
-	int byteArray[32];
-	uint8_t byteArray2[4]={byte_1,byte_2,byte_3,byte_4};
-
-	int al = 0;
-	for(int a=0; a<4; a++){
-		for(int i=7; i>=0; i--){
-			byteArray[al] = (int)(byteArray2[a] >> i) & 1;
-			al++;
-		}
-	}
-	uint8_t byte[4];
-	al = 0;
-	for(int a=0; a<4; a++){
-		int extra = 0;
-		for(int i=7; i>=0; i--){
-			if(byteArray[al] & 1) {
-				extra += (int)1<<i;
-			}
-			al++;
-		}
-		byte[a] = extra;
-		 
-	}
-	
 
 }
