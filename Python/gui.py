@@ -63,6 +63,7 @@ class ThreadSafeConsole(Text):
             pass
         self.after(100, self.update_me)
 
+
 # Starts the GUI
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -76,6 +77,7 @@ def vp_start_gui():
 
 w = None
 
+
 # Creates a TopLevel
 def create_toplevel1(root, *args, **kwargs):
     '''Starting point when module is imported by another program.'''
@@ -84,6 +86,7 @@ def create_toplevel1(root, *args, **kwargs):
     w = tk.Toplevel(root)
     top = TopLevel1(w)
     return w, top
+
 
 # Funtion for closing the GUI
 def destroy_toplevel1():
